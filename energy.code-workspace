@@ -1,0 +1,158 @@
+{
+	"folders": [
+		{
+			"name": "energy (main)",
+			"path": "."
+		},
+		{
+			"name": "elemental-transmutator",
+			"path": "../elemental-transmutator"
+		},
+		{
+			"name": "lorentz-violation-pipeline",
+			"path": "../lorentz-violation-pipeline"
+		},
+		{
+			"name": "lqg-anec-framework",
+			"path": "../lqg-anec-framework"
+		},
+		{
+			"name": "lqg-volume-kernel-catalog",
+			"path": "../lqg-volume-kernel-catalog"
+		},
+		{
+			"name": "polymer-fusion-framework",
+			"path": "../polymer-fusion-framework"
+		},
+		{
+			"name": "su2-3nj-closedform",
+			"path": "../su2-3nj-closedform"
+		},
+		{
+			"name": "su2-3nj-generating-functional",
+			"path": "../su2-3nj-generating-functional"
+		},
+		{
+			"name": "su2-3nj-recurrences",
+			"path": "../su2-3nj-recurrences"
+		},
+		{
+			"name": "su2-3nj-uniform-closed-form",
+			"path": "../su2-3nj-uniform-closed-form"
+		},
+		{
+			"name": "su2-node-matrix-elements",
+			"path": "../su2-node-matrix-elements"
+		},
+		{
+			"name": "unified-gut-polymerization",
+			"path": "../unified-gut-polymerization"
+		},
+		{
+			"name": "unified-lqg",
+			"path": "../unified-lqg"
+		},
+		{
+			"name": "unified-lqg-qft",
+			"path": "../unified-lqg-qft"
+		},
+		{
+			"name": "warp-bubble-assemble-expressions",
+			"path": "../warp-bubble-assemble-expressions"
+		},
+		{
+			"name": "warp-bubble-connection-curvature",
+			"path": "../warp-bubble-connection-curvature"
+		},
+		{
+			"name": "warp-bubble-coordinate-spec",
+			"path": "../warp-bubble-coordinate-spec"
+		},
+		{
+			"name": "warp-bubble-einstein-equations",
+			"path": "../warp-bubble-einstein-equations"
+		},
+		{
+			"name": "warp-bubble-exotic-matter-density",
+			"path": "../warp-bubble-exotic-matter-density"
+		},
+		{
+			"name": "warp-bubble-metric-ansatz",
+			"path": "../warp-bubble-metric-ansatz"
+		},
+		{
+			"name": "warp-bubble-mvp-simulator",
+			"path": "../warp-bubble-mvp-simulator"
+		},
+		{
+			"name": "warp-bubble-optimizer",
+			"path": "../warp-bubble-optimizer"
+		},
+		{
+			"name": "warp-bubble-parameter-constraints",
+			"path": "../warp-bubble-parameter-constraints"
+		},
+		{
+			"name": "warp-bubble-qft",
+			"path": "../warp-bubble-qft"
+		},
+		{
+			"name": "warp-bubble-shape-catalog",
+			"path": "../warp-bubble-shape-catalog"
+		},
+		{
+			"name": "warp-convergence-analysis",
+			"path": "../warp-convergence-analysis"
+		},
+		{
+			"name": "warp-curvature-analysis",
+			"path": "../warp-curvature-analysis"
+		},
+		{
+			"name": "warp-discretization",
+			"path": "../warp-discretization"
+		},
+		{
+			"name": "warp-lqg-midisuperspace",
+			"path": "../warp-lqg-midisuperspace"
+		},
+		{
+			"name": "warp-mock-data-generator",
+			"path": "../warp-mock-data-generator"
+		},
+		{
+			"name": "warp-sensitivity-analysis",
+			"path": "../warp-sensitivity-analysis"
+		},
+		{
+			"name": "warp-signature-workflow",
+			"path": "../warp-signature-workflow"
+		},
+		{
+			"name": "warp-solver-equations",
+			"path": "../warp-solver-equations"
+		},
+		{
+			"name": "warp-solver-validation",
+			"path": "../warp-solver-validation"
+		}
+	],
+	"settings": {
+		"python.defaultInterpreterPath": "C:\\Program Files\\Python312\\python.exe",
+		"files.exclude": {
+			"**/.git": true,
+			"**/node_modules": true,
+			"**/__pycache__": true,
+			"**/.pytest_cache": true,
+			"**/venv": true,
+			"**/.venv": true
+		}
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-python.python",
+			"ms-vscode.cpptools",
+			"james-yu.latex-workshop"
+		]
+	}
+}
