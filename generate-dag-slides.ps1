@@ -115,11 +115,10 @@ foreach ($dateGroup in $nodesByDate) {
 $($node.description)
 
 "@
-        
-        if ($node.mathematics) {
+          if ($node.mathematics) {
             $markdown += @"
 
-**Mathematics**: `$($node.mathematics)`
+**Mathematics**: `$$($node.mathematics)$$`
 
 "@
         }
@@ -299,7 +298,7 @@ foreach ($node in $mathNodes) {
 
 ### $icon $($node.title)
 
-`$($node.mathematics)`
+$$($node.mathematics)$$
 
 ---
 
