@@ -205,4 +205,36 @@ The index assigns priority levels to documents based on their **research critica
 
 The priority system enables researchers to quickly identify the most critical documents for understanding breakthrough physics while ensuring comprehensive coverage of all supporting materials.
 
----
+## Research Highlights DAG
+
+The `highlights-dag.ndjson` file contains a directed acyclic graph (DAG) of major research discoveries, breakthroughs, and milestones. Each node represents a significant achievement with the following structure:
+
+### Node Properties
+- **id**: Unique identifier for the discovery/breakthrough
+- **type**: Category (discovery, breakthrough, proof, framework, analysis, methodology, milestone)
+- **title**: Human-readable name of the achievement
+- **description**: Detailed description of the discovery/breakthrough
+- **source_files**: Array of documentation files from `documentation-index.ndjson`
+- **significance**: Impact level (critical, revolutionary, major, fundamental)
+- **date**: Time period when the achievement occurred
+- **predecessors**: Array of dependency IDs (what enabled this discovery)
+- **successors**: Array of dependent IDs (what this discovery enabled)
+- **impact**: Description of the broader impact and implications
+
+### Key Research Pathways
+
+The DAG traces several major research pathways:
+
+1. **Foundation → Applications**: `lqg_foundations` → `constraint_algebra` → (`warp_bubble_proof`, `anec_framework`)
+2. **Energy Enhancement**: `quantum_geometry_catalysis` → `polymer_fusion` → `energy_enhancement`
+3. **Warp Drive Development**: `warp_bubble_proof` → `warp_drive_feasibility` → `warp_optimization`
+4. **Vacuum Engineering**: `anec_framework` → `qi_bound_modification` → `vacuum_engineering`
+5. **Implementation**: All major streams converge to `practical_implementation`
+
+### Significance Levels
+- **Revolutionary**: Paradigm-shifting discoveries (warp bubbles, energy multiplication)
+- **Critical**: Essential validations and frameworks
+- **Major**: Significant optimization and engineering breakthroughs
+- **Fundamental**: Deep theoretical insights and universal laws
+
+This DAG enables systematic analysis of research dependencies and impact chains, supporting strategic research planning and knowledge management.
