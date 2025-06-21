@@ -174,3 +174,35 @@ For questions about this research framework or collaboration opportunities, plea
 ---
 
 *This framework represents the cutting edge of theoretical and applied physics research, with the potential to revolutionize energy production, space propulsion, and our fundamental understanding of spacetime itself.*
+
+## 📚 Documentation Index & Priority System
+
+This repository includes a comprehensive **documentation index** (`documentation-index.ndjson`) that serves as a RAG (Retrieval Augmented Generation) system for all documentation across the 35+ repositories.
+
+### Document Priority Classification
+
+The index assigns priority levels to documents based on their **research criticality** and **implementation impact**:
+
+- **HIGH Priority**: Core theoretical frameworks, critical physics derivations, fundamental mathematical foundations
+  - Examples: Einstein field equations, LQG technical documentation, exotic matter analysis
+  - **Impact**: Essential for understanding and validating breakthrough physics
+  
+- **MEDIUM Priority**: Supporting analysis, numerical methods, validation frameworks, implementation details
+  - Examples: Solver documentation, parameter constraints, uncertainty tracking
+  - **Impact**: Important for practical implementation and verification
+  
+- **LOW Priority**: Examples, test cases, basic documentation, tutorial materials
+  - Examples: Harmonic cavity tests, mock data generation, simple examples
+  - **Impact**: Useful for learning and development but not critical to core physics
+
+### Documentation Categories Indexed
+
+- **Technical Documentation** (`.md` files): Framework overviews and implementation guides
+- **Mathematical Derivations** (`.tex` files): Rigorous mathematical foundations and proofs
+- **Uncertainty Tracking** (`UQ-TODO.ndjson` files): Quality assurance and validation concerns
+- **Code Examples** (`.am` files): Computational implementations and test cases
+- **Data Files** (`.ndjson` files): Reference solutions and configuration data
+
+The priority system enables researchers to quickly identify the most critical documents for understanding breakthrough physics while ensuring comprehensive coverage of all supporting materials.
+
+---
