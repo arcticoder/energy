@@ -32,7 +32,7 @@ transition: "slide"
 
 Fundamental mathematical framework for discrete quantum geometry and polymer quantization established
 
-**Mathematics**: $Â = ∮_e A_a^i τ^a dℓ, Ê_i^a = ε^abc P_b ∘ P_c, [Â(e), Ê_i^a(S)] = iℏγδ_i^a δ(e∩S)
+**Mathematics**: $\hat{A} = \oint_e A_a^i \tau^a dℓ, \hat{E}_i^a = \varepsilon^abc P_b \circ P_c, [\hat{A}(e), \hat{E}_i^a(S)] = i\hbar\gamma\delta_i^a \delta(e∩S)
 
 **Impact**: *Enabled all subsequent quantum gravity applications*
 
@@ -46,7 +46,7 @@ Fundamental mathematical framework for discrete quantum geometry and polymer qua
 
 Revolutionary discovery that quantum geometry can catalyze matter reactions and energy conversion
 
-**Mathematics**: $k_cat = k₀ exp(-E_a/kT) × (1 + λ⟨Ê_i^a⟩/E_Planck), λ >> 1 for polymer coupling
+**Mathematics**: $k_cat = k_0 exp(-E_a/kT) × (1 + \lambda\langle \hat{E}_i^a\rangle /E_Planck), \lambda >> 1 for polymer coupling
 
 **Impact**: *Opened pathway to energy multiplication technologies*
 
@@ -58,7 +58,7 @@ Revolutionary discovery that quantum geometry can catalyze matter reactions and 
 
 Mathematical proof that LQG constraint algebra properly closes, ensuring physical consistency
 
-**Mathematics**: $[C_a(x), C_b(y)] = f_{ab}^c C_c(x)δ³(x-y) + anomaly terms → 0
+**Mathematics**: $[C_a(x), C_b(y)] = f_{ab}^c C_c(x)\delta^3(x-y) + anomaly terms \to 0
 
 **Impact**: *Validated mathematical foundation for all LQG applications*
 
@@ -72,7 +72,7 @@ Mathematical proof that LQG constraint algebra properly closes, ensuring physica
 
 Rigorous mathematical proof that warp bubble solutions exist in LQG-modified spacetime
 
-**Mathematics**: $ds² = -(1-v²f²)dt² + 2vf(dx-vdt) + dx² + dy² + dz², f(r_s) = tanh(σ(r_s + R)/2σ)
+**Mathematics**: $ds^2 = -(1-v^2f^2)dt^2 + 2vf(dx-vdt) + dx^2 + dy^2 + dz^2, f(r_s) = tanh(\sigma(r_s + R)/2\sigma)
 
 **Impact**: *Confirmed theoretical possibility of faster-than-light travel*
 
@@ -84,7 +84,7 @@ Rigorous mathematical proof that warp bubble solutions exist in LQG-modified spa
 
 Comprehensive framework for analyzing averaged null energy condition violations in LQG
 
-**Mathematics**: $∫_{-∞}^{+∞} ⟨T_μν⟩k^μk^ν dλ ≥ 0 → ∫ ⟨T_uu⟩ dλ < 0 under polymer modifications
+**Mathematics**: $\int_{-\infty}^{+\infty} \langle T_\mu\nu\rangle k^\muk^\nu d\lambda \geq 0 \to \int \langle T_uu\rangle  d\lambda < 0 under polymer modifications
 
 **Impact**: *Enabled systematic analysis of energy condition violations*
 
@@ -98,7 +98,7 @@ Comprehensive framework for analyzing averaged null energy condition violations 
 
 Demonstration of 8.32× WEST tokamak performance through polymer field enhancement
 
-**Mathematics**: $P_enhanced = P_baseline × (1 + α∮ψ_polymer·B̂dℓ)², α = 8.32 for optimal polymer coupling
+**Mathematics**: $P_enhanced = P_baseline × (1 + \alpha\oint\psi_polymer·B̂dℓ)^2, \alpha = 8.32 for optimal polymer coupling
 
 **Impact**: *Breakthrough in practical fusion energy generation*
 
@@ -120,7 +120,7 @@ Comprehensive analysis confirming engineering feasibility of warp drive with qua
 
 Systematic analysis of energy condition violations and their physical implications
 
-**Mathematics**: $NEC: ρ + p ≥ 0, WEC: ρ ≥ 0 ∧ ρ + p ≥ 0, SEC: ρ + 3p ≥ 0, violations enable warp drive
+**Mathematics**: $NEC: \rho + p \geq 0, WEC: \rho \geq 0 ∧ \rho + p \geq 0, SEC: \rho + 3p \geq 0, violations enable warp drive
 
 **Impact**: *Fundamental understanding of energy condition physics*
 
@@ -134,7 +134,7 @@ Systematic analysis of energy condition violations and their physical implicatio
 
 Revolutionary modification of quantum interest bounds enabling energy extraction
 
-**Mathematics**: $∫₀^∞ ⟨T_uu⟩dt ≥ -3/(32π²τ⁴) → -∞ under polymer modifications, ΔE = ∫ρ_modified dV
+**Mathematics**: $\int_0^\infty \langle T_uu\rangle dt \geq -3/(32\pi^2\tau^4) \to -\infty under polymer modifications, \deltaE = \int\rho_modified dV
 
 **Impact**: *Opened pathway to vacuum energy extraction*
 
@@ -146,7 +146,7 @@ Revolutionary modification of quantum interest bounds enabling energy extraction
 
 Critical analysis of exotic matter configurations and energy condition violations
 
-**Mathematics**: $ρ + 3p < 0, ρ + p < 0, ξ = -ρ/ρ_crit where ρ_crit = 3H²/8πG
+**Mathematics**: $\rho + 3p < 0, \rho + p < 0, ξ = -\rho/\rho_crit where \rho_crit = 3H^2/8\piG
 
 **Impact**: *Identified fundamental constraints on exotic matter usage*
 
@@ -158,7 +158,7 @@ Critical analysis of exotic matter configurations and energy condition violation
 
 Revolutionary 8-Gaussian method for warp bubble optimization achieving unprecedented efficiency
 
-**Mathematics**: $f(r) = Σ_{i=1}^8 A_i exp(-(r-r_i)²/2σ_i²), optimization: min ∫|∇²f|² dr subject to ∫ρ dr = -M
+**Mathematics**: $f(r) = \sigma_{i=1}^8 A_i exp(-(r-r_i)^2/2\sigma_i^2), optimization: min \int|\nabla^2f|^2 dr subject to \int\rho dr = -M
 
 **Impact**: *Dramatically improved warp bubble design efficiency*
 
@@ -212,7 +212,7 @@ Complete design specifications for antimatter-enhanced polymer fusion reactors
 
 Revolutionary B-spline methods for optimal warp field configuration
 
-**Mathematics**: $f(r) = Σ_{i=0}^n c_i B_{i,k}(r), smoothness: ∫₀^∞ |f^(k)(r)|² dr → min, C^∞ continuity achieved
+**Mathematics**: $f(r) = \sigma_{i=0}^n c_i B_{i,k}(r), smoothness: \int_0^\infty |f^(k)(r)|^2 dr \to min, C^\infty continuity achieved
 
 **Impact**: *Achieved optimal warp field smoothness and efficiency*
 
@@ -224,7 +224,7 @@ Revolutionary B-spline methods for optimal warp field configuration
 
 Discovery of enhanced Casimir effects in metamaterial configurations for energy extraction
 
-**Mathematics**: $F_Casimir = -π²ℏc/240d⁴ → F_enhanced = -π²ℏc/240d⁴ × η(ε,μ), η >> 1 for metamaterials
+**Mathematics**: $F_Casimir = -\pi^2\hbarc/240d^4 \to F_enhanced = -\pi^2\hbarc/240d^4 × η(\varepsilon,\mu), η >> 1 for metamaterials
 
 **Impact**: *Practical pathway to vacuum energy utilization*
 
@@ -258,7 +258,7 @@ Complete analysis of energy requirements for warp drive and energy enhancement s
 
 Advanced Bayesian methods for quantifying uncertainties in breakthrough physics
 
-**Mathematics**: $P(θ|D) ∝ P(D|θ)P(θ), σ²_posterior = ∫(θ-⟨θ⟩)²P(θ|D)dθ, credible intervals at 95%
+**Mathematics**: $P(θ|D) ∝ P(D|θ)P(θ), \sigma^2_posterior = \int(θ-\langle θ\rangle )^2P(θ|D)dθ, credible intervals at 95%
 
 **Impact**: *Rigorous uncertainty assessment for revolutionary physics*
 
@@ -270,7 +270,7 @@ Advanced Bayesian methods for quantifying uncertainties in breakthrough physics
 
 Revolutionary breakthrough in time-dependent tensor optimization for dynamic warp fields
 
-**Mathematics**: $T₄(t) = ∂/∂t[g^μν ∂g_μν/∂t], dynamic optimization: δ∫₀^T L[T₄(t),Ṫ₄(t)]dt = 0
+**Mathematics**: $T_4(t) = \partial/\partialt[g^\mu\nu \partialg_\mu\nu/\partialt], dynamic optimization: \delta\int_0^T L[T_4(t),Ṫ_4(t)]dt = 0
 
 **Impact**: *Enabled dynamic warp field control and optimization*
 
@@ -314,7 +314,7 @@ Complete safety framework for high-energy physics experiments and warp drive ope
 
 Discovery of universal scaling laws governing energy enhancement across all mechanisms
 
-**Mathematics**: $E_out/E_in = (1 + βℏc/L_p²)^n, β = coupling constant, n = polymer field strength, L_p = Planck length
+**Mathematics**: $E_out/E_in = (1 + \beta\hbarc/L_p^2)^n, \beta = coupling constant, n = polymer field strength, L_p = Planck length
 
 **Impact**: *Fundamental understanding of energy enhancement limits*
 
@@ -418,31 +418,31 @@ Discovery of universal scaling laws governing energy enhancement across all mech
 
 ### ⚡ Loop Quantum Gravity Foundations Established
 
-$Â = ∮_e A_a^i τ^a dℓ, Ê_i^a = ε^abc P_b ∘ P_c, [Â(e), Ê_i^a(S)] = iℏγδ_i^a δ(e∩S)
+$\hat{A} = \oint_e A_a^i \tau^a dℓ, \hat{E}_i^a = \varepsilon^abc P_b \circ P_c, [\hat{A}(e), \hat{E}_i^a(S)] = i\hbar\gamma\delta_i^a \delta(e∩S)
 
 ---
 
 ### 🔥 Quantum Interest Bound Modification
 
-$∫₀^∞ ⟨T_uu⟩dt ≥ -3/(32π²τ⁴) → -∞ under polymer modifications, ΔE = ∫ρ_modified dV
+$\int_0^\infty \langle T_uu\rangle dt \geq -3/(32\pi^2\tau^4) \to -\infty under polymer modifications, \deltaE = \int\rho_modified dV
 
 ---
 
 ### 🚀 Ultimate B-Spline Breakthrough
 
-$f(r) = Σ_{i=0}^n c_i B_{i,k}(r), smoothness: ∫₀^∞ |f^(k)(r)|² dr → min, C^∞ continuity achieved
+$f(r) = \sigma_{i=0}^n c_i B_{i,k}(r), smoothness: \int_0^\infty |f^(k)(r)|^2 dr \to min, C^\infty continuity achieved
 
 ---
 
 ### 🚀 Metamaterial Casimir Effects
 
-$F_Casimir = -π²ℏc/240d⁴ → F_enhanced = -π²ℏc/240d⁴ × η(ε,μ), η >> 1 for metamaterials
+$F_Casimir = -\pi^2\hbarc/240d^4 \to F_enhanced = -\pi^2\hbarc/240d^4 × η(\varepsilon,\mu), η >> 1 for metamaterials
 
 ---
 
 ### 🚀 Bayesian Uncertainty Quantification Framework
 
-$P(θ|D) ∝ P(D|θ)P(θ), σ²_posterior = ∫(θ-⟨θ⟩)²P(θ|D)dθ, credible intervals at 95%
+$P(θ|D) ∝ P(D|θ)P(θ), \sigma^2_posterior = \int(θ-\langle θ\rangle )^2P(θ|D)dθ, credible intervals at 95%
 
 ---
 

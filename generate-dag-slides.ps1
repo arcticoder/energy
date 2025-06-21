@@ -6,6 +6,58 @@ param(
     [string]$OutputFile = "highlights-dag.slides.md"
 )
 
+# Function to convert Unicode math to LaTeX
+function Convert-ToLatex($mathString) {
+    if (-not $mathString) { return "" }
+    
+    # Convert Unicode symbols to LaTeX
+    $latex = $mathString
+    $latex = $latex -replace "Â", "\hat{A}"
+    $latex = $latex -replace "Ê", "\hat{E}"
+    $latex = $latex -replace "∮", "\oint"
+    $latex = $latex -replace "⟨", "\langle "
+    $latex = $latex -replace "⟩", "\rangle "
+    $latex = $latex -replace "μ", "\mu"
+    $latex = $latex -replace "ν", "\nu"
+    $latex = $latex -replace "≥", "\geq"
+    $latex = $latex -replace "→", "\to"
+    $latex = $latex -replace "∞", "\infty"
+    $latex = $latex -replace "∫", "\int"
+    $latex = $latex -replace "δ", "\delta"
+    $latex = $latex -replace "τ", "\tau"
+    $latex = $latex -replace "γ", "\gamma"
+    $latex = $latex -replace "λ", "\lambda"
+    $latex = $latex -replace "ε", "\varepsilon"
+    $latex = $latex -replace "α", "\alpha"
+    $latex = $latex -replace "β", "\beta"
+    $latex = $latex -replace "σ", "\sigma"
+    $latex = $latex -replace "ψ", "\psi"
+    $latex = $latex -replace "ρ", "\rho"
+    $latex = $latex -replace "π", "\pi"
+    $latex = $latex -replace "ℏ", "\hbar"
+    $latex = $latex -replace "∘", "\circ"
+    $latex = $latex -replace "∑", "\sum"
+    $latex = $latex -replace "Σ", "\sum"
+    $latex = $latex -replace "∇", "\nabla"
+    $latex = $latex -replace "∂", "\partial"
+    $latex = $latex -replace "₀", "_0"
+    $latex = $latex -replace "₁", "_1"
+    $latex = $latex -replace "₂", "_2"
+    $latex = $latex -replace "₃", "_3"
+    $latex = $latex -replace "₄", "_4"
+    $latex = $latex -replace "₅", "_5"
+    $latex = $latex -replace "₆", "_6"
+    $latex = $latex -replace "₇", "_7"
+    $latex = $latex -replace "₈", "_8"
+    $latex = $latex -replace "₉", "_9"
+    $latex = $latex -replace "²", "^2"
+    $latex = $latex -replace "³", "^3"
+    $latex = $latex -replace "⁴", "^4"
+    $latex = $latex -replace "ⁿ", "^n"
+    
+    return $latex
+}
+
 Write-Host "🎯 Generating reveal.js slides from DAG..." -ForegroundColor Cyan
 
 # Read and parse the NDJSON file
@@ -114,9 +166,8 @@ foreach ($dateGroup in $nodesByDate) {
 $($node.description)
 
 "@
-        
-        if ($node.mathematics) {
-            $mathematics = $node.mathematics
+          if ($node.mathematics) {
+            $mathematics = Convert-ToLatex $node.mathematics
             $markdown += @"
 
 **Mathematics**: `$$mathematics`
@@ -295,7 +346,7 @@ $markdown += @"
 
 foreach ($node in $mathNodes) {
     $icon = Get-SignificanceIcon $node.significance
-    $mathematics = $node.mathematics
+    $mathematics = Convert-ToLatex $node.mathematics
     $markdown += @"
 
 ### $icon $($node.title)
