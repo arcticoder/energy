@@ -105,8 +105,7 @@ foreach ($dateGroup in $nodesByDate) {
     foreach ($node in $quarterNodes) {
         $icon = Get-SignificanceIcon $node.significance
         $typeIcon = Get-TypeIcon $node.type
-        
-        $markdown += @"
+          $markdown += @"
 
 ### $icon $typeIcon $($node.title)
 
@@ -115,10 +114,12 @@ foreach ($dateGroup in $nodesByDate) {
 $($node.description)
 
 "@
-          if ($node.mathematics) {
+        
+        if ($node.mathematics) {
+            $mathematics = $node.mathematics
             $markdown += @"
 
-**Mathematics**: `$$($node.mathematics)$$`
+**Mathematics**: `$$mathematics`
 
 "@
         }
@@ -294,11 +295,12 @@ $markdown += @"
 
 foreach ($node in $mathNodes) {
     $icon = Get-SignificanceIcon $node.significance
+    $mathematics = $node.mathematics
     $markdown += @"
 
 ### $icon $($node.title)
 
-$$($node.mathematics)$$
+`$$mathematics`
 
 ---
 
