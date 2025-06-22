@@ -212,18 +212,18 @@ $html = @"
 <body>
     <div class="container">        <div class="header">
             <h1>Research Highlights</h1>
-            <p>Mathematical Physics & Quantum Gravity Discoveries</p>
+            <p>Mathematical Physics & Quantum Gravity Points of Interest</p>
         </div>        <!-- Table of Contents -->
         <div class="summary-section">
             <h2 style="text-align: center; color: #1a1a2e; margin-bottom: 30px;">Table of Contents</h2>
-            <ul style="list-style-type: none; padding: 0; columns: 2; column-gap: 30px;">
+            <ul style="list-style-type: none; padding: 0;">
 "@
 
 # Add nodes first
 foreach ($node in $orderedNodes) {
     $anchorId = $node.id -replace "_", "-"
     $html += @"
-                <li style="margin: 8px 0; break-inside: avoid;"><a href="#node-$anchorId" style="color: #007bff; text-decoration: none;">$($node.title)</a></li>
+                <li style="margin: 8px 0;"><a href="#node-$anchorId" style="color: #007bff; text-decoration: none;">$($node.title)</a></li>
 "@
 }
 
@@ -234,7 +234,7 @@ foreach ($edge in $edges.Values) {
     if ($sourceNode -and $targetNode) {
         $anchorId = $edge.id -replace "_", "-"
         $html += @"
-                <li style="margin: 8px 0; font-size: 0.9em; break-inside: avoid;"><a href="#edge-$anchorId" style="color: #28a745; text-decoration: none;">$($sourceNode.title) → $($targetNode.title)</a></li>
+                <li style="margin: 8px 0; margin-left: 20px; font-size: 0.9em;"><a href="#edge-$anchorId" style="color: #28a745; text-decoration: none;">→ $($sourceNode.title) → $($targetNode.title)</a></li>
 "@
     }
 }
@@ -316,8 +316,7 @@ foreach ($edge in $edges.Values) {
                 <div class="discovery-description">
                     <strong>Relationship:</strong> $relationshipText - $($edge.description)
 "@
-        
-        if ($edge.mathematics) {
+          if ($edge.mathematics) {
             $mathematics = Convert-ToLatex $edge.mathematics
             $html += @"
                     <div class="mathematics">
@@ -326,9 +325,16 @@ foreach ($edge in $edges.Values) {
 "@
         }
         
+        # Use relationship_explanation if available, otherwise construct explanation
+        $explanation = if ($edge.relationship_explanation) {
+            $edge.relationship_explanation
+        } else {
+            "$($sourceNode.title) $relationshipText $($targetNode.title) because $($edge.description)."
+        }
+        
         $html += @"
                     <br><br>
-                    <strong>How this connection works:</strong> $($sourceNode.title) $relationshipText $($targetNode.title) because $($edge.description). This dependency is essential for understanding how $($sourceNode.impact) directly influences $($targetNode.impact).
+                    <strong>How this connection works:</strong> $explanation
                 </div>
             </div>
 
@@ -346,7 +352,7 @@ $html += @"
         <div class="summary-section">
             <h2>Research Overview</h2>
             <p style="font-size: 1.1em; margin: 20px 0;">
-                This collection documents <strong>$($nodes.Count)</strong> theoretical developments in quantum gravity, spacetime engineering, and mathematical physics. Each discovery builds upon previous work through a network of mathematical dependencies and theoretical constraints.
+                This collection documents <strong>$($nodes.Count)</strong> theoretical points of interest in quantum gravity, spacetime engineering, and mathematical physics. Each development builds upon previous work through a network of mathematical dependencies and theoretical constraints.
             </p>
         </div>
 
@@ -368,6 +374,6 @@ $html += @"
 $html | Out-File -FilePath $OutputFile -Encoding UTF8
 
 Write-Host "Generated $OutputFile" -ForegroundColor Green
-Write-Host "Presentation includes: $($nodes.Count) discoveries and research connections" -ForegroundColor Yellow
+Write-Host "Presentation includes: $($nodes.Count) points of interest and research connections" -ForegroundColor Yellow
 Write-Host "Open the HTML file in a browser to view the presentation" -ForegroundColor Cyan
 Write-Host "Script completed!" -ForegroundColor Green
