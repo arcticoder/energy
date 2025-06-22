@@ -20,8 +20,30 @@ function Convert-ToLatex($mathString) {
     $latex = $latex -replace "π", "\pi"
     $latex = $latex -replace "θ", "\theta"
     $latex = $latex -replace "λ", "\lambda"
+    # Fix rendering issues
+    $latex = $latex -replace "\\\\text", "\text"
+    $latex = $latex -replace "\\\\rightarrow", "\rightarrow"
+    $latex = $latex -replace "\\\\to", "\to"
+    $latex = $latex -replace "\\\\Rightarrow", "\Rightarrow"
     
     return $latex
+}
+
+# Function to create GitHub links for source files
+function Format-SourceFiles($sourceFiles) {
+    if (-not $sourceFiles) { return "" }
+    
+    $baseUrl = "https://github.com/sherri3"
+    $links = @()
+    
+    foreach ($file in $sourceFiles) {
+        $repoName = $file.Split('/')[0]
+        $filePath = $file -replace "^[^/]+/", ""
+        $url = "$baseUrl/$repoName/blob/main/$filePath"
+        $links += "<a href='$url' target='_blank' style='color: #007bff; text-decoration: none;'>$file</a>"
+    }
+    
+    return $links -join ", "
 }
 
 Write-Host "Generating standalone HTML presentation from DAG..." -ForegroundColor Cyan
@@ -189,18 +211,59 @@ $html = @"
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
+    <div class="container">        <div class="header">
             <h1>Research Highlights</h1>
             <p>Mathematical Physics & Quantum Gravity Discoveries</p>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="summary-section">
+            <h2 style="text-align: center; color: #1a1a2e; margin-bottom: 30px;">Table of Contents</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div>
+                    <h3 style="color: #007bff; margin-bottom: 15px;">Points of Interest</h3>
+                    <ul style="list-style-type: none; padding: 0;">
+"@
+
+foreach ($node in $orderedNodes) {
+    $anchorId = $node.id -replace "_", "-"
+    $html += @"
+                        <li style="margin: 8px 0;"><a href="#node-$anchorId" style="color: #007bff; text-decoration: none;">$($node.title)</a></li>
+"@
+}
+
+$html += @"
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="color: #28a745; margin-bottom: 15px;">Research Connections</h3>
+                    <ul style="list-style-type: none; padding: 0;">
+"@
+
+foreach ($edge in $edges.Values) {
+    $sourceNode = $nodes[$edge.source]
+    $targetNode = $nodes[$edge.target]
+    if ($sourceNode -and $targetNode) {
+        $anchorId = $edge.id -replace "_", "-"
+        $html += @"
+                        <li style="margin: 8px 0; font-size: 0.9em;"><a href="#edge-$anchorId" style="color: #28a745; text-decoration: none;">$($sourceNode.title) → $($targetNode.title)</a></li>
+"@
+    }
+}
+
+$html += @"
+                    </ul>
+                </div>
+            </div>
         </div>
 
 "@
 
 # Generate content for each discovery
 foreach ($node in $orderedNodes) {
+    $anchorId = $node.id -replace "_", "-"
     $html += @"
-        <div class="discovery">
+        <div class="discovery" id="node-$anchorId">
             <div class="discovery-title">$($node.title)</div>
             <div class="discovery-description">$($node.description)</div>
 
@@ -211,6 +274,16 @@ foreach ($node in $orderedNodes) {
         $html += @"
             <div class="mathematics">
                 `$`$$mathematics`$`$
+            </div>
+
+"@
+    }
+    
+    if ($node.source_files) {
+        $sourceLinks = Format-SourceFiles $node.source_files
+        $html += @"
+            <div style="margin: 10px 0; padding: 10px; background: #f0f0f0; border-radius: 6px; font-size: 0.9em;">
+                <strong>Source Files:</strong> $sourceLinks
             </div>
 
 "@
@@ -242,13 +315,34 @@ foreach ($edge in $edges.Values) {
     $sourceNode = $nodes[$edge.source]
     $targetNode = $nodes[$edge.target]
     if ($sourceNode -and $targetNode) {
+        $anchorId = $edge.id -replace "_", "-"
+        $relationshipText = if ($edge.relationship -match '\$.*\$') { 
+            # Already has LaTeX delimiters
+            $edge.relationship 
+        } else { 
+            # Wrap in LaTeX delimiters
+            "`$$($edge.relationship)`$" 
+        }
+        
         $html += @"
-            <div class="discovery">
+            <div class="discovery" id="edge-$anchorId">
                 <div class="discovery-title">$($sourceNode.title) → $($targetNode.title)</div>
                 <div class="discovery-description">
-                    <strong>Relationship:</strong> $($edge.relationship) - $($edge.description)
+                    <strong>Relationship:</strong> $relationshipText - $($edge.description)
+"@
+        
+        if ($edge.mathematics) {
+            $mathematics = Convert-ToLatex $edge.mathematics
+            $html += @"
+                    <div class="mathematics">
+                        `$`$$mathematics`$`$
+                    </div>
+"@
+        }
+        
+        $html += @"
                     <br><br>
-                    <strong>How this connection works:</strong> $($sourceNode.title) $($edge.relationship) $($targetNode.title) because $($edge.description). This dependency is essential for understanding how $($sourceNode.impact) directly influences $($targetNode.impact).
+                    <strong>How this connection works:</strong> $($sourceNode.title) $relationshipText $($targetNode.title) because $($edge.description). This dependency is essential for understanding how $($sourceNode.impact) directly influences $($targetNode.impact).
                 </div>
             </div>
 
