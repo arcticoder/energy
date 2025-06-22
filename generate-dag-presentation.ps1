@@ -24,213 +24,9 @@ function Convert-ToLatex($mathString) {
     return $latex
 }
 
-Write-Host "Generating standalone HTML presentation from DAG..." -ForegroundColor Cyan
-
-# Read and parse the NDJSON file
-$dagLines = Get-Content $InputFile
-$nodes = @{}
-$edges = @{}
-
-# Parse nodes and edges
-foreach ($line in $dagLines) {
-    $item = $line | ConvertFrom-Json
-    if ($item.type -eq "edge") {
-        $edges[$item.id] = $item
-    } else {
-        $nodes[$item.id] = $item
-    }
-}
-
-Write-Host "Parsed $($nodes.Count) nodes and $($edges.Count) edges" -ForegroundColor Green
-
-# Group nodes in logical order
-$orderedNodes = $nodes.Values | Sort-Object { 
-    # Sort by dependencies and importance
-    if ($_.id -eq "constraint_algebra") { return 1 }
-    if ($_.id -eq "anec_framework") { return 2 }
-    if ($_.id -eq "warp_bubble_proof") { return 3 }
-    if ($_.id -eq "exotic_matter_analysis") { return 4 }
-    if ($_.id -eq "energy_conditions") { return 5 }
-    return 10
-}
-
-# Start building HTML
-$html = @"
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Research Highlights - Mathematical Physics & Quantum Gravity</title>
-    
-    <!-- MathJax Configuration -->
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['`$', '`$']],
-                displayMath: [['`$`$', '`$`$']],
-                processEscapes: true,
-                processEnvironments: true
-            },
-            options: {
-                ignoreHtmlClass: "tex2jax_ignore",
-                processHtmlClass: "tex2jax_process"
-            }
-        };
-    </script>
-    <script type="text/javascript" id="MathJax-script" async
-        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-    </script>
-    
-    <style>
-      body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        line-height: 1.6;
-        margin: 0;
-        padding: 0;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        min-height: 100vh;
-      }
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
-        background: white;
-        box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        border-radius: 12px;
-        margin-top: 20px;
-        margin-bottom: 20px;
-      }
-      .header {
-        text-align: center;
-        padding: 40px 0;
-        background: linear-gradient(135deg, #1a1a2e, #16213e);
-        color: white;
-        border-radius: 12px;
-        margin-bottom: 40px;
-      }
-      .header h1 {
-        font-size: 2.5em;
-        margin: 0;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-      }
-      .header p {
-        font-size: 1.2em;
-        margin: 15px 0 0 0;
-        opacity: 0.9;
-      }
-      .discovery {
-        background: white;
-        border-radius: 12px;
-        padding: 25px;
-        margin: 25px 0;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        border-left: 5px solid #007bff;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-      }
-      .discovery:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-      }
-      .discovery-title {
-        font-size: 1.3em;
-        font-weight: bold;
-        color: #1a1a2e;
-        margin-bottom: 10px;
-      }
-      .discovery-description {
-        margin-bottom: 15px;
-        line-height: 1.7;
-      }      .mathematics {
-        background: #f8f9fa;
-        padding: 15px;
-        border-radius: 8px;
-        margin: 15px 0;
-        border-left: 4px solid #007bff;
-        overflow-x: auto;
-        font-size: 1.1em;
-        line-height: 1.4;
-      }
-      .mathematics .MathJax {
-        font-size: 1.2em !important;
-      }
-      .MathJax_Display {
-        font-size: 1.3em !important;
-        overflow-x: auto;
-        overflow-y: hidden;
-      }
-      .code-block {
-        background: #f8f8f8;
-        padding: 15px;
-        border-radius: 8px;
-        margin: 15px 0;
-        border-left: 4px solid #28a745;
-        overflow-x: auto;
-        font-family: 'Courier New', monospace;
-        font-size: 0.9em;
-        line-height: 1.4;
-      }
-      .edge-section {
-        margin: 50px 0;
-        padding: 30px;
-        background: #f0f8ff;
-        border-radius: 12px;
-        border-left: 5px solid #6c757d;
-      }
-      .edge-item {
-        background: white;
-        border-radius: 8px;
-        padding: 20px;
-        margin: 15px 0;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        border-left: 3px solid #6c757d;
-      }
-      .impact {
-        font-style: italic;
-        color: #28a745;
-        background: #f8fff9;
-        padding: 12px;
-        border-radius: 6px;
-        border-left: 3px solid #28a745;
-        margin-top: 15px;
-      }
-      .summary-section {
-        margin: 50px 0;
-        padding: 30px;
-        background: #f8f9fa;
-        border-radius: 12px;
-      }
-      .footer {
-        text-align: center;
-        margin-top: 50px;
-        padding: 30px;
-        background: #1a1a2e;
-        color: white;
-        border-radius: 12px;
-      }
-      .footer p {
-        margin: 10px 0;
-      }
-    </style>
-</head>
-<body>
-    <div class="container">        <div class="header">
-            <h1>Research Highlights</h1>
-            <p>Mathematical Physics & Quantum Gravity Points of Interest</p>
-        </div>
-
-"@
-
-# Generate content for each point of interest (nodes)
-$html += @"
-        <div class="summary-section">
-            <h2 style="text-align: center; color: #1a1a2e; margin-bottom: 30px;">Points of Interest</h2>
-        </div>
-
-"@
-
-foreach ($node in $orderedNodes) {
-    $html += @"
+# Function to get node HTML
+function Get-NodeHTML($node) {
+    $html = @"
         <div class="discovery">
             <div class="discovery-title">$($node.title)</div>
             <div class="discovery-description">$($node.description)</div>
@@ -238,15 +34,15 @@ foreach ($node in $orderedNodes) {
 "@
     
     if ($node.mathematics) {
-        $mathematics = Convert-ToLatex $node.mathematics
+        $math = Convert-ToLatex $node.mathematics
         $html += @"
             <div class="mathematics">
-                `$`$$mathematics`$`$
+                `$$math`$
             </div>
 
 "@
     }
-
+    
     if ($node.code) {
         $html += @"
             <div class="code-block">
@@ -269,44 +65,338 @@ foreach ($node in $orderedNodes) {
         </div>
 
 "@
+    return $html
 }
 
-# Add edges section
-$html += @"
-        <div class="edge-section">
-            <h2 style="text-align: center; color: #1a1a2e; margin-bottom: 30px;">Research Connections and Dependencies</h2>
-            
-"@
+# Function to get edge HTML
+function Get-EdgeHTML($edge, $sourceNode, $targetNode) {
+    $html = @"
+        <div class="edge-item">
+            <div class="discovery-title">$($sourceNode.title) → $($targetNode.title)</div>
+            <div class="discovery-description">
+                <strong>Relationship:</strong> $($edge.relationship) - $($edge.description)
+                <br><br>
 
-foreach ($edge in $edges.Values) {
-    $sourceNode = $nodes[$edge.source]
-    $targetNode = $nodes[$edge.target]
-    if ($sourceNode -and $targetNode) {
+"@
+    
+    if ($edge.mathematics) {
+        $math = Convert-ToLatex $edge.mathematics
         $html += @"
-            <div class="edge-item">
-                <div class="discovery-title">$($sourceNode.title) → $($targetNode.title)</div>
-                <div class="discovery-description">
-                    <strong>Relationship:</strong> $($edge.relationship) - $($edge.description)
-                    <br><br>
-                    <strong>How this connection works:</strong> $($sourceNode.title) $($edge.relationship) $($targetNode.title) because $($edge.description). This dependency is essential for understanding how $($sourceNode.impact) directly influences $($targetNode.impact).
+                <div class="mathematics">
+                    `$$math`$
                 </div>
-            </div>
+                <br>
 
 "@
     }
+    
+    $html += @"
+                <strong>How this connection works:</strong> $($sourceNode.title) $($edge.relationship) $($targetNode.title) because $($edge.description). This dependency is essential for understanding how $($sourceNode.impact) directly influences $($targetNode.impact).
+            </div>
+        </div>
+
+"@
+    return $html
 }
 
-$html += @"
+Write-Host "Generating standalone HTML presentation from DAG..." -ForegroundColor Cyan
+
+# Read and parse the NDJSON file
+$dagLines = Get-Content $InputFile
+$nodes = @{}
+$edges = @{}
+
+# Parse nodes and edges
+foreach ($line in $dagLines) {
+    $item = $line | ConvertFrom-Json
+    if ($item.type -eq "edge") {
+        $edges[$item.id] = $item
+    } else {
+        $nodes[$item.id] = $item
+    }
+}
+
+Write-Host "Parsed $($nodes.Count) nodes and $($edges.Count) edges" -ForegroundColor Green
+
+# Build adjacency lists for traversal
+$outgoing = @{}
+$incoming = @{}
+foreach ($edge in $edges.Values) {
+    if (-not $outgoing[$edge.source]) { $outgoing[$edge.source] = @() }
+    if (-not $incoming[$edge.target]) { $incoming[$edge.target] = @() }
+    $outgoing[$edge.source] += $edge
+    $incoming[$edge.target] += $edge
+}
+
+# Find root nodes (nodes with no predecessors)
+$rootNodes = @()
+foreach ($nodeId in $nodes.Keys) {
+    if (-not $incoming[$nodeId] -or $incoming[$nodeId].Count -eq 0) {
+        $rootNodes += $nodeId
+    }
+}
+
+Write-Host "Found $($rootNodes.Count) root nodes: $($rootNodes -join ', ')" -ForegroundColor Green
+
+# Generate HTML
+$html = @"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Highlights - DAG Presentation</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: white;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 30px 0;
+            border-bottom: 3px solid #3498db;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.9;
+        }
+        
+        .discovery {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-left: 6px solid #3498db;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .discovery:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .discovery-title {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #1a1a2e;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .discovery-description {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            line-height: 1.9;
+            text-align: justify;
+        }
+        
+        .mathematics {
+            background: #f8f9fa;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            font-size: 1.2em !important;
+            text-align: center;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .mathematics .MathJax {
+            font-size: 1.3em !important;
+        }
+        
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            overflow-x: auto;
+            border: 1px solid #34495e;
+        }
+        
+        .code-block pre {
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+        
+        .impact {
+            background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 100%);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+            margin-top: 20px;
+            font-weight: 500;
+            font-style: italic;
+        }
+        
+        .edge-item {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border-left: 6px solid #f39c12;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        
+        .edge-section {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 3px solid #e74c3c;
+        }
+        
+        .summary-section {
+            background: linear-gradient(135deg, #ddd6fe 0%, #e0e7ff 100%);
+            padding: 30px;
+            border-radius: 12px;
+            margin: 40px 0;
+            text-align: center;
+            border: 2px solid #8b5cf6;
+        }
+        
+        .summary-section h2 {
+            color: #5b21b6;
+            margin-bottom: 20px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #6c757d;
+            border-top: 2px solid #dee2e6;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        strong {
+            color: #2c3e50;
+        }
+        
+        .section-header {
+            font-size: 2em;
+            color: #1a1a2e;
+            text-align: center;
+            margin: 40px 0 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">        <div class="header">
+            <h1>Research Highlights</h1>
+            <p>Mathematical Physics & Quantum Gravity DAG Traversal</p>
         </div>
 
 "@
 
-# Add summary section
+# Traverse the DAG starting from root nodes
+$visited = @{}
+$script:traversalOrder = @()
+
+function Traverse-DAG($nodeId, $depth = 0) {
+    if ($visited[$nodeId]) { return }
+    $visited[$nodeId] = $true
+    $item = New-Object PSObject -Property @{ NodeId = $nodeId; Depth = $depth }
+    $script:traversalOrder += $item
+    
+    Write-Host "Traversing node: $nodeId (depth: $depth)" -ForegroundColor Yellow
+    
+    # Add outgoing edges and their targets
+    if ($outgoing[$nodeId]) {
+        foreach ($edge in $outgoing[$nodeId]) {
+            Write-Host "  Following edge: $($edge.id) -> $($edge.target)" -ForegroundColor Cyan
+            $edgeItem = New-Object PSObject -Property @{ EdgeId = $edge.id; Depth = ($depth + 1) }
+            $script:traversalOrder += $edgeItem
+            if (-not $visited[$edge.target]) {
+                Traverse-DAG $edge.target ($depth + 2)
+            }
+        }
+    }
+}
+
+# Start traversal from root nodes
+foreach ($rootNode in $rootNodes) {
+    Traverse-DAG $rootNode
+}
+
+# Generate HTML based on traversal order
+foreach ($item in $script:traversalOrder) {
+    if ($item.NodeId) {
+        $node = $nodes[$item.NodeId]
+        if ($node) {
+            $html += Get-NodeHTML $node
+        }
+    } elseif ($item.EdgeId) {
+        $edge = $edges[$item.EdgeId]
+        if ($edge) {
+            $sourceNode = $nodes[$edge.source]
+            $targetNode = $nodes[$edge.target]
+            if ($sourceNode -and $targetNode) {
+                $html += Get-EdgeHTML $edge $sourceNode $targetNode
+            }
+        }
+    }
+}
+
 $html += @"
         <div class="summary-section">
             <h2>Research Overview</h2>
             <p style="font-size: 1.1em; margin: 20px 0;">
-                This collection documents <strong>$($nodes.Count)</strong> points of interest in quantum gravity, spacetime engineering, and mathematical physics. Each point of interest builds upon previous work through a network of mathematical dependencies and theoretical constraints.
+                This collection documents <strong>$($nodes.Count)</strong> points of interest in quantum gravity, spacetime engineering, and mathematical physics. The presentation follows DAG traversal order, showing nodes and their connecting edges in dependency sequence.
             </p>
         </div>
 
@@ -316,7 +406,7 @@ $html += @"
                <strong>Documentation Index:</strong> documentation-index.ndjson | 
                <strong>Uncertainty Analysis:</strong> UQ-TODO.ndjson</p>
             <p style="margin-top: 20px;">
-                <em>Generated automatically from research highlights database</em>
+                <em>Generated automatically from research highlights database with DAG traversal</em>
             </p>
         </div>
     </div>
@@ -325,9 +415,10 @@ $html += @"
 "@
 
 # Write the HTML file
-$html | Out-File -FilePath $OutputFile -Encoding UTF8
+Set-Content -Path $OutputFile -Value $html -Encoding UTF8
 
 Write-Host "Generated $OutputFile" -ForegroundColor Green
-Write-Host "Presentation includes: $($nodes.Count) points of interest and $($edges.Count) research connections" -ForegroundColor Yellow
+Write-Host "Presentation includes: $($nodes.Count) points of interest and $($edges.Count) research connections" -ForegroundColor Green
+Write-Host "Traversal order: $($script:traversalOrder.Count) items" -ForegroundColor Green
 Write-Host "Open the HTML file in a browser to view the presentation" -ForegroundColor Cyan
 Write-Host "Script completed!" -ForegroundColor Green
