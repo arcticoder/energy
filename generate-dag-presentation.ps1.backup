@@ -1,0 +1,436 @@
+# Generate standalone HTML presentation from highlights-dag.ndjson
+# Usage: .\generate-dag-presentation.ps1
+
+param(
+    [string]$InputFile = "highlights-dag.ndjson",
+    [string]$OutputFile = "highlights-dag.presentation.html"
+)
+
+# Function to convert Unicode math to LaTeX
+function Convert-ToLatex($mathString) {
+    if (-not $mathString) { return $html += @"
+        <div class="math-highlights">
+            <h2 style="text-align: center; color: #1a1a2e; margin-bottom: 30px;">📐 Key Mathematical Results</h2> }
+    
+    # Convert Unicode symbols to LaTeX
+    $latex = $mathString
+    $latex = $latex -replace "Â", "\hat{A}"
+    $latex = $latex -replace "Ê", "\hat{E}"
+    $latex = $latex -replace "∮", "\oint"
+    $latex = $latex -replace "⟨", "\langle "
+    $latex = $latex -replace "⟩", "\rangle "
+    $latex = $latex -replace "μ", "\mu"
+    $latex = $latex -replace "ν", "\nu"
+    $latex = $latex -replace "≥", "\geq"
+    $latex = $latex -replace "→", "\to"
+    $latex = $latex -replace "∞", "\infty"
+    $latex = $latex -replace "∫", "\int"
+    $latex = $latex -replace "δ", "\delta"
+    $latex = $latex -replace "τ", "\tau"
+    $latex = $latex -replace "γ", "\gamma"
+    $latex = $latex -replace "λ", "\lambda"
+    $latex = $latex -replace "ε", "\varepsilon"
+    $latex = $latex -replace "α", "\alpha"
+    $latex = $latex -replace "β", "\beta"
+    $latex = $latex -replace "σ", "\sigma"
+    $latex = $latex -replace "ψ", "\psi"
+    $latex = $latex -replace "ρ", "\rho"
+    $latex = $latex -replace "π", "\\pi"
+    $latex = $latex -replace "ℏ", "\\hbar"
+    $latex = $latex -replace "∘", "\\circ"
+    $latex = $latex -replace "∑", "\\sum"
+    $latex = $latex -replace "Σ", "\\sum"
+    $latex = $latex -replace "∇", "\\nabla"
+    $latex = $latex -replace "∂", "\\partial"
+    $latex = $latex -replace "×", "\\times"
+    $latex = $latex -replace "·", "\\cdot"
+    $latex = $latex -replace "≤", "\\leq"
+    $latex = $latex -replace "≥", "\\geq"
+    $latex = $latex -replace "≠", "\\neq"
+    $latex = $latex -replace "≈", "\\approx"
+    $latex = $latex -replace "∈", "\\in"
+    $latex = $latex -replace "∅", "\\emptyset"
+    $latex = $latex -replace "∪", "\\cup"
+    $latex = $latex -replace "∩", "\\cap"
+    $latex = $latex -replace "₀", "_0"
+    $latex = $latex -replace "₁", "_1"
+    $latex = $latex -replace "₂", "_2"
+    $latex = $latex -replace "₃", "_3"
+    $latex = $latex -replace "₄", "_4"
+    $latex = $latex -replace "₅", "_5"
+    $latex = $latex -replace "₆", "_6"
+    $latex = $latex -replace "₇", "_7"
+    $latex = $latex -replace "₈", "_8"
+    $latex = $latex -replace "₉", "_9"
+    $latex = $latex -replace "²", "^2"
+    $latex = $latex -replace "³", "^3"
+    $latex = $latex -replace "⁴", "^4"
+    $latex = $latex -replace "ⁿ", "^n"
+    
+    return $latex
+}
+
+Write-Host "🎯 Generating standalone HTML presentation from DAG..." -ForegroundColor Cyan
+
+# Read and parse the NDJSON file
+$dagLines = Get-Content $InputFile
+$nodes = @{}
+$edges = @{}
+
+# Parse nodes and edges
+foreach ($line in $dagLines) {
+    $item = $line | ConvertFrom-Json
+    if ($item.type -eq "edge") {
+        $edges[$item.id] = $item
+    } else {
+        $nodes[$item.id] = $item
+    }
+}
+
+Write-Host "📊 Parsed $($nodes.Count) nodes and $($edges.Count) edges" -ForegroundColor Green
+
+# Function to get significance icon
+function Get-SignificanceIcon($significance) {
+    switch ($significance) {
+        "critical" { return "⚡" }
+        "revolutionary" { return "🔥" }
+        "breakthrough" { return "🏗️" }
+        "major" { return "🎯" }
+        "significant" { return "🌟" }
+        default { return "📍" }
+    }
+}
+
+# Function to get type icon
+function Get-TypeIcon($type) {
+    switch ($type) {
+        "discovery" { return "🔬" }
+        "breakthrough" { return "💥" }
+        "framework" { return "🏗️" }
+        "proof" { return "📐" }
+        "implementation" { return "⚙️" }
+        default { return "📋" }
+    }
+}
+
+# Group nodes by date
+$nodesByDate = $nodes.Values | Group-Object -Property date | Sort-Object Name
+
+# Start building HTML
+$html = @"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Highlights DAG - A Journey Through Revolutionary Discoveries</title>
+    <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['`$', '`$'], ['\\(', '\\)']],
+          displayMath: [['`$`$', '`$`$'], ['\\[', '\\]']],
+          processEscapes: true,
+          processEnvironments: true
+        },
+        options: {
+          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Times New Roman", Times, serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        color: #fff;
+      }
+      .container {
+        background: rgba(255, 255, 255, 0.95);
+        color: #333;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      }
+      h1 {
+        text-align: center;
+        color: #1a1a2e;
+        font-size: 2.5em;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      }
+      .subtitle {
+        text-align: center;
+        font-style: italic;
+        color: #666;
+        font-size: 1.2em;
+        margin-bottom: 30px;
+      }
+      .quarter-section {
+        margin: 40px 0;
+        padding: 30px;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border-radius: 12px;
+        border-left: 6px solid #0f3460;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      }
+      .quarter-title {
+        color: #1a1a2e;
+        font-size: 1.8em;
+        margin-bottom: 20px;
+        text-align: center;
+        font-weight: bold;
+      }
+      .discovery {
+        margin: 25px 0;
+        padding: 25px;
+        background: white;
+        border-radius: 10px;
+        border-left: 4px solid #28a745;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .discovery:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+      }
+      .discovery-title {
+        font-size: 1.3em;
+        font-weight: bold;
+        color: #1a1a2e;
+        margin-bottom: 10px;
+      }
+      .discovery-meta {
+        font-size: 0.9em;
+        color: #666;
+        margin-bottom: 15px;
+      }
+      .discovery-description {
+        margin-bottom: 15px;
+        line-height: 1.7;
+      }      .mathematics {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 15px 0;
+        border-left: 4px solid #007bff;
+        overflow-x: auto;
+        font-size: 0.9em;
+        line-height: 1.4;
+      }
+      .mathematics .MathJax {
+        font-size: 0.85em !important;
+      }
+      .MathJax_Display {
+        font-size: 0.9em !important;
+        overflow-x: auto;
+        overflow-y: hidden;
+      }
+      .mathematics-label {
+        font-weight: bold;
+        color: #007bff;
+        margin-bottom: 10px;
+      }
+      .impact {
+        font-style: italic;
+        color: #28a745;
+        background: #f8fff9;
+        padding: 12px;
+        border-radius: 6px;
+        border-left: 3px solid #28a745;
+        margin-top: 15px;
+      }
+      .summary-section {
+        margin: 50px 0;
+        padding: 30px;
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        color: white;
+        border-radius: 12px;
+        text-align: center;
+      }
+      .math-highlights {
+        margin: 40px 0;
+        padding: 30px;
+        background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+        border-radius: 12px;
+        border-left: 6px solid #2196f3;
+      }
+      .math-highlight {
+        margin: 20px 0;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      }
+      .footer {
+        text-align: center;
+        margin-top: 50px;
+        padding: 20px;
+        border-top: 2px solid #dee2e6;
+        color: #666;
+        font-size: 0.9em;
+      }
+      .critical { border-left-color: #dc3545; }
+      .revolutionary { border-left-color: #fd7e14; }
+      .breakthrough { border-left-color: #ffc107; }
+      .major { border-left-color: #20c997; }
+      .significant { border-left-color: #6f42c1; }
+    </style>
+</head>
+<body>
+    <div class="container">        <h1>Theoretical Physics Research Compendium</h1>
+        <p class="subtitle">Mathematical Developments in Quantum Gravity and Spacetime Engineering</p>
+        <p style="text-align: center; color: #666; margin-bottom: 40px;">
+            <strong>Research Documentation</strong> | June 21, 2025
+        </p>
+
+"@
+
+# Add discoveries by quarter
+foreach ($quarter in $nodesByDate) {    $quarterTitle = switch ($quarter.Name) {
+        "2024-Q1" { "2024 Q1: Foundational Theory Development" }
+        "2024-Q2" { "2024 Q2: Mathematical Framework Extension" }
+        "2024-Q3" { "2024 Q3: Proof Development and Validation" }
+        "2024-Q4" { "2024 Q4: Applied Theoretical Analysis" }
+        "2025-Q1" { "2025 Q1: Advanced Mathematical Methods" }
+        default { $quarter.Name }
+    }
+    
+    $html += @"
+        <div class="quarter-section">
+            <h2 class="quarter-title">$quarterTitle</h2>
+
+"@
+    
+    foreach ($node in $quarter.Group) {
+        $icon = Get-SignificanceIcon $node.significance
+        $typeIcon = Get-TypeIcon $node.type
+        $cssClass = $node.significance
+        
+        $html += @"
+            <div class="discovery $cssClass">
+                <div class="discovery-title">$icon $typeIcon $($node.title)</div>
+                <div class="discovery-meta">
+                    <strong>Type:</strong> $($node.type.ToUpper()) | 
+                    <strong>Significance:</strong> $($node.significance.ToUpper())
+                </div>
+                <div class="discovery-description">$($node.description)</div>
+
+"@
+        
+        if ($node.mathematics) {
+            $mathematics = Convert-ToLatex $node.mathematics
+            $html += @"
+                <div class="mathematics">
+                    <div class="mathematics-label">Mathematics:</div>
+                    `$`$$mathematics`$`$
+                </div>
+
+"@
+        }
+        
+        if ($node.impact) {
+            $html += @"
+                <div class="impact">
+                    <strong>Impact:</strong> $($node.impact)
+                </div>
+
+"@
+        }
+        
+        $html += @"
+            </div>
+
+"@
+    }
+    
+    $html += @"
+        </div>
+
+"@
+}
+
+# Add mathematical highlights section
+$mathNodes = $nodes.Values | Where-Object { $_.mathematics -ne $null } | Select-Object -First 8
+
+$html += @"        <div class="math-highlights">
+            <h2 style="text-align: center; color: #1a1a2e; margin-bottom: 30px;">� Key Mathematical Results</h2>
+
+"@
+
+foreach ($node in $mathNodes) {
+    $icon = Get-SignificanceIcon $node.significance
+    $mathematics = Convert-ToLatex $node.mathematics
+    $html += @"
+            <div class="math-highlight">
+                <h3>$icon $($node.title)</h3>
+                <div class="mathematics">
+                    `$`$$mathematics`$`$
+                </div>
+            </div>
+
+"@
+}
+
+$html += @"
+        </div>
+
+"@
+
+# Add summary section
+$html += @"        <div class="summary-section">
+            <h2>📊 Research Overview</h2>
+            <p style="font-size: 1.1em; margin: 20px 0;">
+                <strong>$($nodes.Count)</strong> theoretical developments documented across <strong>5 quarters</strong> of research
+            </p>
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap; margin: 30px 0;">
+                <div style="margin: 10px;">
+                    <div style="font-size: 1.5em;">📐</div>
+                    <div>Mathematical Foundations</div>
+                </div>
+                <div style="margin: 10px;">
+                    <div style="font-size: 1.5em;">�</div>
+                    <div>Theoretical Discoveries</div>
+                </div>
+                <div style="margin: 10px;">
+                    <div style="font-size: 1.5em;">📊</div>
+                    <div>Analytical Frameworks</div>
+                </div>
+                <div style="margin: 10px;">
+                    <div style="font-size: 1.5em;">⚙️</div>
+                    <div>Applied Mathematics</div>
+                </div>
+                <div style="margin: 10px;">
+                    <div style="font-size: 1.5em;">📋</div>
+                    <div>Research Documentation</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>Data Sources:</strong></p>
+            <p>📊 <strong>DAG Structure:</strong> highlights-dag.ndjson | 
+               📚 <strong>Documentation Index:</strong> documentation-index.ndjson | 
+               ⚠️ <strong>Uncertainty Analysis:</strong> UQ-TODO.ndjson</p>
+            <p style="margin-top: 20px;">
+                <em>Generated automatically from research highlights database</em>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+"@
+
+# Write the HTML file
+$html | Out-File -FilePath $OutputFile -Encoding UTF8
+
+Write-Host "✅ Generated $OutputFile" -ForegroundColor Green
+Write-Host "📊 Presentation includes: $($nodes.Count) discoveries, $($mathNodes.Count) mathematical highlights" -ForegroundColor Yellow
+Write-Host "🌐 Open the HTML file in a browser to view the presentation" -ForegroundColor Cyan
+Write-Host "🎯 Script completed!" -ForegroundColor Green
