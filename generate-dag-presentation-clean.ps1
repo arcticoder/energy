@@ -33,7 +33,7 @@ function Convert-ToLatex($mathString) {
 function Format-SourceFiles($sourceFiles) {
     if (-not $sourceFiles) { return "" }
     
-    $baseUrl = "https://github.com/sherri3"
+    $baseUrl = "https://github.com/arcticoder"
     $links = @()
     
     foreach ($file in $sourceFiles) {
@@ -163,22 +163,21 @@ $html = @"
       .discovery-description {
         margin-bottom: 15px;
         line-height: 1.7;
-      }
-      .mathematics {
+      }      .mathematics {
         background: #f8f9fa;
         padding: 15px;
         border-radius: 8px;
         margin: 15px 0;
         border-left: 4px solid #007bff;
         overflow-x: auto;
-        font-size: 0.9em;
+        font-size: 1.1em;
         line-height: 1.4;
       }
       .mathematics .MathJax {
-        font-size: 0.85em !important;
+        font-size: 1.2em !important;
       }
       .MathJax_Display {
-        font-size: 0.9em !important;
+        font-size: 1.3em !important;
         overflow-x: auto;
         overflow-y: hidden;
       }
@@ -214,47 +213,34 @@ $html = @"
     <div class="container">        <div class="header">
             <h1>Research Highlights</h1>
             <p>Mathematical Physics & Quantum Gravity Discoveries</p>
-        </div>
-
-        <!-- Table of Contents -->
+        </div>        <!-- Table of Contents -->
         <div class="summary-section">
             <h2 style="text-align: center; color: #1a1a2e; margin-bottom: 30px;">Table of Contents</h2>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                <div>
-                    <h3 style="color: #007bff; margin-bottom: 15px;">Points of Interest</h3>
-                    <ul style="list-style-type: none; padding: 0;">
+            <ul style="list-style-type: none; padding: 0; columns: 2; column-gap: 30px;">
 "@
 
+# Add nodes first
 foreach ($node in $orderedNodes) {
     $anchorId = $node.id -replace "_", "-"
     $html += @"
-                        <li style="margin: 8px 0;"><a href="#node-$anchorId" style="color: #007bff; text-decoration: none;">$($node.title)</a></li>
+                <li style="margin: 8px 0; break-inside: avoid;"><a href="#node-$anchorId" style="color: #007bff; text-decoration: none;">$($node.title)</a></li>
 "@
 }
 
-$html += @"
-                    </ul>
-                </div>
-                <div>
-                    <h3 style="color: #28a745; margin-bottom: 15px;">Research Connections</h3>
-                    <ul style="list-style-type: none; padding: 0;">
-"@
-
+# Add edges after nodes
 foreach ($edge in $edges.Values) {
     $sourceNode = $nodes[$edge.source]
     $targetNode = $nodes[$edge.target]
     if ($sourceNode -and $targetNode) {
         $anchorId = $edge.id -replace "_", "-"
         $html += @"
-                        <li style="margin: 8px 0; font-size: 0.9em;"><a href="#edge-$anchorId" style="color: #28a745; text-decoration: none;">$($sourceNode.title) → $($targetNode.title)</a></li>
+                <li style="margin: 8px 0; font-size: 0.9em; break-inside: avoid;"><a href="#edge-$anchorId" style="color: #28a745; text-decoration: none;">$($sourceNode.title) → $($targetNode.title)</a></li>
 "@
     }
 }
 
 $html += @"
-                    </ul>
-                </div>
-            </div>
+            </ul>
         </div>
 
 "@
