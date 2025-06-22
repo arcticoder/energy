@@ -418,7 +418,7 @@ try {
         $OutputFile,
         "-t", "revealjs",
         "--mathjax",
-        "--variable", "revealjs-url=https://unpkg.com/reveal.js@^4/",
+        "--variable", "revealjs-url=https://unpkg.com/reveal.js@latest",
         "--variable", "theme=black",
         "--variable", "transition=slide",
         "--variable", "hash=true",
@@ -439,7 +439,7 @@ try {
     }
 } catch {
     Write-Host "⚠️ Pandoc not found. Please install pandoc and run:" -ForegroundColor Yellow
-    Write-Host "    pandoc $OutputFile -t revealjs --mathjax --variable revealjs-url=https://unpkg.com/reveal.js@^4/ --variable theme=black -s -o highlights-dag.slides.html" -ForegroundColor Gray
+    Write-Host "    pandoc $OutputFile -t revealjs --mathjax --variable revealjs-url=https://unpkg.com/reveal.js@latest --variable theme=black -s -o highlights-dag.slides.html" -ForegroundColor Gray
 }
 
 Write-Host "`n🎯 Script completed!" -ForegroundColor Cyan
