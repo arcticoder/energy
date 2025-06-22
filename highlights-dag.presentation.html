@@ -83,24 +83,49 @@
       .discovery-description {
         margin-bottom: 15px;
         line-height: 1.7;
-      }
-      .mathematics {
+      }      .mathematics {
         background: #f8f9fa;
         padding: 15px;
         border-radius: 8px;
         margin: 15px 0;
         border-left: 4px solid #007bff;
         overflow-x: auto;
-        font-size: 0.9em;
+        font-size: 1.1em;
         line-height: 1.4;
       }
       .mathematics .MathJax {
-        font-size: 0.85em !important;
+        font-size: 1.2em !important;
       }
       .MathJax_Display {
-        font-size: 0.9em !important;
+        font-size: 1.3em !important;
         overflow-x: auto;
         overflow-y: hidden;
+      }
+      .code-block {
+        background: #f8f8f8;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 15px 0;
+        border-left: 4px solid #28a745;
+        overflow-x: auto;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9em;
+        line-height: 1.4;
+      }
+      .edge-section {
+        margin: 50px 0;
+        padding: 30px;
+        background: #f0f8ff;
+        border-radius: 12px;
+        border-left: 5px solid #6c757d;
+      }
+      .edge-item {
+        background: white;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 15px 0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        border-left: 3px solid #6c757d;
       }
       .impact {
         font-style: italic;
@@ -131,10 +156,12 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
+    <div class="container">        <div class="header">
             <h1>Research Highlights</h1>
-            <p>Mathematical Physics & Quantum Gravity Discoveries</p>
+            <p>Mathematical Physics & Quantum Gravity Points of Interest</p>
+        </div>
+        <div class="summary-section">
+            <h2 style="text-align: center; color: #1a1a2e; margin-bottom: 30px;">Points of Interest</h2>
         </div>
         <div class="discovery">
             <div class="discovery-title">Constraint Algebra Anomaly Resolution</div>
@@ -180,51 +207,62 @@
             <div class="discovery-title">Energy Condition Violation Analysis</div>
             <div class="discovery-description">Systematic analysis of energy condition violations in general relativity and their physical implications for exotic spacetime geometries. The study examines the Null Energy Condition (NEC), Weak Energy Condition (WEC), and Strong Energy Condition (SEC), demonstrating that controlled violations of these conditions are necessary for maintaining stable warp bubble configurations. The analysis provides a rigorous framework for understanding when and how such violations can occur within quantum field theory.</div>
             <div class="mathematics">
-                $$\rho + p \geq 0$$
+                $$\text{NEC: } T_{\mu\nu} k^\mu k^\nu \geq 0, \quad \text{WEC: } T_{\mu\nu} u^\mu u^\nu \geq 0 \land T_{\mu\nu} k^\mu k^\nu \geq 0, \quad \text{SEC: } \left(T_{\mu\nu} - \frac{1}{2}T g_{\mu\nu}\right) u^\mu u^\nu \geq 0$$
             </div>
             <div class="impact">
                 Establishes theoretical foundation for understanding energy condition violations necessary for exotic spacetime engineering
             </div>
         </div>
         <div class="discovery">
-            <div class="discovery-title">8-Gaussian Optimization Breakthrough</div>
-            <div class="discovery-description">Revolutionary 8-Gaussian method for warp bubble optimization achieving unprecedented efficiency</div>
+            <div class="discovery-title">8-Gaussian Optimization Methods</div>
+            <div class="discovery-description">8-Gaussian method for warp bubble optimization achieving improved efficiency</div>
             <div class="mathematics">
-                $$f(r) = \sigma_{i=1}^8 A_i exp(-(r-r_i)²/2\sigma_i²), optimization: min \int|∇²f|² dr subject to \int\rho dr = -M$$
+                $$f(r) = \sum_{i=1}^8 A_i \exp\left(-\frac{(r-r_i)^2}{2\sigma_i^2}\right)$$
             </div>
             <div class="impact">
-                Dramatically improved warp bubble design efficiency
+                Improved warp bubble design efficiency
             </div>
         </div>
         <div class="discovery">
             <div class="discovery-title">Comprehensive Safety Protocols</div>
-            <div class="discovery-description">Complete safety framework for high-energy physics experiments and warp drive operation</div>
+            <div class="discovery-description">Safety framework for high-energy physics experiments and warp drive operation</div>
+            <div class="code-block">
+                <pre><code>def safety_check(energy_density, field_strength):
+    if energy_density > PLANCK_DENSITY * 0.01:
+        return 'DANGER: Approaching quantum gravity regime'
+    if field_strength > c * 0.1:
+        return 'WARNING: High-velocity fields detected'
+    return 'SAFE: Normal operation parameters'</code></pre>
+            </div>
             <div class="impact">
-                Ensured safe operation of revolutionary technologies
+                Ensures safe operation of advanced technologies
             </div>
         </div>
         <div class="discovery">
             <div class="discovery-title">Universal Energy Scaling Laws</div>
-            <div class="discovery-description">Discovery of universal scaling laws governing energy enhancement across all mechanisms</div>
+            <div class="discovery-description">Potential universal scaling laws governing energy enhancement across mechanisms, where β represents the coupling constant, n denotes the polymer field strength, and L_p is the Planck length</div>
             <div class="mathematics">
-                $$E_out/E_in = (1 + βℏc/L_p²)^n, β = coupling constant, n = polymer field strength, L_p = Planck length$$
+                $$\frac{E_{out}}{E_{in}} = \left(1 + \beta\frac{\hbar c}{L_p^2}\right)^n$$
             </div>
             <div class="impact">
-                Fundamental understanding of energy enhancement limits
+                Potential understanding of energy enhancement limits
             </div>
         </div>
         <div class="discovery">
             <div class="discovery-title">Comprehensive Energy Requirements Analysis</div>
-            <div class="discovery-description">Complete analysis of energy requirements for warp drive and energy enhancement systems</div>
+            <div class="discovery-description">Complete analysis of energy requirements for warp drive and energy enhancement systems. The study establishes that warp bubble formation requires exotic matter with energy densities on the order of 10^64 joules per cubic meter, equivalent to approximately 10^10 times the mass-energy density of an atomic nucleus. For practical implementation, the analysis shows that even with optimized geometries, the total energy requirements scale as E ∝ (v/c)^2 * R^3 where v is the effective velocity and R is the bubble radius. Alternative approaches using quantum geometric effects may reduce these requirements by factors of 10^6 to 10^12.</div>
+            <div class="mathematics">
+                $$E_{total} = \int_{bubble} |T_{\mu\nu}| d^3x \sim \frac{c^4}{G} R^3 \left(\frac{v}{c}\right)^2$$
+            </div>
             <div class="impact">
                 Determined feasibility boundaries for implementation
             </div>
         </div>
         <div class="discovery">
             <div class="discovery-title">Vacuum Engineering Framework</div>
-            <div class="discovery-description">Complete framework for engineering vacuum states for energy extraction</div>
+            <div class="discovery-description">Framework for engineering vacuum states for potential energy extraction</div>
             <div class="impact">
-                Enabled controlled vacuum energy manipulation
+                Potential for controlled vacuum energy manipulation
             </div>
         </div>
         <div class="discovery">
@@ -238,10 +276,10 @@
             <div class="discovery-title">Polymer-Enhanced Fusion Achievement</div>
             <div class="discovery-description">Demonstration of 8.32× WEST tokamak performance through polymer field enhancement</div>
             <div class="mathematics">
-                $$P_enhanced = P_baseline × (1 + α∮ψ_polymer·B̂dℓ)², α = 8.32 for optimal polymer coupling$$
+                $$P_{enhanced} = P_{baseline} \times (1 + \alpha\oint\psi_{polymer}\cdot\hat{B}d\ell)^2$$
             </div>
             <div class="impact">
-                Breakthrough in practical fusion energy generation
+                Point of interest in practical fusion energy generation
             </div>
         </div>
         <div class="discovery">
@@ -256,9 +294,9 @@
         </div>
         <div class="discovery">
             <div class="discovery-title">Energy Enhancement Mechanisms</div>
-            <div class="discovery-description">Discovery of multiple pathways for energy enhancement through quantum geometry effects</div>
+            <div class="discovery-description">Multiple pathways for energy enhancement through quantum geometry effects</div>
             <div class="impact">
-                Unified understanding of energy multiplication mechanisms
+                Potential understanding of energy multiplication mechanisms
             </div>
         </div>
         <div class="discovery">
@@ -269,13 +307,13 @@
             </div>
         </div>
         <div class="discovery">
-            <div class="discovery-title">Time-Dependent T4 Tensor Breakthrough</div>
-            <div class="discovery-description">Revolutionary breakthrough in time-dependent tensor optimization for dynamic warp fields</div>
+            <div class="discovery-title">Time-Dependent T4 Tensor Methods</div>
+            <div class="discovery-description">Time-dependent tensor optimization for dynamic warp fields</div>
             <div class="mathematics">
-                $$T₄(t) = ∂/∂t[g^\mu\nu ∂g_\mu\nu/∂t], dynamic optimization: δ\int₀^T L[T₄(t),Ṫ₄(t)]dt = 0$$
+                $$T_4(t) = \frac{\partial}{\partial t}\left[g^{\mu\nu} \frac{\partial g_{\mu\nu}}{\partial t}\right]$$
             </div>
             <div class="impact">
-                Enabled dynamic warp field control and optimization
+                Potential for dynamic warp field control and optimization
             </div>
         </div>
         <div class="discovery">
@@ -306,13 +344,13 @@
             </div>
         </div>
         <div class="discovery">
-            <div class="discovery-title">Ultimate B-Spline Breakthrough</div>
-            <div class="discovery-description">Revolutionary B-spline methods for optimal warp field configuration</div>
+            <div class="discovery-title">B-Spline Optimization Methods</div>
+            <div class="discovery-description">B-spline methods for warp field configuration with improved smoothness</div>
             <div class="mathematics">
-                $$f(r) = \sigma_{i=0}^n c_i B_{i,k}(r), smoothness: \int₀^\infty |f^(k)(r)|² dr → min, C^\infty continuity achieved$$
+                $$f(r) = \sum_{i=0}^n c_i B_{i,k}(r)$$
             </div>
             <div class="impact">
-                Achieved optimal warp field smoothness and efficiency
+                Improved warp field smoothness and efficiency
             </div>
         </div>
         <div class="discovery">
@@ -324,12 +362,12 @@
         </div>
         <div class="discovery">
             <div class="discovery-title">Quantum Interest Bound Modification</div>
-            <div class="discovery-description">Revolutionary modification of quantum interest bounds enabling energy extraction</div>
+            <div class="discovery-description">Modification of quantum interest bounds potentially enabling energy extraction</div>
             <div class="mathematics">
-                $$\int₀^\infty ⟨T_uu⟩dt \geq -3/(32\pi²τ⁴) → -\infty under polymer modifications, ΔE = \int\rho_modified dV$$
+                $$\int_0^\infty \langle T_{uu}\rangle dt \geq -\frac{3}{32\pi^2\tau^4}$$
             </div>
             <div class="impact">
-                Opened pathway to vacuum energy extraction
+                Potential pathway to vacuum energy extraction
             </div>
         </div>
         <div class="discovery">
@@ -341,9 +379,9 @@
         </div>
         <div class="discovery">
             <div class="discovery-title">Practical Implementation Roadmap</div>
-            <div class="discovery-description">Complete roadmap for practical implementation of energy enhancement and warp drive technologies</div>
+            <div class="discovery-description">Roadmap for potential implementation of energy enhancement and warp drive technologies</div>
             <div class="impact">
-                Pathway to revolutionary energy and propulsion technologies
+                Potential pathway to advanced energy and propulsion technologies
             </div>
         </div>
         <div class="discovery">
@@ -356,17 +394,17 @@
                 Provides the mathematical foundation for discrete quantum spacetime, enabling subsequent analysis of quantum gravitational effects in matter coupling and spacetime topology
             </div>
         </div>
-        <div class="summary-section">
+        <div class="edge-section">
             <h2 style="text-align: center; color: #1a1a2e; margin-bottom: 30px;">Research Connections and Dependencies</h2>
-                        <div class="discovery">
+                        <div class="edge-item">
                 <div class="discovery-title">Comprehensive Validation Framework → Practical Implementation Roadmap</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> validates - Validation framework validates implementation strategies
                     <br><br>
-                    <strong>How this connection works:</strong> Comprehensive Validation Framework validates Practical Implementation Roadmap because Validation framework validates implementation strategies. This dependency is essential for understanding how Ensured reliability of revolutionary technologies directly influences Pathway to revolutionary energy and propulsion technologies.
+                    <strong>How this connection works:</strong> Comprehensive Validation Framework validates Practical Implementation Roadmap because Validation framework validates implementation strategies. This dependency is essential for understanding how Ensured reliability of revolutionary technologies directly influences Potential pathway to advanced energy and propulsion technologies.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Exotic Matter Requirements for Spacetime Metrics → Comprehensive Energy Requirements Analysis</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> constrains - Exotic matter properties constrain energy requirements
@@ -374,15 +412,15 @@
                     <strong>How this connection works:</strong> Exotic Matter Requirements for Spacetime Metrics constrains Comprehensive Energy Requirements Analysis because Exotic matter properties constrain energy requirements. This dependency is essential for understanding how Establishes physical constraints and potential mechanisms for exotic matter generation in quantum gravity directly influences Determined feasibility boundaries for implementation.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Quantum Geometric Enhancement of Reaction Kinetics → Polymer-Enhanced Fusion Achievement</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> enhances - Quantum geometry catalysis enhances fusion reaction rates
                     <br><br>
-                    <strong>How this connection works:</strong> Quantum Geometric Enhancement of Reaction Kinetics enhances Polymer-Enhanced Fusion Achievement because Quantum geometry catalysis enhances fusion reaction rates. This dependency is essential for understanding how Provides theoretical framework for understanding matter-geometry coupling in quantum gravitational regimes, with potential applications to high-energy physics and cosmology directly influences Breakthrough in practical fusion energy generation.
+                    <strong>How this connection works:</strong> Quantum Geometric Enhancement of Reaction Kinetics enhances Polymer-Enhanced Fusion Achievement because Quantum geometry catalysis enhances fusion reaction rates. This dependency is essential for understanding how Provides theoretical framework for understanding matter-geometry coupling in quantum gravitational regimes, with potential applications to high-energy physics and cosmology directly influences Point of interest in practical fusion energy generation.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Loop Quantum Gravity Mathematical Formulation → Quantum Geometric Enhancement of Reaction Kinetics</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> enables - Discrete quantum geometry enables catalytic effects on matter reactions
@@ -390,7 +428,7 @@
                     <strong>How this connection works:</strong> Loop Quantum Gravity Mathematical Formulation enables Quantum Geometric Enhancement of Reaction Kinetics because Discrete quantum geometry enables catalytic effects on matter reactions. This dependency is essential for understanding how Provides the mathematical foundation for discrete quantum spacetime, enabling subsequent analysis of quantum gravitational effects in matter coupling and spacetime topology directly influences Provides theoretical framework for understanding matter-geometry coupling in quantum gravitational regimes, with potential applications to high-energy physics and cosmology.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Exotic Matter Requirements for Spacetime Metrics → 3+1D Warp Stability Analysis</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> informs - Exotic matter analysis informs stability considerations
@@ -398,23 +436,23 @@
                     <strong>How this connection works:</strong> Exotic Matter Requirements for Spacetime Metrics informs 3+1D Warp Stability Analysis because Exotic matter analysis informs stability considerations. This dependency is essential for understanding how Establishes physical constraints and potential mechanisms for exotic matter generation in quantum gravity directly influences Confirmed long-term stability of warp solutions.
                 </div>
             </div>
-            <div class="discovery">
-                <div class="discovery-title">Warp Drive Feasibility Confirmed → 8-Gaussian Optimization Breakthrough</div>
+            <div class="edge-item">
+                <div class="discovery-title">Warp Drive Feasibility Confirmed → 8-Gaussian Optimization Methods</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> motivates - Feasibility requirements motivate 8-Gaussian optimization methods
                     <br><br>
-                    <strong>How this connection works:</strong> Warp Drive Feasibility Confirmed motivates 8-Gaussian Optimization Breakthrough because Feasibility requirements motivate 8-Gaussian optimization methods. This dependency is essential for understanding how Validated practical possibility of warp drive construction directly influences Dramatically improved warp bubble design efficiency.
+                    <strong>How this connection works:</strong> Warp Drive Feasibility Confirmed motivates 8-Gaussian Optimization Methods because Feasibility requirements motivate 8-Gaussian optimization methods. This dependency is essential for understanding how Validated practical possibility of warp drive construction directly influences Improved warp bubble design efficiency.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Antimatter-Enhanced Reactor Design → Practical Implementation Roadmap</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> contributes - Antimatter reactor design contributes to implementation roadmap
                     <br><br>
-                    <strong>How this connection works:</strong> Antimatter-Enhanced Reactor Design contributes Practical Implementation Roadmap because Antimatter reactor design contributes to implementation roadmap. This dependency is essential for understanding how Pathway to ultimate energy density achievement directly influences Pathway to revolutionary energy and propulsion technologies.
+                    <strong>How this connection works:</strong> Antimatter-Enhanced Reactor Design contributes Practical Implementation Roadmap because Antimatter reactor design contributes to implementation roadmap. This dependency is essential for understanding how Pathway to ultimate energy density achievement directly influences Potential pathway to advanced energy and propulsion technologies.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Energy Condition Violation Analysis → Exotic Matter Requirements for Spacetime Metrics</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> constrains - Energy condition violations constrain exotic matter requirements
@@ -422,15 +460,15 @@
                     <strong>How this connection works:</strong> Energy Condition Violation Analysis constrains Exotic Matter Requirements for Spacetime Metrics because Energy condition violations constrain exotic matter requirements. This dependency is essential for understanding how Establishes theoretical foundation for understanding energy condition violations necessary for exotic spacetime engineering directly influences Establishes physical constraints and potential mechanisms for exotic matter generation in quantum gravity.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Energy Enhancement Mechanisms → Universal Energy Scaling Laws</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> reveals - Energy enhancement reveals universal scaling laws
                     <br><br>
-                    <strong>How this connection works:</strong> Energy Enhancement Mechanisms reveals Universal Energy Scaling Laws because Energy enhancement reveals universal scaling laws. This dependency is essential for understanding how Unified understanding of energy multiplication mechanisms directly influences Fundamental understanding of energy enhancement limits.
+                    <strong>How this connection works:</strong> Energy Enhancement Mechanisms reveals Universal Energy Scaling Laws because Energy enhancement reveals universal scaling laws. This dependency is essential for understanding how Potential understanding of energy multiplication mechanisms directly influences Potential understanding of energy enhancement limits.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Bayesian Uncertainty Quantification Framework → Comprehensive Validation Framework</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> enables - Uncertainty quantification enables comprehensive validation
@@ -438,39 +476,39 @@
                     <strong>How this connection works:</strong> Bayesian Uncertainty Quantification Framework enables Comprehensive Validation Framework because Uncertainty quantification enables comprehensive validation. This dependency is essential for understanding how Rigorous uncertainty assessment for revolutionary physics directly influences Ensured reliability of revolutionary technologies.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Quantum Geometric Enhancement of Reaction Kinetics → Energy Enhancement Mechanisms</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> enables - Catalytic effects enable energy multiplication mechanisms
                     <br><br>
-                    <strong>How this connection works:</strong> Quantum Geometric Enhancement of Reaction Kinetics enables Energy Enhancement Mechanisms because Catalytic effects enable energy multiplication mechanisms. This dependency is essential for understanding how Provides theoretical framework for understanding matter-geometry coupling in quantum gravitational regimes, with potential applications to high-energy physics and cosmology directly influences Unified understanding of energy multiplication mechanisms.
+                    <strong>How this connection works:</strong> Quantum Geometric Enhancement of Reaction Kinetics enables Energy Enhancement Mechanisms because Catalytic effects enable energy multiplication mechanisms. This dependency is essential for understanding how Provides theoretical framework for understanding matter-geometry coupling in quantum gravitational regimes, with potential applications to high-energy physics and cosmology directly influences Potential understanding of energy multiplication mechanisms.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Comprehensive Safety Protocols → Practical Implementation Roadmap</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> secures - Safety protocols secure implementation operations
                     <br><br>
-                    <strong>How this connection works:</strong> Comprehensive Safety Protocols secures Practical Implementation Roadmap because Safety protocols secure implementation operations. This dependency is essential for understanding how Ensured safe operation of revolutionary technologies directly influences Pathway to revolutionary energy and propulsion technologies.
+                    <strong>How this connection works:</strong> Comprehensive Safety Protocols secures Practical Implementation Roadmap because Safety protocols secure implementation operations. This dependency is essential for understanding how Ensures safe operation of advanced technologies directly influences Potential pathway to advanced energy and propulsion technologies.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Quantum Interest Bound Modification → Vacuum Engineering Framework</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> enables - QI bound modification enables vacuum state engineering
                     <br><br>
-                    <strong>How this connection works:</strong> Quantum Interest Bound Modification enables Vacuum Engineering Framework because QI bound modification enables vacuum state engineering. This dependency is essential for understanding how Opened pathway to vacuum energy extraction directly influences Enabled controlled vacuum energy manipulation.
+                    <strong>How this connection works:</strong> Quantum Interest Bound Modification enables Vacuum Engineering Framework because QI bound modification enables vacuum state engineering. This dependency is essential for understanding how Potential pathway to vacuum energy extraction directly influences Potential for controlled vacuum energy manipulation.
                 </div>
             </div>
-            <div class="discovery">
-                <div class="discovery-title">Complete Warp Bubble Optimization Framework → Time-Dependent T4 Tensor Breakthrough</div>
+            <div class="edge-item">
+                <div class="discovery-title">Complete Warp Bubble Optimization Framework → Time-Dependent T4 Tensor Methods</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> extends - Static optimization extends to time-dependent methods
                     <br><br>
-                    <strong>How this connection works:</strong> Complete Warp Bubble Optimization Framework extends Time-Dependent T4 Tensor Breakthrough because Static optimization extends to time-dependent methods. This dependency is essential for understanding how Enabled practical warp drive design optimization directly influences Enabled dynamic warp field control and optimization.
+                    <strong>How this connection works:</strong> Complete Warp Bubble Optimization Framework extends Time-Dependent T4 Tensor Methods because Static optimization extends to time-dependent methods. This dependency is essential for understanding how Enabled practical warp drive design optimization directly influences Potential for dynamic warp field control and optimization.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Constraint Algebra Anomaly Resolution → Averaged Null Energy Condition in Quantum Spacetime</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> enables - Constraint algebra provides foundation for energy condition analysis
@@ -478,47 +516,47 @@
                     <strong>How this connection works:</strong> Constraint Algebra Anomaly Resolution enables Averaged Null Energy Condition in Quantum Spacetime because Constraint algebra provides foundation for energy condition analysis. This dependency is essential for understanding how Validates the quantum consistency of Loop Quantum Gravity, establishing its viability as a background-independent theory of quantum spacetime directly influences Provides theoretical foundation for understanding energy condition violations in quantum gravity, enabling systematic analysis of exotic matter configurations.
                 </div>
             </div>
-            <div class="discovery">
-                <div class="discovery-title">8-Gaussian Optimization Breakthrough → Complete Warp Bubble Optimization Framework</div>
+            <div class="edge-item">
+                <div class="discovery-title">8-Gaussian Optimization Methods → Complete Warp Bubble Optimization Framework</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> contributes - 8-Gaussian methods contribute to comprehensive optimization framework
                     <br><br>
-                    <strong>How this connection works:</strong> 8-Gaussian Optimization Breakthrough contributes Complete Warp Bubble Optimization Framework because 8-Gaussian methods contribute to comprehensive optimization framework. This dependency is essential for understanding how Dramatically improved warp bubble design efficiency directly influences Enabled practical warp drive design optimization.
+                    <strong>How this connection works:</strong> 8-Gaussian Optimization Methods contributes Complete Warp Bubble Optimization Framework because 8-Gaussian methods contribute to comprehensive optimization framework. This dependency is essential for understanding how Improved warp bubble design efficiency directly influences Enabled practical warp drive design optimization.
                 </div>
             </div>
-            <div class="discovery">
-                <div class="discovery-title">8-Gaussian Optimization Breakthrough → Ultimate B-Spline Breakthrough</div>
+            <div class="edge-item">
+                <div class="discovery-title">8-Gaussian Optimization Methods → B-Spline Optimization Methods</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> leads_to - 8-Gaussian success leads to B-spline method development
                     <br><br>
-                    <strong>How this connection works:</strong> 8-Gaussian Optimization Breakthrough leads_to Ultimate B-Spline Breakthrough because 8-Gaussian success leads to B-spline method development. This dependency is essential for understanding how Dramatically improved warp bubble design efficiency directly influences Achieved optimal warp field smoothness and efficiency.
+                    <strong>How this connection works:</strong> 8-Gaussian Optimization Methods leads_to B-Spline Optimization Methods because 8-Gaussian success leads to B-spline method development. This dependency is essential for understanding how Improved warp bubble design efficiency directly influences Improved warp field smoothness and efficiency.
                 </div>
             </div>
-            <div class="discovery">
-                <div class="discovery-title">Ultimate B-Spline Breakthrough → 3+1D Warp Stability Analysis</div>
+            <div class="edge-item">
+                <div class="discovery-title">B-Spline Optimization Methods → 3+1D Warp Stability Analysis</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> enables - B-spline smoothness enables stability analysis
                     <br><br>
-                    <strong>How this connection works:</strong> Ultimate B-Spline Breakthrough enables 3+1D Warp Stability Analysis because B-spline smoothness enables stability analysis. This dependency is essential for understanding how Achieved optimal warp field smoothness and efficiency directly influences Confirmed long-term stability of warp solutions.
+                    <strong>How this connection works:</strong> B-Spline Optimization Methods enables 3+1D Warp Stability Analysis because B-spline smoothness enables stability analysis. This dependency is essential for understanding how Improved warp field smoothness and efficiency directly influences Confirmed long-term stability of warp solutions.
                 </div>
             </div>
-            <div class="discovery">
-                <div class="discovery-title">Ultimate B-Spline Breakthrough → Complete Warp Bubble Optimization Framework</div>
+            <div class="edge-item">
+                <div class="discovery-title">B-Spline Optimization Methods → Complete Warp Bubble Optimization Framework</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> contributes - B-spline methods contribute to optimization framework
                     <br><br>
-                    <strong>How this connection works:</strong> Ultimate B-Spline Breakthrough contributes Complete Warp Bubble Optimization Framework because B-spline methods contribute to optimization framework. This dependency is essential for understanding how Achieved optimal warp field smoothness and efficiency directly influences Enabled practical warp drive design optimization.
+                    <strong>How this connection works:</strong> B-Spline Optimization Methods contributes Complete Warp Bubble Optimization Framework because B-spline methods contribute to optimization framework. This dependency is essential for understanding how Improved warp field smoothness and efficiency directly influences Enabled practical warp drive design optimization.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Polymer-Enhanced Fusion Achievement → Antimatter-Enhanced Reactor Design</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> extends - Polymer fusion extends to antimatter-enhanced reactor design
                     <br><br>
-                    <strong>How this connection works:</strong> Polymer-Enhanced Fusion Achievement extends Antimatter-Enhanced Reactor Design because Polymer fusion extends to antimatter-enhanced reactor design. This dependency is essential for understanding how Breakthrough in practical fusion energy generation directly influences Pathway to ultimate energy density achievement.
+                    <strong>How this connection works:</strong> Polymer-Enhanced Fusion Achievement extends Antimatter-Enhanced Reactor Design because Polymer fusion extends to antimatter-enhanced reactor design. This dependency is essential for understanding how Point of interest in practical fusion energy generation directly influences Pathway to ultimate energy density achievement.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Loop Quantum Gravity Mathematical Formulation → Constraint Algebra Anomaly Resolution</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> enables - LQG foundations provide the mathematical framework for constraint algebra analysis
@@ -526,39 +564,39 @@
                     <strong>How this connection works:</strong> Loop Quantum Gravity Mathematical Formulation enables Constraint Algebra Anomaly Resolution because LQG foundations provide the mathematical framework for constraint algebra analysis. This dependency is essential for understanding how Provides the mathematical foundation for discrete quantum spacetime, enabling subsequent analysis of quantum gravitational effects in matter coupling and spacetime topology directly influences Validates the quantum consistency of Loop Quantum Gravity, establishing its viability as a background-independent theory of quantum spacetime.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Averaged Null Energy Condition in Quantum Spacetime → Quantum Interest Bound Modification</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> enables - ANEC framework enables quantum interest bound modifications
                     <br><br>
-                    <strong>How this connection works:</strong> Averaged Null Energy Condition in Quantum Spacetime enables Quantum Interest Bound Modification because ANEC framework enables quantum interest bound modifications. This dependency is essential for understanding how Provides theoretical foundation for understanding energy condition violations in quantum gravity, enabling systematic analysis of exotic matter configurations directly influences Opened pathway to vacuum energy extraction.
+                    <strong>How this connection works:</strong> Averaged Null Energy Condition in Quantum Spacetime enables Quantum Interest Bound Modification because ANEC framework enables quantum interest bound modifications. This dependency is essential for understanding how Provides theoretical foundation for understanding energy condition violations in quantum gravity, enabling systematic analysis of exotic matter configurations directly influences Potential pathway to vacuum energy extraction.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Vacuum Engineering Framework → Practical Implementation Roadmap</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> enables - Vacuum engineering enables advanced implementation strategies
                     <br><br>
-                    <strong>How this connection works:</strong> Vacuum Engineering Framework enables Practical Implementation Roadmap because Vacuum engineering enables advanced implementation strategies. This dependency is essential for understanding how Enabled controlled vacuum energy manipulation directly influences Pathway to revolutionary energy and propulsion technologies.
+                    <strong>How this connection works:</strong> Vacuum Engineering Framework enables Practical Implementation Roadmap because Vacuum engineering enables advanced implementation strategies. This dependency is essential for understanding how Potential for controlled vacuum energy manipulation directly influences Potential pathway to advanced energy and propulsion technologies.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Metamaterial Casimir Effects → Vacuum Engineering Framework</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> contributes - Metamaterial effects contribute to vacuum engineering
                     <br><br>
-                    <strong>How this connection works:</strong> Metamaterial Casimir Effects contributes Vacuum Engineering Framework because Metamaterial effects contribute to vacuum engineering. This dependency is essential for understanding how Practical pathway to vacuum energy utilization directly influences Enabled controlled vacuum energy manipulation.
+                    <strong>How this connection works:</strong> Metamaterial Casimir Effects contributes Vacuum Engineering Framework because Metamaterial effects contribute to vacuum engineering. This dependency is essential for understanding how Practical pathway to vacuum energy utilization directly influences Potential for controlled vacuum energy manipulation.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Comprehensive Energy Requirements Analysis → Universal Energy Scaling Laws</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> determines - Energy requirements determine scaling law parameters
                     <br><br>
-                    <strong>How this connection works:</strong> Comprehensive Energy Requirements Analysis determines Universal Energy Scaling Laws because Energy requirements determine scaling law parameters. This dependency is essential for understanding how Determined feasibility boundaries for implementation directly influences Fundamental understanding of energy enhancement limits.
+                    <strong>How this connection works:</strong> Comprehensive Energy Requirements Analysis determines Universal Energy Scaling Laws because Energy requirements determine scaling law parameters. This dependency is essential for understanding how Determined feasibility boundaries for implementation directly influences Potential understanding of energy enhancement limits.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Warp Drive Feasibility Confirmed → Complete Warp Bubble Optimization Framework</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> enables - Feasibility analysis enables optimization framework development
@@ -566,15 +604,15 @@
                     <strong>How this connection works:</strong> Warp Drive Feasibility Confirmed enables Complete Warp Bubble Optimization Framework because Feasibility analysis enables optimization framework development. This dependency is essential for understanding how Validated practical possibility of warp drive construction directly influences Enabled practical warp drive design optimization.
                 </div>
             </div>
-            <div class="discovery">
-                <div class="discovery-title">Time-Dependent T4 Tensor Breakthrough → Practical Implementation Roadmap</div>
+            <div class="edge-item">
+                <div class="discovery-title">Time-Dependent T4 Tensor Methods → Practical Implementation Roadmap</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> enables - Dynamic control enables advanced implementation
                     <br><br>
-                    <strong>How this connection works:</strong> Time-Dependent T4 Tensor Breakthrough enables Practical Implementation Roadmap because Dynamic control enables advanced implementation. This dependency is essential for understanding how Enabled dynamic warp field control and optimization directly influences Pathway to revolutionary energy and propulsion technologies.
+                    <strong>How this connection works:</strong> Time-Dependent T4 Tensor Methods enables Practical Implementation Roadmap because Dynamic control enables advanced implementation. This dependency is essential for understanding how Potential for dynamic warp field control and optimization directly influences Potential pathway to advanced energy and propulsion technologies.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Averaged Null Energy Condition in Quantum Spacetime → Exotic Matter Requirements for Spacetime Metrics</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> constrains - ANEC framework constrains exotic matter properties
@@ -582,7 +620,7 @@
                     <strong>How this connection works:</strong> Averaged Null Energy Condition in Quantum Spacetime constrains Exotic Matter Requirements for Spacetime Metrics because ANEC framework constrains exotic matter properties. This dependency is essential for understanding how Provides theoretical foundation for understanding energy condition violations in quantum gravity, enabling systematic analysis of exotic matter configurations directly influences Establishes physical constraints and potential mechanisms for exotic matter generation in quantum gravity.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Warp Drive Feasibility Confirmed → Comprehensive Energy Requirements Analysis</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> determines - Feasibility analysis determines energy requirements
@@ -590,23 +628,23 @@
                     <strong>How this connection works:</strong> Warp Drive Feasibility Confirmed determines Comprehensive Energy Requirements Analysis because Feasibility analysis determines energy requirements. This dependency is essential for understanding how Validated practical possibility of warp drive construction directly influences Determined feasibility boundaries for implementation.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Universal Energy Scaling Laws → Practical Implementation Roadmap</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> guides - Scaling laws guide implementation parameter selection
                     <br><br>
-                    <strong>How this connection works:</strong> Universal Energy Scaling Laws guides Practical Implementation Roadmap because Scaling laws guide implementation parameter selection. This dependency is essential for understanding how Fundamental understanding of energy enhancement limits directly influences Pathway to revolutionary energy and propulsion technologies.
+                    <strong>How this connection works:</strong> Universal Energy Scaling Laws guides Practical Implementation Roadmap because Scaling laws guide implementation parameter selection. This dependency is essential for understanding how Potential understanding of energy enhancement limits directly influences Potential pathway to advanced energy and propulsion technologies.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Energy Enhancement Mechanisms → Practical Implementation Roadmap</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> enables - Energy enhancement mechanisms enable practical implementation
                     <br><br>
-                    <strong>How this connection works:</strong> Energy Enhancement Mechanisms enables Practical Implementation Roadmap because Energy enhancement mechanisms enable practical implementation. This dependency is essential for understanding how Unified understanding of energy multiplication mechanisms directly influences Pathway to revolutionary energy and propulsion technologies.
+                    <strong>How this connection works:</strong> Energy Enhancement Mechanisms enables Practical Implementation Roadmap because Energy enhancement mechanisms enable practical implementation. This dependency is essential for understanding how Potential understanding of energy multiplication mechanisms directly influences Potential pathway to advanced energy and propulsion technologies.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Averaged Null Energy Condition in Quantum Spacetime → Energy Condition Violation Analysis</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> analyzes - ANEC framework enables systematic energy condition analysis
@@ -614,23 +652,23 @@
                     <strong>How this connection works:</strong> Averaged Null Energy Condition in Quantum Spacetime analyzes Energy Condition Violation Analysis because ANEC framework enables systematic energy condition analysis. This dependency is essential for understanding how Provides theoretical foundation for understanding energy condition violations in quantum gravity, enabling systematic analysis of exotic matter configurations directly influences Establishes theoretical foundation for understanding energy condition violations necessary for exotic spacetime engineering.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Quantum Interest Bound Modification → Metamaterial Casimir Effects</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> enhances - QI modifications enhance metamaterial Casimir effects
                     <br><br>
-                    <strong>How this connection works:</strong> Quantum Interest Bound Modification enhances Metamaterial Casimir Effects because QI modifications enhance metamaterial Casimir effects. This dependency is essential for understanding how Opened pathway to vacuum energy extraction directly influences Practical pathway to vacuum energy utilization.
+                    <strong>How this connection works:</strong> Quantum Interest Bound Modification enhances Metamaterial Casimir Effects because QI modifications enhance metamaterial Casimir effects. This dependency is essential for understanding how Potential pathway to vacuum energy extraction directly influences Practical pathway to vacuum energy utilization.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Comprehensive Energy Requirements Analysis → Practical Implementation Roadmap</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> constrains - Energy requirements constrain implementation strategies
                     <br><br>
-                    <strong>How this connection works:</strong> Comprehensive Energy Requirements Analysis constrains Practical Implementation Roadmap because Energy requirements constrain implementation strategies. This dependency is essential for understanding how Determined feasibility boundaries for implementation directly influences Pathway to revolutionary energy and propulsion technologies.
+                    <strong>How this connection works:</strong> Comprehensive Energy Requirements Analysis constrains Practical Implementation Roadmap because Energy requirements constrain implementation strategies. This dependency is essential for understanding how Determined feasibility boundaries for implementation directly influences Potential pathway to advanced energy and propulsion technologies.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Alcubierre Metric Solutions in Loop Quantum Gravity → Warp Drive Feasibility Confirmed</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> validates - Mathematical proof validates engineering feasibility analysis
@@ -638,15 +676,15 @@
                     <strong>How this connection works:</strong> Alcubierre Metric Solutions in Loop Quantum Gravity validates Warp Drive Feasibility Confirmed because Mathematical proof validates engineering feasibility analysis. This dependency is essential for understanding how Establishes mathematical foundation for spacetime engineering within the framework of quantum gravity directly influences Validated practical possibility of warp drive construction.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Polymer-Enhanced Fusion Achievement → Energy Enhancement Mechanisms</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> demonstrates - Polymer fusion demonstrates practical energy enhancement
                     <br><br>
-                    <strong>How this connection works:</strong> Polymer-Enhanced Fusion Achievement demonstrates Energy Enhancement Mechanisms because Polymer fusion demonstrates practical energy enhancement. This dependency is essential for understanding how Breakthrough in practical fusion energy generation directly influences Unified understanding of energy multiplication mechanisms.
+                    <strong>How this connection works:</strong> Polymer-Enhanced Fusion Achievement demonstrates Energy Enhancement Mechanisms because Polymer fusion demonstrates practical energy enhancement. This dependency is essential for understanding how Point of interest in practical fusion energy generation directly influences Potential understanding of energy multiplication mechanisms.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Constraint Algebra Anomaly Resolution → Alcubierre Metric Solutions in Loop Quantum Gravity</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> validates - Constraint algebra closure validates warp bubble mathematical consistency
@@ -654,15 +692,15 @@
                     <strong>How this connection works:</strong> Constraint Algebra Anomaly Resolution validates Alcubierre Metric Solutions in Loop Quantum Gravity because Constraint algebra closure validates warp bubble mathematical consistency. This dependency is essential for understanding how Validates the quantum consistency of Loop Quantum Gravity, establishing its viability as a background-independent theory of quantum spacetime directly influences Establishes mathematical foundation for spacetime engineering within the framework of quantum gravity.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Quantum Interest Bound Modification → Energy Enhancement Mechanisms</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> enables - QI bound modification enables vacuum energy extraction
                     <br><br>
-                    <strong>How this connection works:</strong> Quantum Interest Bound Modification enables Energy Enhancement Mechanisms because QI bound modification enables vacuum energy extraction. This dependency is essential for understanding how Opened pathway to vacuum energy extraction directly influences Unified understanding of energy multiplication mechanisms.
+                    <strong>How this connection works:</strong> Quantum Interest Bound Modification enables Energy Enhancement Mechanisms because QI bound modification enables vacuum energy extraction. This dependency is essential for understanding how Potential pathway to vacuum energy extraction directly influences Potential understanding of energy multiplication mechanisms.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Alcubierre Metric Solutions in Loop Quantum Gravity → Exotic Matter Requirements for Spacetime Metrics</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> requires - Warp bubble solutions require exotic matter configurations
@@ -670,7 +708,7 @@
                     <strong>How this connection works:</strong> Alcubierre Metric Solutions in Loop Quantum Gravity requires Exotic Matter Requirements for Spacetime Metrics because Warp bubble solutions require exotic matter configurations. This dependency is essential for understanding how Establishes mathematical foundation for spacetime engineering within the framework of quantum gravity directly influences Establishes physical constraints and potential mechanisms for exotic matter generation in quantum gravity.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Complete Warp Bubble Optimization Framework → Comprehensive Energy Requirements Analysis</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> determines - Optimization framework determines precise energy requirements
@@ -678,31 +716,31 @@
                     <strong>How this connection works:</strong> Complete Warp Bubble Optimization Framework determines Comprehensive Energy Requirements Analysis because Optimization framework determines precise energy requirements. This dependency is essential for understanding how Enabled practical warp drive design optimization directly influences Determined feasibility boundaries for implementation.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Complete Warp Bubble Optimization Framework → Practical Implementation Roadmap</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> enables - Complete optimization enables practical implementation
                     <br><br>
-                    <strong>How this connection works:</strong> Complete Warp Bubble Optimization Framework enables Practical Implementation Roadmap because Complete optimization enables practical implementation. This dependency is essential for understanding how Enabled practical warp drive design optimization directly influences Pathway to revolutionary energy and propulsion technologies.
+                    <strong>How this connection works:</strong> Complete Warp Bubble Optimization Framework enables Practical Implementation Roadmap because Complete optimization enables practical implementation. This dependency is essential for understanding how Enabled practical warp drive design optimization directly influences Potential pathway to advanced energy and propulsion technologies.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">3+1D Warp Stability Analysis → Comprehensive Safety Protocols</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> informs - Stability analysis informs safety protocol development
                     <br><br>
-                    <strong>How this connection works:</strong> 3+1D Warp Stability Analysis informs Comprehensive Safety Protocols because Stability analysis informs safety protocol development. This dependency is essential for understanding how Confirmed long-term stability of warp solutions directly influences Ensured safe operation of revolutionary technologies.
+                    <strong>How this connection works:</strong> 3+1D Warp Stability Analysis informs Comprehensive Safety Protocols because Stability analysis informs safety protocol development. This dependency is essential for understanding how Confirmed long-term stability of warp solutions directly influences Ensures safe operation of advanced technologies.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">Quantum Interest Bound Modification → Bayesian Uncertainty Quantification Framework</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> requires - Revolutionary physics requires rigorous uncertainty quantification
                     <br><br>
-                    <strong>How this connection works:</strong> Quantum Interest Bound Modification requires Bayesian Uncertainty Quantification Framework because Revolutionary physics requires rigorous uncertainty quantification. This dependency is essential for understanding how Opened pathway to vacuum energy extraction directly influences Rigorous uncertainty assessment for revolutionary physics.
+                    <strong>How this connection works:</strong> Quantum Interest Bound Modification requires Bayesian Uncertainty Quantification Framework because Revolutionary physics requires rigorous uncertainty quantification. This dependency is essential for understanding how Potential pathway to vacuum energy extraction directly influences Rigorous uncertainty assessment for revolutionary physics.
                 </div>
             </div>
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">3+1D Warp Stability Analysis → Comprehensive Energy Requirements Analysis</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> refines - Stability analysis refines energy requirement estimates
@@ -714,7 +752,7 @@
         <div class="summary-section">
             <h2>Research Overview</h2>
             <p style="font-size: 1.1em; margin: 20px 0;">
-                This collection documents <strong>25</strong> theoretical developments in quantum gravity, spacetime engineering, and mathematical physics. Each discovery builds upon previous work through a network of mathematical dependencies and theoretical constraints.
+                This collection documents <strong>25</strong> points of interest in quantum gravity, spacetime engineering, and mathematical physics. Each point of interest builds upon previous work through a network of mathematical dependencies and theoretical constraints.
             </p>
         </div>
 

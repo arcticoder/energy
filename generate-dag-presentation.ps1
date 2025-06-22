@@ -141,24 +141,49 @@ $html = @"
       .discovery-description {
         margin-bottom: 15px;
         line-height: 1.7;
-      }
-      .mathematics {
+      }      .mathematics {
         background: #f8f9fa;
         padding: 15px;
         border-radius: 8px;
         margin: 15px 0;
         border-left: 4px solid #007bff;
         overflow-x: auto;
-        font-size: 0.9em;
+        font-size: 1.1em;
         line-height: 1.4;
       }
       .mathematics .MathJax {
-        font-size: 0.85em !important;
+        font-size: 1.2em !important;
       }
       .MathJax_Display {
-        font-size: 0.9em !important;
+        font-size: 1.3em !important;
         overflow-x: auto;
         overflow-y: hidden;
+      }
+      .code-block {
+        background: #f8f8f8;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 15px 0;
+        border-left: 4px solid #28a745;
+        overflow-x: auto;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9em;
+        line-height: 1.4;
+      }
+      .edge-section {
+        margin: 50px 0;
+        padding: 30px;
+        background: #f0f8ff;
+        border-radius: 12px;
+        border-left: 5px solid #6c757d;
+      }
+      .edge-item {
+        background: white;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 15px 0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        border-left: 3px solid #6c757d;
       }
       .impact {
         font-style: italic;
@@ -189,15 +214,21 @@ $html = @"
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
+    <div class="container">        <div class="header">
             <h1>Research Highlights</h1>
-            <p>Mathematical Physics & Quantum Gravity Discoveries</p>
+            <p>Mathematical Physics & Quantum Gravity Points of Interest</p>
         </div>
 
 "@
 
-# Generate content for each discovery
+# Generate content for each point of interest (nodes)
+$html += @"
+        <div class="summary-section">
+            <h2 style="text-align: center; color: #1a1a2e; margin-bottom: 30px;">Points of Interest</h2>
+        </div>
+
+"@
+
 foreach ($node in $orderedNodes) {
     $html += @"
         <div class="discovery">
@@ -211,6 +242,15 @@ foreach ($node in $orderedNodes) {
         $html += @"
             <div class="mathematics">
                 `$`$$mathematics`$`$
+            </div>
+
+"@
+    }
+
+    if ($node.code) {
+        $html += @"
+            <div class="code-block">
+                <pre><code>$($node.code)</code></pre>
             </div>
 
 "@
@@ -231,9 +271,9 @@ foreach ($node in $orderedNodes) {
 "@
 }
 
-# Add connections analysis
+# Add edges section
 $html += @"
-        <div class="summary-section">
+        <div class="edge-section">
             <h2 style="text-align: center; color: #1a1a2e; margin-bottom: 30px;">Research Connections and Dependencies</h2>
             
 "@
@@ -243,7 +283,7 @@ foreach ($edge in $edges.Values) {
     $targetNode = $nodes[$edge.target]
     if ($sourceNode -and $targetNode) {
         $html += @"
-            <div class="discovery">
+            <div class="edge-item">
                 <div class="discovery-title">$($sourceNode.title) → $($targetNode.title)</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> $($edge.relationship) - $($edge.description)
@@ -266,7 +306,7 @@ $html += @"
         <div class="summary-section">
             <h2>Research Overview</h2>
             <p style="font-size: 1.1em; margin: 20px 0;">
-                This collection documents <strong>$($nodes.Count)</strong> theoretical developments in quantum gravity, spacetime engineering, and mathematical physics. Each discovery builds upon previous work through a network of mathematical dependencies and theoretical constraints.
+                This collection documents <strong>$($nodes.Count)</strong> points of interest in quantum gravity, spacetime engineering, and mathematical physics. Each point of interest builds upon previous work through a network of mathematical dependencies and theoretical constraints.
             </p>
         </div>
 
@@ -288,6 +328,6 @@ $html += @"
 $html | Out-File -FilePath $OutputFile -Encoding UTF8
 
 Write-Host "Generated $OutputFile" -ForegroundColor Green
-Write-Host "Presentation includes: $($nodes.Count) discoveries and research connections" -ForegroundColor Yellow
+Write-Host "Presentation includes: $($nodes.Count) points of interest and $($edges.Count) research connections" -ForegroundColor Yellow
 Write-Host "Open the HTML file in a browser to view the presentation" -ForegroundColor Cyan
 Write-Host "Script completed!" -ForegroundColor Green
