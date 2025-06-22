@@ -170,7 +170,7 @@ $($node.description)
             $mathematics = Convert-ToLatex $node.mathematics
             $markdown += @"
 
-**Mathematics**: `$$mathematics`
+**Mathematics**: `$$mathematics$`
 
 "@
         }
@@ -351,7 +351,7 @@ foreach ($node in $mathNodes) {
 
 ### $icon $($node.title)
 
-`$$mathematics`
+`$$mathematics$`
 
 ---
 
@@ -414,6 +414,13 @@ try {
         $OutputFile,
         "-t", "revealjs",
         "--mathjax",
+        "--variable", "revealjs-url=https://unpkg.com/reveal.js@^4/",
+        "--variable", "theme=black",
+        "--variable", "transition=slide",
+        "--variable", "hash=true",
+        "--variable", "controls=true",
+        "--variable", "progress=true",
+        "--variable", "mathjax-url=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js",
         "-s",
         "-o", "highlights-dag.slides.html"
     )
@@ -428,7 +435,7 @@ try {
     }
 } catch {
     Write-Host "⚠️ Pandoc not found. Please install pandoc and run:" -ForegroundColor Yellow
-    Write-Host "    pandoc $OutputFile -t revealjs --mathjax -s -o highlights-dag.slides.html" -ForegroundColor Gray
+    Write-Host "    pandoc $OutputFile -t revealjs --mathjax --variable revealjs-url=https://unpkg.com/reveal.js@^4/ --variable theme=black -s -o highlights-dag.slides.html" -ForegroundColor Gray
 }
 
 Write-Host "`n🎯 Script completed!" -ForegroundColor Cyan
