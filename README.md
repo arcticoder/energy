@@ -1,76 +1,76 @@
 # Energy Research Framework
 
-A comprehensive multi-scale theoretical physics framework spanning breakthrough energy technologies, warp drive physics, quantum gravity, and advanced computational methods. This meta-repository coordinates 35+ specialized research repositories focused on revolutionary energy and propulsion systems.
+A comprehensive multi-scale theoretical physics framework spanning advanced energy technologies, spacetime physics, quantum gravity, and computational methods. This meta-repository coordinates 35+ specialized research repositories focused on energy and propulsion systems.
 
 ## 🚀 Overview
 
-This framework represents a unified approach to transformative energy research, integrating:
+This framework represents a unified approach to energy research, integrating:
 
-- **Warp Drive Physics** - Complete mathematical framework for faster-than-light travel
-- **Fusion Energy** - Polymer-enhanced fusion achieving 8.32× WEST tokamak performance  
+- **Spacetime Physics** - Mathematical framework for non-trivial spacetime geometries
+- **Fusion Energy** - Polymer-enhanced fusion with enhanced tokamak performance  
 - **Quantum Gravity** - Loop Quantum Gravity applications to energy and propulsion
-- **Element Transmutation** - Matter-to-energy conversion and precious metal synthesis
+- **Element Transmutation** - Matter-to-energy conversion and elemental synthesis
 - **Advanced Mathematics** - SU(2) spin networks, 3nj symbols, and recoupling theory
 
 ## 📁 Repository Structure
 
 ### Core Energy Technologies
-- **[polymer-fusion-framework](../polymer-fusion-framework)** - Breakthrough fusion with LQG polymer physics
-- **[elemental-transmutator](../elemental-transmutator)** - Nuclear transmutation and matter conversion
-- **[lorentz-violation-pipeline](../lorentz-violation-pipeline)** - Planck-scale physics and energy conversion
+- **[polymer-fusion-framework](https://github.com/arcticoder/polymer-fusion-framework)** - Fusion enhancement with LQG polymer physics
+- **[elemental-transmutator](https://github.com/arcticoder/elemental-transmutator)** - Nuclear transmutation and matter conversion
+- **[lorentz-violation-pipeline](https://github.com/arcticoder/lorentz-violation-pipeline)** - Planck-scale physics and energy conversion
 
-### Warp Drive Physics
-- **[warp-bubble-optimizer](../warp-bubble-optimizer)** - Warp field optimization and exotic matter
-- **[warp-bubble-qft](../warp-bubble-qft)** - Quantum field theory in warp spacetime  
-- **[warp-bubble-einstein-equations](../warp-bubble-einstein-equations)** - Einstein field equations
-- **[warp-bubble-metric-ansatz](../warp-bubble-metric-ansatz)** - Spacetime metric formulations
-- **[warp-bubble-exotic-matter-density](../warp-bubble-exotic-matter-density)** - Energy condition violations
-- **[warp-bubble-connection-curvature](../warp-bubble-connection-curvature)** - Differential geometry
-- **[warp-bubble-coordinate-spec](../warp-bubble-coordinate-spec)** - Coordinate system specifications
-- **[warp-bubble-shape-catalog](../warp-bubble-shape-catalog)** - Bubble geometry configurations
-- **[warp-bubble-mvp-simulator](../warp-bubble-mvp-simulator)** - Minimum viable product simulations
-- **[warp-bubble-parameter-constraints](../warp-bubble-parameter-constraints)** - Physical constraints
-- **[warp-bubble-assemble-expressions](../warp-bubble-assemble-expressions)** - Mathematical expressions
+### Spacetime Physics
+- **[warp-bubble-optimizer](https://github.com/arcticoder/warp-bubble-optimizer)** - Field optimization and exotic matter analysis
+- **[warp-bubble-qft](https://github.com/arcticoder/warp-bubble-qft)** - Quantum field theory in curved spacetime  
+- **[warp-bubble-einstein-equations](https://github.com/arcticoder/warp-bubble-einstein-equations)** - Einstein field equations analysis
+- **[warp-bubble-metric-ansatz](https://github.com/arcticoder/warp-bubble-metric-ansatz)** - Spacetime metric formulations
+- **[warp-bubble-exotic-matter-density](https://github.com/arcticoder/warp-bubble-exotic-matter-density)** - Energy condition analysis
+- **[warp-bubble-connection-curvature](https://github.com/arcticoder/warp-bubble-connection-curvature)** - Differential geometry
+- **[warp-bubble-coordinate-spec](https://github.com/arcticoder/warp-bubble-coordinate-spec)** - Coordinate system specifications
+- **[warp-bubble-shape-catalog](https://github.com/arcticoder/warp-bubble-shape-catalog)** - Geometry configurations
+- **[warp-bubble-mvp-simulator](https://github.com/arcticoder/warp-bubble-mvp-simulator)** - Spacetime simulations
+- **[warp-bubble-parameter-constraints](https://github.com/arcticoder/warp-bubble-parameter-constraints)** - Physical constraints
+- **[warp-bubble-assemble-expressions](https://github.com/arcticoder/warp-bubble-assemble-expressions)** - Mathematical expressions
 
 ### Analysis & Validation
-- **[warp-convergence-analysis](../warp-convergence-analysis)** - Numerical convergence studies
-- **[warp-curvature-analysis](../warp-curvature-analysis)** - Spacetime curvature diagnostics
-- **[warp-sensitivity-analysis](../warp-sensitivity-analysis)** - Multi-scale parameter sensitivity
-- **[warp-signature-workflow](../warp-signature-workflow)** - Observational signatures
-- **[warp-mock-data-generator](../warp-mock-data-generator)** - Synthetic data generation
+- **[warp-convergence-analysis](https://github.com/arcticoder/warp-convergence-analysis)** - Numerical convergence studies
+- **[warp-curvature-analysis](https://github.com/arcticoder/warp-curvature-analysis)** - Spacetime curvature diagnostics
+- **[warp-sensitivity-analysis](https://github.com/arcticoder/warp-sensitivity-analysis)** - Multi-scale parameter sensitivity
+- **[warp-signature-workflow](https://github.com/arcticoder/warp-signature-workflow)** - Observational signatures
+- **[warp-mock-data-generator](https://github.com/arcticoder/warp-mock-data-generator)** - Synthetic data generation
 
 ### Computational Methods
-- **[warp-solver-equations](../warp-solver-equations)** - Numerical solver implementations
-- **[warp-solver-validation](../warp-solver-validation)** - Solver verification and testing
-- **[warp-discretization](../warp-discretization)** - Spatial and temporal discretization
+- **[warp-solver-equations](https://github.com/arcticoder/warp-solver-equations)** - Numerical solver implementations
+- **[warp-solver-validation](https://github.com/arcticoder/warp-solver-validation)** - Solver verification and testing
+- **[warp-discretization](https://github.com/arcticoder/warp-discretization)** - Spatial and temporal discretization
 
 ### Quantum Gravity Framework
-- **[unified-lqg](../unified-lqg)** - Loop Quantum Gravity foundations
-- **[unified-lqg-qft](../unified-lqg-qft)** - LQG quantum field theory integration
-- **[lqg-anec-framework](../lqg-anec-framework)** - ANEC violations in quantum gravity
-- **[warp-lqg-midisuperspace](../warp-lqg-midisuperspace)** - Minisuperspace models
-- **[unified-gut-polymerization](../unified-gut-polymerization)** - Grand unified theories
+- **[unified-lqg](https://github.com/arcticoder/unified-lqg)** - Loop Quantum Gravity foundations
+- **[unified-lqg-qft](https://github.com/arcticoder/unified-lqg-qft)** - LQG quantum field theory integration
+- **[lqg-anec-framework](https://github.com/arcticoder/lqg-anec-framework)** - ANEC violations in quantum gravity
+- **[warp-lqg-midisuperspace](https://github.com/arcticoder/warp-lqg-midisuperspace)** - Minisuperspace models
+- **[unified-gut-polymerization](https://github.com/arcticoder/unified-gut-polymerization)** - Grand unified theories
 
 ### Mathematical Foundations  
-- **[su2-3nj-closedform](../su2-3nj-closedform)** - Closed-form 3nj symbol expressions
-- **[su2-3nj-uniform-closed-form](../su2-3nj-uniform-closed-form)** - Uniform asymptotic forms
-- **[su2-3nj-generating-functional](../su2-3nj-generating-functional)** - Generating functionals
-- **[su2-3nj-recurrences](../su2-3nj-recurrences)** - Recurrence relations
-- **[su2-node-matrix-elements](../su2-node-matrix-elements)** - Matrix element calculations
+- **[su2-3nj-closedform](https://github.com/arcticoder/su2-3nj-closedform)** - Closed-form 3nj symbol expressions
+- **[su2-3nj-uniform-closed-form](https://github.com/arcticoder/su2-3nj-uniform-closed-form)** - Uniform asymptotic forms
+- **[su2-3nj-generating-functional](https://github.com/arcticoder/su2-3nj-generating-functional)** - Generating functionals
+- **[su2-3nj-recurrences](https://github.com/arcticoder/su2-3nj-recurrences)** - Recurrence relations
+- **[su2-node-matrix-elements](https://github.com/arcticoder/su2-node-matrix-elements)** - Matrix element calculations
 
 ## 🎯 Key Achievements
 
-### Fusion Energy Breakthroughs
-- **8.32× WEST tokamak performance** improvement via polymer physics
-- **Grid parity achieved** at $0.03-0.05/kWh energy costs
+### Fusion Energy Research
+- **8.32× WEST tokamak performance** enhancement via polymer physics
+- **Economic viability analysis** at $0.03-0.05/kWh energy costs
 - **72% power reduction** in optimal configurations
-- **Complete HTS materials simulation** at 25T magnetic fields
+- **HTS materials simulation** at 25T magnetic fields
 
-### Warp Drive Progress
-- **Complete mathematical framework** for Alcubierre-type spacetimes
-- **Exotic matter optimization** reducing energy requirements by orders of magnitude
+### Spacetime Physics Progress
+- **Mathematical framework** for Alcubierre-type spacetimes
+- **Exotic matter analysis** and energy requirement optimization
 - **Comprehensive analysis pipeline** from theory to observational signatures
-- **Multi-scale sensitivity analysis** across all parameter regimes
+- **Multi-scale sensitivity analysis** across parameter regimes
 
 ### Computational Innovation
 - **Unified development environment** with 35+ cross-referenced repositories
@@ -141,19 +141,19 @@ This framework builds upon and extends:
 - Plasma physics and fusion energy research
 - Advanced computational physics methods
 
-## 🚀 Future Directions
+### Future Directions
 
 ### Immediate Priorities
 1. **Experimental validation** of polymer fusion enhancements
-2. **Warp drive prototype** development and testing
+2. **Spacetime physics prototype** development and testing
 3. **Element transmutation** pilot demonstrations
 4. **Advanced materials** research and development
 
 ### Long-term Vision
 - **Practical fusion energy** deployment at grid scale
-- **Breakthrough propulsion** systems for space exploration  
-- **Revolutionary energy** conversion technologies
-- **Fundamental physics** discoveries enabling new technologies
+- **Advanced propulsion** systems for space exploration  
+- **Novel energy** conversion technologies
+- **Fundamental physics** research enabling new technologies
 
 ## 📄 License
 
@@ -173,7 +173,7 @@ For questions about this research framework or collaboration opportunities, plea
 
 ---
 
-*This framework represents the cutting edge of theoretical and applied physics research, with the potential to revolutionize energy production, space propulsion, and our fundamental understanding of spacetime itself.*
+*This framework represents advanced theoretical and applied physics research, with potential applications to energy production, space propulsion, and fundamental understanding of spacetime.*
 
 ## 📚 Documentation Index & Priority System
 
