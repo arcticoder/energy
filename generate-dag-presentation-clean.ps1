@@ -420,6 +420,32 @@ foreach ($item in $traversalSequence) {
 "@
         }
         
+        if ($node.code_example) {
+            $codeExample = $node.code_example -replace "`n", "&#10;"
+            $html += @"
+            <div style="margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #28a745;">
+                <strong>Code Example:</strong>
+                <pre style="background: #ffffff; padding: 10px; border-radius: 4px; overflow-x: auto; margin: 10px 0 0 0; border: 1px solid #dee2e6;"><code>$codeExample</code></pre>
+            </div>
+
+"@
+        }
+        
+        if ($node.glossary) {
+            $glossaryHtml = "<ul style='margin: 5px 0; padding-left: 20px;'>"
+            foreach ($term in $node.glossary.PSObject.Properties) {
+                $glossaryHtml += "<li><strong>`$$($term.Name)`$</strong>: $($term.Value)</li>"
+            }
+            $glossaryHtml += "</ul>"
+            $html += @"
+            <div style="margin: 15px 0; padding: 15px; background: #f0f8ff; border-radius: 8px; border-left: 4px solid #007bff;">
+                <strong>Glossary:</strong>
+                $glossaryHtml
+            </div>
+
+"@
+        }
+        
         if ($node.source_files) {
             $sourceLinks = Format-SourceFiles $node.source_files
             $html += @"
