@@ -172,7 +172,7 @@ function Get-RobustTraversalOrder($nodes, $edges) {
     # If we still have unprocessed nodes, add them in order of dependencies
     $remaining = $nodes.Keys | Where-Object { $_ -notin $result }
     if ($remaining.Count -gt 0) {
-        Write-Host "Adding remaining nodes: $($remaining -join ', ')" -ForegroundColor Yellow
+        Write-Host "Adding remaining nodes due to cycles: $($remaining -join ', ')" -ForegroundColor Yellow
         # Sort remaining by in-degree (fewer dependencies first)
         $remaining = $remaining | Sort-Object { $inDegree[$_] }
         $result += $remaining
@@ -188,18 +188,25 @@ Write-Host "DAG traversal order: $($traversalOrder.Count) nodes" -ForegroundColo
 
 # Create traversal sequence mixing nodes and edges
 $traversalSequence = @()
+$processedNodes = @{}
+
 for ($i = 0; $i -lt $traversalOrder.Count; $i++) {
     $currentNodeId = $traversalOrder[$i]
-    $traversalSequence += @{ type = "node"; id = $currentNodeId }
     
-    # Add edges from this node to the next nodes in traversal order
-    $currentNode = $nodes[$currentNodeId]
-    if ($currentNode.successors) {
-        foreach ($successorId in $currentNode.successors) {
-            # Find the edge connecting current to successor
-            $connectingEdge = $edges.Values | Where-Object { $_.source -eq $currentNodeId -and $_.target -eq $successorId }
-            if ($connectingEdge) {
-                $traversalSequence += @{ type = "edge"; id = $connectingEdge.id }
+    # Only add node if not already processed
+    if (-not $processedNodes.ContainsKey($currentNodeId)) {
+        $traversalSequence += @{ type = "node"; id = $currentNodeId }
+        $processedNodes[$currentNodeId] = $true
+        
+        # Add edges from this node to subsequent nodes in traversal order
+        $currentNode = $nodes[$currentNodeId]
+        if ($currentNode.successors) {
+            foreach ($successorId in $currentNode.successors) {
+                # Find the edge connecting current to successor
+                $connectingEdge = $edges.Values | Where-Object { $_.source -eq $currentNodeId -and $_.target -eq $successorId }
+                if ($connectingEdge) {
+                    $traversalSequence += @{ type = "edge"; id = $connectingEdge.id }
+                }
             }
         }
     }
@@ -452,7 +459,7 @@ foreach ($item in $traversalSequence) {
             
             $html += @"
             <div class="discovery" id="edge-$anchorId" style="border-left: 5px solid #28a745;">
-                <div class="discovery-title">$($sourceNode.title) → $($targetNode.title)</div>
+                <div class="discovery-title">$($sourceNode.title) → <a href="#node-$($targetNode.id -replace "_", "-")" style="color: #007bff; text-decoration: none;">$($targetNode.title)</a></div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> $relationshipText - $($edge.description)
 "@
