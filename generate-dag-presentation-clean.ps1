@@ -65,15 +65,160 @@ foreach ($line in $dagLines) {
 
 Write-Host "Parsed $($nodes.Count) nodes and $($edges.Count) edges" -ForegroundColor Green
 
-# Group nodes in logical order
-$orderedNodes = $nodes.Values | Sort-Object { 
-    # Sort by dependencies and importance
-    if ($_.id -eq "constraint_algebra") { return 1 }
-    if ($_.id -eq "anec_framework") { return 2 }
-    if ($_.id -eq "warp_bubble_proof") { return 3 }
-    if ($_.id -eq "exotic_matter_analysis") { return 4 }
-    if ($_.id -eq "energy_conditions") { return 5 }
-    return 10
+# Implement cycle-aware traversal for potentially cyclic graphs
+function Get-RobustTraversalOrder($nodes, $edges) {
+    Write-Host "Building graph and checking for cycles..." -ForegroundColor Yellow
+    
+    # Build adjacency list from successors
+    $adjacencyList = @{}
+    $inDegree = @{}
+    $visited = @{}
+    $processed = @{}
+    
+    # Initialize
+    foreach ($nodeId in $nodes.Keys) {
+        $adjacencyList[$nodeId] = @()
+        $inDegree[$nodeId] = 0
+        $visited[$nodeId] = $false
+        $processed[$nodeId] = $false
+    }
+    
+    # Build graph from node successors
+    foreach ($node in $nodes.Values) {
+        if ($node.successors) {
+            foreach ($successor in $node.successors) {
+                if ($nodes.ContainsKey($successor)) {
+                    $adjacencyList[$node.id] += $successor
+                    $inDegree[$successor]++
+                }
+            }
+        }
+    }
+    
+    Write-Host "Graph built. In-degrees: $($inDegree.Values -join ', ')" -ForegroundColor Cyan
+    
+    # Cycle detection using DFS
+    function Has-Cycle($nodeId, $recursionStack) {
+        $visited[$nodeId] = $true
+        $recursionStack[$nodeId] = $true
+        
+        foreach ($neighbor in $adjacencyList[$nodeId]) {
+            if (-not $visited[$neighbor]) {
+                if (Has-Cycle $neighbor $recursionStack) {
+                    return $true
+                }
+            } elseif ($recursionStack[$neighbor]) {
+                Write-Host "Cycle detected: $nodeId -> $neighbor" -ForegroundColor Red
+                return $true
+            }
+        }
+        
+        $recursionStack[$nodeId] = $false
+        return $false
+    }
+    
+    # Check for cycles
+    $hasCycles = $false
+    $recursionStack = @{}
+    foreach ($nodeId in $nodes.Keys) {
+        $recursionStack[$nodeId] = $false
+    }
+    
+    foreach ($nodeId in $nodes.Keys) {
+        if (-not $visited[$nodeId]) {
+            if (Has-Cycle $nodeId $recursionStack) {
+                $hasCycles = $true
+            }
+        }
+    }
+    
+    if ($hasCycles) {
+        Write-Host "Graph contains cycles - using modified topological sort" -ForegroundColor Yellow
+    } else {
+        Write-Host "Graph is acyclic - using standard topological sort" -ForegroundColor Green
+    }
+    
+    # Modified Kahn's algorithm that handles cycles
+    $queue = @()
+    $result = @()
+    $currentInDegree = $inDegree.Clone()
+    
+    # Find all nodes with no incoming edges
+    foreach ($nodeId in $currentInDegree.Keys) {
+        if ($currentInDegree[$nodeId] -eq 0) {
+            $queue += $nodeId
+        }
+    }
+    
+    # Process nodes
+    $iterations = 0
+    $maxIterations = $nodes.Count * 2  # Safety valve
+    
+    while ($queue.Count -gt 0 -and $iterations -lt $maxIterations) {
+        $current = $queue[0]
+        $queue = $queue[1..($queue.Count-1)]
+        $result += $current
+        
+        # For each neighbor of current node
+        foreach ($neighbor in $adjacencyList[$current]) {
+            $currentInDegree[$neighbor]--
+            if ($currentInDegree[$neighbor] -eq 0) {
+                $queue += $neighbor
+            }
+        }
+        $iterations++
+    }
+    
+    # If we still have unprocessed nodes, add them in order of dependencies
+    $remaining = $nodes.Keys | Where-Object { $_ -notin $result }
+    if ($remaining.Count -gt 0) {
+        Write-Host "Adding remaining nodes: $($remaining -join ', ')" -ForegroundColor Yellow
+        # Sort remaining by in-degree (fewer dependencies first)
+        $remaining = $remaining | Sort-Object { $inDegree[$_] }
+        $result += $remaining
+    }
+    
+    Write-Host "Traversal order determined: $($result.Count) nodes" -ForegroundColor Green
+    return $result
+}
+
+# Get traversal order
+$traversalOrder = Get-RobustTraversalOrder $nodes $edges
+Write-Host "DAG traversal order: $($traversalOrder.Count) nodes" -ForegroundColor Yellow
+
+# Create traversal sequence mixing nodes and edges
+$traversalSequence = @()
+for ($i = 0; $i -lt $traversalOrder.Count; $i++) {
+    $currentNodeId = $traversalOrder[$i]
+    $traversalSequence += @{ type = "node"; id = $currentNodeId }
+    
+    # Add edges from this node to the next nodes in traversal order
+    $currentNode = $nodes[$currentNodeId]
+    if ($currentNode.successors) {
+        foreach ($successorId in $currentNode.successors) {
+            # Find the edge connecting current to successor
+            $connectingEdge = $edges.Values | Where-Object { $_.source -eq $currentNodeId -and $_.target -eq $successorId }
+            if ($connectingEdge) {
+                $traversalSequence += @{ type = "edge"; id = $connectingEdge.id }
+            }
+        }
+    }
+}
+
+Write-Host "Generated traversal sequence with $($traversalSequence.Count) items" -ForegroundColor Green
+
+# Debug output
+Write-Host "First 10 traversal items:" -ForegroundColor Cyan
+for ($i = 0; $i -lt [Math]::Min(10, $traversalSequence.Count); $i++) {
+    $item = $traversalSequence[$i]
+    if ($item.type -eq "node") {
+        Write-Host "  Node: $($nodes[$item.id].title)" -ForegroundColor Blue
+    } else {
+        $edge = $edges[$item.id]
+        $sourceTitle = $nodes[$edge.source].title
+        $targetTitle = $nodes[$edge.target].title
+        Write-Host "  Edge: $sourceTitle -> $targetTitle" -ForegroundColor Green
+    }
 }
 
 # Start building HTML
@@ -219,23 +364,24 @@ $html = @"
             <ul style="list-style-type: none; padding: 0;">
 "@
 
-# Add nodes first
-foreach ($node in $orderedNodes) {
-    $anchorId = $node.id -replace "_", "-"
-    $html += @"
+# Add table of contents in traversal order
+foreach ($item in $traversalSequence) {
+    if ($item.type -eq "node") {
+        $node = $nodes[$item.id]
+        $anchorId = $node.id -replace "_", "-"
+        $html += @"
                 <li style="margin: 8px 0;"><a href="#node-$anchorId" style="color: #007bff; text-decoration: none;">$($node.title)</a></li>
 "@
-}
-
-# Add edges after nodes
-foreach ($edge in $edges.Values) {
-    $sourceNode = $nodes[$edge.source]
-    $targetNode = $nodes[$edge.target]
-    if ($sourceNode -and $targetNode) {
-        $anchorId = $edge.id -replace "_", "-"
-        $html += @"
+    } elseif ($item.type -eq "edge") {
+        $edge = $edges[$item.id]
+        $sourceNode = $nodes[$edge.source]
+        $targetNode = $nodes[$edge.target]
+        if ($sourceNode -and $targetNode) {
+            $anchorId = $edge.id -replace "_", "-"
+            $html += @"
                 <li style="margin: 8px 0; margin-left: 20px; font-size: 0.9em;"><a href="#edge-$anchorId" style="color: #28a745; text-decoration: none;">→ $($sourceNode.title) → $($targetNode.title)</a></li>
 "@
+        }
     }
 }
 
@@ -245,114 +391,104 @@ $html += @"
 
 "@
 
-# Generate content for each discovery
-foreach ($node in $orderedNodes) {
-    $anchorId = $node.id -replace "_", "-"
-    $html += @"
+# Generate content in traversal order
+foreach ($item in $traversalSequence) {
+    if ($item.type -eq "node") {
+        $node = $nodes[$item.id]
+        $anchorId = $node.id -replace "_", "-"
+        $html += @"
         <div class="discovery" id="node-$anchorId">
             <div class="discovery-title">$($node.title)</div>
             <div class="discovery-description">$($node.description)</div>
 
 "@
-    
-    if ($node.mathematics) {
-        $mathematics = Convert-ToLatex $node.mathematics
-        $html += @"
+        
+        if ($node.mathematics) {
+            $mathematics = Convert-ToLatex $node.mathematics
+            $html += @"
             <div class="mathematics">
                 `$`$$mathematics`$`$
             </div>
 
 "@
-    }
-    
-    if ($node.source_files) {
-        $sourceLinks = Format-SourceFiles $node.source_files
-        $html += @"
+        }
+        
+        if ($node.source_files) {
+            $sourceLinks = Format-SourceFiles $node.source_files
+            $html += @"
             <div style="margin: 10px 0; padding: 10px; background: #f0f0f0; border-radius: 6px; font-size: 0.9em;">
                 <strong>Source Files:</strong> $sourceLinks
             </div>
 
 "@
-    }
-    
-    if ($node.impact) {
-        $html += @"
+        }
+        
+        if ($node.impact) {
+            $html += @"
             <div class="impact">
                 $($node.impact)
             </div>
 
 "@
-    }
-    
-    $html += @"
-        </div>
-
-"@
-}
-
-# Add connections analysis
-$html += @"
-        <div class="summary-section">
-            <h2 style="text-align: center; color: #1a1a2e; margin-bottom: 30px;">Research Connections and Dependencies</h2>
-            
-"@
-
-foreach ($edge in $edges.Values) {
-    $sourceNode = $nodes[$edge.source]
-    $targetNode = $nodes[$edge.target]
-    if ($sourceNode -and $targetNode) {
-        $anchorId = $edge.id -replace "_", "-"
-        $relationshipText = if ($edge.relationship -match '\$.*\$') { 
-            # Already has LaTeX delimiters
-            $edge.relationship 
-        } else { 
-            # Wrap in LaTeX delimiters
-            "`$$($edge.relationship)`$" 
         }
         
         $html += @"
-            <div class="discovery" id="edge-$anchorId">
+        </div>
+
+"@
+    } elseif ($item.type -eq "edge") {
+        $edge = $edges[$item.id]
+        $sourceNode = $nodes[$edge.source]
+        $targetNode = $nodes[$edge.target]
+        if ($sourceNode -and $targetNode) {
+            $anchorId = $edge.id -replace "_", "-"
+            $relationshipText = if ($edge.relationship -match '\$.*\$') { 
+                # Already has LaTeX delimiters
+                $edge.relationship 
+            } else { 
+                # Wrap in LaTeX delimiters
+                "`$$($edge.relationship)`$" 
+            }
+            
+            $html += @"
+            <div class="discovery" id="edge-$anchorId" style="border-left: 5px solid #28a745;">
                 <div class="discovery-title">$($sourceNode.title) → $($targetNode.title)</div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> $relationshipText - $($edge.description)
 "@
-          if ($edge.mathematics) {
-            $mathematics = Convert-ToLatex $edge.mathematics
-            $html += @"
+            if ($edge.mathematics) {
+                $mathematics = Convert-ToLatex $edge.mathematics
+                $html += @"
                     <div class="mathematics">
                         `$`$$mathematics`$`$
                     </div>
 "@
-        }
-        
-        # Use relationship_explanation if available, otherwise construct explanation
-        $explanation = if ($edge.relationship_explanation) {
-            $edge.relationship_explanation
-        } else {
-            "$($sourceNode.title) $relationshipText $($targetNode.title) because $($edge.description)."
-        }
-        
-        $html += @"
+            }
+            
+            # Use relationship_explanation if available, otherwise construct explanation
+            $explanation = if ($edge.relationship_explanation) {
+                $edge.relationship_explanation
+            } else {
+                "$($sourceNode.title) $relationshipText $($targetNode.title) because $($edge.description)."
+            }
+            
+            $html += @"
                     <br><br>
                     <strong>How this connection works:</strong> $explanation
                 </div>
             </div>
 
 "@
+        }
     }
 }
-
-$html += @"
-        </div>
-
-"@
 
 # Add summary section
 $html += @"
         <div class="summary-section">
             <h2>Research Overview</h2>
             <p style="font-size: 1.1em; margin: 20px 0;">
-                This collection documents <strong>$($nodes.Count)</strong> theoretical points of interest in quantum gravity, spacetime engineering, and mathematical physics. Each development builds upon previous work through a network of mathematical dependencies and theoretical constraints.
+                This collection documents <strong>$($nodes.Count)</strong> theoretical points of interest in quantum gravity, spacetime engineering, and mathematical physics. Each development builds upon previous work through a network of mathematical dependencies and theoretical constraints, presented in DAG traversal order showing the logical flow of research development.
             </p>
         </div>
 
