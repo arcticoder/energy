@@ -6,6 +6,7 @@ $repos = @(
     "elemental-transmutator",
     "lorentz-violation-pipeline", 
     "lqg-anec-framework",
+    "negative-energy-generator",
     "polymer-fusion-framework",
     "su2-3nj-closedform",
     "su2-3nj-uniform-closed-form",
@@ -40,7 +41,7 @@ $gitUserName = "arcticoder"
 $gitUserEmail = "arcticoder@users.noreply.github.com"
 
 # Set target directory
-$targetDirectory = "C:\Users\sherri3\Code\asciimath"
+$targetDirectory = "C:\Users\echo_\Code\asciimath"
 
 # Ensure target directory exists
 if (-not (Test-Path $targetDirectory)) {

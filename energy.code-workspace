@@ -146,7 +146,8 @@
 			"**/.pytest_cache": true,
 			"**/venv": true,
 			"**/.venv": true
-		}
+		},
+		"powershell.cwd": "energy (main)"
 	},
 	"extensions": {
 		"recommendations": [
