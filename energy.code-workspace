@@ -21,6 +21,10 @@
 			"path": "../lqg-volume-kernel-catalog"
 		},
 		{
+			"name": "negative-energy-generator",
+			"path": "../negative-energy-generator"
+		},
+		{
 			"name": "polymer-fusion-framework",
 			"path": "../polymer-fusion-framework"
 		},
