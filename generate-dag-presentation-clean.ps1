@@ -386,7 +386,7 @@ foreach ($item in $traversalSequence) {
         if ($sourceNode -and $targetNode) {
             $anchorId = $edge.id -replace "_", "-"
             $html += @"
-                <li style="margin: 8px 0; margin-left: 20px; font-size: 0.9em;"><a href="#edge-$anchorId" style="color: #28a745; text-decoration: none;">→ $($sourceNode.title) → $($targetNode.title)</a></li>
+                <li style="margin: 8px 0; margin-left: 20px; font-size: 0.9em;"><a href="#edge-$anchorId" style="color: #28a745; text-decoration: none;">&rarr; $($sourceNode.title) &rarr; $($targetNode.title)</a></li>
 "@
         }
     }
@@ -485,7 +485,7 @@ foreach ($item in $traversalSequence) {
             
             $html += @"
             <div class="discovery" id="edge-$anchorId" style="border-left: 5px solid #28a745;">
-                <div class="discovery-title">$($sourceNode.title) → <a href="#node-$($targetNode.id -replace "_", "-")" style="color: #007bff; text-decoration: none;">$($targetNode.title)</a></div>
+                <div class="discovery-title">$($sourceNode.title) &rarr; <a href="#node-$($targetNode.id -replace "_", "-")" style="color: #007bff; text-decoration: none;">$($targetNode.title)</a></div>
                 <div class="discovery-description">
                     <strong>Relationship:</strong> $relationshipText - $($edge.description)
 "@
@@ -539,8 +539,8 @@ $html += @"
 </html>
 "@
 
-# Write the HTML file
-$html | Out-File -FilePath $OutputFile -Encoding UTF8
+# Write the HTML file with proper UTF-8 encoding
+[System.IO.File]::WriteAllText($OutputFile, $html, [System.Text.Encoding]::UTF8)
 
 Write-Host "Generated $OutputFile" -ForegroundColor Green
 Write-Host "Presentation includes: $($nodes.Count) points of interest and research connections" -ForegroundColor Yellow
