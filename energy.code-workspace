@@ -137,8 +137,12 @@
 			"path": "../warp-solver-equations"
 		},
 		{
-			"name": "warp-solver-validation",
-			"path": "../warp-solver-validation"
+			"name": "warp-field-coils",
+			"path": "../warp-field-coils"
+		},
+		{
+			"name": "polymerized-lqg-matter-transporter",
+			"path": "../polymerized-lqg-matter-transporter"
 		}
 	],
 	"settings": {
