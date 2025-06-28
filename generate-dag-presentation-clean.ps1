@@ -1,6 +1,6 @@
 param(
     [string]$InputFile = "highlights-dag.ndjson",
-    [string]$OutputFile = "highlights-dag.presentation.html"
+    [string]$OutputFile = "index.html"
 )
 
 # Function to convert Unicode math to LaTeX
@@ -544,5 +544,5 @@ $html | Out-File -FilePath $OutputFile -Encoding UTF8
 
 Write-Host "Generated $OutputFile" -ForegroundColor Green
 Write-Host "Presentation includes: $($nodes.Count) points of interest and research connections" -ForegroundColor Yellow
-Write-Host "Open the HTML file in a browser to view the presentation" -ForegroundColor Cyan
+Write-Host "Open index.html in a browser to view the presentation" -ForegroundColor Cyan
 Write-Host "Script completed!" -ForegroundColor Green
