@@ -12,6 +12,30 @@ def escape_html(text):
     text = text.replace("'", '&#x27;')
     return text
 
+def create_github_link(source_file):
+    """Convert source file path to GitHub link"""
+    # Extract repository name and file path
+    if '/' in source_file:
+        parts = source_file.split('/')
+        repo_name = parts[0]
+        file_path = '/'.join(parts[1:])
+        return f'https://github.com/arcticoder/{repo_name}/blob/main/{file_path}'
+    return source_file
+
+def create_internal_links(text, items):
+    """Convert comma-separated items to internal links"""
+    if not items:
+        return text
+    
+    links = []
+    for item in items:
+        item = item.strip()
+        if item:
+            link = f'<a href="#{item}" style="color: #007bff; text-decoration: none;">{escape_html(item)}</a>'
+            links.append(link)
+    
+    return ', '.join(links)
+
 def escape_math(text):
     """Preserve math expressions but escape other HTML"""
     # Math expressions are already properly formatted for MathJax
@@ -188,6 +212,10 @@ html_content = '''<!DOCTYPE html>
       .successors {
         border-left: 3px solid #17a2b8;
       }
+      .predecessors a:hover, .successors a:hover {
+        text-decoration: underline;
+        color: #0056b3;
+      }
       .summary-section {
         margin: 50px 0;
         padding: 30px;
@@ -277,7 +305,7 @@ for i, discovery in enumerate(nodes, 1):
         <div class="discovery" id="{discovery_id}">
             <div class="discovery-title">{discovery_title}</div>
             <div class="discovery-meta">
-                <strong>Type:</strong> {discovery_type} | <strong>Date:</strong> {discovery_date}
+                <strong>Type:</strong> {discovery_type}
             </div>
             <div class="discovery-description">{discovery_description}</div>'''
     
@@ -320,7 +348,7 @@ for i, discovery in enumerate(nodes, 1):
         html_content += '''
             <div class="predecessors">
                 <strong>Builds Upon:</strong> '''
-        html_content += ', '.join(escape_html(pred) for pred in discovery['predecessors'])
+        html_content += create_internal_links('', discovery['predecessors'])
         html_content += '''
             </div>'''
     
@@ -329,7 +357,7 @@ for i, discovery in enumerate(nodes, 1):
         html_content += '''
             <div class="successors">
                 <strong>Enables:</strong> '''
-        html_content += ', '.join(escape_html(succ) for succ in discovery['successors'])
+        html_content += create_internal_links('', discovery['successors'])
         html_content += '''
             </div>'''
     
@@ -340,8 +368,8 @@ for i, discovery in enumerate(nodes, 1):
                 <strong>Source Files:</strong> '''
         source_links = []
         for source_file in discovery['source_files']:
-            source_escaped = escape_html(source_file)
-            source_links.append(f'<code>{source_escaped}</code>')
+            github_url = create_github_link(source_file)
+            source_links.append(f'<a href="{github_url}" target="_blank" style="color: #007bff; text-decoration: none;"><code>{escape_html(source_file)}</code></a>')
         html_content += ', '.join(source_links)
         html_content += '''
             </div>'''
