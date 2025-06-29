@@ -20,6 +20,7 @@ This framework represents a unified approach to energy research, integrating:
 - **[negative-energy-generator](https://github.com/arcticoder/negative-energy-generator)** - Complete digital-twin negative energy generation with advanced control systems and LIV experimental validation
 - **[warp-field-coils](https://github.com/arcticoder/warp-field-coils)** - Advanced warp field control systems with subspace transceiver, holodeck force-fields, medical tractor arrays, and protection systems
 - **[polymerized-lqg-matter-transporter](https://github.com/arcticoder/polymerized-lqg-matter-transporter)** - Revolutionary matter transport with 40,000× energy reduction using rigid-body phasing technology
+- **[polymerized-lqg-replicator-recycler](https://github.com/arcticoder/polymerized-lqg-replicator-recycler)** - Advanced matter replication and recycling system with 484× energy enhancement and comprehensive safety protocols
 - **[polymer-fusion-framework](https://github.com/arcticoder/polymer-fusion-framework)** - Fusion enhancement with LQG polymer physics
 - **[elemental-transmutator](https://github.com/arcticoder/elemental-transmutator)** - Nuclear transmutation and matter conversion
 - **[lorentz-violation-pipeline](https://github.com/arcticoder/lorentz-violation-pipeline)** - Planck-scale physics and energy conversion
@@ -150,6 +151,10 @@ python optimize_warp_parameters.py
 # Run matter transporter demonstrations
 cd ../polymerized-lqg-matter-transporter
 python examples/basic-transport.py
+
+# Run matter replication demonstrations
+cd ../polymerized-lqg-replicator-recycler
+python examples/comprehensive_demonstration.py
 
 # Test electromagnetic field optimization
 cd ../warp-field-coils
