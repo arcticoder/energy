@@ -29,6 +29,14 @@
 			"path": "../polymer-fusion-framework"
 		},
 		{
+			"name": "polymerized-lqg-matter-transporter",
+			"path": "../polymerized-lqg-matter-transporter"
+		},
+		{
+			"name": "polymerized-lqg-replicator-recycler",
+			"path": "../polymerized-lqg-replicator-recycler"
+		},
+		{
 			"name": "su2-3nj-closedform",
 			"path": "../su2-3nj-closedform"
 		},
@@ -139,14 +147,6 @@
 		{
 			"name": "warp-field-coils",
 			"path": "../warp-field-coils"
-		},
-		{
-			"name": "polymerized-lqg-matter-transporter",
-			"path": "../polymerized-lqg-matter-transporter"
-		},
-		{
-			"name": "polymerized-lqg-replicator-recycler",
-			"path": "../polymerized-lqg-replicator-recycler"
 		}
 	],
 	"settings": {
