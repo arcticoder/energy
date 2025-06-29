@@ -143,6 +143,10 @@
 		{
 			"name": "polymerized-lqg-matter-transporter",
 			"path": "../polymerized-lqg-matter-transporter"
+		},
+		{
+			"name": "polymerized-lqg-replicator-recycler",
+			"path": "../polymerized-lqg-replicator-recycler"
 		}
 	],
 	"settings": {
