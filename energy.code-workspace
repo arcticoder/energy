@@ -37,6 +37,10 @@
 			"path": "../polymerized-lqg-replicator-recycler"
 		},
 		{
+			"name": "artificial-gravity-field-generator",
+			"path": "../artificial-gravity-field-generator"
+		},
+		{
 			"name": "su2-3nj-closedform",
 			"path": "../su2-3nj-closedform"
 		},
