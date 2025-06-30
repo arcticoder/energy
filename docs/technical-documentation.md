@@ -113,7 +113,7 @@ def compute_polymer_enhancement(mu_parameter, field_strength):
 - **ANEC Violations**: Quantum inequality violations enabling exotic matter
 
 #### Mathematical Foundations
-```latex
+```math
 % Polymer-modified commutation relation
 [\hat{\phi}(x), \hat{\pi}(y)] = i\hbar \frac{\sin(\mu\pi)}{\mu\pi} \delta^3(x-y)
 
