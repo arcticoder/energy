@@ -9,6 +9,10 @@
 			"path": "../artificial-gravity-field-generator"
 		},
 		{
+			"name": "casimir-anti-stiction-metasurface-coatings",
+			"path": "../casimir-anti-stiction-metasurface-coatings"
+		},
+		{
 			"name": "casimir-nanopositioning-platform",
 			"path": "../casimir-nanopositioning-platform"
 		},
