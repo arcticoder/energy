@@ -5,12 +5,12 @@
 			"path": "."
 		},
 		{
-			"name": "elemental-transmutator",
-			"path": "../elemental-transmutator"
+			"name": "artificial-gravity-field-generator",
+			"path": "../artificial-gravity-field-generator"
 		},
 		{
-			"name": "lorentz-violation-pipeline",
-			"path": "../lorentz-violation-pipeline"
+			"name": "elemental-transmutator",
+			"path": "../elemental-transmutator"
 		},
 		{
 			"name": "lqg-anec-framework",
@@ -19,6 +19,10 @@
 		{
 			"name": "lqg-volume-kernel-catalog",
 			"path": "../lqg-volume-kernel-catalog"
+		},
+		{
+			"name": "lorentz-violation-pipeline",
+			"path": "../lorentz-violation-pipeline"
 		},
 		{
 			"name": "negative-energy-generator",
@@ -35,10 +39,6 @@
 		{
 			"name": "polymerized-lqg-replicator-recycler",
 			"path": "../polymerized-lqg-replicator-recycler"
-		},
-		{
-			"name": "artificial-gravity-field-generator",
-			"path": "../artificial-gravity-field-generator"
 		},
 		{
 			"name": "su2-3nj-closedform",
@@ -129,6 +129,10 @@
 			"path": "../warp-discretization"
 		},
 		{
+			"name": "warp-field-coils",
+			"path": "../warp-field-coils"
+		},
+		{
 			"name": "warp-lqg-midisuperspace",
 			"path": "../warp-lqg-midisuperspace"
 		},
@@ -147,10 +151,6 @@
 		{
 			"name": "warp-solver-equations",
 			"path": "../warp-solver-equations"
-		},
-		{
-			"name": "warp-field-coils",
-			"path": "../warp-field-coils"
 		}
 	],
 	"settings": {
