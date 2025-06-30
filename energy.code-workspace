@@ -13,6 +13,10 @@
 			"path": "../casimir-nanopositioning-platform"
 		},
 		{
+			"name": "casimir-ultra-smooth-fabrication-platform",
+			"path": "../casimir-ultra-smooth-fabrication-platform"
+		},
+		{
 			"name": "elemental-transmutator",
 			"path": "../elemental-transmutator"
 		},
