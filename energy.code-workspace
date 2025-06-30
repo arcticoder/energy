@@ -9,6 +9,10 @@
 			"path": "../artificial-gravity-field-generator"
 		},
 		{
+			"name": "casimir-nanopositioning-platform",
+			"path": "../casimir-nanopositioning-platform"
+		},
+		{
 			"name": "elemental-transmutator",
 			"path": "../elemental-transmutator"
 		},
