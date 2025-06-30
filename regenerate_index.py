@@ -2,6 +2,32 @@ import json
 import os
 from datetime import datetime
 
+def find_connected_nodes(node_id, edges):
+    """Find nodes connected to the given node through edges"""
+    connected = {'predecessors': [], 'successors': []}
+    
+    for edge in edges:
+        if edge.get('source') == node_id:
+            target = edge.get('target')
+            if target:
+                connected['successors'].append({
+                    'id': target,
+                    'relationship': edge.get('relationship', ''),
+                    'description': edge.get('description', ''),
+                    'mathematics': edge.get('mathematics', '')
+                })
+        elif edge.get('target') == node_id:
+            source = edge.get('source')
+            if source:
+                connected['predecessors'].append({
+                    'id': source,
+                    'relationship': edge.get('relationship', ''),
+                    'description': edge.get('description', ''),
+                    'mathematics': edge.get('mathematics', '')
+                })
+    
+    return connected
+
 def escape_html(text):
     """Escape HTML special characters"""
     text = str(text)
@@ -60,9 +86,10 @@ except FileNotFoundError:
 
 print(f'Found {len(discoveries)} discoveries in highlights-dag.ndjson')
 
-# Filter out edges and sort by date for logical presentation
+# Separate nodes and edges
 nodes = [d for d in discoveries if d.get('type') != 'edge']
-print(f'Found {len(nodes)} discovery nodes')
+edges = [d for d in discoveries if d.get('type') == 'edge']
+print(f'Found {len(nodes)} discovery nodes and {len(edges)} edges')
 
 # Create comprehensive HTML content
 html_content = '''<!DOCTYPE html>
@@ -301,6 +328,9 @@ for i, discovery in enumerate(nodes, 1):
     discovery_date = discovery.get('date', 'Unknown date')
     discovery_impact = escape_html(discovery.get('impact', 'Impact assessment pending'))
     
+    # Get connected nodes through edges
+    connections = find_connected_nodes(discovery_id, edges)
+    
     html_content += f'''
         <div class="discovery" id="{discovery_id}">
             <div class="discovery-title">{discovery_title}</div>
@@ -343,8 +373,50 @@ for i, discovery in enumerate(nodes, 1):
                 </dl>
             </div>'''
     
-    # Add predecessors if present
-    if 'predecessors' in discovery and discovery['predecessors']:
+    # Add edge-based predecessors
+    if connections['predecessors']:
+        html_content += '''
+            <div class="predecessors">
+                <strong>Builds Upon:</strong><br>'''
+        for pred in connections['predecessors']:
+            relationship = escape_html(pred['relationship'])
+            description = escape_html(pred['description'])
+            pred_id = pred['id']
+            html_content += f'''
+                <div style="margin: 5px 0; padding: 8px; background: rgba(255, 193, 7, 0.1); border-radius: 4px;">
+                    <a href="#{pred_id}" style="color: #007bff; text-decoration: none; font-weight: bold;">{escape_html(pred_id)}</a>
+                    <span style="color: #6c757d; font-style: italic;"> {relationship}</span><br>
+                    <small style="color: #666;">{description}</small>'''
+            if pred['mathematics']:
+                html_content += f'''<br><span style="font-family: monospace; font-size: 0.9em; color: #333;">${escape_math(pred['mathematics'])}$</span>'''
+            html_content += '''
+                </div>'''
+        html_content += '''
+            </div>'''
+    
+    # Add edge-based successors  
+    if connections['successors']:
+        html_content += '''
+            <div class="successors">
+                <strong>Enables:</strong><br>'''
+        for succ in connections['successors']:
+            relationship = escape_html(succ['relationship'])
+            description = escape_html(succ['description'])
+            succ_id = succ['id']
+            html_content += f'''
+                <div style="margin: 5px 0; padding: 8px; background: rgba(23, 162, 184, 0.1); border-radius: 4px;">
+                    <a href="#{succ_id}" style="color: #007bff; text-decoration: none; font-weight: bold;">{escape_html(succ_id)}</a>
+                    <span style="color: #6c757d; font-style: italic;"> {relationship}</span><br>
+                    <small style="color: #666;">{description}</small>'''
+            if succ['mathematics']:
+                html_content += f'''<br><span style="font-family: monospace; font-size: 0.9em; color: #333;">${escape_math(succ['mathematics'])}$</span>'''
+            html_content += '''
+                </div>'''
+        html_content += '''
+            </div>'''
+    
+    # Fallback to legacy predecessors/successors if no edges found
+    if not connections['predecessors'] and 'predecessors' in discovery and discovery['predecessors']:
         html_content += '''
             <div class="predecessors">
                 <strong>Builds Upon:</strong> '''
@@ -352,8 +424,7 @@ for i, discovery in enumerate(nodes, 1):
         html_content += '''
             </div>'''
     
-    # Add successors if present
-    if 'successors' in discovery and discovery['successors']:
+    if not connections['successors'] and 'successors' in discovery and discovery['successors']:
         html_content += '''
             <div class="successors">
                 <strong>Enables:</strong> '''
