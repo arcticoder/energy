@@ -171,6 +171,10 @@
 		{
 			"name": "warp-solver-equations",
 			"path": "../warp-solver-equations"
+		},
+		{
+			"name": "warp-spacetime-stability-controller",
+			"path": "../warp-spacetime-stability-controller"
 		}
 	],
 	"settings": {
