@@ -13,6 +13,10 @@
 			"path": "../casimir-anti-stiction-metasurface-coatings"
 		},
 		{
+			"name": "casimir-environmental-enclosure-platform",
+			"path": "../casimir-environmental-enclosure-platform"
+		},
+		{
 			"name": "casimir-nanopositioning-platform",
 			"path": "../casimir-nanopositioning-platform"
 		},
