@@ -18,6 +18,7 @@ This framework represents a unified approach to energy research, integrating:
 
 ### Core Energy Technologies
 - **[artificial-gravity-field-generator](https://github.com/arcticoder/artificial-gravity-field-generator)** - Revolutionary artificial gravity generation with 16+ enhancement technologies, 484× energy efficiency, and medical-grade safety protocols
+- **[casimir-anti-stiction-metasurface-coatings](https://github.com/arcticoder/casimir-anti-stiction-metasurface-coatings)** - Revolutionary anti-stiction metasurface coatings achieving 98%+ stiction reduction through metamaterial-enhanced repulsive Casimir forces with production-ready digital twin and correlated uncertainty quantification
 - **[casimir-ultra-smooth-fabrication-platform](https://github.com/arcticoder/casimir-ultra-smooth-fabrication-platform)** - Revolutionary ultra-smooth nanofabrication platform with quantum-enhanced precision manufacturing, 90.4% manufacturing readiness, and full commercial deployment approval
 - **[casimir-nanopositioning-platform](https://github.com/arcticoder/casimir-nanopositioning-platform)** - Quantum-enhanced nanopositioning with multi-physics digital twin, achieving <0.05nm accuracy through Casimir force control and comprehensive uncertainty quantification
 - **[negative-energy-generator](https://github.com/arcticoder/negative-energy-generator)** - Complete digital-twin negative energy generation with advanced control systems and LIV experimental validation
