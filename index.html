@@ -12,11 +12,22 @@
                 inlineMath: [['$', '$']],
                 displayMath: [['$$', '$$']],
                 processEscapes: true,
-                processEnvironments: true
+                processEnvironments: true,
+                packages: {'[+]': ['ams', 'newcommand', 'configmacros']},
+                macros: {
+                    RR: "{\bf R}",
+                    bold: ["{\bf #1}", 1]
+                }
             },
             options: {
                 ignoreHtmlClass: "tex2jax_ignore",
                 processHtmlClass: "tex2jax_process"
+            },
+            startup: {
+                ready: () => {
+                    console.log('MathJax is loaded and ready');
+                    MathJax.startup.defaultReady();
+                }
             }
         };
     </script>
@@ -83,6 +94,12 @@
       .discovery-description {
         margin-bottom: 15px;
         line-height: 1.7;
+      }
+      .discovery-description .MathJax {
+        font-size: inherit !important;
+      }
+      .discovery-description .MathJax_Display {
+        margin: 0.5em 0 !important;
       }
       .discovery-meta {
         background: #f8f9fa;
@@ -607,7 +624,7 @@
             <div class="discovery-meta">
                 <strong>Type:</strong> Theoretical Framework
             </div>
-            <div class="discovery-description">Established the canonical quantization of general relativity using Ashtekar-Barbero variables and the holonomy-flux algebra. The formulation employs $SU(2)$ connection variables $A_a^i$ and electric field variables $E_i^a$, leading to a discrete quantum geometry with characteristic polymer excitations. The quantum constraint algebra reproduces classical general relativity in the appropriate semiclassical limit while resolving spacetime singularities through geometric discreteness. Here $\hat{A}$ is the holonomy operator, $A_a^i$ are connection variables, $\tau^a$ are Pauli matrices, $\hat{E}_i^a$ are electric field operators, $\varepsilon^{abc}$ is the Levi-Civita tensor, $P_b$ and $P_c$ are momentum operators, $\hbar$ is the reduced Planck constant, $\gamma$ is the Barbero-Immirzi parameter, $\delta_i^a$ is the Kronecker delta, and $\delta(e\cap S)$ represents the intersection of edge $e$ with surface $S$.</div>
+            <div class="discovery-description">Established the canonical quantization of general relativity using Ashtekar-Barbero variables and the holonomy-flux algebra. The formulation employs $SU(2)$ connection variables $A_a^i$ and electric field variables $E_i^a$, leading to a discrete quantum geometry with characteristic polymer excitations. The quantum constraint algebra reproduces classical general relativity in the appropriate semiclassical limit while resolving spacetime singularities through geometric discreteness. Here $\hat{A}$ is the holonomy operator, $A_a^i$ are connection variables, $\tau^a$ are Pauli matrices, $\hat{E}_i^a$ are electric field operators, $\varepsilon^{abc}$ is the Levi-Civita tensor, $P_b$ and $P_c$ are momentum operators, $A_a^i$0 is the reduced Planck constant, $A_a^i$1 is the Barbero-Immirzi parameter, $A_a^i$2 is the Kronecker delta, and $A_a^i$3 represents the intersection of edge $A_a^i$4 with surface $A_a^i$5.</div>
             <div class="mathematics">
                 <strong>Mathematical Framework:</strong><br>
                 $$\hat{A} = \oint_e A_a^i \tau^a d\ell, \hat{E}_i^a = \varepsilon^{abc} P_b \circ P_c, [\hat{A}(e), \hat{E}_i^a(S)] = i\hbar\gamma\delta_i^a \delta(e\cap S)$$
@@ -949,7 +966,7 @@
             <div class="discovery-meta">
                 <strong>Type:</strong> Theoretical Constraint
             </div>
-            <div class="discovery-description">Analyzed the stress-energy tensor requirements for maintaining Alcubierre and related exotic spacetime geometries. The study demonstrates that while classical general relativity requires matter with negative energy density $\rho &lt; 0$, quantum field theory in curved spacetime provides mechanisms for generating such exotic matter states through vacuum polarization and Casimir effects. The analysis establishes precise bounds on the magnitude and distribution of exotic matter required for various metric configurations. Here $T_{\mu\nu}$ is the stress-energy tensor, $\rho$ is the energy density, $u_\mu$ is the four-velocity, $p$ is the pressure, and $g_{\mu\nu}$ is the spacetime metric tensor.</div>
+            <div class="discovery-description">Analyzed the stress-energy tensor requirements for maintaining Alcubierre and related exotic spacetime geometries. The study demonstrates that while classical general relativity requires matter with negative energy density $\rho < 0$, quantum field theory in curved spacetime provides mechanisms for generating such exotic matter states through vacuum polarization and Casimir effects. The analysis establishes precise bounds on the magnitude and distribution of exotic matter required for various metric configurations. Here $T_{\mu\nu}$ is the stress-energy tensor, $\rho$ is the energy density, $u_\mu$ is the four-velocity, $p$ is the pressure, and $g_{\mu\nu}$ is the spacetime metric tensor.</div>
             <div class="mathematics">
                 <strong>Mathematical Framework:</strong><br>
                 $$T_{\mu\nu} = \rho u_\mu u_\nu + p(g_{\mu\nu} + u_\mu u_\nu)$$
@@ -1397,7 +1414,7 @@
             <div class="discovery-meta">
                 <strong>Type:</strong> Analysis
             </div>
-            <div class="discovery-description">Analysis of energy requirements for warp drive and energy enhancement systems. The study establishes that warp bubble formation requires exotic matter with energy densities on the order of $10^{64}$ joules per cubic meter, equivalent to approximately $10^{10}$ times the mass-energy density of an atomic nucleus. For practical implementation, the analysis shows that even with optimized geometries, the total energy requirements scale as $E \propto (v/c)^2 \times R^3$ where $v$ is the effective velocity and $R$ is the bubble radius. Alternative approaches using quantum geometric effects may reduce these requirements by factors of $10^6$ to $10^{12}$. Here $E_{total}$ is the total energy requirement, $T_{\mu\nu}$ is the stress-energy tensor, $c$ is the speed of light, $G$ is the gravitational constant, $R$ is the bubble radius, and $v$ is the effective velocity.</div>
+            <div class="discovery-description">Analysis of energy requirements for warp drive and energy enhancement systems. The study establishes that warp bubble formation requires exotic matter with energy densities on the order of $10^{64}$ joules per cubic meter, equivalent to approximately $10^{10}$ times the mass-energy density of an atomic nucleus. For practical implementation, the analysis shows that even with optimized geometries, the total energy requirements scale as $E \propto (v/c)^2 \times R^3$ where $v$ is the effective velocity and $R$ is the bubble radius. Alternative approaches using quantum geometric effects may reduce these requirements by factors of $10^6$ to $10^{12}$. Here $E_{total}$ is the total energy requirement, $T_{\mu\nu}$ is the stress-energy tensor, $c$ is the speed of light, $10^{10}$0 is the gravitational constant, $10^{10}$1 is the bubble radius, and $10^{10}$2 is the effective velocity.</div>
             <div class="mathematics">
                 <strong>Mathematical Framework:</strong><br>
                 $$E_{total} = \int_{bubble} |T_{\mu\nu}| d^3x \sim \frac{c^4}{G} R^3 \left(\frac{v}{c}\right)^2$$
@@ -2460,7 +2477,7 @@ def casimir_force_enhancement(plate_separation_m, permittivity_tensor, permeabil
                <strong>Documentation Index:</strong> documentation-index.ndjson | 
                <strong>Uncertainty Analysis:</strong> UQ-TODO.ndjson</p>
             <p style="margin-top: 20px;">
-                <em>Generated automatically from research highlights database on 2025-07-01 07:49:17</em>
+                <em>Generated automatically from research highlights database on 2025-07-01 09:15:28</em>
             </p>
         </div>
     </div>

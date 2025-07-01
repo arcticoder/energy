@@ -38,6 +38,43 @@ def escape_html(text):
     text = text.replace("'", '&#x27;')
     return text
 
+def escape_html_preserve_math(text):
+    """Escape HTML special characters but preserve MathJax expressions"""
+    import re
+    text = str(text)
+    
+    # Find all inline math expressions ($...$) and display math expressions ($$...$$)
+    # We'll replace them with placeholders, escape HTML, then restore them
+    math_expressions = []
+    placeholder_template = "MATHPLACEHOLDER{}"
+    
+    # Find display math first ($$...$$)
+    display_math_pattern = r'\$\$([^$]+?)\$\$'
+    def replace_display_math(match):
+        math_expressions.append(f'$${match.group(1)}$$')
+        return placeholder_template.format(len(math_expressions) - 1)
+    text = re.sub(display_math_pattern, replace_display_math, text)
+    
+    # Find inline math ($...$) - be careful not to match $$ which we already handled
+    inline_math_pattern = r'(?<!\$)\$([^$\n]+?)\$(?!\$)'
+    def replace_inline_math(match):
+        math_expressions.append(f'${match.group(1)}$')
+        return placeholder_template.format(len(math_expressions) - 1)
+    text = re.sub(inline_math_pattern, replace_inline_math, text)
+    
+    # Now escape HTML characters
+    text = text.replace('&', '&amp;')
+    text = text.replace('<', '&lt;')
+    text = text.replace('>', '&gt;')
+    text = text.replace('"', '&quot;')
+    text = text.replace("'", '&#x27;')
+    
+    # Restore math expressions
+    for i, math_expr in enumerate(math_expressions):
+        text = text.replace(placeholder_template.format(i), math_expr)
+    
+    return text
+
 def create_github_link(source_file):
     """Convert source file path to GitHub link"""
     # Extract repository name and file path
@@ -106,11 +143,22 @@ html_content = '''<!DOCTYPE html>
                 inlineMath: [['$', '$']],
                 displayMath: [['$$', '$$']],
                 processEscapes: true,
-                processEnvironments: true
+                processEnvironments: true,
+                packages: {'[+]': ['ams', 'newcommand', 'configmacros']},
+                macros: {
+                    RR: "{\\bf R}",
+                    bold: ["{\\bf #1}", 1]
+                }
             },
             options: {
                 ignoreHtmlClass: "tex2jax_ignore",
                 processHtmlClass: "tex2jax_process"
+            },
+            startup: {
+                ready: () => {
+                    console.log('MathJax is loaded and ready');
+                    MathJax.startup.defaultReady();
+                }
             }
         };
     </script>
@@ -177,6 +225,12 @@ html_content = '''<!DOCTYPE html>
       .discovery-description {
         margin-bottom: 15px;
         line-height: 1.7;
+      }
+      .discovery-description .MathJax {
+        font-size: inherit !important;
+      }
+      .discovery-description .MathJax_Display {
+        margin: 0.5em 0 !important;
       }
       .discovery-meta {
         background: #f8f9fa;
@@ -323,10 +377,10 @@ html_content += '''
 for i, discovery in enumerate(nodes, 1):
     discovery_id = discovery.get('id', f'discovery_{i}')
     discovery_title = escape_html(discovery.get('title', 'Untitled Discovery'))
-    discovery_description = escape_html(discovery.get('description', 'No description available'))
+    discovery_description = escape_html_preserve_math(discovery.get('description', 'No description available'))
     discovery_type = discovery.get('type', 'unknown').replace('_', ' ').title()
     discovery_date = discovery.get('date', 'Unknown date')
-    discovery_impact = escape_html(discovery.get('impact', 'Impact assessment pending'))
+    discovery_impact = escape_html_preserve_math(discovery.get('impact', 'Impact assessment pending'))
     
     # Get connected nodes through edges
     connections = find_connected_nodes(discovery_id, edges)
