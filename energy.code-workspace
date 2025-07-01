@@ -33,6 +33,10 @@
 			"path": "../elemental-transmutator"
 		},
 		{
+			"name": "enhanced-simulation-hardware-abstraction-framework",
+			"path": "../enhanced-simulation-hardware-abstraction-framework"
+		},
+		{
 			"name": "lqg-anec-framework",
 			"path": "../lqg-anec-framework"
 		},
