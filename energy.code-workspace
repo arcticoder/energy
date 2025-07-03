@@ -41,6 +41,10 @@
 			"path": "../lqg-anec-framework"
 		},
 		{
+			"name": "lqg-cosmological-constant-predictor",
+			"path": "../lqg-cosmological-constant-predictor"
+		},
+		{
 			"name": "lqg-volume-kernel-catalog",
 			"path": "../lqg-volume-kernel-catalog"
 		},
