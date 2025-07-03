@@ -3,12 +3,24 @@
 
 # Repository list extracted from https://github.com/stars/arcticoder/lists/energy
 $repos = @(
+    "artificial-gravity-field-generator",
+    "casimir-anti-stiction-metasurface-coatings",
+    "casimir-environmental-enclosure-platform",
+    "casimir-nanopositioning-platform",
+    "casimir-tunable-permittivity-stacks",
+    "casimir-ultra-smooth-fabrication-platform",
     "elemental-transmutator",
-    "lorentz-violation-pipeline", 
+    "enhanced-simulation-hardware-abstraction-framework",
     "lqg-anec-framework",
+    "lqg-volume-kernel-catalog",
+    "lorentz-violation-pipeline", 
     "negative-energy-generator",
     "polymer-fusion-framework",
+    "polymerized-lqg-matter-transporter",
+    "polymerized-lqg-replicator-recycler",
     "su2-3nj-closedform",
+    "su2-3nj-generating-functional",
+    "su2-3nj-recurrences",
     "su2-3nj-uniform-closed-form",
     "su2-node-matrix-elements",
     "unified-gut-polymerization",
@@ -28,20 +40,22 @@ $repos = @(
     "warp-convergence-analysis",
     "warp-curvature-analysis",
     "warp-discretization",
+    "warp-field-coils",
     "warp-lqg-midisuperspace",
     "warp-mock-data-generator",
     "warp-sensitivity-analysis",
     "warp-signature-workflow",
     "warp-solver-equations",
-    "warp-solver-validation"
+    "warp-spacetime-stability-controller"
 )
 
 # Git configuration
 $gitUserName = "arcticoder"
 $gitUserEmail = "arcticoder@users.noreply.github.com"
 
-# Set target directory
-$targetDirectory = "C:\Users\echo_\Code\asciimath"
+# Set target directory using current username
+$currentUser = $env:USERNAME
+$targetDirectory = "C:\Users\$currentUser\Code\asciimath"
 
 # Ensure target directory exists
 if (-not (Test-Path $targetDirectory)) {
@@ -62,9 +76,9 @@ foreach ($repo in $repos) {
     if (Test-Path $repo) {
         Write-Host "  Directory $repo already exists, skipping clone..." -ForegroundColor Orange
     } else {
-        # Clone the repository
+        # Clone the repository using GitHub CLI
         Write-Host "  Cloning $repo..." -ForegroundColor Cyan
-        $cloneResult = git clone "https://github.com/arcticoder/$repo.git" 2>&1
+        $cloneResult = gh repo clone "arcticoder/$repo" 2>&1
         if ($LASTEXITCODE -eq 0) {
             Write-Host "  ✓ Successfully cloned $repo" -ForegroundColor Green
         } else {
@@ -82,7 +96,8 @@ foreach ($repo in $repos) {
         git config user.name $gitUserName
         git config user.email $gitUserEmail
         Write-Host "  ✓ Git config set for $repo" -ForegroundColor Green
-          # Check if .code-workspace file exists
+        
+        # Check if .code-workspace file exists
         $workspaceFile = "$repo.code-workspace"
         if (-not (Test-Path $workspaceFile)) {
             Write-Host "  Creating $workspaceFile..." -ForegroundColor Cyan
