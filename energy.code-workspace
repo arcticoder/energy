@@ -49,6 +49,10 @@
 			"path": "../lqg-volume-kernel-catalog"
 		},
 		{
+			"name": "lqg-first-principles-gravitational-constant",
+			"path": "../lqg-first-principles-gravitational-constant"
+		},
+		{
 			"name": "lorentz-violation-pipeline",
 			"path": "../lorentz-violation-pipeline"
 		},
