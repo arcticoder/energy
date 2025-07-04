@@ -12,6 +12,7 @@ $repos = @(
     "elemental-transmutator",
     "enhanced-simulation-hardware-abstraction-framework",
     "lqg-anec-framework",
+    "lqg-cosmological-constant-predictor"
     "lqg-volume-kernel-catalog",
     "lorentz-violation-pipeline", 
     "negative-energy-generator",
