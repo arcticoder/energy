@@ -15,6 +15,7 @@ $repos = @(
     "lqg-cosmological-constant-predictor",
     "lqg-first-principles-fine-structure-constant",
     "lqg-first-principles-gravitational-constant",
+    "lqg-ftl-metric-engineering",
     "lqg-volume-kernel-catalog",
     "lorentz-violation-pipeline", 
     "negative-energy-generator",

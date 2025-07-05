@@ -49,12 +49,16 @@
 			"path": "../lqg-volume-kernel-catalog"
 		},
 		{
+			"name": "lqg-first-principles-fine-structure-constant",
+			"path": "../lqg-first-principles-fine-structure-constant"
+		},
+		{
 			"name": "lqg-first-principles-gravitational-constant",
 			"path": "../lqg-first-principles-gravitational-constant"
 		},
 		{
-			"name": "lqg-first-principles-fine-structure-constant",
-			"path": "../lqg-first-principles-fine-structure-constant"
+			"name": "lqg-ftl-metric-engineering",
+			"path": "../lqg-ftl-metric-engineering"
 		},
 		{
 			"name": "lorentz-violation-pipeline",
