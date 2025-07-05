@@ -12,7 +12,8 @@ $repos = @(
     "elemental-transmutator",
     "enhanced-simulation-hardware-abstraction-framework",
     "lqg-anec-framework",
-    "lqg-cosmological-constant-predictor"
+    "lqg-cosmological-constant-predictor",
+    "lqg-first-principles-gravitational-constant",
     "lqg-volume-kernel-catalog",
     "lorentz-violation-pipeline", 
     "negative-energy-generator",
