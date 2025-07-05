@@ -13,6 +13,7 @@ $repos = @(
     "enhanced-simulation-hardware-abstraction-framework",
     "lqg-anec-framework",
     "lqg-cosmological-constant-predictor",
+    "lqg-first-principles-fine-structure-constant",
     "lqg-first-principles-gravitational-constant",
     "lqg-volume-kernel-catalog",
     "lorentz-violation-pipeline", 

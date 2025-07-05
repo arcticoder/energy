@@ -53,6 +53,10 @@
 			"path": "../lqg-first-principles-gravitational-constant"
 		},
 		{
+			"name": "lqg-first-principles-fine-structure-constant",
+			"path": "../lqg-first-principles-fine-structure-constant"
+		},
+		{
 			"name": "lorentz-violation-pipeline",
 			"path": "../lorentz-violation-pipeline"
 		},
