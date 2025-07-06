@@ -1,0 +1,274 @@
+{
+  "analysis_metadata": {
+    "analysis_date": "2025-07-05 18:20:12",
+    "state_vector_dimension": 135,
+    "target_frequency": 1000.0,
+    "n_repositories": 8,
+    "max_computation_time": 0.001
+  },
+  "baseline_performance": {
+    "total_time": 0.27869329997338355,
+    "state_evolution_time": 0.0011190999066457152,
+    "repository_computation_time": 0.20507110003381968,
+    "real_time_ratio": 0.0035881738100467593,
+    "efficiency": 0.0035881738100467593,
+    "parallel_efficiency": 0.09197884379235385,
+    "repository_metrics": [
+      {
+        "repository_id": 0,
+        "repository_name": "unified-lqg",
+        "computation_time": 0.01683130010496825,
+        "total_time": 0.016832199995405972,
+        "matrix_size": 64,
+        "complexity": "high",
+        "load_factor": 1.0
+      },
+      {
+        "repository_id": 1,
+        "repository_name": "warp-spacetime-stability-controller",
+        "computation_time": 0.056962399976328015,
+        "total_time": 0.05696339998394251,
+        "matrix_size": 135,
+        "complexity": "very_high",
+        "load_factor": 1.0
+      },
+      {
+        "repository_id": 2,
+        "repository_name": "negative-energy-generator",
+        "computation_time": 0.00029260001610964537,
+        "total_time": 0.014702799962833524,
+        "matrix_size": 32,
+        "complexity": "medium",
+        "load_factor": 1.0
+      },
+      {
+        "repository_id": 3,
+        "repository_name": "artificial-gravity-field-generator",
+        "computation_time": 0.014376399922184646,
+        "total_time": 0.01437739992979914,
+        "matrix_size": 48,
+        "complexity": "high",
+        "load_factor": 1.0
+      },
+      {
+        "repository_id": 4,
+        "repository_name": "casimir-environmental-enclosure-platform",
+        "computation_time": 0.0002501000417396426,
+        "total_time": 0.013029100024141371,
+        "matrix_size": 24,
+        "complexity": "medium",
+        "load_factor": 1.0
+      },
+      {
+        "repository_id": 5,
+        "repository_name": "polymerized-lqg-matter-transporter",
+        "computation_time": 0.032613900024443865,
+        "total_time": 0.032615200034342706,
+        "matrix_size": 56,
+        "complexity": "high",
+        "load_factor": 1.0
+      },
+      {
+        "repository_id": 6,
+        "repository_name": "warp-bubble-optimizer",
+        "computation_time": 0.040131399990059435,
+        "total_time": 0.04013199999462813,
+        "matrix_size": 72,
+        "complexity": "high",
+        "load_factor": 1.0
+      },
+      {
+        "repository_id": 7,
+        "repository_name": "lqg-ftl-metric-engineering",
+        "computation_time": 0.043612999957986176,
+        "total_time": 0.043613299960270524,
+        "matrix_size": 96,
+        "complexity": "very_high",
+        "load_factor": 1.0
+      }
+    ],
+    "resource_usage": {
+      "initial": {
+        "cpu_usage": 0.055999999999999994,
+        "memory_usage": 0.516,
+        "available_memory": 16603185152,
+        "total_memory": 34288406528,
+        "timestamp": 687936.6460998
+      },
+      "final": {
+        "cpu_usage": 0.068,
+        "memory_usage": 0.516,
+        "available_memory": 16590553088,
+        "total_memory": 34288406528,
+        "timestamp": 687936.8171593
+      },
+      "cpu_increase": 0.01200000000000001,
+      "memory_increase": 0.0
+    }
+  },
+  "sustained_performance": {
+    "duration": 5.060474000056274,
+    "iteration_count": 13,
+    "achieved_frequency": 2.5689293137076556,
+    "target_frequency": 1000.0,
+    "frequency_ratio": 0.0025689293137076555,
+    "mean_efficiency": 0.0035870729059506745,
+    "min_efficiency": 0.003049332714588367,
+    "efficiency_stability": 0.999658769586877,
+    "mean_real_time_ratio": 0.0035870729059506745,
+    "real_time_performance": 0.0,
+    "resource_stability": {
+      "mean_cpu_usage": 0.04923076923076924,
+      "max_cpu_usage": 0.152,
+      "cpu_stability": 0.9476768122499082,
+      "cpu_within_limits": 1.0,
+      "mean_memory_usage": 0.516,
+      "max_memory_usage": 0.516,
+      "memory_stability": 1.0,
+      "memory_within_limits": 1.0
+    },
+    "computational_overhead": {
+      "mean_state_evolution_time": 0.0003163692398140064,
+      "mean_total_time": 0.28134939996883845,
+      "mean_overhead_ratio": 909.3738731919116,
+      "overhead_stability": -137.3538966193751
+    }
+  },
+  "optimization_results": {
+    "optimization_success": "False",
+    "initial_load_factors": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "optimal_load_factors": [
+      0.1,
+      0.09999999999999998,
+      0.1,
+      0.1,
+      1.999204910149949,
+      1.0067608015664138,
+      0.10079508985005108,
+      0.5233398586750774
+    ],
+    "performance_improvement": 0.004543643282825401,
+    "optimized_metrics": {
+      "total_time": 0.22008770005777478,
+      "state_evolution_time": 0.000292200013063848,
+      "repository_computation_time": 0.005694099934771657,
+      "real_time_ratio": 0.004543643282825401,
+      "efficiency": 0.004543643282825401,
+      "parallel_efficiency": 0.0032339948650452243,
+      "repository_metrics": [
+        {
+          "repository_id": 0,
+          "repository_name": "unified-lqg",
+          "computation_time": 0.00040369993075728416,
+          "total_time": 0.0010668999748304486,
+          "matrix_size": 6,
+          "complexity": "high",
+          "load_factor": 0.1
+        },
+        {
+          "repository_id": 1,
+          "repository_name": "warp-spacetime-stability-controller",
+          "computation_time": 0.000471399980597198,
+          "total_time": 0.001016200054436922,
+          "matrix_size": 13,
+          "complexity": "very_high",
+          "load_factor": 0.09999999999999998
+        },
+        {
+          "repository_id": 2,
+          "repository_name": "negative-energy-generator",
+          "computation_time": 0.00024850002955645323,
+          "total_time": 0.0015567000955343246,
+          "matrix_size": 3,
+          "complexity": "medium",
+          "load_factor": 0.1
+        },
+        {
+          "repository_id": 3,
+          "repository_name": "artificial-gravity-field-generator",
+          "computation_time": 0.0001148000592365861,
+          "total_time": 0.0013782000169157982,
+          "matrix_size": 4,
+          "complexity": "high",
+          "load_factor": 0.1
+        },
+        {
+          "repository_id": 4,
+          "repository_name": "casimir-environmental-enclosure-platform",
+          "computation_time": 7.389998063445091e-05,
+          "total_time": 0.0008687999797984958,
+          "matrix_size": 47,
+          "complexity": "medium",
+          "load_factor": 1.999204910149949
+        },
+        {
+          "repository_id": 5,
+          "repository_name": "polymerized-lqg-matter-transporter",
+          "computation_time": 0.0019301999127492309,
+          "total_time": 0.0019306999165564775,
+          "matrix_size": 56,
+          "complexity": "high",
+          "load_factor": 1.0067608015664138
+        },
+        {
+          "repository_id": 6,
+          "repository_name": "warp-bubble-optimizer",
+          "computation_time": 0.0008816000772640109,
+          "total_time": 0.0008819000795483589,
+          "matrix_size": 7,
+          "complexity": "high",
+          "load_factor": 0.10079508985005108
+        },
+        {
+          "repository_id": 7,
+          "repository_name": "lqg-ftl-metric-engineering",
+          "computation_time": 0.0015699999639764428,
+          "total_time": 0.0015703999670222402,
+          "matrix_size": 50,
+          "complexity": "very_high",
+          "load_factor": 0.5233398586750774
+        }
+      ],
+      "resource_usage": {
+        "initial": {
+          "cpu_usage": 0.086,
+          "memory_usage": 0.49700000000000005,
+          "available_memory": 17246339072,
+          "total_memory": 34288406528,
+          "timestamp": 688005.3017053
+        },
+        "final": {
+          "cpu_usage": 0.054000000000000006,
+          "memory_usage": 0.49700000000000005,
+          "available_memory": 17247150080,
+          "total_memory": 34288406528,
+          "timestamp": 688005.413896
+        },
+        "cpu_increase": -0.03199999999999999,
+        "memory_increase": 0.0
+      }
+    }
+  },
+  "uq_resolution_assessment": {
+    "real_time_feasibility": "False",
+    "computational_efficiency": "False",
+    "resource_compliance": "True",
+    "frequency_achievement": false,
+    "stability_achievement": "True",
+    "overall_resolution_score": 0.4
+  },
+  "resolution_status": "NEEDS_IMPROVEMENT",
+  "recommendations": [
+    "Overall computational feasibility below threshold",
+    "Reduce computational complexity or increase hardware resources"
+  ]
+}
