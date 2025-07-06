@@ -65,6 +65,10 @@
 			"path": "../lqg-polymer-field-generator"
 		},
 		{
+			"name": "lqg-positive-matter-assembler",
+			"path": "../lqg-positive-matter-assembler"
+		},
+		{
 			"name": "lqg-volume-quantization-controller",
 			"path": "../lqg-volume-quantization-controller"
 		},
