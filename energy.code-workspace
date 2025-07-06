@@ -61,6 +61,10 @@
 			"path": "../lqg-ftl-metric-engineering"
 		},
 		{
+			"name": "lqg-polymer-field-generator",
+			"path": "../lqg-polymer-field-generator"
+		},
+		{
 			"name": "lorentz-violation-pipeline",
 			"path": "../lorentz-violation-pipeline"
 		},

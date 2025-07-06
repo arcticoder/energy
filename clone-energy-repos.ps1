@@ -16,6 +16,7 @@ $repos = @(
     "lqg-first-principles-fine-structure-constant",
     "lqg-first-principles-gravitational-constant",
     "lqg-ftl-metric-engineering",
+    "lqg-polymer-field-generator",
     "lqg-volume-kernel-catalog",
     "lorentz-violation-pipeline", 
     "negative-energy-generator",
