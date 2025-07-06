@@ -18,6 +18,7 @@ $repos = @(
     "lqg-ftl-metric-engineering",
     "lqg-polymer-field-generator",
     "lqg-volume-kernel-catalog",
+    "lqg-volume-quantization-controller",
     "lorentz-violation-pipeline", 
     "negative-energy-generator",
     "polymer-fusion-framework",
