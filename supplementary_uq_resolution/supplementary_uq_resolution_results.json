@@ -1,0 +1,382 @@
+{
+  "enhanced_constraint_algebra": {
+    "su2_algebra_enhanced": {
+      "generators": {
+        "J_x": "[[0. +0.j 0.5+0.j]\n [0.5+0.j 0. +0.j]]",
+        "J_y": "[[0.+0.j  0.-0.5j]\n [0.+0.5j 0.+0.j ]]",
+        "J_z": "[[ 0.5+0.j  0. +0.j]\n [ 0. +0.j -0.5+0.j]]"
+      },
+      "properties": {
+        "hermiticity": {
+          "J_x": true,
+          "J_y": true,
+          "J_z": true
+        },
+        "trace_zero": {
+          "J_x": "True",
+          "J_y": "True",
+          "J_z": "True"
+        },
+        "normalization": {
+          "J_x": "True",
+          "J_y": "True",
+          "J_z": "True"
+        },
+        "commutation_relations": {
+          "max_error": 0,
+          "verified": true
+        }
+      },
+      "precision_validated": true
+    },
+    "enhanced_constraint_system": {
+      "constraint_operators": {
+        "H": "[-2.56432529e-20  1.80521072e-20  9.94199038e-21 -2.41553458e-21\n -6.08899065e-21 -2.27424922e-20  4.91165930e-22  2.28535257e-20\n  7.82914381e-21 -1.56038912e-21  2.20375308e-21 -1.02111851e-20\n  6.51703522e-22 -2.22813688e-20 -2.97595189e-20 -1.45473191e-20\n -4.51175228e-22 -9.65250684e-21 -2.97528667e-21 -7.97254793e-22]",
+        "D_x": "[-1.66142189+0.j -1.53156569+0.j -0.75816586+0.j  0.55955467+0.j\n  1.41458379+0.j  1.15379265+0.j  0.04967352+0.j -0.94631166+0.j\n -1.18112464+0.j -0.93531156+0.j -0.8292798 +0.j -0.82546244+0.j\n -0.36507452+0.j  0.58525372+0.j  1.31634804+0.j  1.36371768+0.j\n  1.06996498+0.j  0.85910929+0.j  0.52561113+0.j  0.25809805+0.j]",
+        "D_y": "[ 2.05306443+0.j  1.86089324+0.j  1.02503528+0.j  0.15749006+0.j\n  0.09558272+0.j  0.17289024+0.j -0.27299292+0.j -0.76757879+0.j\n -0.66850863+0.j -0.11141368+0.j  0.44884175+0.j  0.68266939+0.j\n  0.23773585+0.j -0.83997491+0.j -1.59437441+0.j -1.19675633+0.j\n -0.30891984+0.j -0.13093467+0.j -0.38553277+0.j -0.4477706 +0.j]",
+        "D_z": "[ 0.52092216+0.j  0.34966732+0.j -0.18621525+0.j -0.80831686+0.j\n -1.09614287+0.j -1.07496496+0.j -0.99721594+0.j -0.88086916+0.j\n -0.53279433+0.j  0.08314643+0.j  0.7032962 +0.j  0.9748143 +0.j\n  0.76533828+0.j  0.32382578+0.j  0.09846424+0.j  0.26803783+0.j\n  0.52342987+0.j  0.49584656+0.j  0.28655052+0.j  0.18796915+0.j]",
+        "G_x": "[-1.66142189+0.j -1.53156569+0.j -0.75816586+0.j  0.55955467+0.j\n  1.41458379+0.j  1.15379265+0.j  0.04967352+0.j -0.94631166+0.j\n -1.18112464+0.j -0.93531156+0.j -0.8292798 +0.j -0.82546244+0.j\n -0.36507452+0.j  0.58525372+0.j  1.31634804+0.j  1.36371768+0.j\n  1.06996498+0.j  0.85910929+0.j  0.52561113+0.j  0.25809805+0.j]",
+        "G_y": "[ 2.05306443+0.j  1.86089324+0.j  1.02503528+0.j  0.15749006+0.j\n  0.09558272+0.j  0.17289024+0.j -0.27299292+0.j -0.76757879+0.j\n -0.66850863+0.j -0.11141368+0.j  0.44884175+0.j  0.68266939+0.j\n  0.23773585+0.j -0.83997491+0.j -1.59437441+0.j -1.19675633+0.j\n -0.30891984+0.j -0.13093467+0.j -0.38553277+0.j -0.4477706 +0.j]",
+        "G_z": "[ 0.52092216+0.j  0.34966732+0.j -0.18621525+0.j -0.80831686+0.j\n -1.09614287+0.j -1.07496496+0.j -0.99721594+0.j -0.88086916+0.j\n -0.53279433+0.j  0.08314643+0.j  0.7032962 +0.j  0.9748143 +0.j\n  0.76533828+0.j  0.32382578+0.j  0.09846424+0.j  0.26803783+0.j\n  0.52342987+0.j  0.49584656+0.j  0.28655052+0.j  0.18796915+0.j]"
+      },
+      "structure_constants": "[[[ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]]\n\n [[ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]]\n\n [[ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]]\n\n [[ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]]\n\n [[ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  1.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j -1.+0.j  0.+0.j]]\n\n [[ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j -1.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  1.+0.j  0.+0.j  0.+0.j]]\n\n [[ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  1.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j -1.+0.j  0.+0.j  0.+0.j]\n  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]]]",
+      "mesh_parameters": {
+        "N": 20,
+        "polymer_scale": 1e-35
+      },
+      "numerical_quality": {
+        "condition_numbers": {
+          "H": 2.8548373640563848e+20,
+          "D_x": 3.897752873862303e+19,
+          "D_y": 1.9705615851934364e+19,
+          "D_z": 1.170507721924706e+19,
+          "G_x": 3.897752873862303e+19,
+          "G_y": 1.9705615851934364e+19,
+          "G_z": 1.170507721924706e+19
+        },
+        "dynamic_range": {
+          "H": 65.9600018232008,
+          "D_x": 33.44683128340934,
+          "D_y": 21.47945280408398,
+          "D_z": 13.183281665401974,
+          "G_x": 33.44683128340934,
+          "G_y": 21.47945280408398,
+          "G_z": 13.183281665401974
+        },
+        "spectral_properties": {
+          "H": {
+            "spectral_centroid": 9.05981779357606,
+            "spectral_bandwidth": 0
+          },
+          "D_x": {
+            "spectral_centroid": 9.999630866164777,
+            "spectral_bandwidth": 0
+          },
+          "D_y": {
+            "spectral_centroid": 9.999997173341626,
+            "spectral_bandwidth": 0
+          },
+          "D_z": {
+            "spectral_centroid": 9.999998627205313,
+            "spectral_bandwidth": 0
+          },
+          "G_x": {
+            "spectral_centroid": 9.999630866164777,
+            "spectral_bandwidth": 0
+          },
+          "G_y": {
+            "spectral_centroid": 9.999997173341626,
+            "spectral_bandwidth": 0
+          },
+          "G_z": {
+            "spectral_centroid": 9.999998627205313,
+            "spectral_bandwidth": 0
+          }
+        }
+      }
+    },
+    "enhanced_verification": {
+      "closure_verified": false,
+      "adaptive_tolerance": 1e-10,
+      "violation_analysis": {
+        "[D_x, D_y]": {
+          "error": 0.7290683148523504,
+          "tolerance": 1e-10,
+          "relative_error": 729068314852350.2
+        },
+        "[D_x, D_z]": {
+          "error": 1.0423080300323613,
+          "tolerance": 1e-10,
+          "relative_error": 1042308030032361.2
+        },
+        "[D_x, G_y]": {
+          "error": 0.7290683148523504,
+          "tolerance": 1e-10,
+          "relative_error": 729068314852350.2
+        },
+        "[D_x, G_z]": {
+          "error": 1.0423080300323613,
+          "tolerance": 1e-10,
+          "relative_error": 1042308030032361.2
+        },
+        "[D_y, D_x]": {
+          "error": 0.7290683148523504,
+          "tolerance": 1e-10,
+          "relative_error": 729068314852350.2
+        },
+        "[D_y, D_z]": {
+          "error": 0.7520871450668063,
+          "tolerance": 1e-10,
+          "relative_error": 752087145066806.2
+        },
+        "[D_y, G_x]": {
+          "error": 0.7290683148523504,
+          "tolerance": 1e-10,
+          "relative_error": 729068314852350.2
+        },
+        "[D_y, G_z]": {
+          "error": 0.7520871450668063,
+          "tolerance": 1e-10,
+          "relative_error": 752087145066806.2
+        },
+        "[D_z, D_x]": {
+          "error": 1.0423080300323613,
+          "tolerance": 1e-10,
+          "relative_error": 1042308030032361.2
+        },
+        "[D_z, D_y]": {
+          "error": 0.7520871450668063,
+          "tolerance": 1e-10,
+          "relative_error": 752087145066806.2
+        },
+        "[D_z, G_x]": {
+          "error": 1.0423080300323613,
+          "tolerance": 1e-10,
+          "relative_error": 1042308030032361.2
+        },
+        "[D_z, G_y]": {
+          "error": 0.7520871450668063,
+          "tolerance": 1e-10,
+          "relative_error": 752087145066806.2
+        },
+        "[G_x, D_y]": {
+          "error": 0.7290683148523504,
+          "tolerance": 1e-10,
+          "relative_error": 729068314852350.2
+        },
+        "[G_x, D_z]": {
+          "error": 1.0423080300323613,
+          "tolerance": 1e-10,
+          "relative_error": 1042308030032361.2
+        },
+        "[G_x, G_y]": {
+          "error": 1.0786358465530026,
+          "tolerance": 1e-10,
+          "relative_error": 0.9840285236442555
+        },
+        "[G_x, G_z]": {
+          "error": 2.3848777410867923,
+          "tolerance": 1e-10,
+          "relative_error": 1.1616185587590908
+        },
+        "[G_y, D_x]": {
+          "error": 0.7290683148523504,
+          "tolerance": 1e-10,
+          "relative_error": 729068314852350.2
+        },
+        "[G_y, D_z]": {
+          "error": 0.7520871450668063,
+          "tolerance": 1e-10,
+          "relative_error": 752087145066806.2
+        },
+        "[G_y, G_x]": {
+          "error": 1.0786358465530026,
+          "tolerance": 1e-10,
+          "relative_error": 0.9840285236442555
+        },
+        "[G_y, G_z]": {
+          "error": 1.7902830644150516,
+          "tolerance": 1e-10,
+          "relative_error": 1.0775607802996008
+        },
+        "[G_z, D_x]": {
+          "error": 1.0423080300323613,
+          "tolerance": 1e-10,
+          "relative_error": 1042308030032361.2
+        },
+        "[G_z, D_y]": {
+          "error": 0.7520871450668063,
+          "tolerance": 1e-10,
+          "relative_error": 752087145066806.2
+        },
+        "[G_z, G_x]": {
+          "error": 2.3848777410867923,
+          "tolerance": 1e-10,
+          "relative_error": 1.1616185587590908
+        },
+        "[G_z, G_y]": {
+          "error": 1.7902830644150516,
+          "tolerance": 1e-10,
+          "relative_error": 1.0775607802996008
+        }
+      },
+      "commutator_errors": {
+        "[H, H]": 0.0,
+        "[H, D_x]": 3.860477115270852e-20,
+        "[H, D_y]": 4.895030274401832e-20,
+        "[H, D_z]": 2.2782204482227793e-20,
+        "[H, G_x]": 3.860477115270852e-20,
+        "[H, G_y]": 4.895030274401832e-20,
+        "[H, G_z]": 2.2782204482227793e-20,
+        "[D_x, H]": 3.860477115270852e-20,
+        "[D_x, D_x]": 0.0,
+        "[D_x, D_y]": 0.7290683148523504,
+        "[D_x, D_z]": 1.0423080300323613,
+        "[D_x, G_x]": 0.0,
+        "[D_x, G_y]": 0.7290683148523504,
+        "[D_x, G_z]": 1.0423080300323613,
+        "[D_y, H]": 4.895030274401832e-20,
+        "[D_y, D_x]": 0.7290683148523504,
+        "[D_y, D_y]": 0.0,
+        "[D_y, D_z]": 0.7520871450668063,
+        "[D_y, G_x]": 0.7290683148523504,
+        "[D_y, G_y]": 0.0,
+        "[D_y, G_z]": 0.7520871450668063,
+        "[D_z, H]": 2.2782204482227793e-20,
+        "[D_z, D_x]": 1.0423080300323613,
+        "[D_z, D_y]": 0.7520871450668063,
+        "[D_z, D_z]": 0.0,
+        "[D_z, G_x]": 1.0423080300323613,
+        "[D_z, G_y]": 0.7520871450668063,
+        "[D_z, G_z]": 0.0,
+        "[G_x, H]": 3.860477115270852e-20,
+        "[G_x, D_x]": 0.0,
+        "[G_x, D_y]": 0.7290683148523504,
+        "[G_x, D_z]": 1.0423080300323613,
+        "[G_x, G_x]": 0.0,
+        "[G_x, G_y]": 1.0786358465530026,
+        "[G_x, G_z]": 2.3848777410867923,
+        "[G_y, H]": 4.895030274401832e-20,
+        "[G_y, D_x]": 0.7290683148523504,
+        "[G_y, D_y]": 0.0,
+        "[G_y, D_z]": 0.7520871450668063,
+        "[G_y, G_x]": 1.0786358465530026,
+        "[G_y, G_y]": 0.0,
+        "[G_y, G_z]": 1.7902830644150516,
+        "[G_z, H]": 2.2782204482227793e-20,
+        "[G_z, D_x]": 1.0423080300323613,
+        "[G_z, D_y]": 0.7520871450668063,
+        "[G_z, D_z]": 0.0,
+        "[G_z, G_x]": 2.3848777410867923,
+        "[G_z, G_y]": 1.7902830644150516,
+        "[G_z, G_z]": 0.0
+      },
+      "enhanced_methods_used": true
+    },
+    "resolution_status": "PARTIAL_RESOLUTION",
+    "numerical_improvements": {
+      "precision_level": "enhanced",
+      "adaptive_tolerance": 1e-10,
+      "stabilization_methods": [
+        "smooth_field_generation",
+        "adaptive_tolerance",
+        "enhanced_commutators"
+      ]
+    }
+  },
+  "calibrated_coverage": {
+    "calibration_results": {
+      "calibration_curves": {},
+      "optimal_parameters": {
+        "interval_multiplier": 1.2689611547163449
+      },
+      "validation_metrics": {
+        "coverage": 0.9524,
+        "mean_interval_width": 0.6387138605548617,
+        "coverage_by_quantile": {
+          "0.1": 0.716,
+          "0.25": 0.8288,
+          "0.5": 0.906,
+          "0.75": 0.9368,
+          "0.9": 0.9473333333333334
+        },
+        "interval_width_variability": 0.5548653437600324
+      },
+      "coverage_achieved": true
+    },
+    "multi_scale_validation": {
+      "scenario_results": {
+        "nanometer_precision": {
+          "observed_coverage": 0.7975,
+          "target_coverage": 0.952,
+          "coverage_valid": false,
+          "scenario_specific_metrics": {
+            "scale": "nanometer",
+            "mean_uncertainty": 1.0014533039767214e-10,
+            "precision_achieved": 9.924935841930498e-11
+          }
+        },
+        "high_uncertainty": {
+          "observed_coverage": 1.0,
+          "target_coverage": 0.952,
+          "coverage_valid": false,
+          "scenario_specific_metrics": {
+            "scale": "high_uncertainty",
+            "mean_uncertainty": 2.0142047616678895,
+            "uncertainty_variability": 1.021193245973611
+          }
+        },
+        "correlated_errors": {
+          "observed_coverage": 0.958,
+          "target_coverage": 0.952,
+          "coverage_valid": true,
+          "scenario_specific_metrics": {
+            "scale": "correlated_errors",
+            "correlation_strength": 0.5,
+            "effective_uncertainty": 1.0052828096521385
+          }
+        },
+        "default_scenario": {
+          "observed_coverage": 0.9875,
+          "target_coverage": 0.952,
+          "coverage_valid": false,
+          "scenario_specific_metrics": {
+            "scale": "default",
+            "prediction_accuracy": 0.09733512287794303
+          }
+        }
+      },
+      "overall_assessment": {
+        "all_scenarios_passed": false,
+        "calibration_successful": false,
+        "ready_for_deployment": false
+      },
+      "scale_consistency": {
+        "mean_coverage": 0.9357499999999999,
+        "coverage_std": 0.08126230676026863,
+        "coefficient_of_variation": 0.08684189875529644,
+        "consistent_performance": "False"
+      }
+    },
+    "resolution_status": "NEEDS_FURTHER_CALIBRATION",
+    "calibration_parameters": {
+      "optimal_multiplier": 1.2689611547163449,
+      "target_coverage_achieved": true
+    }
+  },
+  "final_assessment": {
+    "overall_resolution_status": "PARTIAL_RESOLUTION",
+    "constraint_algebra_status": "PARTIAL_RESOLUTION",
+    "statistical_coverage_status": "NEEDS_FURTHER_CALIBRATION",
+    "ready_for_volume_quantization_controller": false,
+    "remaining_concerns": [
+      "Constraint algebra requires additional numerical refinement",
+      "Statistical coverage calibration needs further refinement"
+    ],
+    "recommendations": [
+      "Implement higher-order numerical methods for constraint operators",
+      "Extend calibration protocols with larger validation datasets"
+    ]
+  },
+  "timestamp": "2025-07-05T21:00:48.922084"
+}
