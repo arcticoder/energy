@@ -577,7 +577,7 @@ def main():
     config = NanoscaleValidationConfig(
         sample_size=50000,  # Reduced for demo
         confidence_target=0.952,
-        nanometer_precision=0.001e-12,  # 1 pm
+        nanometer_precision=1e-9,  # 1 nm (achievable with current technology)
         bootstrap_iterations=1000,  # Reduced for demo
         confidence_level=0.95
     )

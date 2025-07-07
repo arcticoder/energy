@@ -456,7 +456,7 @@ class UQResolutionFramework:
         results_dict['start_time'] = results.start_time.isoformat()
         results_dict['completion_time'] = results.completion_time.isoformat()
         
-        with open(json_filename, 'w') as f:
+        with open(json_filename, 'w', encoding='utf-8') as f:
             json.dump(results_dict, f, indent=2, default=str)
         
         logger.info(f"Results exported to {json_filename}")
@@ -466,7 +466,7 @@ class UQResolutionFramework:
             report_filename = os.path.join(self.config.results_directory, f'uq_resolution_report_{timestamp}.txt')
             report = self.generate_comprehensive_report(results)
             
-            with open(report_filename, 'w') as f:
+            with open(report_filename, 'w', encoding='utf-8') as f:
                 f.write(report)
             
             logger.info(f"Detailed report generated: {report_filename}")

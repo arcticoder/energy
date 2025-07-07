@@ -356,8 +356,8 @@ class PowerDistributionAnalyzer:
         # Risk factors: power consumption, frequency overlap, spatial proximity
         power_factor = (source.power_consumption + target.power_consumption) / 100000  # Normalize to 100kW
         
-        freq_overlap = len(set(range(int(source.frequency_range[0]), int(source.frequency_range[1]))) &
-                          set(range(int(target.frequency_range[0]), int(target.frequency_range[1])))) > 0
+        freq_overlap = max(0, min(source.frequency_range[1], target.frequency_range[1]) - 
+                          max(source.frequency_range[0], target.frequency_range[0])) > 0
         
         risk = power_factor * (0.5 if freq_overlap else 0.1)
         
