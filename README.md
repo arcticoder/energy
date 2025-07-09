@@ -1,5 +1,22 @@
 # Energy Research Framework
 
+## Related Repositories
+
+This repository is the central hub for the arcticoder energy research ecosystem. Explore these related repositories for specialized technologies and cross-domain breakthroughs:
+
+- [artificial-gravity-field-generator](https://github.com/arcticoder/artificial-gravity-field-generator): Implements advanced artificial gravity systems using LQG and spacetime engineering, fully integrated with the energy framework for FTL and safety-critical applications.
+- [casimir-anti-stiction-metasurface-coatings](https://github.com/arcticoder/casimir-anti-stiction-metasurface-coatings): Provides quantum-engineered coatings for MEMS/NEMS, leveraging Casimir repulsion and digital twin control, with manufacturing and UQ support from the energy platform.
+- [casimir-environmental-enclosure-platform](https://github.com/arcticoder/casimir-environmental-enclosure-platform): Delivers ultra-high vacuum and environmental control for quantum and Casimir experiments, using digital twin and UQ methods from the energy framework.
+- [casimir-nanopositioning-platform](https://github.com/arcticoder/casimir-nanopositioning-platform): Achieves sub-nanometer precision positioning with multi-physics digital twin, supporting fabrication and measurement for energy and quantum systems.
+- [casimir-tunable-permittivity-stacks](https://github.com/arcticoder/casimir-tunable-permittivity-stacks): Enables tunable electromagnetic properties for FTL and quantum applications, with direct integration into energy and LQG metric engineering.
+- [casimir-ultra-smooth-fabrication-platform](https://github.com/arcticoder/casimir-ultra-smooth-fabrication-platform): Provides quantum-enhanced nanofabrication for device manufacturing, supporting all Casimir and energy-related platforms.
+- [elemental-transmutator](https://github.com/arcticoder/elemental-transmutator): Implements digital twin and economic analysis for photonuclear transmutation, leveraging energy framework methods for optimization and validation.
+- [lqg-cosmological-constant-predictor](https://github.com/arcticoder/lqg-cosmological-constant-predictor): Predicts the cosmological constant from first principles using LQG, with UQ and cross-scale validation from the energy ecosystem.
+- [lqg-volume-kernel-catalog](https://github.com/arcticoder/lqg-volume-kernel-catalog): Analyzes the LQG volume operator spectrum, supporting quantum gravity research and mathematical foundations for energy applications.
+- [lorentz-violation-pipeline](https://github.com/arcticoder/lorentz-violation-pipeline): Probes Planck-scale physics and energy conversion using LIV analysis, with experimental and theoretical integration into the energy research suite.
+
+All repositories are under the [arcticoder GitHub account](https://github.com/arcticoder) and are designed for cross-repository integration. Every project links back to this energy framework for unified documentation, uncertainty quantification, and system-level breakthroughs.
+
 A comprehensive multi-scale theoretical physics framework spanning advanced energy technologies, spacetime physics, quantum gravity, and computational methods. This meta-repository coordinates 37+ specialized research repositories focused on energy and propulsion systems.
 
 ## 🎯 Latest Achievements (July 2025)
