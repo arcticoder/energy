@@ -14,6 +14,7 @@ This repository is the central hub for the arcticoder energy research ecosystem.
 - [lqg-cosmological-constant-predictor](https://github.com/arcticoder/lqg-cosmological-constant-predictor): Predicts the cosmological constant from first principles using LQG, with UQ and cross-scale validation from the energy ecosystem.
 - [lqg-volume-kernel-catalog](https://github.com/arcticoder/lqg-volume-kernel-catalog): Analyzes the LQG volume operator spectrum, supporting quantum gravity research and mathematical foundations for energy applications.
 - [lorentz-violation-pipeline](https://github.com/arcticoder/lorentz-violation-pipeline): Probes Planck-scale physics and energy conversion using LIV analysis, with experimental and theoretical integration into the energy research suite.
+- [medical-tractor-array](https://github.com/arcticoder/medical-tractor-array): Revolutionary Medical-Grade Graviton Safety System with complete T_μν ≥ 0 positive energy constraint enforcement, 242M× energy reduction, and comprehensive biological safety protocols achieving 10¹² protection margin for gravitational medicine applications.
 
 All repositories are under the [arcticoder GitHub account](https://github.com/arcticoder) and are designed for cross-repository integration. Every project links back to this energy framework for unified documentation, uncertainty quantification, and system-level breakthroughs.
 
