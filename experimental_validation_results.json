@@ -1,0 +1,24 @@
+{
+  "sequence_start_time": "2025-07-10T16:32:24.732409",
+  "energy_points_tested": [
+    1.0,
+    2.5,
+    5.0,
+    7.5,
+    10.0
+  ],
+  "measurement_cycles": 3,
+  "detections": [],
+  "statistics": {
+    "total_measurements": 15,
+    "successful_detections": 0,
+    "detection_efficiency": 0.0,
+    "average_snr": 0,
+    "average_confidence": 0
+  },
+  "validation_score": 0.0,
+  "safety_incidents": 0,
+  "calibration_stability": true,
+  "sequence_end_time": "2025-07-10T16:32:24.773109",
+  "total_duration_minutes": 0.0006783333333333333
+}
