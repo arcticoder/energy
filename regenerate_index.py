@@ -71,6 +71,7 @@ def generate_html():
             margin: 0 auto;
             padding: 20px;
             background-color: #f8f9fa;
+            scroll-behavior: smooth;
         }}
         .header {{
             text-align: center;
@@ -140,10 +141,35 @@ def generate_html():
             background: #f8d7da;
             color: #721c24;
         }}
+        .toc-entry {{
+            transition: all 0.2s ease;
+        }}
+        .toc-entry:hover {{
+            background: #e9ecef !important;
+            transform: translateX(5px);
+        }}
+        .back-to-top {{
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #667eea;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }}
+        .back-to-top:hover {{
+            background: #5a6fd8;
+            transform: translateY(-2px);
+            color: white;
+        }}
     </style>
 </head>
 <body>
-    <div class="header">
+    <div class="header" id="top">
         <h1>🌌 Energy Framework Repository Ecosystem</h1>
         <p>Revolutionary Quantum Physics and Advanced Energy Technologies</p>
         <p><em>Generated on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</em></p>
@@ -151,17 +177,68 @@ def generate_html():
 """
 
     # Add major breakthroughs section
+    # Generate table of contents
     html_content += """
+    <div class="section">
+        <h2>📋 Table of Contents</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px;">
+            <div>
+                <h3>🚀 Major Technological Breakthroughs ({} entries)</h3>
+                <div style="max-height: 400px; overflow-y: auto; border: 1px solid #ddd; padding: 15px; border-radius: 8px;">
+""".format(len(highlights))
+
+    # Add TOC entries for highlights
+    for i, item in enumerate(highlights):
+        item_type = item.get('type', 'unknown')
+        badge_class = 'deployed' if 'production' in item_type else 'ready' if 'breakthrough' in item_type else 'breakthrough-status'
+        
+        html_content += f"""
+                    <div class="toc-entry" style="margin: 8px 0; padding: 8px; background: #f8f9fa; border-radius: 4px;">
+                        <a href="#highlight-{i}" style="text-decoration: none; color: #333;">
+                            <span class="status-badge {badge_class}" style="font-size: 0.7em;">{item_type.replace('_', ' ').title()}</span>
+                            <strong>{html.escape(item.get('title', 'Untitled')[:60])}{'...' if len(item.get('title', '')) > 60 else ''}</strong>
+                        </a>
+                    </div>
+"""
+
+    html_content += """
+                </div>
+            </div>
+            <div>
+                <h3>📚 Documentation Index ({} entries)</h3>
+                <div style="max-height: 400px; overflow-y: auto; border: 1px solid #ddd; padding: 15px; border-radius: 8px;">
+""".format(len(documentation))
+
+    # Add TOC entries for documentation
+    for i, doc in enumerate(documentation):
+        doc_type = doc.get('type', 'documentation')
+        priority = doc.get('priority', 'normal')
+        
+        html_content += f"""
+                    <div class="toc-entry" style="margin: 8px 0; padding: 8px; background: #f8f9fa; border-radius: 4px;">
+                        <a href="#doc-{i}" style="text-decoration: none; color: #333;">
+                            <span class="status-badge ready" style="font-size: 0.7em;">{priority.title()}</span>
+                            <strong>{html.escape(doc.get('title', 'Untitled')[:60])}{'...' if len(doc.get('title', '')) > 60 else ''}</strong>
+                        </a>
+                    </div>
+"""
+
+    html_content += """
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <div class="section">
         <h2>🚀 Major Technological Breakthroughs</h2>
 """
     
-    for item in highlights:  # Show all highlights
+    for i, item in enumerate(highlights):  # Show all highlights
         item_type = item.get('type', 'unknown')
         css_class = 'production' if 'production' in item_type else 'breakthrough' if 'breakthrough' in item_type else 'deployment'
         
         html_content += f"""
-        <div class="highlight-item {css_class}">
+        <div class="highlight-item {css_class}" id="highlight-{i}">
             <h3>{html.escape(item.get('title', 'Untitled'))}</h3>
             <p>{html.escape(item.get('description', 'No description available.')[:1000])}{'...' if len(item.get('description', '')) > 1000 else ''}</p>
             {format_mathematics(item.get('mathematics', ''))}
@@ -181,12 +258,12 @@ def generate_html():
 """
 
     # Add documentation items
-    for doc in documentation:  # Show all documentation items
+    for i, doc in enumerate(documentation):  # Show all documentation items
         doc_type = doc.get('type', 'documentation')
         priority = doc.get('priority', 'normal')
         
         html_content += f"""
-        <div class="highlight-item breakthrough">
+        <div class="highlight-item breakthrough" id="doc-{i}">
             <h3>{html.escape(doc.get('title', 'Untitled'))}</h3>
             <p>{html.escape(doc.get('description', 'No description available.')[:800])}{'...' if len(doc.get('description', '')) > 800 else ''}</p>
             {format_mathematics(doc.get('mathematics', ''))}
@@ -249,6 +326,8 @@ def generate_html():
         <p>Energy Framework Repository Ecosystem - Revolutionary Quantum Physics Technologies</p>
         <p><em>Last updated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</em></p>
     </footer>
+    
+    <a href="#top" class="back-to-top">↑ Top</a>
 </body>
 </html>
 """
