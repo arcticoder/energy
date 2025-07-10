@@ -13,19 +13,22 @@ Key Features:
 - Laboratory-accessible graviton physics at 1-10 GeV energy scales
 """
 
-from .polymer_graviton import PolymerGraviton
+from .polymer_graviton import PolymerGraviton, GravitonConfiguration
 from .graviton_propagator import GravitonPropagator
 from .graviton_field_strength import GravitonFieldStrength
-from .graviton_safety_controller import GravitonSafetyController
-from .experimental_validator import ExperimentalGravitonValidator
+from .graviton_safety_controller import GravitonSafetyController, SafetyLimits
+from .experimental_validator import ExperimentalGravitonValidator, DetectionParameters
 
 __version__ = "1.0.0"
 __author__ = "Energy Research Framework"
 
 __all__ = [
     "PolymerGraviton",
+    "GravitonConfiguration",
     "GravitonPropagator", 
     "GravitonFieldStrength",
     "GravitonSafetyController",
-    "ExperimentalGravitonValidator"
+    "SafetyLimits",
+    "ExperimentalGravitonValidator",
+    "DetectionParameters"
 ]

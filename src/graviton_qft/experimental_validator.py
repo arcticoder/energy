@@ -413,7 +413,15 @@ class ExperimentalGravitonValidator:
     def get_detection_statistics(self) -> Dict[str, Any]:
         """Get comprehensive detection statistics"""
         if not self.detection_history:
-            return {'total_detections': 0, 'detection_rate': 0}
+            return {
+                'total_detection_attempts': 0, 
+                'confirmed_detections': 0,
+                'detection_rate': 0.0,
+                'average_confidence': 0.0,
+                'energy_range_tested': (0, 0),
+                'enhancement_factor': self.params.enhancement_factor,
+                'is_calibrated': self.is_calibrated
+            }
         
         total_attempts = len(self.detection_history)
         confirmed_detections = sum(1 for d in self.detection_history if d['detection_confirmed'])
