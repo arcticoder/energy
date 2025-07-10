@@ -8,7 +8,7 @@ import html
 from datetime import datetime
 
 def load_ndjson(filename):
-    """Load NDJSON file"""
+    """Load NDJSON file and filter out edge entries"""
     items = []
     try:
         with open(filename, 'r', encoding='utf-8') as f:
@@ -16,7 +16,10 @@ def load_ndjson(filename):
                 line = line.strip()
                 if line:
                     try:
-                        items.append(json.loads(line))
+                        item = json.loads(line)
+                        # Filter out edge entries - these are relationship connections, not displayable content
+                        if item.get('type') != 'edge':
+                            items.append(item)
                     except json.JSONDecodeError as e:
                         print(f"Warning: JSON decode error in {filename} line {line_num}: {e}")
                         # Create a fallback entry
