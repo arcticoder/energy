@@ -1,14 +1,43 @@
-# PowerShell script to fetch and pull all repositories in the asciimath directory
-# This script will update all energy-related repositories
+# PowerShell script to sync changes from energy repository to all other repositories
+# This script will push energy repository changes and pull them into other repositories
 
 # Set target directory using current username
 $currentUser = $env:USERNAME
 $targetDirectory = "C:\Users\$currentUser\Code\asciimath"
+$energyRepoPath = "$targetDirectory\energy"
 
-# Get list of all subdirectories (repositories)
+# First, ensure energy repository changes are committed and pushed
+Write-Host "Syncing changes from energy repository to all other repositories..." -ForegroundColor Green
+Write-Host "Step 1: Processing energy repository..." -ForegroundColor Cyan
+
+Push-Location $energyRepoPath
+try {
+    # Check if there are uncommitted changes in energy repo
+    $energyStatus = git status --porcelain 2>$null
+    if ($energyStatus) {
+        Write-Host "  📝 Found uncommitted changes in energy repository, committing..." -ForegroundColor Yellow
+        git add . 2>$null
+        $commitMessage = "Auto-sync: Updated energy repository - $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+        git commit -m $commitMessage 2>$null
+        Write-Host "  ✓ Committed changes to energy repository" -ForegroundColor Green
+    }
+    
+    # Push energy repository changes
+    Write-Host "  📤 Pushing energy repository changes..." -ForegroundColor Cyan
+    $pushResult = git push 2>&1
+    if ($LASTEXITCODE -eq 0) {
+        Write-Host "  ✓ Successfully pushed energy repository changes" -ForegroundColor Green
+    } else {
+        Write-Host "  ⚠️  Push completed with warnings: $pushResult" -ForegroundColor Orange
+    }
+} finally {
+    Pop-Location
+}
+
+# Get list of all subdirectories (repositories) excluding energy
 $repos = Get-ChildItem -Path $targetDirectory -Directory | Where-Object { $_.Name -ne "energy" }
 
-Write-Host "Starting git fetch and pull for all repositories in $targetDirectory..." -ForegroundColor Green
+Write-Host "`nStep 2: Updating all other repositories with latest changes..." -ForegroundColor Cyan
 Write-Host "Found $($repos.Count) repositories to update" -ForegroundColor Cyan
 
 $successCount = 0
@@ -88,8 +117,9 @@ foreach ($repo in $repos) {
     }
 }
 
-Write-Host "`n🎉 Update completed!" -ForegroundColor Green
-Write-Host "📊 Results Summary:" -ForegroundColor Cyan
+Write-Host "`n🎉 Synchronization completed!" -ForegroundColor Green
+Write-Host "📊 Sync Results Summary:" -ForegroundColor Cyan
+Write-Host "  ✓ Energy repository: Changes committed and pushed" -ForegroundColor Green
 Write-Host "  ✓ Successfully updated: $successCount repositories" -ForegroundColor Green
 Write-Host "  ❌ Failed to update: $failCount repositories" -ForegroundColor Red
 Write-Host "  ⚠️  Skipped (not git repos): $skippedCount directories" -ForegroundColor Orange
@@ -98,5 +128,5 @@ Write-Host "  📁 Total processed: $($repos.Count) directories" -ForegroundColo
 if ($failCount -gt 0) {
     Write-Host "`n⚠️  Some repositories failed to update. Check the output above for details." -ForegroundColor Orange
 } else {
-    Write-Host "`n🎉 All repositories are now up to date!" -ForegroundColor Green
+    Write-Host "`n🎉 All repositories are now synchronized with energy repository changes!" -ForegroundColor Green
 }
