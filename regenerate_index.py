@@ -156,19 +156,19 @@ def generate_html():
         <h2>🚀 Major Technological Breakthroughs</h2>
 """
     
-    for item in highlights[:10]:  # Show top 10 highlights
+    for item in highlights:  # Show all highlights
         item_type = item.get('type', 'unknown')
         css_class = 'production' if 'production' in item_type else 'breakthrough' if 'breakthrough' in item_type else 'deployment'
         
         html_content += f"""
         <div class="highlight-item {css_class}">
             <h3>{html.escape(item.get('title', 'Untitled'))}</h3>
-            <p>{html.escape(item.get('description', 'No description available.')[:500])}...</p>
+            <p>{html.escape(item.get('description', 'No description available.')[:1000])}{'...' if len(item.get('description', '')) > 1000 else ''}</p>
             {format_mathematics(item.get('mathematics', ''))}
             <div class="metadata">
                 <span class="status-badge {css_class}">{item_type.replace('_', ' ').title()}</span>
                 <strong>Date:</strong> {item.get('date', 'Unknown')} | 
-                <strong>Impact:</strong> {html.escape(item.get('impact', 'Unknown')[:200])}...
+                <strong>Impact:</strong> {html.escape(item.get('impact', 'Unknown')[:400])}{'...' if len(item.get('impact', '')) > 400 else ''}
             </div>
         </div>
 """
@@ -181,14 +181,14 @@ def generate_html():
 """
 
     # Add documentation items
-    for doc in documentation[:10]:  # Show top 10 documentation items
+    for doc in documentation:  # Show all documentation items
         doc_type = doc.get('type', 'documentation')
         priority = doc.get('priority', 'normal')
         
         html_content += f"""
         <div class="highlight-item breakthrough">
             <h3>{html.escape(doc.get('title', 'Untitled'))}</h3>
-            <p>{html.escape(doc.get('description', 'No description available.')[:400])}...</p>
+            <p>{html.escape(doc.get('description', 'No description available.')[:800])}{'...' if len(doc.get('description', '')) > 800 else ''}</p>
             {format_mathematics(doc.get('mathematics', ''))}
             <div class="metadata">
                 <span class="status-badge ready">{priority.title()} Priority</span>
