@@ -30,6 +30,8 @@ try {
     } else {
         Write-Host "  ⚠️  Push completed with warnings: $pushResult" -ForegroundColor Orange
     }
+} catch {
+    Write-Host "  ❌ Error processing energy repository: $($_.Exception.Message)" -ForegroundColor Red
 } finally {
     Pop-Location
 }
