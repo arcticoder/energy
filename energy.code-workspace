@@ -77,6 +77,10 @@
 			"path": "../lorentz-violation-pipeline"
 		},
 		{
+			"name": "medical-tractor-array",
+			"path": "../medical-tractor-array"
+		},
+		{
 			"name": "negative-energy-generator",
 			"path": "../negative-energy-generator"
 		},
