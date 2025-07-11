@@ -84,19 +84,28 @@
 **Effort**: Medium (4-6 prompts)
 **Research Value**: Very High
 
-**Current Problem**: β = 1.9443254780147017 (hardcoded constant)
+**Current Status**: ✅ **UQ CONCERNS ADDED** - Strategic implementation approach defined
 **Solution**: Dynamic β(t) = f(field_strength, velocity, local_curvature)
 
 **Implementation Strategy**:
-1. Replace hardcoded β values with physics-based calculation functions
-2. Implement real-time optimization for varying spacetime conditions  
-3. Enable adaptive control across different flight regimes
-4. Foundation for advanced flight control algorithms
+1. ✅ **UQ Tracking Established**: Added UQ concerns to core LQG repositories
+2. **Individual Assessment**: Each occurrence requires contextual evaluation
+3. **Preserve Historical References**: UQ metadata and documentation unchanged
+4. **Focus on Production Code**: Target active implementation files requiring dynamic β(t)
+
+**UQ Concerns Added**:
+- **lqg-polymer-field-generator**: UQ-LQG-005 (polymer field generation optimization)
+- **lqg-volume-quantization-controller**: UQ-VOL-001 (discrete spacetime adaptation)
+- **lqg-positive-matter-assembler**: UQ-MAT-001 (Bobrick-Martire geometry shaping)
+- **unified-lqg**: UQ-UNIFIED-001 (supraluminal navigation control)
+- **energy**: UQ-ENERGY-001 (ecosystem coordination)
 
 **Benefits**:
-- Optimized efficiency across mission profiles
-- Real-time adaptation to spacetime variations
-- Critical for safe supraluminal navigation
+- Proper tracking via UQ framework
+- Individual contextual assessment per repository
+- Avoids bulk replacement problems
+- Strategic implementation across ~5 core repositories (not 263 files)
+- Foundation for advanced flight control algorithms
 
 ### Phase 2: LQG Drive Integration and Navigation (Months 2-6)
 
@@ -329,6 +338,18 @@ V(φ,χ) = λ_φ(φ² - φ₀²)² + λ_mix φ²χ² + V(χ) (Goldberger-Wise po
   - Repository: Various temporary script repositories
   - Function: Archive temporary/one-off script files
   - Status: ⚠️ **ARCHIVAL REQUIRED** - Clean up temporary implementations
+
+**Archival Targets for Dynamic Backreaction Factor Migration**:
+- **UQ Tracking Files**: UQ-TODO.ndjson, UQ-TODO-RESOLVED.ndjson (metadata only, preserve as-is)
+- **Migration Utilities**: backreaction_migration_utility.py, simple_backreaction_migrator.py (archive post-migration)
+- **Historical Documentation**: Preserve hardcoded references in docs for historical context
+- **Active Implementation Files**: Target only production Python files with actual hardcoded constants
+
+**Strategic Migration Approach**:
+1. **Archive ephemeral scripts** to reduce migration scope from 263 → ~50 files
+2. **Individual file assessment** for each occurrence context
+3. **Preserve UQ metadata** and historical documentation
+4. **Focus on production code** requiring dynamic β(t) functionality
 
 #### 5.2 Hardware Specification and CAD Integration
 **Priority**: Low
