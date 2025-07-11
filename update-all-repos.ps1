@@ -1,4 +1,4 @@
-# PowerShell script to sync changes from energy repository to all other repositories
+# PowerShell script to sync changes from energy reposito        Write-Host "  ⚠️  Skipping $repoName - not a git repository" -ForegroundColor DarkYellowy to all other repositories
 # This script will push energy repository changes and pull them into other repositories
 
 # Set target directory using current username
@@ -28,7 +28,7 @@ try {
     if ($LASTEXITCODE -eq 0) {
         Write-Host "  ✓ Successfully pushed energy repository changes" -ForegroundColor Green
     } else {
-        Write-Host "  ⚠️  Push completed with warnings: $pushResult" -ForegroundColor Orange
+        Write-Host "  ⚠️  Push completed with warnings: $pushResult" -ForegroundColor DarkYellow
     }
 } catch {
     Write-Host "  ❌ Error processing energy repository: $($_.Exception.Message)" -ForegroundColor Red
@@ -54,7 +54,7 @@ foreach ($repo in $repos) {
     
     # Check if this is a git repository
     if (-not (Test-Path (Join-Path $repoPath ".git"))) {
-        Write-Host "  ⚠️  Skipping $repoName - not a git repository" -ForegroundColor Orange
+        Write-Host "  ⚠️  Skipping $repoName - not a git repository" -ForegroundColor DarkYellow
         $skippedCount++
         continue
     }
@@ -73,7 +73,7 @@ foreach ($repo in $repos) {
         if ($LASTEXITCODE -eq 0) {
             Write-Host "  ✓ Fetch successful" -ForegroundColor Green
         } else {
-            Write-Host "  ⚠️  Fetch completed with warnings: $fetchResult" -ForegroundColor Orange
+            Write-Host "  ⚠️  Fetch completed with warnings: $fetchResult" -ForegroundColor DarkYellow
         }
         
         # Check current branch
@@ -104,7 +104,7 @@ foreach ($repo in $repos) {
         
         # Check for uncommitted changes
         if ($status) {
-            Write-Host "  ⚠️  Repository has uncommitted changes:" -ForegroundColor Orange
+            Write-Host "  ⚠️  Repository has uncommitted changes:" -ForegroundColor DarkYellow
             git status --short
         }
         
@@ -124,11 +124,11 @@ Write-Host "📊 Sync Results Summary:" -ForegroundColor Cyan
 Write-Host "  ✓ Energy repository: Changes committed and pushed" -ForegroundColor Green
 Write-Host "  ✓ Successfully updated: $successCount repositories" -ForegroundColor Green
 Write-Host "  ❌ Failed to update: $failCount repositories" -ForegroundColor Red
-Write-Host "  ⚠️  Skipped (not git repos): $skippedCount directories" -ForegroundColor Orange
+Write-Host "  ⚠️  Skipped (not git repos): $skippedCount directories" -ForegroundColor DarkYellow
 Write-Host "  📁 Total processed: $($repos.Count) directories" -ForegroundColor Cyan
 
 if ($failCount -gt 0) {
-    Write-Host "`n⚠️  Some repositories failed to update. Check the output above for details." -ForegroundColor Orange
+    Write-Host "`n⚠️  Some repositories failed to update. Check the output above for details." -ForegroundColor DarkYellow
 } else {
     Write-Host "`n🎉 All repositories are now synchronized with energy repository changes!" -ForegroundColor Green
 }
