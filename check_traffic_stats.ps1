@@ -1,5 +1,5 @@
 # GitHub Traffic Stats Checker for arcticoder repositories
-# This script checks traffic stats for all repositories in the past week
+# This script checks traffic stats for all repositories (focusing on past 48 hours)
 
 $repos = @(
     "energy",
@@ -21,6 +21,7 @@ $repos = @(
     "lqg-positive-matter-assembler",
     "lqg-volume-quantization-controller",
     "lorentz-violation-pipeline",
+    "medical-tractor-array",
     "negative-energy-generator",
     "polymer-fusion-framework",
     "polymerized-lqg-matter-transporter",
@@ -53,11 +54,13 @@ $repos = @(
     "warp-sensitivity-analysis",
     "warp-signature-workflow",
     "warp-solver-equations",
+    "warp-solver-validation",
     "warp-spacetime-stability-controller"
 )
 
-Write-Host "=== GitHub Traffic Stats for arcticoder repositories (Past Week) ===" -ForegroundColor Cyan
-Write-Host "Date Range: Past 14 days (GitHub's available range)" -ForegroundColor Gray
+Write-Host "=== GitHub Traffic Stats for arcticoder repositories (Past 48 Hours Focus) ===" -ForegroundColor Cyan
+Write-Host "Date Range: Past 14 days (GitHub's available range) - Focusing on Recent Activity" -ForegroundColor Gray
+Write-Host "Note: Emphasizing traffic from the last 48 hours where available" -ForegroundColor Gray
 Write-Host ""
 
 $totalViews = 0
@@ -81,10 +84,15 @@ foreach ($repo in $repos) {
             
             if ($views.views -and $views.views.Count -gt 0) {
                 $recentViews = $views.views | Sort-Object timestamp -Descending | Select-Object -First 7
+                $past48Hours = (Get-Date).AddDays(-2)
+                Write-Host "   Recent daily breakdown:" -ForegroundColor White
                 foreach ($day in $recentViews) {
                     $date = ([DateTime]$day.timestamp).ToString("MMM dd")
+                    $dayDate = [DateTime]$day.timestamp
                     if ($day.count -gt 0) {
-                        Write-Host "   $date : $($day.count) views ($($day.uniques) unique)" -ForegroundColor White
+                        $color = if ($dayDate -gt $past48Hours) { "Yellow" } else { "White" }
+                        $indicator = if ($dayDate -gt $past48Hours) { " ⭐" } else { "" }
+                        Write-Host "   $date : $($day.count) views ($($day.uniques) unique)$indicator" -ForegroundColor $color
                     }
                 }
             }
@@ -105,10 +113,15 @@ foreach ($repo in $repos) {
             
             if ($clones.clones -and $clones.clones.Count -gt 0) {
                 $recentClones = $clones.clones | Sort-Object timestamp -Descending | Select-Object -First 7
+                $past48Hours = (Get-Date).AddDays(-2)
+                Write-Host "   Recent daily breakdown:" -ForegroundColor White
                 foreach ($day in $recentClones) {
                     $date = ([DateTime]$day.timestamp).ToString("MMM dd")
+                    $dayDate = [DateTime]$day.timestamp
                     if ($day.count -gt 0) {
-                        Write-Host "   $date : $($day.count) clones ($($day.uniques) unique)" -ForegroundColor White
+                        $color = if ($dayDate -gt $past48Hours) { "Yellow" } else { "White" }
+                        $indicator = if ($dayDate -gt $past48Hours) { " ⭐" } else { "" }
+                        Write-Host "   $date : $($day.count) clones ($($day.uniques) unique)$indicator" -ForegroundColor $color
                     }
                 }
             }
@@ -124,3 +137,6 @@ Write-Host "=== SUMMARY ===" -ForegroundColor Cyan
 Write-Host "Total Views: $totalViews (Unique: $totalUniqeViews)" -ForegroundColor Green
 Write-Host "Total Clones: $totalClones (Unique: $totalUniqueClones)" -ForegroundColor Blue
 Write-Host "Repositories Checked: $($repos.Count)" -ForegroundColor White
+Write-Host ""
+Write-Host "⭐ indicates activity within the past 48 hours" -ForegroundColor Yellow
+Write-Host "Note: GitHub Traffic API provides data for the past 14 days maximum" -ForegroundColor Gray
