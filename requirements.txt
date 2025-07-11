@@ -1,0 +1,32 @@
+# Energy Framework - Requirements
+# Revolutionary Dynamic Backreaction Factor Framework Dependencies
+
+# Core Dependencies
+numpy>=1.21.0                  # Numerical computations for field analysis
+scipy>=1.7.0                   # Scientific computing for spacetime calculations
+matplotlib>=3.4.0              # Visualization for field dynamics
+sympy>=1.8                     # Symbolic mathematics for analytical solutions
+pydantic>=1.8.0                # Data validation for configuration management
+typing-extensions>=4.0.0       # Enhanced type hints for Python <3.10
+
+# Development Dependencies (install with: pip install -e .[dev])
+pytest>=6.0                    # Testing framework
+pytest-cov>=2.0                # Coverage reporting
+pytest-benchmark>=3.4          # Performance benchmarking
+black>=21.0                    # Code formatting
+flake8>=3.9                    # Linting
+mypy>=0.910                    # Type checking
+pre-commit>=2.15               # Git hooks
+hypothesis>=6.0                # Property-based testing
+
+# Documentation Dependencies (install with: pip install -e .[docs])
+sphinx>=4.0                    # Documentation generation
+sphinx-rtd-theme>=1.0          # Documentation theme
+myst-parser>=0.15              # Markdown parsing for docs
+
+# Optional Scientific Dependencies
+# Uncomment if advanced features are needed:
+# jax>=0.3.0                   # Advanced numerical computing
+# numba>=0.56.0                # JIT compilation for performance
+# cupy>=10.0.0                 # GPU acceleration (NVIDIA)
+# torch>=1.11.0                # Deep learning for ML-enhanced optimization
