@@ -1,4 +1,4 @@
-# PowerShell script to sync changes from energy reposito        Write-Host "  ⚠️  Skipping $repoName - not a git repository" -ForegroundColor DarkYellowy to all other repositories
+# PowerShell script to sync changes from energy repository to all other repositories
 # This script will push energy repository changes and pull them into other repositories
 
 # Set target directory using current username
