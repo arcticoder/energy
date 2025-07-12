@@ -2734,5 +2734,2741 @@
       "forks": 0,
       "repositories_count": 53
     }
+  },
+  {
+    "timestamp": "2025-07-12T09:09:02.153233",
+    "date": "2025-07-12",
+    "repositories": {
+      "energy": {
+        "name": "energy",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 1,
+        "views_unique": 1,
+        "clones_total": 684,
+        "clones_unique": 249,
+        "last_updated": "2025-07-12T15:51:21Z",
+        "daily_views": [
+          {
+            "date": "2025-07-09",
+            "views": 1,
+            "unique_views": 1
+          }
+        ],
+        "daily_clones": [
+          {
+            "date": "2025-07-12",
+            "clones": 44,
+            "unique_clones": 30
+          },
+          {
+            "date": "2025-07-11",
+            "clones": 75,
+            "unique_clones": 48
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 135,
+            "unique_clones": 80
+          },
+          {
+            "date": "2025-07-09",
+            "clones": 26,
+            "unique_clones": 20
+          },
+          {
+            "date": "2025-07-08",
+            "clones": 21,
+            "unique_clones": 17
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 38,
+            "unique_clones": 27
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 77,
+            "unique_clones": 34
+          }
+        ]
+      },
+      "artificial-gravity-field-generator": {
+        "name": "artificial-gravity-field-generator",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 2,
+        "views_unique": 2,
+        "clones_total": 106,
+        "clones_unique": 88,
+        "last_updated": "2025-07-12T03:51:58Z",
+        "daily_views": [
+          {
+            "date": "2025-07-11",
+            "views": 1,
+            "unique_views": 1
+          },
+          {
+            "date": "2025-06-30",
+            "views": 1,
+            "unique_views": 1
+          }
+        ],
+        "daily_clones": [
+          {
+            "date": "2025-07-12",
+            "clones": 4,
+            "unique_clones": 4
+          },
+          {
+            "date": "2025-07-11",
+            "clones": 6,
+            "unique_clones": 6
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 19,
+            "unique_clones": 19
+          },
+          {
+            "date": "2025-07-09",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-08",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 5,
+            "unique_clones": 5
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 10,
+            "unique_clones": 7
+          }
+        ]
+      },
+      "casimir-anti-stiction-metasurface-coatings": {
+        "name": "casimir-anti-stiction-metasurface-coatings",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 63,
+        "clones_unique": 60,
+        "last_updated": "2025-07-11T14:12:11Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-12",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-11",
+            "clones": 5,
+            "unique_clones": 5
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-09",
+            "clones": 5,
+            "unique_clones": 5
+          },
+          {
+            "date": "2025-07-08",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 6,
+            "unique_clones": 6
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 2,
+            "unique_clones": 2
+          }
+        ]
+      },
+      "casimir-environmental-enclosure-platform": {
+        "name": "casimir-environmental-enclosure-platform",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 58,
+        "clones_unique": 52,
+        "last_updated": "2025-07-09T03:31:21Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-12",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-09",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-08",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 5,
+            "unique_clones": 5
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 1,
+            "unique_clones": 1
+          }
+        ]
+      },
+      "casimir-nanopositioning-platform": {
+        "name": "casimir-nanopositioning-platform",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 72,
+        "clones_unique": 65,
+        "last_updated": "2025-07-01T22:01:09Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 5,
+            "unique_clones": 5
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-09",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-08",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 2,
+            "unique_clones": 2
+          }
+        ]
+      },
+      "casimir-tunable-permittivity-stacks": {
+        "name": "casimir-tunable-permittivity-stacks",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 58,
+        "clones_unique": 55,
+        "last_updated": "2025-07-09T03:31:33Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-09",
+            "clones": 4,
+            "unique_clones": 4
+          },
+          {
+            "date": "2025-07-08",
+            "clones": 4,
+            "unique_clones": 4
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 4,
+            "unique_clones": 4
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 3,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 8,
+            "unique_clones": 8
+          }
+        ]
+      },
+      "casimir-ultra-smooth-fabrication-platform": {
+        "name": "casimir-ultra-smooth-fabrication-platform",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 55,
+        "clones_unique": 50,
+        "last_updated": "2025-07-11T14:01:34Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-12",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-11",
+            "clones": 5,
+            "unique_clones": 5
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-09",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-08",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 6,
+            "unique_clones": 5
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 1,
+            "unique_clones": 1
+          }
+        ]
+      },
+      "elemental-transmutator": {
+        "name": "elemental-transmutator",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 2,
+        "views_unique": 2,
+        "clones_total": 24,
+        "clones_unique": 23,
+        "last_updated": "2025-07-09T03:31:44Z",
+        "daily_views": [
+          {
+            "date": "2025-07-08",
+            "views": 1,
+            "unique_views": 1
+          },
+          {
+            "date": "2025-07-07",
+            "views": 1,
+            "unique_views": 1
+          }
+        ],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-09",
+            "clones": 5,
+            "unique_clones": 4
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 6,
+            "unique_clones": 6
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 1,
+            "unique_clones": 1
+          }
+        ]
+      },
+      "enhanced-simulation-hardware-abstraction-framework": {
+        "name": "enhanced-simulation-hardware-abstraction-framework",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 1,
+        "views_unique": 1,
+        "clones_total": 81,
+        "clones_unique": 73,
+        "last_updated": "2025-07-12T05:13:59Z",
+        "daily_views": [
+          {
+            "date": "2025-07-01",
+            "views": 1,
+            "unique_views": 1
+          }
+        ],
+        "daily_clones": [
+          {
+            "date": "2025-07-12",
+            "clones": 19,
+            "unique_clones": 17
+          },
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 4,
+            "unique_clones": 4
+          },
+          {
+            "date": "2025-07-09",
+            "clones": 5,
+            "unique_clones": 5
+          },
+          {
+            "date": "2025-07-08",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 4,
+            "unique_clones": 4
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 5,
+            "unique_clones": 5
+          }
+        ]
+      },
+      "lqg-anec-framework": {
+        "name": "lqg-anec-framework",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 23,
+        "clones_unique": 22,
+        "last_updated": "2025-07-09T03:32:35Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-09",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-08",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 4,
+            "unique_clones": 4
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 2,
+            "unique_clones": 2
+          }
+        ]
+      },
+      "lqg-cosmological-constant-predictor": {
+        "name": "lqg-cosmological-constant-predictor",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 1,
+        "views_unique": 1,
+        "clones_total": 62,
+        "clones_unique": 55,
+        "last_updated": "2025-07-09T03:31:51Z",
+        "daily_views": [
+          {
+            "date": "2025-07-04",
+            "views": 1,
+            "unique_views": 1
+          }
+        ],
+        "daily_clones": [
+          {
+            "date": "2025-07-12",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-09",
+            "clones": 7,
+            "unique_clones": 7
+          },
+          {
+            "date": "2025-07-08",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 3,
+            "unique_clones": 3
+          }
+        ]
+      },
+      "lqg-volume-kernel-catalog": {
+        "name": "lqg-volume-kernel-catalog",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 19,
+        "clones_unique": 18,
+        "last_updated": "2025-07-03T23:29:34Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-03",
+            "clones": 6,
+            "unique_clones": 6
+          },
+          {
+            "date": "2025-07-01",
+            "clones": 1,
+            "unique_clones": 1
+          }
+        ]
+      },
+      "lqg-first-principles-fine-structure-constant": {
+        "name": "lqg-first-principles-fine-structure-constant",
+        "stars": 0,
+        "watchers": 0,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 34,
+        "clones_unique": 33,
+        "last_updated": "2025-07-05T17:42:25Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 25,
+            "unique_clones": 24
+          }
+        ]
+      },
+      "lqg-first-principles-gravitational-constant": {
+        "name": "lqg-first-principles-gravitational-constant",
+        "stars": 0,
+        "watchers": 0,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 71,
+        "clones_unique": 62,
+        "last_updated": "2025-07-07T00:58:03Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 5,
+            "unique_clones": 5
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 4,
+            "unique_clones": 4
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 26,
+            "unique_clones": 26
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 32,
+            "unique_clones": 28
+          }
+        ]
+      },
+      "lqg-ftl-metric-engineering": {
+        "name": "lqg-ftl-metric-engineering",
+        "stars": 0,
+        "watchers": 0,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 95,
+        "clones_unique": 66,
+        "last_updated": "2025-07-12T03:51:30Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-12",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-11",
+            "clones": 5,
+            "unique_clones": 5
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 4,
+            "unique_clones": 4
+          },
+          {
+            "date": "2025-07-09",
+            "clones": 4,
+            "unique_clones": 4
+          },
+          {
+            "date": "2025-07-08",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 31,
+            "unique_clones": 22
+          }
+        ]
+      },
+      "lqg-polymer-field-generator": {
+        "name": "lqg-polymer-field-generator",
+        "stars": 0,
+        "watchers": 0,
+        "forks": 0,
+        "views_total": 1,
+        "views_unique": 1,
+        "clones_total": 68,
+        "clones_unique": 60,
+        "last_updated": "2025-07-12T03:52:18Z",
+        "daily_views": [
+          {
+            "date": "2025-07-12",
+            "views": 1,
+            "unique_views": 1
+          }
+        ],
+        "daily_clones": [
+          {
+            "date": "2025-07-12",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-11",
+            "clones": 14,
+            "unique_clones": 13
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 17,
+            "unique_clones": 17
+          },
+          {
+            "date": "2025-07-09",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 32,
+            "unique_clones": 29
+          }
+        ]
+      },
+      "lqg-positive-matter-assembler": {
+        "name": "lqg-positive-matter-assembler",
+        "stars": 0,
+        "watchers": 0,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 32,
+        "clones_unique": 31,
+        "last_updated": "2025-07-06T20:52:13Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-12",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-09",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-08",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 10,
+            "unique_clones": 10
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 14,
+            "unique_clones": 14
+          }
+        ]
+      },
+      "lqg-volume-quantization-controller": {
+        "name": "lqg-volume-quantization-controller",
+        "stars": 0,
+        "watchers": 0,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 51,
+        "clones_unique": 48,
+        "last_updated": "2025-07-12T03:52:38Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-12",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-11",
+            "clones": 11,
+            "unique_clones": 11
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-09",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 7,
+            "unique_clones": 7
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 25,
+            "unique_clones": 25
+          }
+        ]
+      },
+      "lorentz-violation-pipeline": {
+        "name": "lorentz-violation-pipeline",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 30,
+        "clones_unique": 27,
+        "last_updated": "2025-07-09T03:31:57Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-09",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 5,
+            "unique_clones": 5
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 9,
+            "unique_clones": 8
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 1,
+            "unique_clones": 1
+          }
+        ]
+      },
+      "medical-tractor-array": {
+        "name": "medical-tractor-array",
+        "stars": 0,
+        "watchers": 0,
+        "forks": 0,
+        "views_total": 1,
+        "views_unique": 1,
+        "clones_total": 26,
+        "clones_unique": 23,
+        "last_updated": "2025-07-10T21:49:57Z",
+        "daily_views": [
+          {
+            "date": "2025-07-10",
+            "views": 1,
+            "unique_views": 1
+          }
+        ],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 5,
+            "unique_clones": 5
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 21,
+            "unique_clones": 18
+          }
+        ]
+      },
+      "negative-energy-generator": {
+        "name": "negative-energy-generator",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 16,
+        "views_unique": 11,
+        "clones_total": 57,
+        "clones_unique": 48,
+        "last_updated": "2025-07-10T12:17:05Z",
+        "daily_views": [
+          {
+            "date": "2025-07-11",
+            "views": 1,
+            "unique_views": 1
+          },
+          {
+            "date": "2025-07-09",
+            "views": 1,
+            "unique_views": 1
+          },
+          {
+            "date": "2025-07-08",
+            "views": 2,
+            "unique_views": 2
+          },
+          {
+            "date": "2025-07-06",
+            "views": 1,
+            "unique_views": 1
+          },
+          {
+            "date": "2025-07-05",
+            "views": 1,
+            "unique_views": 1
+          },
+          {
+            "date": "2025-07-04",
+            "views": 2,
+            "unique_views": 2
+          },
+          {
+            "date": "2025-07-03",
+            "views": 2,
+            "unique_views": 2
+          }
+        ],
+        "daily_clones": [
+          {
+            "date": "2025-07-12",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 6,
+            "unique_clones": 6
+          },
+          {
+            "date": "2025-07-09",
+            "clones": 4,
+            "unique_clones": 4
+          },
+          {
+            "date": "2025-07-08",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 8,
+            "unique_clones": 7
+          }
+        ]
+      },
+      "polymer-fusion-framework": {
+        "name": "polymer-fusion-framework",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 3,
+        "views_unique": 2,
+        "clones_total": 26,
+        "clones_unique": 23,
+        "last_updated": "2025-07-07T22:09:37Z",
+        "daily_views": [
+          {
+            "date": "2025-07-10",
+            "views": 2,
+            "unique_views": 1
+          },
+          {
+            "date": "2025-07-08",
+            "views": 1,
+            "unique_views": 1
+          }
+        ],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 6,
+            "unique_clones": 6
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 6,
+            "unique_clones": 6
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-03",
+            "clones": 1,
+            "unique_clones": 1
+          }
+        ]
+      },
+      "polymerized-lqg-matter-transporter": {
+        "name": "polymerized-lqg-matter-transporter",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 97,
+        "clones_unique": 82,
+        "last_updated": "2025-07-09T03:32:22Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-09",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-08",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 6,
+            "unique_clones": 6
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 3,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 7,
+            "unique_clones": 7
+          }
+        ]
+      },
+      "polymerized-lqg-replicator-recycler": {
+        "name": "polymerized-lqg-replicator-recycler",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 128,
+        "clones_unique": 114,
+        "last_updated": "2025-07-07T22:14:41Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-12",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-08",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 4,
+            "unique_clones": 4
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 3,
+            "unique_clones": 3
+          }
+        ]
+      },
+      "su2-3nj-closedform": {
+        "name": "su2-3nj-closedform",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 17,
+        "clones_unique": 16,
+        "last_updated": "2025-07-06T04:31:43Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-09",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 4,
+            "unique_clones": 4
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-03",
+            "clones": 2,
+            "unique_clones": 2
+          }
+        ]
+      },
+      "su2-3nj-generating-functional": {
+        "name": "su2-3nj-generating-functional",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 22,
+        "clones_unique": 21,
+        "last_updated": "2025-07-04T01:47:40Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 4,
+            "unique_clones": 4
+          },
+          {
+            "date": "2025-07-03",
+            "clones": 7,
+            "unique_clones": 7
+          },
+          {
+            "date": "2025-07-01",
+            "clones": 1,
+            "unique_clones": 1
+          }
+        ]
+      },
+      "su2-3nj-recurrences": {
+        "name": "su2-3nj-recurrences",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 17,
+        "clones_unique": 16,
+        "last_updated": "2025-07-03T23:29:39Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-03",
+            "clones": 6,
+            "unique_clones": 5
+          },
+          {
+            "date": "2025-07-01",
+            "clones": 1,
+            "unique_clones": 1
+          }
+        ]
+      },
+      "su2-3nj-uniform-closed-form": {
+        "name": "su2-3nj-uniform-closed-form",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 19,
+        "clones_unique": 18,
+        "last_updated": "2025-07-07T22:21:07Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-12",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-11",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 4,
+            "unique_clones": 4
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 1,
+            "unique_clones": 1
+          }
+        ]
+      },
+      "su2-node-matrix-elements": {
+        "name": "su2-node-matrix-elements",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 14,
+        "clones_unique": 13,
+        "last_updated": "2025-06-21T17:12:15Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-03",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-01",
+            "clones": 1,
+            "unique_clones": 1
+          }
+        ]
+      },
+      "unified-gut-polymerization": {
+        "name": "unified-gut-polymerization",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 19,
+        "clones_unique": 18,
+        "last_updated": "2025-07-05T17:42:48Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-08",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 5,
+            "unique_clones": 5
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-03",
+            "clones": 1,
+            "unique_clones": 1
+          }
+        ]
+      },
+      "unified-lqg": {
+        "name": "unified-lqg",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 3,
+        "views_unique": 2,
+        "clones_total": 91,
+        "clones_unique": 77,
+        "last_updated": "2025-07-12T03:50:40Z",
+        "daily_views": [
+          {
+            "date": "2025-07-11",
+            "views": 1,
+            "unique_views": 1
+          },
+          {
+            "date": "2025-07-04",
+            "views": 2,
+            "unique_views": 1
+          }
+        ],
+        "daily_clones": [
+          {
+            "date": "2025-07-12",
+            "clones": 5,
+            "unique_clones": 5
+          },
+          {
+            "date": "2025-07-11",
+            "clones": 25,
+            "unique_clones": 25
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 9,
+            "unique_clones": 9
+          },
+          {
+            "date": "2025-07-09",
+            "clones": 6,
+            "unique_clones": 6
+          },
+          {
+            "date": "2025-07-08",
+            "clones": 7,
+            "unique_clones": 7
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 4,
+            "unique_clones": 4
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 10,
+            "unique_clones": 7
+          }
+        ]
+      },
+      "unified-lqg-qft": {
+        "name": "unified-lqg-qft",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 3,
+        "views_unique": 1,
+        "clones_total": 37,
+        "clones_unique": 32,
+        "last_updated": "2025-07-09T03:33:06Z",
+        "daily_views": [
+          {
+            "date": "2025-07-02",
+            "views": 3,
+            "unique_views": 1
+          }
+        ],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-09",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-08",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 5,
+            "unique_clones": 4
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 11,
+            "unique_clones": 10
+          }
+        ]
+      },
+      "warp-bubble-assemble-expressions": {
+        "name": "warp-bubble-assemble-expressions",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 15,
+        "clones_unique": 14,
+        "last_updated": "2025-06-24T00:25:51Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-03",
+            "clones": 1,
+            "unique_clones": 1
+          }
+        ]
+      },
+      "warp-bubble-connection-curvature": {
+        "name": "warp-bubble-connection-curvature",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 12,
+        "clones_unique": 12,
+        "last_updated": "2025-06-23T20:00:59Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-03",
+            "clones": 1,
+            "unique_clones": 1
+          }
+        ]
+      },
+      "warp-bubble-coordinate-spec": {
+        "name": "warp-bubble-coordinate-spec",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 14,
+        "clones_unique": 13,
+        "last_updated": "2025-06-21T16:15:22Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-03",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-01",
+            "clones": 1,
+            "unique_clones": 1
+          }
+        ]
+      },
+      "warp-bubble-einstein-equations": {
+        "name": "warp-bubble-einstein-equations",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 24,
+        "clones_unique": 24,
+        "last_updated": "2025-07-07T00:58:17Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 4,
+            "unique_clones": 4
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 5,
+            "unique_clones": 5
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-03",
+            "clones": 1,
+            "unique_clones": 1
+          }
+        ]
+      },
+      "warp-bubble-exotic-matter-density": {
+        "name": "warp-bubble-exotic-matter-density",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 2,
+        "views_unique": 2,
+        "clones_total": 30,
+        "clones_unique": 26,
+        "last_updated": "2025-07-07T00:58:23Z",
+        "daily_views": [
+          {
+            "date": "2025-07-12",
+            "views": 1,
+            "unique_views": 1
+          },
+          {
+            "date": "2025-07-06",
+            "views": 1,
+            "unique_views": 1
+          }
+        ],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-09",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 7,
+            "unique_clones": 7
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 5,
+            "unique_clones": 4
+          }
+        ]
+      },
+      "warp-bubble-metric-ansatz": {
+        "name": "warp-bubble-metric-ansatz",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 14,
+        "clones_unique": 14,
+        "last_updated": "2025-06-23T19:58:37Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-03",
+            "clones": 1,
+            "unique_clones": 1
+          }
+        ]
+      },
+      "warp-bubble-mvp-simulator": {
+        "name": "warp-bubble-mvp-simulator",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 3,
+        "views_unique": 1,
+        "clones_total": 15,
+        "clones_unique": 14,
+        "last_updated": "2025-06-24T00:44:12Z",
+        "daily_views": [
+          {
+            "date": "2025-06-30",
+            "views": 3,
+            "unique_views": 1
+          }
+        ],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-09",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-03",
+            "clones": 1,
+            "unique_clones": 1
+          }
+        ]
+      },
+      "warp-bubble-optimizer": {
+        "name": "warp-bubble-optimizer",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 43,
+        "clones_unique": 38,
+        "last_updated": "2025-07-07T22:16:15Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-08",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 4,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 14,
+            "unique_clones": 13
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 3,
+            "unique_clones": 3
+          }
+        ]
+      },
+      "warp-bubble-parameter-constraints": {
+        "name": "warp-bubble-parameter-constraints",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 3,
+        "views_unique": 1,
+        "clones_total": 18,
+        "clones_unique": 18,
+        "last_updated": "2025-07-07T00:58:31Z",
+        "daily_views": [
+          {
+            "date": "2025-07-11",
+            "views": 3,
+            "unique_views": 1
+          }
+        ],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 4,
+            "unique_clones": 4
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-03",
+            "clones": 1,
+            "unique_clones": 1
+          }
+        ]
+      },
+      "warp-bubble-qft": {
+        "name": "warp-bubble-qft",
+        "stars": 2,
+        "watchers": 2,
+        "forks": 0,
+        "views_total": 3,
+        "views_unique": 1,
+        "clones_total": 21,
+        "clones_unique": 20,
+        "last_updated": "2025-07-09T03:33:00Z",
+        "daily_views": [
+          {
+            "date": "2025-07-10",
+            "views": 2,
+            "unique_views": 1
+          },
+          {
+            "date": "2025-07-06",
+            "views": 1,
+            "unique_views": 1
+          }
+        ],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-09",
+            "clones": 5,
+            "unique_clones": 5
+          },
+          {
+            "date": "2025-07-08",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 1,
+            "unique_clones": 1
+          }
+        ]
+      },
+      "warp-bubble-shape-catalog": {
+        "name": "warp-bubble-shape-catalog",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 14,
+        "clones_unique": 13,
+        "last_updated": "2025-06-24T00:45:46Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-03",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-01",
+            "clones": 2,
+            "unique_clones": 2
+          }
+        ]
+      },
+      "warp-convergence-analysis": {
+        "name": "warp-convergence-analysis",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 18,
+        "clones_unique": 17,
+        "last_updated": "2025-07-05T17:43:18Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 4,
+            "unique_clones": 4
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-03",
+            "clones": 1,
+            "unique_clones": 1
+          }
+        ]
+      },
+      "warp-curvature-analysis": {
+        "name": "warp-curvature-analysis",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 1,
+        "views_unique": 1,
+        "clones_total": 14,
+        "clones_unique": 14,
+        "last_updated": "2025-07-05T17:43:27Z",
+        "daily_views": [
+          {
+            "date": "2025-06-28",
+            "views": 1,
+            "unique_views": 1
+          }
+        ],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-08",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-03",
+            "clones": 1,
+            "unique_clones": 1
+          }
+        ]
+      },
+      "warp-discretization": {
+        "name": "warp-discretization",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 14,
+        "clones_unique": 13,
+        "last_updated": "2025-06-24T00:26:14Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-03",
+            "clones": 1,
+            "unique_clones": 1
+          }
+        ]
+      },
+      "warp-field-coils": {
+        "name": "warp-field-coils",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 227,
+        "clones_unique": 148,
+        "last_updated": "2025-07-12T03:51:10Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-12",
+            "clones": 6,
+            "unique_clones": 6
+          },
+          {
+            "date": "2025-07-11",
+            "clones": 14,
+            "unique_clones": 14
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 25,
+            "unique_clones": 22
+          },
+          {
+            "date": "2025-07-09",
+            "clones": 42,
+            "unique_clones": 37
+          },
+          {
+            "date": "2025-07-08",
+            "clones": 59,
+            "unique_clones": 50
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 43,
+            "unique_clones": 37
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 17,
+            "unique_clones": 14
+          }
+        ]
+      },
+      "warp-lqg-midisuperspace": {
+        "name": "warp-lqg-midisuperspace",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 21,
+        "clones_unique": 19,
+        "last_updated": "2025-07-05T17:43:48Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-08",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 5,
+            "unique_clones": 5
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-03",
+            "clones": 1,
+            "unique_clones": 1
+          }
+        ]
+      },
+      "warp-mock-data-generator": {
+        "name": "warp-mock-data-generator",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 1,
+        "views_unique": 1,
+        "clones_total": 21,
+        "clones_unique": 18,
+        "last_updated": "2025-07-07T22:21:37Z",
+        "daily_views": [
+          {
+            "date": "2025-07-04",
+            "views": 1,
+            "unique_views": 1
+          }
+        ],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-08",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 5,
+            "unique_clones": 5
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 1,
+            "unique_clones": 1
+          }
+        ]
+      },
+      "warp-sensitivity-analysis": {
+        "name": "warp-sensitivity-analysis",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 20,
+        "clones_unique": 19,
+        "last_updated": "2025-07-05T17:44:08Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 4,
+            "unique_clones": 4
+          },
+          {
+            "date": "2025-07-08",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 4,
+            "unique_clones": 4
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 1,
+            "unique_clones": 1
+          }
+        ]
+      },
+      "warp-signature-workflow": {
+        "name": "warp-signature-workflow",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 14,
+        "clones_unique": 13,
+        "last_updated": "2025-06-23T21:15:12Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-03",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-01",
+            "clones": 1,
+            "unique_clones": 1
+          }
+        ]
+      },
+      "warp-solver-equations": {
+        "name": "warp-solver-equations",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 0,
+        "views_unique": 0,
+        "clones_total": 19,
+        "clones_unique": 19,
+        "last_updated": "2025-07-05T17:44:17Z",
+        "daily_views": [],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-08",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 1,
+            "unique_clones": 1
+          }
+        ]
+      },
+      "warp-spacetime-stability-controller": {
+        "name": "warp-spacetime-stability-controller",
+        "stars": 1,
+        "watchers": 1,
+        "forks": 0,
+        "views_total": 3,
+        "views_unique": 2,
+        "clones_total": 68,
+        "clones_unique": 63,
+        "last_updated": "2025-07-01T22:11:41Z",
+        "daily_views": [
+          {
+            "date": "2025-07-11",
+            "views": 1,
+            "unique_views": 1
+          },
+          {
+            "date": "2025-07-01",
+            "views": 2,
+            "unique_views": 1
+          }
+        ],
+        "daily_clones": [
+          {
+            "date": "2025-07-11",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-10",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-08",
+            "clones": 1,
+            "unique_clones": 1
+          },
+          {
+            "date": "2025-07-07",
+            "clones": 5,
+            "unique_clones": 4
+          },
+          {
+            "date": "2025-07-06",
+            "clones": 3,
+            "unique_clones": 3
+          },
+          {
+            "date": "2025-07-05",
+            "clones": 2,
+            "unique_clones": 2
+          },
+          {
+            "date": "2025-07-04",
+            "clones": 11,
+            "unique_clones": 10
+          }
+        ]
+      }
+    },
+    "totals": {
+      "views": 50,
+      "unique_views": 34,
+      "clones": 2912,
+      "unique_clones": 2187,
+      "stars": 47,
+      "watchers": 47,
+      "forks": 0,
+      "repositories_count": 53
+    }
   }
 ]

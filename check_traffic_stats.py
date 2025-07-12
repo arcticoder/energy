@@ -241,7 +241,49 @@ def generate_html_chart(current_run, stats_history):
     """Generate HTML chart using template."""
     print("📊 Generating HTML chart...")
     
-    # Prepare chart data
+    # Aggregate daily data from all repositories
+    daily_aggregates = {}
+    
+    # Process current run daily data
+    for repo_name, repo_data in current_run["repositories"].items():
+        # Aggregate daily views
+        for day_data in repo_data.get("daily_views", []):
+            date = day_data["date"]
+            if date not in daily_aggregates:
+                daily_aggregates[date] = {"views": 0, "unique_views": 0, "clones": 0, "unique_clones": 0}
+            daily_aggregates[date]["views"] += day_data["views"]
+            daily_aggregates[date]["unique_views"] += day_data["unique_views"]
+        
+        # Aggregate daily clones
+        for day_data in repo_data.get("daily_clones", []):
+            date = day_data["date"]
+            if date not in daily_aggregates:
+                daily_aggregates[date] = {"views": 0, "unique_views": 0, "clones": 0, "unique_clones": 0}
+            daily_aggregates[date]["clones"] += day_data["clones"]
+            daily_aggregates[date]["unique_clones"] += day_data["unique_clones"]
+    
+    # Process historical runs if available
+    for run in stats_history[:-1]:  # Exclude current run to avoid duplication
+        for repo_name, repo_data in run.get("repositories", {}).items():
+            # Aggregate daily views
+            for day_data in repo_data.get("daily_views", []):
+                date = day_data["date"]
+                if date not in daily_aggregates:
+                    daily_aggregates[date] = {"views": 0, "unique_views": 0, "clones": 0, "unique_clones": 0}
+                # Don't double-count - take max values since repos might have been processed multiple times
+                daily_aggregates[date]["views"] = max(daily_aggregates[date]["views"], day_data["views"])
+                daily_aggregates[date]["unique_views"] = max(daily_aggregates[date]["unique_views"], day_data["unique_views"])
+            
+            # Aggregate daily clones
+            for day_data in repo_data.get("daily_clones", []):
+                date = day_data["date"]
+                if date not in daily_aggregates:
+                    daily_aggregates[date] = {"views": 0, "unique_views": 0, "clones": 0, "unique_clones": 0}
+                # Don't double-count - take max values since repos might have been processed multiple times
+                daily_aggregates[date]["clones"] = max(daily_aggregates[date]["clones"], day_data["clones"])
+                daily_aggregates[date]["unique_clones"] = max(daily_aggregates[date]["unique_clones"], day_data["unique_clones"])
+    
+    # Prepare chart data from aggregated daily data
     chart_data = {
         "labels": [],
         "datasets": [
@@ -276,14 +318,20 @@ def generate_html_chart(current_run, stats_history):
         ]
     }
     
-    # Extract data from history (last 30 runs)
-    recent_history = sorted(stats_history, key=lambda x: x['timestamp'])[-30:]
-    for run in recent_history:
-        chart_data["labels"].append(run["date"])
-        chart_data["datasets"][0]["data"].append(run["totals"]["views"])
-        chart_data["datasets"][1]["data"].append(run["totals"]["unique_views"])
-        chart_data["datasets"][2]["data"].append(run["totals"]["clones"])
-        chart_data["datasets"][3]["data"].append(run["totals"]["unique_clones"])
+    # Sort dates and take last 30 days
+    sorted_dates = sorted(daily_aggregates.keys())[-30:]
+    
+    for date in sorted_dates:
+        chart_data["labels"].append(date)
+        chart_data["datasets"][0]["data"].append(daily_aggregates[date]["views"])
+        chart_data["datasets"][1]["data"].append(daily_aggregates[date]["unique_views"])
+        chart_data["datasets"][2]["data"].append(daily_aggregates[date]["clones"])
+        chart_data["datasets"][3]["data"].append(daily_aggregates[date]["unique_clones"])
+    
+    print(f"📈 Aggregated daily data for {len(sorted_dates)} days:")
+    for date in sorted_dates[-7:]:  # Show last 7 days
+        agg = daily_aggregates[date]
+        print(f"   {date}: {agg['views']} views ({agg['unique_views']} unique), {agg['clones']} clones ({agg['unique_clones']} unique)")
     
     # Read template and replace placeholders
     try:

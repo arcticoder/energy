@@ -71,7 +71,7 @@
 <body>
     <div class="container">
         <h1>GitHub Traffic Analytics</h1>
-        <p class="update-time">Last updated: July 12, 2025 08:50</p>
+        <p class="update-time">Last updated: July 12, 2025 09:10</p>
         
         <div class="stats">
             <div class="stat">
@@ -83,11 +83,11 @@
                 <div class="stat-label">Unique Views</div>
             </div>
             <div class="stat">
-                <div class="stat-value">2919</div>
+                <div class="stat-value">2912</div>
                 <div class="stat-label">Total Clones</div>
             </div>
             <div class="stat">
-                <div class="stat-value">2192</div>
+                <div class="stat-value">2187</div>
                 <div class="stat-label">Unique Clones</div>
             </div>
             <div class="stat">
@@ -103,7 +103,7 @@
         
         <script>
             const ctx = document.getElementById('trafficChart').getContext('2d');
-            const chartData = {"labels": ["2025-07-12"], "datasets": [{"label": "Total Views", "data": [50], "borderColor": "rgb(75, 192, 192)", "backgroundColor": "rgba(75, 192, 192, 0.1)", "tension": 0.1}, {"label": "Unique Views", "data": [34], "borderColor": "rgb(255, 99, 132)", "backgroundColor": "rgba(255, 99, 132, 0.1)", "tension": 0.1}, {"label": "Total Clones", "data": [2919], "borderColor": "rgb(54, 162, 235)", "backgroundColor": "rgba(54, 162, 235, 0.1)", "tension": 0.1}, {"label": "Unique Clones", "data": [2192], "borderColor": "rgb(255, 206, 86)", "backgroundColor": "rgba(255, 206, 86, 0.1)", "tension": 0.1}]};
+            const chartData = {"labels": ["2025-06-28", "2025-06-30", "2025-07-01", "2025-07-02", "2025-07-03", "2025-07-04", "2025-07-05", "2025-07-06", "2025-07-07", "2025-07-08", "2025-07-09", "2025-07-10", "2025-07-11", "2025-07-12"], "datasets": [{"label": "Total Views", "data": [1, 4, 3, 3, 2, 6, 1, 3, 1, 4, 2, 5, 7, 2], "borderColor": "rgb(75, 192, 192)", "backgroundColor": "rgba(75, 192, 192, 0.1)", "tension": 0.1}, {"label": "Unique Views", "data": [1, 2, 2, 1, 2, 5, 1, 3, 1, 4, 2, 3, 5, 2], "borderColor": "rgb(255, 99, 132)", "backgroundColor": "rgba(255, 99, 132, 0.1)", "tension": 0.1}, {"label": "Total Clones", "data": [0, 0, 8, 0, 38, 88, 167, 310, 217, 124, 141, 346, 262, 94], "borderColor": "rgb(54, 162, 235)", "backgroundColor": "rgba(54, 162, 235, 0.1)", "tension": 0.1}, {"label": "Unique Clones", "data": [0, 0, 8, 0, 37, 82, 163, 241, 198, 111, 129, 285, 234, 78], "borderColor": "rgb(255, 206, 86)", "backgroundColor": "rgba(255, 206, 86, 0.1)", "tension": 0.1}]};
             
             const chart = new Chart(ctx, {
                 type: 'line',
