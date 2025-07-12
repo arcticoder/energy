@@ -168,13 +168,15 @@ def process_repository(repo):
                 "views_unique": views_uniques
             })
             
-            # Process daily views
+            # Process daily views (extend to full 14 days)
             if 'views' in views and views['views']:
                 from datetime import timezone
                 past_24_hours = datetime.now(timezone.utc) - timedelta(days=1)
-                print("   Recent daily breakdown:")
+                print("   Daily breakdown (last 14 days):")
                 
-                for day in sorted(views['views'], key=lambda x: x['timestamp'], reverse=True)[:7]:
+                # Sort by date and show all available days (up to 14)
+                all_views = sorted(views['views'], key=lambda x: x['timestamp'], reverse=True)[:14]
+                for day in all_views:
                     day_date = datetime.fromisoformat(day['timestamp'].replace('Z', '+00:00'))
                     date_str = day_date.strftime("%b %d")
                     count = day.get('count', 0)
@@ -208,13 +210,15 @@ def process_repository(repo):
                 "clones_unique": clones_uniques
             })
             
-            # Process daily clones
+            # Process daily clones (extend to full 14 days)
             if 'clones' in clones and clones['clones']:
                 from datetime import timezone
                 past_48_hours = datetime.now(timezone.utc) - timedelta(days=2)
-                print("   Recent daily breakdown:")
+                print("   Daily breakdown (last 14 days):")
                 
-                for day in sorted(clones['clones'], key=lambda x: x['timestamp'], reverse=True)[:7]:
+                # Sort by date and show all available days (up to 14)
+                all_clones = sorted(clones['clones'], key=lambda x: x['timestamp'], reverse=True)[:14]
+                for day in all_clones:
                     day_date = datetime.fromisoformat(day['timestamp'].replace('Z', '+00:00'))
                     date_str = day_date.strftime("%b %d")
                     count = day.get('count', 0)
@@ -329,7 +333,7 @@ def generate_html_chart(current_run, stats_history):
         chart_data["datasets"][3]["data"].append(daily_aggregates[date]["unique_clones"])
     
     print(f"📈 Aggregated daily data for {len(sorted_dates)} days:")
-    for date in sorted_dates[-7:]:  # Show last 7 days
+    for date in sorted_dates[-14:]:  # Show last 14 days
         agg = daily_aggregates[date]
         print(f"   {date}: {agg['views']} views ({agg['unique_views']} unique), {agg['clones']} clones ({agg['unique_clones']} unique)")
     

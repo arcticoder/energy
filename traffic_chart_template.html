@@ -58,6 +58,42 @@
             background: #fafafa;
             border-radius: 8px;
         }
+        .chart-controls {
+            margin: 20px 0;
+            text-align: center;
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .chart-controls h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        .control-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .toggle-btn {
+            padding: 8px 16px;
+            border: 2px solid;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        .toggle-btn.views { border-color: rgb(75, 192, 192); color: rgb(75, 192, 192); }
+        .toggle-btn.unique-views { border-color: rgb(255, 99, 132); color: rgb(255, 99, 132); }
+        .toggle-btn.clones { border-color: rgb(54, 162, 235); color: rgb(54, 162, 235); }
+        .toggle-btn.unique-clones { border-color: rgb(255, 206, 86); color: rgb(255, 206, 86); }
+        
+        .toggle-btn.active.views { background: rgb(75, 192, 192); color: white; }
+        .toggle-btn.active.unique-views { background: rgb(255, 99, 132); color: white; }
+        .toggle-btn.active.clones { background: rgb(54, 162, 235); color: white; }
+        .toggle-btn.active.unique-clones { background: rgb(255, 206, 86); color: white; }
         h2 { 
             text-align: center; 
             color: #555;
@@ -96,6 +132,16 @@
             </div>
         </div>
         
+        <div class="chart-controls">
+            <h3>Interactive Controls</h3>
+            <div class="control-buttons">
+                <button class="toggle-btn views active" onclick="toggleDataset(0)">Total Views</button>
+                <button class="toggle-btn unique-views active" onclick="toggleDataset(1)">Unique Views</button>
+                <button class="toggle-btn clones active" onclick="toggleDataset(2)">Total Clones</button>
+                <button class="toggle-btn unique-clones active" onclick="toggleDataset(3)">Unique Clones</button>
+            </div>
+        </div>
+        
         <div class="chart-container">
             <h2>Traffic Trends Over Time</h2>
             <canvas id="trafficChart" width="800" height="400"></canvas>
@@ -105,41 +151,140 @@
             const ctx = document.getElementById('trafficChart').getContext('2d');
             const chartData = {{CHART_DATA}};
             
+            // Calculate trend lines for each dataset
+            function calculateTrendline(data) {
+                const n = data.length;
+                if (n < 2) return data.map(() => 0);
+                
+                let sumX = 0, sumY = 0, sumXY = 0, sumXX = 0;
+                data.forEach((y, x) => {
+                    sumX += x;
+                    sumY += y;
+                    sumXY += x * y;
+                    sumXX += x * x;
+                });
+                
+                const slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);
+                const intercept = (sumY - slope * sumX) / n;
+                
+                return data.map((_, x) => slope * x + intercept);
+            }
+            
+            // Add trend lines to datasets
+            chartData.datasets.forEach((dataset, index) => {
+                const trendData = calculateTrendline(dataset.data);
+                const trendDataset = {
+                    label: dataset.label + ' (Trend)',
+                    data: trendData,
+                    borderColor: dataset.borderColor,
+                    backgroundColor: 'transparent',
+                    borderWidth: 2,
+                    borderDash: [5, 5],
+                    pointRadius: 0,
+                    pointHoverRadius: 0,
+                    fill: false,
+                    tension: 0
+                };
+                chartData.datasets.push(trendDataset);
+            });
+            
             const chart = new Chart(ctx, {
                 type: 'line',
                 data: chartData,
                 options: {
                     responsive: true,
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Repository Traffic Over Time'
-                        },
-                        legend: {
-                            position: 'top'
-                        }
-                    },
-                    scales: {
-                        y: { 
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: 'Count'
-                            }
-                        },
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Date'
-                            }
-                        }
-                    },
+                    maintainAspectRatio: false,
                     interaction: {
                         intersect: false,
                         mode: 'index'
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Repository Traffic Analytics (14-Day Trend)',
+                            font: { size: 18, weight: 'bold' }
+                        },
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            onClick: (e, legendItem, legend) => {
+                                const index = legendItem.datasetIndex;
+                                const meta = chart.getDatasetMeta(index);
+                                meta.hidden = meta.hidden === null ? !chart.data.datasets[index].hidden : null;
+                                chart.update();
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: function(context) {
+                                    return 'Date: ' + context[0].label;
+                                },
+                                label: function(context) {
+                                    const label = context.dataset.label || '';
+                                    const value = context.parsed.y;
+                                    return label + ': ' + value.toLocaleString();
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Date',
+                                font: { size: 14, weight: 'bold' }
+                            },
+                            grid: { display: true, color: 'rgba(0,0,0,0.1)' }
+                        },
+                        y: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Count',
+                                font: { size: 14, weight: 'bold' }
+                            },
+                            beginAtZero: true,
+                            grid: { display: true, color: 'rgba(0,0,0,0.1)' }
+                        }
+                    },
+                    elements: {
+                        point: {
+                            radius: 4,
+                            hoverRadius: 8,
+                            borderWidth: 2
+                        },
+                        line: {
+                            tension: 0.1,
+                            borderWidth: 3
+                        }
+                    },
+                    animation: {
+                        duration: 1000,
+                        easing: 'easeInOutQuart'
                     }
                 }
             });
+            
+            // Toggle dataset visibility function
+            function toggleDataset(index) {
+                const button = document.querySelectorAll('.toggle-btn')[index];
+                const meta = chart.getDatasetMeta(index);
+                const trendMeta = chart.getDatasetMeta(index + 4); // Trend line datasets start after main datasets
+                
+                // Toggle visibility
+                if (meta.hidden === null || meta.hidden === false) {
+                    meta.hidden = true;
+                    if (trendMeta) trendMeta.hidden = true;
+                    button.classList.remove('active');
+                } else {
+                    meta.hidden = false;
+                    if (trendMeta) trendMeta.hidden = false;
+                    button.classList.add('active');
+                }
+                
+                chart.update();
+            }
         </script>
     </div>
 </body>
