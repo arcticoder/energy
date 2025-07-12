@@ -57,6 +57,9 @@
             padding: 20px;
             background: #fafafa;
             border-radius: 8px;
+            height: 500px;
+            max-height: 500px;
+            overflow: hidden;
         }
         .chart-controls {
             margin: 20px 0;
@@ -144,7 +147,7 @@
         
         <div class="chart-container">
             <h2>Traffic Trends Over Time</h2>
-            <canvas id="trafficChart" width="800" height="400"></canvas>
+            <canvas id="trafficChart" width="800" height="400" style="max-height: 400px;"></canvas>
         </div>
         
         <script>
@@ -193,7 +196,8 @@
                 data: chartData,
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false,
+                    maintainAspectRatio: true,
+                    aspectRatio: 2.5,
                     interaction: {
                         intersect: false,
                         mode: 'index'

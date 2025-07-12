@@ -7,6 +7,7 @@ Collects traffic stats from arcticoder repositories with JSON logging and HTML c
 import json
 import subprocess
 import sys
+import tempfile
 from datetime import datetime, timedelta
 from pathlib import Path
 import os
@@ -430,6 +431,53 @@ def main():
     
     # Generate HTML chart
     generate_html_chart(current_run, stats_history)
+    
+    # Git commit and push updated results
+    git_commit_and_push()
+
+def git_commit_and_push():
+    """Commit and push the updated traffic stats and chart to git repository."""
+    try:
+        print("\n🔄 Committing and pushing updated traffic analytics...")
+        
+        # Get current timestamp for commit message
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        
+        # Add all files
+        result = subprocess.run(['git', 'add', 'traffic_stats_history.json', 'traffic_stats_chart.html'], 
+                              capture_output=True, text=True)
+        if result.returncode != 0:
+            print(f"⚠️  Git add warning: {result.stderr}")
+        
+        # Check if there are changes to commit
+        result = subprocess.run(['git', 'diff', '--cached', '--quiet'], 
+                              capture_output=True, text=True)
+        if result.returncode == 0:
+            print("📝 No changes to commit - traffic data unchanged")
+            return
+        
+        # Commit changes
+        commit_message = f"Auto-update traffic analytics - {timestamp}\n\nUpdated traffic statistics and interactive chart with latest GitHub data"
+        result = subprocess.run(['git', 'commit', '-m', commit_message], 
+                              capture_output=True, text=True)
+        if result.returncode != 0:
+            print(f"❌ Git commit failed: {result.stderr}")
+            return
+        
+        print("✅ Changes committed successfully")
+        
+        # Push to remote
+        result = subprocess.run(['git', 'push'], capture_output=True, text=True)
+        if result.returncode != 0:
+            print(f"❌ Git push failed: {result.stderr}")
+            print("💡 You may need to manually push or check your git configuration")
+            return
+        
+        print("🚀 Changes pushed to remote repository successfully")
+        
+    except Exception as e:
+        print(f"❌ Git operations failed: {e}")
+        print("💡 Continuing without git operations...")
 
 if __name__ == "__main__":
     main()
