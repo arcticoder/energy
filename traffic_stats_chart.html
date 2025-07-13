@@ -110,28 +110,35 @@
 <body>
     <div class="container">
         <h1>GitHub Traffic Analytics</h1>
-        <p class="update-time">Last updated: July 12, 2025 09:51</p>
+        <p class="update-time">Last updated: July 13, 2025 05:35</p>
         
         <div class="stats">
             <div class="stat">
-                <div class="stat-value">50</div>
+                <div class="stat-value">48</div>
                 <div class="stat-label">Total Views</div>
             </div>
             <div class="stat">
-                <div class="stat-value">34</div>
+                <div class="stat-value">32</div>
                 <div class="stat-label">Unique Views</div>
             </div>
             <div class="stat">
-                <div class="stat-value">2920</div>
+                <div class="stat-value">3017</div>
                 <div class="stat-label">Total Clones</div>
             </div>
             <div class="stat">
-                <div class="stat-value">2188</div>
+                <div class="stat-value">2222</div>
                 <div class="stat-label">Unique Clones</div>
             </div>
             <div class="stat">
                 <div class="stat-value">47</div>
                 <div class="stat-label">Total Stars</div>
+            </div>
+        </div>
+        
+        <div class="chart-controls">
+            <h3>Growth Trends (16 days of data)</h3>
+            <div style="text-align: left; background: white; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                <p>📈 <strong>Views</strong>: 0.14 per day (R²=0.004)</p><p>📈 <strong>Unique Views</strong>: 0.25 per day (R²=0.023)</p><p>📈 <strong>Clones</strong>: 33.49 per day (R²=0.097)</p><p>📈 <strong>Unique Clones</strong>: 26.44 per day (R²=0.086)</p>
             </div>
         </div>
         
@@ -152,7 +159,7 @@
         
         <script>
             const ctx = document.getElementById('trafficChart').getContext('2d');
-            const chartData = {"labels": ["2025-06-28", "2025-06-29", "2025-06-30", "2025-07-01", "2025-07-02", "2025-07-03", "2025-07-04", "2025-07-05", "2025-07-06", "2025-07-07", "2025-07-08", "2025-07-09", "2025-07-10", "2025-07-11", "2025-07-12"], "datasets": [{"label": "Total Views", "data": [1, 1, 7, 5, 3, 2, 6, 1, 3, 1, 4, 2, 5, 7, 2], "borderColor": "rgb(75, 192, 192)", "backgroundColor": "rgba(75, 192, 192, 0.1)", "tension": 0.1}, {"label": "Unique Views", "data": [1, 1, 4, 4, 1, 2, 5, 1, 3, 1, 4, 2, 3, 5, 2], "borderColor": "rgb(255, 99, 132)", "backgroundColor": "rgba(255, 99, 132, 0.1)", "tension": 0.1}, {"label": "Total Clones", "data": [29, 107, 246, 298, 109, 105, 187, 337, 310, 217, 124, 141, 346, 262, 102], "borderColor": "rgb(54, 162, 235)", "backgroundColor": "rgba(54, 162, 235, 0.1)", "tension": 0.1}, {"label": "Unique Clones", "data": [28, 90, 227, 267, 107, 100, 170, 298, 241, 198, 111, 129, 285, 234, 83], "borderColor": "rgb(255, 206, 86)", "backgroundColor": "rgba(255, 206, 86, 0.1)", "tension": 0.1}]};
+            const chartData = {"labels": ["2025-06-28", "2025-06-29", "2025-06-30", "2025-07-01", "2025-07-02", "2025-07-03", "2025-07-04", "2025-07-05", "2025-07-06", "2025-07-07", "2025-07-08", "2025-07-09", "2025-07-10", "2025-07-11", "2025-07-12", "2025-07-13"], "datasets": [{"label": "Total Views", "data": [4, 2, 29, 21, 15, 10, 30, 5, 15, 5, 20, 10, 25, 35, 10, 0], "borderColor": "rgb(75, 192, 192)", "backgroundColor": "rgba(75, 192, 192, 0.1)", "tension": 0.1}, {"label": "Unique Views", "data": [4, 2, 16, 16, 5, 10, 25, 5, 15, 5, 20, 10, 15, 25, 10, 0], "borderColor": "rgb(255, 99, 132)", "backgroundColor": "rgba(255, 99, 132, 0.1)", "tension": 0.1}, {"label": "Total Clones", "data": [58, 265, 738, 910, 327, 391, 737, 1345, 1550, 1085, 620, 705, 1730, 1310, 582, 54], "borderColor": "rgb(54, 162, 235)", "backgroundColor": "rgba(54, 162, 235, 0.1)", "tension": 0.1}, {"label": "Unique Clones", "data": [56, 228, 681, 817, 321, 374, 674, 1220, 1205, 990, 555, 645, 1425, 1170, 473, 45], "borderColor": "rgb(255, 206, 86)", "backgroundColor": "rgba(255, 206, 86, 0.1)", "tension": 0.1}]};
             
             // Calculate trend lines for each dataset
             function calculateTrendline(data) {
