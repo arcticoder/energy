@@ -309,6 +309,35 @@ def generate_html_report(catalog, output_path):
             font-style: italic;
         }
         
+        .copy-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8em;
+            transition: all 0.2s;
+            min-width: 50px;
+        }
+        
+        .copy-btn:hover {
+            background: #5a6fd8;
+            transform: translateY(-1px);
+        }
+        
+        .copy-btn:active {
+            transform: translateY(0);
+        }
+        
+        .copy-btn.copied {
+            background: #28a745;
+        }
+        
+        .copy-btn.copied::after {
+            content: ' ✓';
+        }
+        
         @media (max-width: 768px) {
             .container {
                 margin: 10px;
@@ -378,6 +407,7 @@ def generate_html_report(catalog, output_path):
                         <th class="sortable" data-sort="date_modified">Date Modified</th>
                         <th class="sortable" data-sort="date_created">Date Created</th>
                         <th class="sortable" data-sort="file_size_bytes">Size</th>
+                        <th>Copy Path</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody">
@@ -435,6 +465,61 @@ def generate_html_report(catalog, output_path):
             });
         }
         
+        function copyToClipboard(path, buttonId) {
+            // Use the modern Clipboard API if available
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(path).then(() => {
+                    showCopySuccess(buttonId);
+                }).catch((err) => {
+                    console.error('Failed to copy text: ', err);
+                    fallbackCopyTextToClipboard(path, buttonId);
+                });
+            } else {
+                // Fallback for older browsers or non-secure contexts
+                fallbackCopyTextToClipboard(path, buttonId);
+            }
+        }
+        
+        function fallbackCopyTextToClipboard(text, buttonId) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.top = "0";
+            textArea.style.left = "0";
+            textArea.style.position = "fixed";
+            textArea.style.opacity = "0";
+            
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showCopySuccess(buttonId);
+                } else {
+                    console.error('Fallback: Copying text command was unsuccessful');
+                }
+            } catch (err) {
+                console.error('Fallback: Unable to copy', err);
+            }
+            
+            document.body.removeChild(textArea);
+        }
+        
+        function showCopySuccess(buttonId) {
+            const button = document.getElementById(buttonId);
+            if (button) {
+                const originalText = button.textContent;
+                button.classList.add('copied');
+                button.textContent = 'Copied';
+                
+                setTimeout(() => {
+                    button.classList.remove('copied');
+                    button.textContent = originalText;
+                }, 2000);
+            }
+        }
+        
         function updateSortIndicators(activeColumn, direction) {
             // Remove all sort classes
             document.querySelectorAll('th.sortable').forEach(th => {
@@ -452,6 +537,7 @@ def generate_html_report(catalog, output_path):
         
         function createFileRow(file) {
             const extClass = file.file_extension === '.py' ? 'ext-py' : 'ext-ps1';
+            const copyBtnId = `copy-${file.repository}-${file.file_name}`.replace(/[^a-zA-Z0-9-]/g, '-');
             return `
                 <tr data-repo="${file.repository}" data-ext="${file.file_extension}" data-modified="${file.date_modified}">
                     <td><span class="${extClass}">${file.file_name}</span></td>
@@ -460,6 +546,7 @@ def generate_html_report(catalog, output_path):
                     <td class="timestamp">${formatDate(file.date_modified)}</td>
                     <td class="timestamp">${formatDate(file.date_created)}</td>
                     <td class="file-size">${formatFileSize(file.file_size_bytes)}</td>
+                    <td><button class="copy-btn" id="${copyBtnId}" onclick="copyToClipboard('${file.absolute_path.replace(/\\/g, '\\\\')}', '${copyBtnId}')">Copy</button></td>
                 </tr>
             `;
         }
@@ -560,6 +647,10 @@ def generate_html_report(catalog, output_path):
     file_rows = []
     for file_data in catalog['files']:
         ext_class = 'ext-py' if file_data['file_extension'] == '.py' else 'ext-ps1'
+        # Create a safe ID for the copy button
+        copy_btn_id = f"copy-{file_data['repository']}-{file_data['file_name']}".replace('/', '-').replace('\\', '-').replace(' ', '-').replace('.', '-')
+        # Escape backslashes for JavaScript
+        escaped_path = file_data['absolute_path'].replace('\\', '\\\\')
         row = f"""
                     <tr data-repo="{file_data['repository']}" data-ext="{file_data['file_extension']}" data-modified="{file_data['date_modified']}">
                         <td><span class="{ext_class}">{file_data['file_name']}</span></td>
@@ -568,6 +659,7 @@ def generate_html_report(catalog, output_path):
                         <td class="timestamp">{datetime.fromisoformat(file_data['date_modified']).strftime('%m/%d/%Y %I:%M %p')}</td>
                         <td class="timestamp">{datetime.fromisoformat(file_data['date_created']).strftime('%m/%d/%Y %I:%M %p')}</td>
                         <td class="file-size">{format_file_size(file_data['file_size_bytes'])}</td>
+                        <td><button class="copy-btn" id="{copy_btn_id}" onclick="copyToClipboard('{escaped_path}', '{copy_btn_id}')">Copy</button></td>
                     </tr>"""
         file_rows.append(row)
     
