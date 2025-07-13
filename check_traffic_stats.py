@@ -332,28 +332,32 @@ def generate_html_chart(current_run, stats_history):
                 "data": [],
                 "borderColor": "rgb(75, 192, 192)",
                 "backgroundColor": "rgba(75, 192, 192, 0.1)",
-                "tension": 0.1
+                "tension": 0.1,
+                "order": 2
             },
             {
                 "label": "Unique Views", 
                 "data": [],
                 "borderColor": "rgb(255, 99, 132)",
                 "backgroundColor": "rgba(255, 99, 132, 0.1)",
-                "tension": 0.1
+                "tension": 0.1,
+                "order": 2
             },
             {
                 "label": "Total Clones",
                 "data": [],
                 "borderColor": "rgb(54, 162, 235)",
                 "backgroundColor": "rgba(54, 162, 235, 0.1)",
-                "tension": 0.1
+                "tension": 0.1,
+                "order": 2
             },
             {
                 "label": "Unique Clones",
                 "data": [],
                 "borderColor": "rgb(255, 206, 86)",
                 "backgroundColor": "rgba(255, 206, 86, 0.1)",
-                "tension": 0.1
+                "tension": 0.1,
+                "order": 2
             }
         ]
     }

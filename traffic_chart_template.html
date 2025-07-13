@@ -150,6 +150,15 @@
                 <button class="toggle-btn clones active" onclick="toggleDataset(2)">Total Clones</button>
                 <button class="toggle-btn unique-clones active" onclick="toggleDataset(3)">Unique Clones</button>
             </div>
+            <div style="margin-top: 15px;">
+                <h4 style="margin: 10px 0 5px 0;">Trend Lines (Line of Best Fit)</h4>
+                <div class="control-buttons">
+                    <button class="toggle-btn views active" onclick="toggleTrendDataset(4)">Views Trend</button>
+                    <button class="toggle-btn unique-views active" onclick="toggleTrendDataset(5)">Unique Views Trend</button>
+                    <button class="toggle-btn clones active" onclick="toggleTrendDataset(6)">Clones Trend</button>
+                    <button class="toggle-btn unique-clones active" onclick="toggleTrendDataset(7)">Unique Clones Trend</button>
+                </div>
+            </div>
         </div>
         
         <div class="chart-container">
@@ -180,20 +189,21 @@
                 return data.map((_, x) => slope * x + intercept);
             }
             
-            // Add trend lines to datasets
+            // Add trend lines to datasets with enhanced visibility
             chartData.datasets.forEach((dataset, index) => {
                 const trendData = calculateTrendline(dataset.data);
                 const trendDataset = {
-                    label: dataset.label + ' (Trend)',
+                    label: dataset.label + ' (Best Fit Line)',
                     data: trendData,
                     borderColor: dataset.borderColor,
                     backgroundColor: 'transparent',
-                    borderWidth: 2,
-                    borderDash: [5, 5],
+                    borderWidth: 3,
+                    borderDash: [8, 4],
                     pointRadius: 0,
                     pointHoverRadius: 0,
                     fill: false,
-                    tension: 0
+                    tension: 0,
+                    order: 1  // Ensure trend lines appear on top
                 };
                 chartData.datasets.push(trendDataset);
             });
@@ -281,16 +291,31 @@
             function toggleDataset(index) {
                 const button = document.querySelectorAll('.toggle-btn')[index];
                 const meta = chart.getDatasetMeta(index);
-                const trendMeta = chart.getDatasetMeta(index + 4); // Trend line datasets start after main datasets
                 
                 // Toggle visibility
                 if (meta.hidden === null || meta.hidden === false) {
                     meta.hidden = true;
-                    if (trendMeta) trendMeta.hidden = true;
                     button.classList.remove('active');
                 } else {
                     meta.hidden = false;
-                    if (trendMeta) trendMeta.hidden = false;
+                    button.classList.add('active');
+                }
+                
+                chart.update();
+            }
+            
+            // Toggle trend dataset visibility function
+            function toggleTrendDataset(index) {
+                const allButtons = document.querySelectorAll('.toggle-btn');
+                const button = allButtons[index];
+                const meta = chart.getDatasetMeta(index);
+                
+                // Toggle visibility
+                if (meta.hidden === null || meta.hidden === false) {
+                    meta.hidden = true;
+                    button.classList.remove('active');
+                } else {
+                    meta.hidden = false;
                     button.classList.add('active');
                 }
                 
