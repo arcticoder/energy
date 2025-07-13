@@ -80,20 +80,50 @@ def scan_asciimath_files():
 
 def save_catalog_json(files_data, output_path):
     """Save the file catalog as JSON."""
+    # Load existing catalog if present
+    if output_path.exists():
+        try:
+            with open(output_path, 'r', encoding='utf-8') as f:
+                existing_catalog = json.load(f)
+            existing_files = { (f['repository'], f['relative_path']): f for f in existing_catalog.get('files', []) }
+        except Exception as e:
+            print(f"Warning: Could not load existing catalog: {e}")
+            existing_files = {}
+    else:
+        existing_files = {}
+
+    # Merge new scan with existing entries
+    updated_files = []
+    for file_record in files_data:
+        key = (file_record['repository'], file_record['relative_path'])
+        if key in existing_files:
+            # Update only scanned fields, preserve extra metadata
+            merged = existing_files[key].copy()
+            merged.update(file_record)
+            updated_files.append(merged)
+        else:
+            updated_files.append(file_record)
+
+    # Optionally, keep entries not present in new scan (unscanned files)
+    # If you want to remove them, comment out the following block
+    for key, entry in existing_files.items():
+        if key not in { (f['repository'], f['relative_path']) for f in files_data }:
+            updated_files.append(entry)
+
     catalog = {
         'scan_timestamp': datetime.now().isoformat(),
-        'total_files': len(files_data),
+        'total_files': len(updated_files),
         'scan_summary': {
-            'python_files': len([f for f in files_data if f['file_extension'] == '.py']),
-            'powershell_files': len([f for f in files_data if f['file_extension'] == '.ps1']),
-            'repositories': len(set(f['repository'] for f in files_data))
+            'python_files': len([f for f in updated_files if f['file_extension'] == '.py']),
+            'powershell_files': len([f for f in updated_files if f['file_extension'] == '.ps1']),
+            'repositories': len(set(f['repository'] for f in updated_files))
         },
-        'files': files_data
+        'files': updated_files
     }
-    
+
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(catalog, f, indent=2, ensure_ascii=False)
-    
+
     print(f"Catalog saved to: {output_path}")
     return catalog
 
