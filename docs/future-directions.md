@@ -327,24 +327,28 @@
    - Function: Cost-benefit analysis for crew size vs. system complexity
    - Technology: Activity-based costing, revenue models, operational expense analysis
    - Target: ROI optimization for 1-100 crew configurations
+   - Status: Not complete
 
 2. **Role Optimization Engine** (2 prompts)
    - Repository: `enhanced-simulation-hardware-abstraction-framework` → `role_distribution_optimizer.py`
    - Function: Optimal crew role allocation with cross-training analysis
    - Technology: Linear programming with constraint satisfaction
    - Target: Minimum viable crew for safe operations with redundancy
+   - Status: Not complete
 
 3. **System Complexity Assessment** (2 prompts)
    - Repository: `enhanced-simulation-hardware-abstraction-framework` → `system_complexity_analyzer.py`
    - Function: Technology cost allocation across crew sizes
    - Technology: Amortization analysis for artificial gravity, replicators, life support
    - Target: Break-even crew size for advanced systems justification
+   - Status: Not complete
 
 4. **Mission Profile Optimization** (2 prompts)
    - Repository: `enhanced-simulation-hardware-abstraction-framework` → `mission_optimizer.py`
    - Function: Crew complement optimization per mission type
    - Technology: Scientific missions vs. tourism vs. cargo transport analysis
    - Target: Mission-specific crew configurations with safety margins
+   - Status: Not complete
 
 **Performance Targets**:
 - **Optimal Crew Size**: Data-driven recommendation for Earth-Proxima missions
