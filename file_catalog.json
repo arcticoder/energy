@@ -7915,7 +7915,14 @@
       "file_extension": ".py",
       "date_created": "2025-05-30T07:44:59.450952",
       "date_modified": "2025-05-30T17:25:44.164968",
-      "file_size_bytes": 5244
+      "file_size_bytes": 5244,
+      "priority": "high",
+      "category": "analysis-core",
+      "description": "Main convergence analysis script for warp solver validation. Performs grid refinement studies and computes convergence orders.",
+      "dependencies": ["run_validation.py", "solver.py"],
+      "references": ["README.md", "technical-documentation.md", "unified-lqg-qft"],
+      "last_assessment": "2025-07-13",
+      "assessment_notes": "Core analysis tool with strong documentation and active usage across multiple repositories"
     },
     {
       "file_name": "run_validation.py",
@@ -7925,7 +7932,14 @@
       "file_extension": ".py",
       "date_created": "2025-05-30T17:25:44.164968",
       "date_modified": "2025-05-30T17:25:44.164968",
-      "file_size_bytes": 2587
+      "file_size_bytes": 2587,
+      "priority": "medium-high",
+      "category": "validation-core",
+      "description": "Validation script that tests solver accuracy with Minkowski and Schwarzschild profiles. Supports parameterized grid spacing for convergence studies.",
+      "dependencies": ["solver.py"],
+      "used_by": ["convergence_analysis.py"],
+      "last_assessment": "2025-07-13",
+      "assessment_notes": "Essential validation component, directly called by convergence analysis with structured output parsing"
     },
     {
       "file_name": "solver.py",
@@ -7935,7 +7949,13 @@
       "file_extension": ".py",
       "date_created": "2025-05-30T17:25:44.166070",
       "date_modified": "2025-05-30T17:25:44.166070",
-      "file_size_bytes": 1831
+      "file_size_bytes": 1831,
+      "priority": "medium",
+      "category": "validation-support",
+      "description": "Basic RK4 solver implementation for warp metric validation. Provides integrate_step() function for static profile testing.",
+      "used_by": ["run_validation.py"],
+      "last_assessment": "2025-07-13",
+      "assessment_notes": "Supporting module with simple implementation, essential dependency for validation workflow but basic functionality"
     },
     {
       "file_name": "assemble_visualization.py",
