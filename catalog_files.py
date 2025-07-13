@@ -411,7 +411,7 @@ def generate_html_report(catalog, output_path):
                     </tr>
                 </thead>
                 <tbody id="tableBody">
-                    {{FILE_ROWS}}
+                    <!-- Rows will be populated by JavaScript -->
                 </tbody>
             </table>
             <div id="noResults" class="no-results" style="display: none;">
@@ -538,6 +538,8 @@ def generate_html_report(catalog, output_path):
         function createFileRow(file) {
             const extClass = file.file_extension === '.py' ? 'ext-py' : 'ext-ps1';
             const copyBtnId = `copy-${file.repository}-${file.file_name}`.replace(/[^a-zA-Z0-9-]/g, '-');
+            // Properly escape the path for onclick handler
+            const escapedPath = file.absolute_path.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
             return `
                 <tr data-repo="${file.repository}" data-ext="${file.file_extension}" data-modified="${file.date_modified}">
                     <td><span class="${extClass}">${file.file_name}</span></td>
@@ -546,7 +548,7 @@ def generate_html_report(catalog, output_path):
                     <td class="timestamp">${formatDate(file.date_modified)}</td>
                     <td class="timestamp">${formatDate(file.date_created)}</td>
                     <td class="file-size">${formatFileSize(file.file_size_bytes)}</td>
-                    <td><button class="copy-btn" id="${copyBtnId}" onclick="copyToClipboard('${file.absolute_path.replace(/\\/g, '\\\\')}', '${copyBtnId}')">Copy</button></td>
+                    <td><button class="copy-btn" id="${copyBtnId}" onclick="copyToClipboard('${escapedPath}', '${copyBtnId}')">Copy</button></td>
                 </tr>
             `;
         }
@@ -643,33 +645,12 @@ def generate_html_report(catalog, output_path):
 </body>
 </html>"""
     
-    # Generate file rows
-    file_rows = []
-    for file_data in catalog['files']:
-        ext_class = 'ext-py' if file_data['file_extension'] == '.py' else 'ext-ps1'
-        # Create a safe ID for the copy button
-        copy_btn_id = f"copy-{file_data['repository']}-{file_data['file_name']}".replace('/', '-').replace('\\', '-').replace(' ', '-').replace('.', '-')
-        # Escape backslashes for JavaScript
-        escaped_path = file_data['absolute_path'].replace('\\', '\\\\')
-        row = f"""
-                    <tr data-repo="{file_data['repository']}" data-ext="{file_data['file_extension']}" data-modified="{file_data['date_modified']}">
-                        <td><span class="{ext_class}">{file_data['file_name']}</span></td>
-                        <td><span class="repo-badge">{file_data['repository']}</span></td>
-                        <td><code class="path-code">{file_data['relative_path']}</code></td>
-                        <td class="timestamp">{datetime.fromisoformat(file_data['date_modified']).strftime('%m/%d/%Y %I:%M %p')}</td>
-                        <td class="timestamp">{datetime.fromisoformat(file_data['date_created']).strftime('%m/%d/%Y %I:%M %p')}</td>
-                        <td class="file-size">{format_file_size(file_data['file_size_bytes'])}</td>
-                        <td><button class="copy-btn" id="{copy_btn_id}" onclick="copyToClipboard('{escaped_path}', '{copy_btn_id}')">Copy</button></td>
-                    </tr>"""
-        file_rows.append(row)
-    
     # Replace placeholders
     html_content = html_template.replace('{{SCAN_TIMESTAMP}}', datetime.fromisoformat(catalog['scan_timestamp']).strftime('%B %d, %Y at %I:%M %p'))
     html_content = html_content.replace('{{TOTAL_FILES}}', str(catalog['total_files']))
     html_content = html_content.replace('{{PYTHON_FILES}}', str(catalog['scan_summary']['python_files']))
     html_content = html_content.replace('{{POWERSHELL_FILES}}', str(catalog['scan_summary']['powershell_files']))
     html_content = html_content.replace('{{REPOSITORIES}}', str(catalog['scan_summary']['repositories']))
-    html_content = html_content.replace('{{FILE_ROWS}}', ''.join(file_rows))
     html_content = html_content.replace('{{FILES_JSON}}', json.dumps(catalog, ensure_ascii=False))
     
     with open(output_path, 'w', encoding='utf-8') as f:
