@@ -385,6 +385,98 @@
 - Crew quarters optimization
 - Command and control systems
 
+#### 3.2.4 Ship Hull Geometry OBJ Framework
+**Priority**: HIGH
+**Effort**: Medium (4-6 prompts)
+**Research Value**: HIGH
+
+**Repository**: `lqg-ftl-metric-engineering` ⚠️ **DEVELOPMENT REQUIRED**
+**Function**: Generate 3D vessel hulls with integrated physics constraints for in silico design
+**Technology**: OBJ mesh generation with 2D deck plan extraction
+**Status**: ⚠️ **DEVELOPMENT REQUIRED** - Tabletop scale vessel hull visualization
+
+**Technical Approach**: Physics-informed geometry generation for LQG FTL vessels
+**Mission Profile**: Tabletop/laboratory scale development and visualization
+**Visualization Target**: Chrome browser 3D rendering with interactive hull inspection
+
+**Implementation Phases**:
+
+1. **Hull Physics Integration** (Month 1)
+   - Repository: `lqg-ftl-metric-engineering` → `hull_geometry_generator.py`
+   - Function: Integrate warp field constraints with vessel hull design
+   - Technology: Alcubierre metric boundary conditions → hull surface mesh
+   - Target: Physics-compliant 3D hull geometries for various vessel classes
+   - Validation: Stress analysis with warp field interaction zones
+
+2. **OBJ Mesh Generation** (Month 2)
+   - Repository: `lqg-ftl-metric-engineering` → `obj_mesh_exporter.py`
+   - Function: Convert hull physics models to standard 3D mesh format
+   - Technology: Triangulated surface mesh with material property annotations
+   - Target: Industry-standard OBJ files for external 3D software compatibility
+   - Quality: Manifold meshes suitable for 3D printing and CAD integration
+
+3. **Deck Plan Extraction** (Month 2)
+   - Repository: `lqg-ftl-metric-engineering` → `deck_plan_extractor.py`
+   - Function: Generate 2D floor plans from 3D hull models
+   - Technology: Cross-sectional analysis with automated layout optimization
+   - Target: Engineering-grade deck plans for crew quarters and systems placement
+   - Output: SVG/PDF technical drawings with dimensional annotations
+
+4. **Browser Visualization** (Month 3)
+   - Repository: `lqg-ftl-metric-engineering` → `hull_viewer.html`
+   - Function: Interactive 3D hull inspection in Chrome browser
+   - Technology: WebGL rendering with physics constraint visualization
+   - Target: Real-time hull modification and warp field interaction display
+   - Features: Material properties, stress visualization, design optimization interface
+
+**Risk Level**: LOW RISK - Established 3D geometry processing with physics integration
+
+#### 3.2.5 Flight Paths JSON 3D Visualization  
+**Priority**: MEDIUM-HIGH
+**Effort**: Medium (4-5 prompts)
+**Research Value**: HIGH
+
+**Repository**: `lqg-ftl-metric-engineering` ⚠️ **DEVELOPMENT REQUIRED**
+**Function**: 3D trajectory planning and visualization for LQG FTL navigation
+**Technology**: NDJSON flight path format with Chrome 3D rendering
+**Status**: ⚠️ **DEVELOPMENT REQUIRED** - Navigation planning visualization framework
+
+**Technical Approach**: Real-time 3D flight path optimization with spacetime constraints
+**Mission Profile**: Multi-system navigation planning for interstellar missions
+**Visualization Target**: Chrome browser with interactive trajectory manipulation
+
+**Implementation Phases**:
+
+1. **NDJSON Flight Path Format** (Month 1)
+   - Repository: `lqg-ftl-metric-engineering` → `flight_path_format.py`
+   - Function: Standardized trajectory data format for LQG FTL missions
+   - Technology: Newline-delimited JSON with spacetime coordinates and warp parameters
+   - Target: Streaming-compatible format for real-time trajectory updates
+   - Schema: Position, velocity, warp factor, energy density per trajectory point
+
+2. **Trajectory Physics Engine** (Month 2)
+   - Repository: `lqg-ftl-metric-engineering` → `trajectory_optimizer.py`
+   - Function: Physics-constrained flight path optimization
+   - Technology: Spacetime geodesic optimization with energy minimization
+   - Target: Optimal trajectories considering gravitational fields and warp constraints
+   - Validation: Energy conservation and causality preservation checks
+
+3. **3D Chrome Visualization** (Month 2-3)
+   - Repository: `lqg-ftl-metric-engineering` → `trajectory_viewer.html`
+   - Function: Interactive 3D flight path visualization and editing
+   - Technology: WebGL rendering with real-time trajectory modification
+   - Target: Mission planning interface with drag-and-drop waypoint editing
+   - Features: Multi-path comparison, energy analysis, temporal coordinate display
+
+4. **Navigation Planning Interface** (Month 3)
+   - Repository: `lqg-ftl-metric-engineering` → `mission_planner.html`
+   - Function: Complete mission planning with vessel hull and trajectory integration
+   - Technology: Combined hull geometry and flight path visualization
+   - Target: End-to-end mission design from vessel selection to trajectory optimization
+   - Integration: Hull geometry constraints inform trajectory planning parameters
+
+**Risk Level**: LOW RISK - Established 3D trajectory visualization with physics constraints
+
 #### 3.3 Interstellar Fuel Collection System
 **Priority**: MEDIUM-HIGH
 **Effort**: Medium (6-8 prompts)  
