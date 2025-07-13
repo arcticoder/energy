@@ -11,6 +11,8 @@ import tempfile
 from datetime import datetime, timedelta
 from pathlib import Path
 import os
+import numpy as np
+from scipy import stats
 
 # Configuration
 REPOS = [
@@ -39,6 +41,7 @@ SCRIPT_DIR = Path(__file__).parent
 JSON_STATS_FILE = SCRIPT_DIR / "traffic_stats_history.json"
 HTML_CHART_FILE = SCRIPT_DIR / "traffic_stats_chart.html"
 HTML_TEMPLATE_FILE = SCRIPT_DIR / "traffic_chart_template.html"
+SLOPE_HISTORY_FILE = SCRIPT_DIR / "traffic_slope_history.json"
 
 def run_gh_command(args):
     """Run GitHub CLI command and return JSON output."""
@@ -86,6 +89,75 @@ def save_stats_history(history):
         print(f"✅ Stats saved to {JSON_STATS_FILE}")
     except IOError as e:
         print(f"Error saving stats history: {e}")
+
+def load_slope_history():
+    """Load existing slope history from JSON file."""
+    if SLOPE_HISTORY_FILE.exists():
+        try:
+            with open(SLOPE_HISTORY_FILE, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except (json.JSONDecodeError, IOError) as e:
+            print(f"Error loading slope history: {e}")
+            return []
+    return []
+
+def save_slope_history(slope_history):
+    """Save slope history to JSON file."""
+    try:
+        with open(SLOPE_HISTORY_FILE, 'w', encoding='utf-8') as f:
+            json.dump(slope_history, f, indent=2, ensure_ascii=False)
+        print(f"✅ Slope history saved to {SLOPE_HISTORY_FILE}")
+    except IOError as e:
+        print(f"Error saving slope history: {e}")
+
+def calculate_trend_slope(daily_aggregates, metric='views'):
+    """Calculate the slope (trend) of the specified metric over time."""
+    if len(daily_aggregates) < 3:  # Need at least 3 points for meaningful slope
+        return None, None, None
+    
+    # Sort dates and prepare data
+    sorted_dates = sorted(daily_aggregates.keys())
+    x_values = list(range(len(sorted_dates)))  # Day indices
+    y_values = [daily_aggregates[date][metric] for date in sorted_dates]
+    
+    # Calculate linear regression
+    if len(x_values) >= 2 and any(y > 0 for y in y_values):
+        slope, intercept, r_value, p_value, std_err = stats.linregress(x_values, y_values)
+        return slope, r_value**2, len(sorted_dates)  # slope, R², number of days
+    
+    return None, None, None
+
+def merge_historical_daily_data(stats_history):
+    """Merge daily data from all historical runs, preserving all historical data."""
+    all_daily_data = {}
+    
+    for run in stats_history:
+        run_date = run.get("date", "")
+        
+        # Process each repository in this run
+        for repo_name, repo_data in run.get("repositories", {}).items():
+            
+            # Merge daily views
+            for day_data in repo_data.get("daily_views", []):
+                date = day_data["date"]
+                if date not in all_daily_data:
+                    all_daily_data[date] = {"views": 0, "unique_views": 0, "clones": 0, "unique_clones": 0}
+                
+                # Accumulate data (sum across all repos for that date)
+                all_daily_data[date]["views"] += day_data.get("views", 0)
+                all_daily_data[date]["unique_views"] += day_data.get("unique_views", 0)
+            
+            # Merge daily clones
+            for day_data in repo_data.get("daily_clones", []):
+                date = day_data["date"]
+                if date not in all_daily_data:
+                    all_daily_data[date] = {"views": 0, "unique_views": 0, "clones": 0, "unique_clones": 0}
+                
+                # Accumulate data (sum across all repos for that date)
+                all_daily_data[date]["clones"] += day_data.get("clones", 0)
+                all_daily_data[date]["unique_clones"] += day_data.get("unique_clones", 0)
+    
+    return all_daily_data
 
 def check_gh_auth():
     """Check if GitHub CLI is authenticated."""
@@ -243,52 +315,15 @@ def process_repository(repo):
     return repo_data
 
 def generate_html_chart(current_run, stats_history):
-    """Generate HTML chart using template."""
+    """Generate HTML chart using template with complete historical data."""
     print("📊 Generating HTML chart...")
     
-    # Aggregate daily data from all repositories
-    daily_aggregates = {}
+    # Use the improved historical data merging
+    daily_aggregates = merge_historical_daily_data(stats_history)
     
-    # Process current run daily data
-    for repo_name, repo_data in current_run["repositories"].items():
-        # Aggregate daily views
-        for day_data in repo_data.get("daily_views", []):
-            date = day_data["date"]
-            if date not in daily_aggregates:
-                daily_aggregates[date] = {"views": 0, "unique_views": 0, "clones": 0, "unique_clones": 0}
-            daily_aggregates[date]["views"] += day_data["views"]
-            daily_aggregates[date]["unique_views"] += day_data["unique_views"]
-        
-        # Aggregate daily clones
-        for day_data in repo_data.get("daily_clones", []):
-            date = day_data["date"]
-            if date not in daily_aggregates:
-                daily_aggregates[date] = {"views": 0, "unique_views": 0, "clones": 0, "unique_clones": 0}
-            daily_aggregates[date]["clones"] += day_data["clones"]
-            daily_aggregates[date]["unique_clones"] += day_data["unique_clones"]
+    print(f"📈 Total historical data spans {len(daily_aggregates)} days")
     
-    # Process historical runs if available
-    for run in stats_history[:-1]:  # Exclude current run to avoid duplication
-        for repo_name, repo_data in run.get("repositories", {}).items():
-            # Aggregate daily views
-            for day_data in repo_data.get("daily_views", []):
-                date = day_data["date"]
-                if date not in daily_aggregates:
-                    daily_aggregates[date] = {"views": 0, "unique_views": 0, "clones": 0, "unique_clones": 0}
-                # Don't double-count - take max values since repos might have been processed multiple times
-                daily_aggregates[date]["views"] = max(daily_aggregates[date]["views"], day_data["views"])
-                daily_aggregates[date]["unique_views"] = max(daily_aggregates[date]["unique_views"], day_data["unique_views"])
-            
-            # Aggregate daily clones
-            for day_data in repo_data.get("daily_clones", []):
-                date = day_data["date"]
-                if date not in daily_aggregates:
-                    daily_aggregates[date] = {"views": 0, "unique_views": 0, "clones": 0, "unique_clones": 0}
-                # Don't double-count - take max values since repos might have been processed multiple times
-                daily_aggregates[date]["clones"] = max(daily_aggregates[date]["clones"], day_data["clones"])
-                daily_aggregates[date]["unique_clones"] = max(daily_aggregates[date]["unique_clones"], day_data["unique_clones"])
-    
-    # Prepare chart data from aggregated daily data
+    # Prepare chart data from all historical data
     chart_data = {
         "labels": [],
         "datasets": [
@@ -323,8 +358,8 @@ def generate_html_chart(current_run, stats_history):
         ]
     }
     
-    # Sort dates and take last 30 days
-    sorted_dates = sorted(daily_aggregates.keys())[-30:]
+    # Sort dates and use ALL available historical data (not limited to 30 days)
+    sorted_dates = sorted(daily_aggregates.keys())
     
     for date in sorted_dates:
         chart_data["labels"].append(date)
@@ -333,10 +368,32 @@ def generate_html_chart(current_run, stats_history):
         chart_data["datasets"][2]["data"].append(daily_aggregates[date]["clones"])
         chart_data["datasets"][3]["data"].append(daily_aggregates[date]["unique_clones"])
     
-    print(f"📈 Aggregated daily data for {len(sorted_dates)} days:")
-    for date in sorted_dates[-14:]:  # Show last 14 days
+    print(f"📈 Chart includes {len(sorted_dates)} days of data (last 14 shown below):")
+    for date in sorted_dates[-14:]:  # Show last 14 days in console
         agg = daily_aggregates[date]
         print(f"   {date}: {agg['views']} views ({agg['unique_views']} unique), {agg['clones']} clones ({agg['unique_clones']} unique)")
+    
+    # Calculate trend slopes
+    slope_data = {}
+    for metric in ['views', 'unique_views', 'clones', 'unique_clones']:
+        slope, r_squared, days = calculate_trend_slope(daily_aggregates, metric)
+        slope_data[metric] = {
+            'slope': slope,
+            'r_squared': r_squared,
+            'days': days
+        }
+        if slope is not None:
+            print(f"📈 {metric.replace('_', ' ').title()} trend: {slope:.2f} per day (R²={r_squared:.3f}, {days} days)")
+    
+    # Save slope data
+    slope_history = load_slope_history()
+    slope_entry = {
+        "date": datetime.now().strftime("%Y-%m-%d"),
+        "timestamp": datetime.now().isoformat(),
+        "slopes": slope_data
+    }
+    slope_history.append(slope_entry)
+    save_slope_history(slope_history)
     
     # Read template and replace placeholders
     try:
@@ -349,6 +406,13 @@ def generate_html_chart(current_run, stats_history):
     update_time = datetime.now().strftime("%B %d, %Y %H:%M")
     chart_data_json = json.dumps(chart_data)
     
+    # Prepare slope information for HTML
+    slope_info = ""
+    for metric, data in slope_data.items():
+        if data['slope'] is not None:
+            trend_direction = "📈" if data['slope'] > 0 else "📉" if data['slope'] < 0 else "➡️"
+            slope_info += f"<p>{trend_direction} <strong>{metric.replace('_', ' ').title()}</strong>: {data['slope']:.2f} per day (R²={data['r_squared']:.3f})</p>"
+    
     # Replace placeholders
     html = html_template.replace('{{UPDATE_TIME}}', update_time)
     html = html.replace('{{TOTAL_VIEWS}}', str(current_run["totals"]["views"]))
@@ -357,13 +421,15 @@ def generate_html_chart(current_run, stats_history):
     html = html.replace('{{UNIQUE_CLONES}}', str(current_run["totals"]["unique_clones"]))
     html = html.replace('{{TOTAL_STARS}}', str(current_run["totals"]["stars"]))
     html = html.replace('{{CHART_DATA}}', chart_data_json)
+    html = html.replace('{{SLOPE_INFO}}', slope_info)
+    html = html.replace('{{TOTAL_DAYS}}', str(len(sorted_dates)))
     
     # Write HTML file
     try:
         with open(HTML_CHART_FILE, 'w', encoding='utf-8') as f:
             f.write(html)
         print(f"✅ HTML chart generated: {HTML_CHART_FILE}")
-        print("🌐 Open the file in your browser to view the interactive chart")
+        print(f"🌐 Chart now shows {len(sorted_dates)} days of historical data with trend analysis")
     except IOError as e:
         print(f"Error writing HTML file: {e}")
 
@@ -444,7 +510,7 @@ def git_commit_and_push():
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         
         # Add all files
-        result = subprocess.run(['git', 'add', 'traffic_stats_history.json', 'traffic_stats_chart.html'], 
+        result = subprocess.run(['git', 'add', 'traffic_stats_history.json', 'traffic_stats_chart.html', 'traffic_slope_history.json'], 
                               capture_output=True, text=True)
         if result.returncode != 0:
             print(f"⚠️  Git add warning: {result.stderr}")

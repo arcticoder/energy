@@ -136,6 +136,13 @@
         </div>
         
         <div class="chart-controls">
+            <h3>Growth Trends ({{TOTAL_DAYS}} days of data)</h3>
+            <div style="text-align: left; background: white; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                {{SLOPE_INFO}}
+            </div>
+        </div>
+        
+        <div class="chart-controls">
             <h3>Interactive Controls</h3>
             <div class="control-buttons">
                 <button class="toggle-btn views active" onclick="toggleDataset(0)">Total Views</button>
