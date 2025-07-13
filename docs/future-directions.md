@@ -299,755 +299,128 @@
    - Performance: 480c velocity, 1.2 years autonomous operation, 99.98% reliability
    - Status: ✅ **PRODUCTION COMPLETE** - Ready for immediate deployment
    
-#### 3.2.2 Crew Complement Optimization Framework
-**Priority**: HIGH  
-**Effort**: Medium (6-8 prompts)  
-**Research Value**: VERY HIGH
+#### 3.2.2 Ship Hull Geometry Visualization Framework
+**Priority**: HIGH
+**Effort**: Medium (4-6 prompts)
+**Research Value**: High
 
-**Repository**: `enhanced-simulation-hardware-abstraction-framework` ⚠️ **OPTIMIZATION REQUIRED**
-**Function**: Multi-objective optimization for optimal crew size and role distribution
-**Technology**: Operations research with economic modeling and systems engineering analysis
-**Status**: ⚠️ **OPTIMIZATION REQUIRED** - Crew size and role optimization for ≤100 personnel
+**Repository**: `enhanced-simulation-hardware-abstraction-framework` ⚠️ **ENHANCEMENT REQUIRED**
+**Function**: 3D ship hull geometry generation and browser-based visualization
+**Technology**: OBJ mesh generation with multi-view deck plan extraction
+**Status**: ⚠️ **DEVELOPMENT REQUIRED** - Complete hull geometry pipeline
 
-**Core Challenge**: Determine optimal crew complement balancing operational efficiency, mission safety, economic viability, and system complexity for interstellar LQG FTL missions.
+**Design Requirements**:
+- .OBJ file generation for reference mesh geometry
+- 2D side-view deck plans (sectional views)
+- 2D top-down deck plans (plan views) 
+- 3D rotatable browser preview of exterior hull
+- Export compatibility for fabrication formats
+- Integration with LQG FTL vessel specifications
 
-**Optimization Variables**:
-- **Crew Size**: 1-100 personnel (hard constraint)
-- **Role Distribution**: Engineering, medical, command, science, maintenance
-- **Passenger vs. Crew Ratio**: Tourist revenue vs. operational burden
-- **Specialization vs. Cross-training**: Role redundancy vs. efficiency
-
-**Technical Challenge**: Multi-objective optimization with competing constraints
-**Solution Approach**: Pareto frontier analysis with Monte Carlo economic modeling
+**Technical Challenge**: Multi-format mesh generation with precision deck plan extraction
+**Solution Approach**: Parametric hull design with automated cross-sectional analysis
 
 **Implementation Phases**:
 
-1. **Economic Modeling Framework** (2 prompts)
-   - Repository: `enhanced-simulation-hardware-abstraction-framework` → `crew_economic_optimizer.py`
-   - Function: Cost-benefit analysis for crew size vs. system complexity
-   - Technology: Activity-based costing, revenue models, operational expense analysis
-   - Target: ROI optimization for 1-100 crew configurations
+1. **Hull Geometry Generator** (2 prompts)
+   - Repository: `enhanced-simulation-hardware-abstraction-framework` → `hull_geometry_generator.py`
+   - Function: Parametric ship hull generation with LQG constraints
+   - Technology: Procedural mesh generation, OBJ export pipeline
+   - Target: Multi-deck vessel geometry for ≤100 crew configurations
    - Status: Not complete
 
-2. **Role Optimization Engine** (2 prompts)
-   - Repository: `enhanced-simulation-hardware-abstraction-framework` → `role_distribution_optimizer.py`
-   - Function: Optimal crew role allocation with cross-training analysis
-   - Technology: Linear programming with constraint satisfaction
-   - Target: Minimum viable crew for safe operations with redundancy
+2. **Deck Plan Extractor** (2 prompts)
+   - Repository: `enhanced-simulation-hardware-abstraction-framework` → `deck_plan_extractor.py`
+   - Function: 2D cross-sectional analysis from 3D hull geometry
+   - Technology: Mesh slicing algorithms, CAD-compatible 2D export
+   - Target: Side-view and top-down deck plans per deck level
    - Status: Not complete
 
-3. **System Complexity Assessment** (2 prompts)
-   - Repository: `enhanced-simulation-hardware-abstraction-framework` → `system_complexity_analyzer.py`
-   - Function: Technology cost allocation across crew sizes
-   - Technology: Amortization analysis for artificial gravity, replicators, life support
-   - Target: Break-even crew size for advanced systems justification
-   - Status: Not complete
-
-4. **Mission Profile Optimization** (2 prompts)
-   - Repository: `enhanced-simulation-hardware-abstraction-framework` → `mission_optimizer.py`
-   - Function: Crew complement optimization per mission type
-   - Technology: Scientific missions vs. tourism vs. cargo transport analysis
-   - Target: Mission-specific crew configurations with safety margins
+3. **Browser Visualization Engine** (2 prompts)
+   - Repository: `enhanced-simulation-hardware-abstraction-framework` → `hull_visualizer.js`
+   - Function: Interactive 3D hull preview in Chrome browser
+   - Technology: Three.js WebGL rendering, OBJ loader integration
+   - Target: Rotatable 3D preview with material visualization
    - Status: Not complete
 
 **Performance Targets**:
-- **Optimal Crew Size**: Data-driven recommendation for Earth-Proxima missions
-- **Role Distribution**: Minimum viable crew with safety redundancy
-- **Economic Break-even**: Crew size for positive ROI on advanced systems
-- **Mission Flexibility**: Adaptable crew configurations for different mission types
+- **Mesh Quality**: High-fidelity OBJ files suitable for simulation and fabrication
+- **Plan Precision**: Engineering-grade 2D deck plans with dimensional accuracy
+- **Browser Performance**: Smooth 60 FPS 3D navigation in Chrome
+- **Format Compatibility**: Export to STL, IGES, STEP for fabrication workflow
 
 **Success Metrics**:
-- **Safety Compliance**: 100% coverage for all critical ship functions
-- **Economic Optimization**: Maximum ROI within safety constraints
-- **Operational Efficiency**: Minimum crew for maximum mission capability
-- **Technology Justification**: Clear cost-benefit for artificial gravity, replicators
-
-**Technical Analysis**: [Complete crew complement optimization analysis with economic modeling](technical-analysis-roadmap-2025.md#crew-complement-optimization-framework)
-
-**Status**: ⚡ **HIGH PRIORITY OPTIMIZATION** - Critical for mission planning and economics
-**Dependencies**: Crew Vessel Life Support, All ship systems integration
-**Integration Points**: All 51 repositories for system cost and complexity analysis
-**Risk Level**: LOW RISK - Operations research methodology with established economic modeling
-
-#### 3.2.3 Multi-Crew Vessel Architecture (Crewed)
-**Vessel Categories**:
-2. **Crew Vessel**: 
-   - Repository: `enhanced-simulation-hardware-abstraction-framework`
-   - Function: ≤100 personnel, 30-day endurance, optimized crew operations  
-   - Status: ⚠️ **DESIGN REQUIRED** - Life support integration and crew optimization
-   - Repository: `enhanced-simulation-hardware-abstraction-framework`
-   - Function: 30-day endurance, optimized crew complement
-   - Status: ⚠️ **DESIGN REQUIRED** - Life support integration
-
-**Design Considerations**:
-- Life support system requirements
-- Emergency evacuation protocols
-- Crew quarters optimization
-- Command and control systems
-
-#### 3.3 Interstellar Fuel Collection System
-**Priority**: MEDIUM-HIGH
-**Effort**: Medium (6-8 prompts)  
-**Research Value**: HIGH
-
-**Repository**: `unified-lqg` ⚠️ **DEVELOPMENT REQUIRED**
-**Function**: In-situ fuel collection for extended-range interstellar missions
-**Technology**: Supraluminal matter collection with warp-field enhancement
-**Status**: ⚠️ **DEVELOPMENT REQUIRED** - Interstellar medium fuel collection for fusion reactor
-
-**Mission Profile**: Earth-Proxima Centauri (4.37 ly in 30 days @ 53.2c average)
-**Collection Target**: H/He/D collection from interstellar medium (~1 atom/cm³)
-
-**Technical Challenge**: Matter collection at supraluminal velocities
-**Solution Approach**: Warp field modification for matter concentration and collection
-
-**Implementation Phases**:
-
-1. **Supraluminal Collection Mechanism** (Months 1-2)
-   - Repository: `unified-lqg` → `warp_field_collector.py`
-   - Function: Warp bubble geometry optimization for matter accumulation
-   - Technology: Modified metric f(r) → 0.1-0.3 for forward collection zone
-   - Target: ≥10¹⁶ atoms/second collection rate at 20c cruise velocity
-   - Mathematics: ∇f(r,θ,φ) optimization for concentrated matter flow
-
-2. **Velocity Profile Optimization** (Months 2-3)
-   - Repository: `unified-lqg` → `velocity_optimizer.py`  
-   - Function: Optimal collection velocity for maximum fuel efficiency
-   - Technology: dM/dt = ρ_apparent × A_collection × v_collection optimization
-   - Target: Balance transit time vs. fuel collection for 37-day maximum mission
-   - Analysis: Collection efficiency from 0.1c to 60c velocity range
-
-3. **Fuel Processing and Storage** (Months 3-4)
-   - Repository: `unified-lqg` → `isotope_separator.py`, `fuel_storage_optimizer.py`
-   - Function: Deuterium extraction and fuel storage for fusion reactor
-   - Technology: Electromagnetic isotope separation + magnetic confinement storage
-   - Target: ≥90% deuterium separation, ≥100 kg/m³ storage density
-   - Integration: Real-time fuel transfer to existing fusion reactor systems
-
-4. **System Integration** (Months 4-5)
-   - Repository: `unified-lqg` → `warp_collection_integrator.py`
-   - Function: Seamless integration with LQG-Drive and fusion systems
-   - Technology: Collection field overlay on primary warp bubble
-   - Target: ≤10% reactor power for collection, 100% LQG compatibility
-   - Safety: ≤10 mSv radiation exposure, emergency shutdown protocols
-
-**Performance Specifications**:
-- **Collection Efficiency**: ≥10¹⁶ atoms/second H collection at 20c
-- **Storage Capacity**: 30-day fuel supply + 50% safety margin for ≤100 crew
-- **Mission Integration**: ≤7 days additional travel time (37 days total max)
-- **Safety Compliance**: Medical-grade radiation shielding and monitoring
-
-**Research Value**:
-- **Novel Physics**: First analysis of matter collection at supraluminal velocities
-- **Mission Independence**: Reduced dependence on Earth-supplied fuel for extended range
-- **Technology Foundation**: Enables missions beyond immediate solar neighborhood
-- **Economic Impact**: Reduced mission costs through in-situ resource utilization
-
-**Risk Assessment**: **LOW-MEDIUM RISK**
-- **Low Risk**: Established interstellar medium physics, builds on proven LQG systems
-- **Medium Risk**: Novel supraluminal collection physics, complex system integration
-- **Mitigation**: Conservative approach with 50% safety margins, in-silico validation
-
-### Phase 4: Advanced Research and Development (Months 13-18)
-
-#### 4.1 5D Braneworld Extension Framework
-**Priority**: Medium (Research)
-**Effort**: Very High (15-20 prompts)
-**Research Value**: Very High
-
-**Repository**: `unified-lqg-qft` ⚠️ **RESEARCH EXTENSION**
-**Function**: 5D braneworld physics extension for dimensional manipulation
-**Technology**: Extra-dimensional moduli field control and Casimir enhancement
-**Status**: ⚠️ **RESEARCH REQUIRED** - Advanced theoretical framework development
-
-**Concept**: Extend LQG from 3+1D to 4+1D with compact fifth dimension
-**Physics Framework**:
-- Moduli field φ(x) controls local dimension size L(x)
-- Spectral signature detection at ω ~ ℏ/L
-- Dimensional gates via Casimir-enhanced excitation
-
-**Mathematical Foundation**:
-```
-L_int ~ β φ T_Casimir (Casimir coupling)
-V(φ,χ) = λ_φ(φ² - φ₀²)² + λ_mix φ²χ² + V(χ) (Goldberger-Wise potential)
-```
-
-**Implementation Strategies**:
-1. **Casimir-Enhanced Excitation**: 
-   - Repository: `casimir-environmental-enclosure-platform`
-   - Technology: High-Q superconducting RF cavity
-   - Status: ⚠️ **INTEGRATION REQUIRED** - Casimir enhancement for 5D excitation
-   
-2. **Goldberger-Wise Pumping**: 
-   - Repository: `unified-lqg-qft`
-   - Technology: Secondary scalar field mixing
-   - Status: ⚠️ **RESEARCH REQUIRED** - Scalar field interaction framework
-
-**Research Value**:
-- Revolutionary physics breakthrough potential
-- Novel propulsion beyond LQG Drive
-- Fundamental advancement in dimensional physics
-
-#### 4.2 Enhanced Replicator-Recycler Systems
-**Priority**: Medium
-**Effort**: Medium (6-8 prompts)
-**Research Value**: High
-
-**Repository**: `polymerized-lqg-replicator-recycler` ⚠️ **ENHANCEMENT REQUIRED**
-**Function**: Enhanced matter replication and recycling with holographic integration
-**Technology**: LQG polymer-enhanced matter transformation
-**Status**: ⚠️ **ENHANCEMENT REQUIRED** - Feedstock management and holographic integration
-
-**Current Repository**: `polymerized-lqg-replicator-recycler`
-**Enhancement Requirements**:
-- Feedstock inventory management system
-- Energy-efficient matter recycling protocols
-- Integration with matter transporter
-
-**Advanced Applications**:
-1. **Holographic Interface Integration**
-   - Repository: `warp-field-coils` (holodeck integration)
-   - Function: Multi-angle 3D holograms without special goggles
-   - Technology: Motion tracking for overlay effects, spatial audio
-   - Status: ⚠️ **INTEGRATION REQUIRED** - Holodeck-replicator coordination
-
-2. **Just-in-Time Replication**
-   - Repository: `polymerized-lqg-matter-transporter` ↔ `polymerized-lqg-replicator-recycler`
-   - Function: Matter transporter integration for solid hologram conversion
-   - Technology: Food replication with holographic preview, molecular transport
-   - Status: ⚠️ **INTEGRATION REQUIRED** - Transporter-replicator unification
-
-### Phase 5: System Integration and Optimization (Months 19-24)
-
-#### 5.1 Repository Optimization and Archival
-**Priority**: Medium-Low
-**Effort**: Low (2-3 prompts per repo)
-**Research Value**: Low (Maintenance)
-
-**Repository**: Multiple repositories ⚠️ **OPTIMIZATION REQUIRED**
-**Function**: Codebase consolidation and archival management
-**Technology**: Repository management and functionality consolidation
-**Status**: ⚠️ **OPTIMIZATION REQUIRED** - Multiple repositories need consolidation
-
-**Optimization Targets**:
-- **Oversized Repositories**: 
-  - Repository: `warp-field-coils` ⚠️ **CONSOLIDATION REQUIRED**
-  - Function: Functionality consolidation needed
-  - Status: ⚠️ **OPTIMIZATION REQUIRED** - Reduce repository size and complexity
-  
-- **Underutilized Repositories**: 
-  - Repository: `warp-bubble-parameter-constraints` ⚠️ **INTEGRATION OPPORTUNITY**
-  - Function: Integration with main optimization frameworks
-  - Status: ⚠️ **INTEGRATION REQUIRED** - Merge with active repositories
-  
-- **Ephemeral Scripts**: 
-  - Repository: Various temporary script repositories
-  - Function: Archive temporary/one-off script files
-  - Status: ⚠️ **ARCHIVAL REQUIRED** - Clean up temporary implementations
-
-**Archival Targets for Dynamic Backreaction Factor Migration**:
-- **UQ Tracking Files**: UQ-TODO.ndjson, UQ-TODO-RESOLVED.ndjson (metadata only, preserve as-is)
-- **Migration Utilities**: backreaction_migration_utility.py, simple_backreaction_migrator.py (archive post-migration)
-- **Historical Documentation**: Preserve hardcoded references in docs for historical context
-- **Active Implementation Files**: Target only production Python files with actual hardcoded constants
-
-**Strategic Migration Approach**:
-1. **Archive ephemeral scripts** to reduce migration scope from 263 → ~50 files
-2. **Individual file assessment** for each occurrence context
-3. **Preserve UQ metadata** and historical documentation
-4. **Focus on production code** requiring dynamic β(t) functionality
-
-#### 5.2 Hardware Specification and CAD Integration
-**Priority**: Low
-**Effort**: Medium (5-7 prompts)
-**Research Value**: Medium
-
-**Repository**: `enhanced-simulation-hardware-abstraction-framework` ⚠️ **ENHANCEMENT REQUIRED**
-**Function**: Hardware specification generation and CAD integration
-**Technology**: STL files, schematics, and bill of materials generation
-**Status**: ⚠️ **DEVELOPMENT REQUIRED** - Hardware specification and prototyping integration
-
-**Enhancement Strategy**:
-- STL files, schematics, bills of materials generation
-- Integration with `enhanced-simulation-hardware-abstraction-framework`
-- Tabletop prototyping scale (per requirements)
-- Specific hardware stack selection vs. abstraction layer
-
-#### 5.3 Alternative Propulsion Analysis
-**Priority**: Low (Research)
-**Effort**: Medium (6-8 prompts)
-**Research Value**: Medium
-
-**Repository**: `artificial-gravity-field-generator` ⚠️ **COMPARATIVE ANALYSIS**
-**Function**: Comparative analysis of LQG Drive vs alternative propulsion methods
-**Technology**: Multi-modal propulsion system comparison framework
-**Status**: ⚠️ **ANALYSIS REQUIRED** - Comparative study of propulsion alternatives
-
-**Research Questions**:
-1. **LQG Drive vs. Antigravity**: 
-   - Repository: `lqg-ftl-metric-engineering` vs `artificial-gravity-field-generator`
-   - Analysis: Comparative analysis for different scenarios
-   - Status: ⚠️ **STUDY REQUIRED** - Performance comparison framework
-
-2. **Impulse Propulsion**: 
-   - Repository: `unified-lqg`
-   - Analysis: LQG Drive suitability for short-range maneuvering
-   - Status: ⚠️ **EVALUATION REQUIRED** - Short-range capability assessment
-
-3. **Vacuum-Compatible Alternatives**: 
-   - Repository: `negative-energy-generator`
-   - Analysis: Non-chemical, faster than ion propulsion
-   - Status: ⚠️ **RESEARCH REQUIRED** - Alternative propulsion mechanisms
-
-4. **Implementation Complexity**: 
-   - Repository: Multiple repositories
-   - Analysis: Antigravity vs. warp geometry difficulty
-   - Status: ⚠️ **COMPARATIVE STUDY REQUIRED** - Implementation complexity analysis
-
-### Implementation Timeline
-
-**Month 1**: Critical status updates, dynamic backreaction factor
-**Months 2-6**: LQG integration, navigation system development  
-**Months 7-12**: Hull design, advanced materials, vessel architecture
-**Months 13-18**: Advanced research (5D braneworld, enhanced systems)
-**Months 19-24**: Integration, optimization, production readiness
-
-### Success Metrics
-
-**Technical Achievements**:
-- 48c velocity capability with safe navigation
-- Hull materials exceeding 50 GPa UTS requirements
-- Crew complement optimization for 30-day missions
-- Complete LQG component integration
-
-**Research Breakthroughs**:
-- Dynamic backreaction factor optimization
-- 5D braneworld extension validation
-- Advanced materials development
-- Revolutionary physics applications
-
-**System Integration**:
-- Repository optimization and consolidation
-- Hardware specification completion
-- Production-ready vessel designs
-- Comprehensive testing and validation
-
-### Constraint Compliance
-
-**Crew Limit**: ≤ 100 personnel maximum
-**Scale**: Tabletop/laboratory prototyping (no industrial power plants)
-**Environment**: In silico development (no real-world beam time)
-**Mission Profile**: 30-day maximum duration, Proxima Centauri capability
-
-### Revolutionary Impact
-
-**LQG FTL Ship Technology Creates Complete Interstellar Civilization Foundation**:
-- **Transportation**: 48c FTL travel with zero exotic energy
-- **Navigation**: Gravimetric sensor arrays for supraluminal course correction
-- **Materials**: Revolutionary nanolattice structures for extreme velocity operation
-- **Life Support**: Advanced replicator-recycler systems with holographic interfaces
-- **Physics**: 5D braneworld extensions opening new propulsion paradigms
-
-**Achievement Level**: **Complete Interstellar Vessel Development Program**
-**Status**: ✅ **Roadmap Complete - Ready for Systematic Implementation**
-**Next Phase**: **Begin Phase 1 Critical Updates and Status Synchronization**
-
----
-
-## Phase 3: Advanced Starship Engineering Applications
-
-### LQG-Drive Iterative Hull Design Framework
-
-**Priority**: **HIGH** - Strategic starship design advancement
-**Timeline**: 8 months (Phase 3 implementation)
-**Crew Constraint**: ≤100 personnel accommodation
-**Technical Approach**: In-silico development with tabletop prototyping
-
-#### Core Concept
-Integration of naval architecture principles with LQG-Drive starship design through convertible geometry systems optimizing performance across three operational modes: planetary landing, impulse cruise, and warp-bubble operation.
-
-#### Technical Foundation
-- **Submarine Principles**: Pressure hull optimization for spacetime curvature resistance with smooth continuous curves
-- **Sailboat Stability**: Metacentric stability control through dynamic ballasting and wide flat-bottom configurations  
-- **Merchant Vessel Efficiency**: Length-to-beam optimization (L/B ≈ 6-8) for impulse cruise with appendage integration
-- **Convertible Geometry**: Retractable panels and field-fairings enabling real-time hull reconfiguration
-
-#### Implementation Phases
-
-**Phase 1: Naval Architecture Modeling** (Months 1-2)
-- Repository: `lqg-starship-hull-design` (new development)
-- Function: Computational naval architecture foundation with multi-mode optimization
-- Technology: Submarine pressure hull analysis, sailboat stability integration, merchant vessel efficiency
-- Deliverables: `submarine_hull_optimizer.py`, `stability_analyzer.py`, `cruise_efficiency_optimizer.py`
-
-**Phase 2: Convertible Geometry Systems** (Months 3-4)  
-- Repository: `lqg-starship-hull-design` (continued)
-- Function: Dynamic hull reconfiguration mechanisms with real-time control
-- Technology: Retractable panel architecture, dynamic ballasting, multi-mode structural analysis
-- Deliverables: `panel_control_system.py`, `dynamic_ballast_controller.py`, `multi_mode_stress_analyzer.py`
-
-**Phase 3: Operational Mode Optimization** (Months 5-6)
-- Repository: `lqg-starship-hull-design` (continued)  
-- Function: Performance optimization for each operational configuration
-- Technology: Landing stability, cruise efficiency, warp-bubble geometry integration
-- Deliverables: `landing_config_optimizer.py`, `cruise_optimizer.py`, `warp_config_optimizer.py`
-
-**Phase 4: LQG Integration and Validation** (Months 7-8)
-- Repository: `lqg-starship-hull-design` (completion)
-- Function: LQG-Drive system integration with comprehensive validation
-- Technology: Digital twin validation, crew systems integration, multi-physics simulation
-- Deliverables: `lqg_hull_integrator.py`, `digital_twin_validator.py`, `crew_systems_integrator.py`
-
-#### Operational Configurations
-
-**1. Planetary Landing Mode**
-- Wide flat central skid with flared chines for ground stability
-- Low L/B ratio configuration resisting tip-over
-- Heavy systems ballasted low in keel area for optimal center-of-gravity
-
-**2. Impulse Cruise Mode**  
-- Retractable fairings create slender profile (L/B ≈ 6-8) for minimum drag
-- Impulse pods deploy as hull appendages with optimized flow attachment
-- Dynamic force-field smoothing eliminates surface discontinuities
-
-**3. Warp-Bubble Mode**
-- Hull recession behind f(r)=1 metric boundary for uniform bubble wall thickness
-- Hard-point structures in filleted recesses avoiding bubble puncture
-- Smooth r(θ,φ) variation maintaining consistent spacetime distortion
-
-#### Success Metrics
-- **Multi-Mode Performance**: ≥90% efficiency in each operational configuration
-- **Transition Speed**: ≤5 minutes for complete mode reconfiguration  
-- **Stability Margins**: ≥30% safety factor across all operational modes
-- **Crew Comfort**: ≤0.1g acceleration during mode transitions
-- **LQG Integration**: 100% compatibility with existing quantum gravity systems
-
-#### Research Value
-- **Novel Integration**: First application of naval architecture to FTL vessel design
-- **Multi-Modal Optimization**: Revolutionary adaptive spacecraft architecture approach
-- **Design Methodology**: Reusable framework for future starship development
-- **Safety Enhancement**: Proven naval principles improve crew safety across operational modes
-
-**Technical Analysis**: [Complete technical roadmap and implementation details](technical-analysis-roadmap-2025.md#iterative-hull-design-for-lqg-drive-starships)
-
-**Status**: ⏳ **Pending Implementation** - Awaiting Phase 3 development cycle
-**Dependencies**: Core LQG-Drive technologies (✅ Complete), Enhanced Simulation Framework (✅ Available)
-**Integration Points**: `lqg-volume-quantization-controller`, `warp-field-coils`, `artificial-gravity-field-generator`
-
----
-
-### 4. Advanced Medical Systems
-
-#### 4.1 Needle-less Injection via Transporter and Medical Imaging ("Hypospray")
-**Priority**: HIGH
-**Effort**: Medium (6-8 prompts)
-**Research Value**: High
-
-**Repository**: Integration of `polymerized-lqg-matter-transporter`, `warp-field-coils` (tomographic scanner), and medical array systems
-**Function**: Precision needle-free medication delivery using matter transport and real-time imaging
-**Technology**: Integrated transport-imaging coordination for vascular targeting
-**Status**: ⚠️ **DEVELOPMENT REQUIRED** - Multi-system integration for medical applications
-
-**Core Technologies**:
-- Matter Transporter: `polymerized-lqg-matter-transporter` ✅ **OPERATIONAL**
-- Medical Imaging: `warp-field-coils/research/step20_warp_pulse_tomographic_scanner.py` ✅ **OPERATIONAL**  
-- Medical Array: `warp-field-coils/scripts/mock_medical_array.py` ✅ **OPERATIONAL**
-
-**Implementation Phases**:
-
-**Phase 1: Vascular Imaging Enhancement** (2 prompts)
-- Repository: `warp-field-coils` → enhanced medical imaging capabilities
-- Function: High-resolution vascular structure imaging and real-time tracking
-- Technology: Enhanced tomographic reconstruction for millimeter-precision vessel mapping
-- Deliverables: `enhanced_vascular_scanner.py`, `real_time_vessel_tracker.py`
-
-**Phase 2: Transport-Medical Integration** (2 prompts)
-- Repository: `medical-tractor-array` → new integrated medical system
-- Function: Coordinate matter transport with real-time imaging feedback
-- Technology: Transport-imaging coordination protocols and safety systems
-- Deliverables: `transport_imaging_coordinator.py`, `medical_transport_safety.py`
-
-**Phase 3: Precision Delivery System** (2 prompts)
-- Repository: `medical-tractor-array` (enhancement)
-- Function: Sub-millimeter precision medication delivery to vascular targets
-- Technology: Molecular-level transport accuracy with vascular injection protocols
-- Deliverables: `precision_delivery_system.py`, `vascular_injection_protocols.py`
-
-**Phase 4: System Validation and Integration** (2 prompts)
-- Repository: `medical-tractor-array` (completion)
-- Function: Complete hypospray system with medical procedure validation
-- Technology: Integrated system testing, safety verification, medical protocol development
-- Deliverables: `hypospray_validator.py`, `medical_procedure_protocols.py`
-
-#### Performance Targets
-- **Targeting Precision**: ±0.5 mm accuracy for carotid artery injection
-- **Real-time Performance**: 30 Hz imaging update rate during procedures
-- **Safety Response**: <100 ms emergency abort capability
-- **Power Consumption**: <50 kW (medical bay allocation)
-
-#### Success Metrics
-- **Delivery Accuracy**: 100% successful targeting within ±0.5 mm tolerance
-- **Safety Performance**: Zero medical complications during simulated procedures
-- **Integration Efficiency**: Seamless coordination between transport and imaging systems
-- **Crew Training**: 4-hour certification program for medical technicians
-
-#### Research Value
-- **Revolutionary Medical Technology**: First integration of quantum transport with precision medical imaging
-- **Crew Health Enhancement**: Needle-free procedures reduce infection risk and improve comfort
-- **Mission-Critical Capability**: Essential medical support for long-duration interstellar missions
-- **Technology Demonstration**: Proof-of-concept for molecular-level medical intervention
-
-**Technical Analysis**: [Complete feasibility assessment and implementation roadmap](technical-analysis-roadmap-2025.md#needle-less-injection-via-transporter-and-medical-imaging-hypospray)
-
-**Status**: ⏳ **Ready for Implementation** - All component technologies operational
-**Dependencies**: Matter Transporter (✅ Complete), Tomographic Scanner (✅ Complete), Medical Array (✅ Complete)
-**Integration Points**: `polymerized-lqg-matter-transporter`, `warp-field-coils`, medical safety systems
-
----
-
-### 5. Backup Propulsion and Emergency Systems
-
-#### 5.1 Backup Fusion Propulsion System ("Impulse Engines")
-**Priority**: **HIGH** - Mission-critical safety system
-**Effort**: Medium (6-8 prompts)
-**Research Value**: High
-
-**Repository**: Integration of `unified-lqg` (fusion reactor) with new propulsion systems
-**Function**: Emergency backup propulsion when LQG Drive is offline
-**Technology**: Fusion-powered ion/plasma propulsion with enhanced reactor output
-**Status**: ⚠️ **DEVELOPMENT REQUIRED** - Backup propulsion for emergency situations
-
-**Core Concept**: Emergency propulsion capability using existing fusion reactor with enhanced power output to maintain life support and provide sublight propulsion during LQG Drive failures.
-
-**Implementation Phases**:
-
-**Phase 1: Enhanced Fusion Reactor Output** (2 prompts)
-- Repository: `unified-lqg` → enhanced reactor specifications
-- Function: Increase reactor power output for dual-mode operation
-- Technology: Multi-mode fusion operation optimizing for propulsion vs. ship power
-- Deliverables: `enhanced_fusion_reactor.py`, `dual_mode_power_controller.py`
-
-**Phase 2: Ion/Plasma Propulsion Integration** (2 prompts)
-- Repository: `unified-lqg` → propulsion module development
-- Function: Fusion-powered ion or plasma propulsion system
-- Technology: Magnetic plasma acceleration with fusion exhaust optimization
-- Deliverables: `fusion_ion_drive.py`, `plasma_acceleration_controller.py`
-
-**Phase 3: Life Support Integration** (2 prompts)
-- Repository: `unified-lqg` (integration enhancement)
-- Function: Maintain life support systems during extended impulse operations
-- Technology: Power management for ≤100 crew during extended sublight travel
-- Deliverables: `extended_life_support.py`, `emergency_power_management.py`
-
-**Phase 4: Emergency Control Systems** (2 prompts)
-- Repository: `unified-lqg` (completion)
-- Function: Automated systems for LQG Drive failure scenarios
-- Technology: Emergency protocols, automated transition, crew safety systems
-- Deliverables: `emergency_propulsion_controller.py`, `lqg_failure_protocols.py`
-
-#### Performance Targets
-- **Propulsion Capability**: 0.01c maximum velocity for emergency return
-- **Power Output**: 150% reactor enhancement for dual-mode operation
-- **Life Support Duration**: 5+ years continuous operation for ≤100 crew
-- **Transition Time**: <60 seconds from LQG failure to impulse operation
-
-#### Success Metrics
-- **Emergency Response**: 100% automated transition from LQG failure
-- **Crew Survival**: 5+ year life support capability at sublight speeds
-- **Navigation Capability**: Precise course correction and orbital maneuvering
-- **Power Efficiency**: ≥80% thermal efficiency for extended operation
-
-**Technical Analysis**: [Complete emergency propulsion system design and power requirements](technical-analysis-roadmap-2025.md#backup-fusion-propulsion-system-impulse-engines)
-
-**Status**: ⏳ **High Priority Development** - Essential safety system for interstellar missions
-**Dependencies**: Enhanced Fusion Reactor (in development), Power Management Systems
-**Integration Points**: `unified-lqg`, life support systems, emergency protocols
-
-#### 5.2 Phased Recycler System (Remote Matter Processing)
-**Priority**: **MEDIUM-HIGH** - Advanced utility system
-**Effort**: Medium (6-8 prompts)
-**Research Value**: High
-
-**Repository**: Extension of `polymerized-lqg-replicator-recycler` with remote capabilities
-**Function**: Ranged matter recycling without transporter involvement (100m range)
-**Technology**: Phased molecular bond disruption with adjustable intensity settings
-**Status**: ⚠️ **DEVELOPMENT REQUIRED** - Remote recycling capability for staged matter processing
-
-**Core Concept**: Remote matter processing system operating at distances up to 100 meters, providing three-phase recycling capability when primary replicator-recycler is unavailable but storage capacity exists for interim feedstock.
-
-**Implementation Phases**:
-
-**Phase 1: Remote Emission Array Development** (2 prompts)
-- Repository: `polymerized-lqg-replicator-recycler` → remote capabilities module
-- Function: 100-meter range matter processing beam with coherence control
-- Technology: LQG polymer-enhanced field projection with adjustable beam coherence
-- Deliverables: `remote_emission_array.py`, `beam_coherence_controller.py`
-
-**Phase 2: Three-Phase Processing System** (2 prompts)
-- Repository: `polymerized-lqg-replicator-recycler` (enhancement)
-- Function: Light/Moderate/Full recycling modes with selective bond disruption
-- Technology: Electron-only dispersal, molecular weakening, atomic bond breaking
-- Deliverables: `phased_processing_controller.py`, `selective_bond_disruptor.py`
-
-**Phase 3: Energy Output Control and Safety** (2 prompts)
-- Repository: `polymerized-lqg-replicator-recycler` (safety systems)
-- Function: Variable energy output with comprehensive safety protocols
-- Technology: Power scaling control, emergency shutdown, crew protection systems
-- Deliverables: `energy_scaling_controller.py`, `recycler_safety_protocols.py`
-
-**Phase 4: Interim Storage Integration** (2 prompts)
-- Repository: `polymerized-lqg-replicator-recycler` (completion)
-- Function: Staged feedstock storage and processing coordination
-- Technology: Storage optimization, processing queues, inventory management
-- Deliverables: `interim_storage_manager.py`, `staged_processing_coordinator.py`
-
-#### Performance Specifications
-- **Operating Range**: 100 meters maximum effective distance
-- **Processing Modes**: Light (electron dispersal), Moderate (molecular), Full (atomic)
-- **Energy Control**: Variable output 1%-100% with millisecond precision
-- **Safety Range**: Automatic crew detection and protection within 10 meters
-
-#### Success Metrics
-- **Range Accuracy**: ±2 meter precision at 100 meter maximum range
-- **Processing Selectivity**: 99.9% accurate mode selection (light/moderate/full)
-- **Safety Performance**: Zero crew exposure incidents during operation
-- **Storage Integration**: Seamless coordination with existing storage systems
-
-**Technical Analysis**: [Complete remote recycling system design and safety protocols](technical-analysis-roadmap-2025.md#phased-recycler-system-remote-matter-processing)
-
-**Status**: ⏳ **Medium-High Priority Development** - Valuable utility enhancement
-**Dependencies**: Primary Replicator-Recycler (✅ Complete), Storage Systems
-**Integration Points**: `polymerized-lqg-replicator-recycler`, matter storage, safety systems
-
-#### 5.3 Last Resort Crew Life Extension Systems
-**Priority**: **MEDIUM** - Emergency contingency system
-**Effort**: High (10-12 prompts)
+- **Geometric Accuracy**: ±0.1% dimensional tolerance for hull specifications
+- **Visualization Quality**: Real-time 3D rendering with material properties
+- **Export Functionality**: Multi-format compatibility for downstream processes
+- **Integration**: Seamless workflow from design to fabrication pipeline
+
+**Technical Analysis**: [Complete hull geometry and visualization framework analysis](technical-analysis-roadmap-2025.md#ship-hull-geometry-visualization-framework)
+
+**Status**: ⚡ **HIGH PRIORITY DEVELOPMENT** - Essential for vessel design workflow
+**Dependencies**: Multi-Crew Vessel Architecture, Enhanced Simulation Framework
+**Integration Points**: CAD systems, fabrication pipeline, simulation frameworks
+**Risk Level**: LOW RISK - Established 3D geometry and web visualization technologies
+
+#### 3.2.3 Flight Path 3D Visualization System
+**Priority**: MEDIUM-HIGH  
+**Effort**: Medium (4-5 prompts)
 **Research Value**: Medium-High
 
-**Repository**: Integration of `polymerized-lqg-replicator-recycler`, `polymerized-lqg-matter-transporter`, and medical systems
-**Function**: Extreme emergency life extension for extended sublight return journeys
-**Technology**: Multi-modal life extension combining organ renewal, genetic modification, and cryogenic systems
-**Status**: ⚠️ **RESEARCH REQUIRED** - Last resort systems for extended emergency scenarios
+**Repository**: `enhanced-simulation-hardware-abstraction-framework` ⚠️ **ENHANCEMENT REQUIRED**
+**Function**: 3D flight path visualization and navigation planning
+**Technology**: NDJSON flight data with browser-based 3D trajectory rendering
+**Status**: ⚠️ **DEVELOPMENT REQUIRED** - Complete navigation visualization pipeline
 
-**Core Concept**: Emergency life extension systems for scenarios where LQG Drive failure requires multi-decade sublight return journeys, necessitating crew survival beyond natural lifespan for ship maintenance and navigation.
+**Design Requirements**:
+- NDJSON format for flight path data storage and exchange
+- 3D trajectory visualization in Chrome browser
+- Integration with astrometric calculations
+- Navigation planning interface
+- LQG FTL mission profile compatibility
+- Real-time path optimization display
 
-**Implementation Phases**:
-
-**Phase 1: High-Resolution Medical Scanning** (3 prompts)
-- Repository: `medical-tractor-array` → advanced medical capabilities
-- Function: Molecular-level organ scanning and analysis systems
-- Technology: Enhanced tomographic scanning with cellular-level resolution
-- Deliverables: `molecular_medical_scanner.py`, `organ_analysis_system.py`, `cellular_imaging_array.py`
-
-**Phase 2: Organ Renewal via Replicator-Transporter** (3 prompts)
-- Repository: Integration of `polymerized-lqg-replicator-recycler` and `polymerized-lqg-matter-transporter`
-- Function: Scan, replicate, and replace aging organs with precision transport
-- Technology: Organ replication with transporter-based surgical replacement
-- Deliverables: `organ_replication_system.py`, `precision_surgical_transporter.py`, `organ_replacement_protocols.py`
-
-**Phase 3: Genetic Life Extension Modification** (3 prompts)
-- Repository: `medical-tractor-array` (genetic modification module)
-- Function: DNA modification for extended lifespan and cellular repair
-- Technology: Targeted genetic therapy using matter transporter for cellular modification
-- Deliverables: `genetic_modification_system.py`, `cellular_repair_enhancer.py`, `dna_longevity_protocols.py`
-
-**Phase 4: Cryogenic Sleep Systems** (3 prompts)
-- Repository: `medical-tractor-array` (cryogenic module)
-- Function: Intermittent cryogenic preservation to slow aging during extended travel
-- Technology: Controlled metabolic suspension with automated revival systems
-- Deliverables: `cryogenic_preservation_system.py`, `automated_revival_controller.py`, `metabolic_monitoring_array.py`
-
-#### Critical Design Constraints
-- **Last Resort Only**: Systems activated only when sublight travel duration exceeds natural crew lifespan
-- **Crew Maintenance**: Periodic revival for navigation updates, emergency response, ship maintenance
-- **Safety Protocols**: Comprehensive medical monitoring and emergency abort capabilities
-- **Power Management**: Minimal power consumption during extended emergency scenarios
-
-#### Performance Targets
-- **Organ Renewal**: 95% success rate for major organ replacement procedures
-- **Genetic Modification**: 20-30% lifespan extension with enhanced cellular repair
-- **Cryogenic Efficiency**: 90% metabolic reduction with 99.9% safe revival rate
-- **System Integration**: Seamless coordination between all life extension modalities
-
-#### Success Metrics
-- **Emergency Activation**: Automated assessment and activation based on journey duration
-- **Crew Survival**: 50+ year survival capability for extended emergency return
-- **Periodic Function**: Successful crew revival every 6-12 months for maintenance duties
-- **Medical Safety**: Zero permanent medical complications from life extension procedures
-
-**Technical Analysis**: [Complete emergency life extension system design and medical protocols](technical-analysis-roadmap-2025.md#last-resort-crew-life-extension-systems)
-
-**Status**: ⏳ **Medium Priority Research** - Advanced emergency contingency
-**Dependencies**: Medical Scanning (✅ Complete), Replicator-Recycler (✅ Complete), Matter Transporter (✅ Complete)
-**Integration Points**: `medical-tractor-array`, `polymerized-lqg-replicator-recycler`, `polymerized-lqg-matter-transporter`
-**Risk Level**: HIGH RISK - Experimental medical procedures require extensive validation
-
----
-
-### 6. Interstellar Communication Infrastructure
-
-#### 6.1 Subspace Relay Network for Earth-Proxima Centauri Route
-
-**Repository**: `lqg-subspace-relay-network` (new development)
-**Function**: Interstellar communication network enabling real-time voice/data connectivity during FTL missions  
-**Technology**: LQG subspace transceiver relay deployment with Earth ground station network
-**Status**: ⚠️ **HIGH PRIORITY DEVELOPMENT** - Critical mission safety infrastructure
-
-**Core Concept**: Deploy single relay beacon at 133,333 AU to enable continuous subspace communication between Earth and vessels operating in Proxima Centauri system, accounting for warp bubble communication constraints and directional transmission limitations.
+**Technical Challenge**: Complex 3D trajectory visualization with navigation planning integration
+**Solution Approach**: NDJSON data pipeline with WebGL trajectory rendering
 
 **Implementation Phases**:
 
-**Phase 1: Earth Ground Station Network** (4 prompts)
-- Repository: `lqg-subspace-relay-network` → Earth infrastructure module
-- Function: Global 24/7 subspace transceiver network with Internet backbone integration
-- Technology: 2.4 THz high-gain antenna arrays with TCP/IP multiplexing capability
-- Deliverables: `earth_station_network.py`, `tcp_ip_subspace_multiplexer.py`, `global_coverage_optimizer.py`
+1. **Flight Path Data Pipeline** (2 prompts)
+   - Repository: `enhanced-simulation-hardware-abstraction-framework` → `flight_path_generator.py`
+   - Function: NDJSON flight path data generation and validation
+   - Technology: Astrometric calculations, mission profile optimization
+   - Target: Earth-Proxima and multi-system trajectory planning
+   - Status: Not complete
 
-**Phase 2: Relay Beacon Design** (4 prompts)  
-- Repository: `lqg-subspace-relay-network` → relay beacon module
-- Function: Autonomous 50+ year operational relay with station-keeping capability
-- Technology: RTG power, 10m subspace antenna, dual-redundant transceivers
-- Deliverables: `relay_beacon_design.py`, `autonomous_operation_controller.py`, `station_keeping_system.py`
+2. **3D Trajectory Renderer** (2 prompts)
+   - Repository: `enhanced-simulation-hardware-abstraction-framework` → `trajectory_visualizer.js`
+   - Function: Browser-based 3D flight path visualization
+   - Technology: Three.js WebGL rendering, NDJSON data loading
+   - Target: Interactive 3D trajectory display with time-based animation
+   - Status: Not complete
 
-**Phase 3: Deployment Mission Planning** (4 prompts)
-- Repository: `lqg-subspace-relay-network` → mission planning module  
-- Function: Single LQG FTL mission to deploy relay at optimal 133,333 AU position
-- Technology: Precision navigation, beacon deployment protocols, system activation
-- Deliverables: `deployment_mission_planner.py`, `beacon_deployment_system.py`, `activation_protocols.py`
+3. **Navigation Planning Interface** (1 prompt)
+   - Repository: `enhanced-simulation-hardware-abstraction-framework` → `navigation_planner.js`
+   - Function: Interactive mission planning with path optimization
+   - Technology: Browser UI integration, real-time calculation updates
+   - Target: Mission planning tools with LQG FTL constraints
+   - Status: Not complete
 
-**Phase 4: Network Protocol Integration** (4 prompts)
-- Repository: `lqg-subspace-relay-network` → protocol integration
-- Function: End-to-end communication protocols with warp bubble constraint handling
-- Technology: Directional transmission logic, emergency protocols, error correction
-- Deliverables: `warp_comm_protocol.py`, `emergency_communication.py`, `error_correction_system.py`
+**Performance Targets**:
+- **Data Format**: NDJSON standard for trajectory data exchange
+- **Visualization Quality**: Smooth 3D trajectory rendering at 60 FPS
+- **Navigation Accuracy**: Integration with astrometric calculation systems
+- **Mission Planning**: Real-time path optimization for LQG FTL profiles
 
-#### Critical Design Constraints
-- **Single Relay Feasibility**: Only 1 beacon required (vs. 20+ initially estimated)
-- **Warp Bubble Physics**: Transmissions only in direction opposite to travel
-- **Vessel Mass Limits**: Relay beacon ≤500 kg for single-mission deployment
-- **Power Limitations**: 1 kW spacecraft transmitter compatible with ≤100 crew vessel
+**Success Metrics**:
+- **Data Compatibility**: NDJSON format adoption across navigation systems
+- **Visualization Performance**: Real-time 3D trajectory updates in browser
+- **Planning Integration**: Seamless workflow from calculation to visualization
+- **Mission Support**: Complete Earth-Proxima trajectory planning capability
 
-#### Performance Targets
-- **Communication Range**: 266,667 AU maximum reliable transmission
-- **Signal Quality**: >10 dB link margin at maximum distance
-- **Data Rate**: >1 Gbps sustained throughput capability  
-- **Network Availability**: 99.9% uptime with redundant ground stations
+**Technical Analysis**: [Complete flight path visualization and navigation planning analysis](technical-analysis-roadmap-2025.md#flight-path-3d-visualization-system)
 
-#### Success Metrics
-- **Single Mission Deployment**: Successful relay placement in one LQG FTL mission
-- **Real-Time Communication**: Voice/video capability with <2.5 hour Earth-Proxima delay
-- **50+ Year Operation**: Autonomous relay beacon operational lifetime
-- **Emergency Response**: <30 minute acknowledgment for vessel distress signals
-
-**Technical Analysis**: [Complete subspace relay network design and deployment analysis](technical-analysis-roadmap-2025.md#subspace-relay-network-analysis)
-
-**Status**: ⚡ **HIGH PRIORITY DEVELOPMENT** - Mission-critical safety infrastructure  
-**Dependencies**: Subspace Transceiver (✅ Complete), LQG FTL Propulsion (✅ Complete)
-**Integration Points**: `warp-field-coils` (subspace transceiver), vessel navigation systems
-**Risk Level**: LOW RISK - Proven subspace technology with realistic deployment requirements
-
----
-
-### 7. System Integration and Production Readiness
-
-#### 7.1 Repository Optimization and Archival
+**Status**: ⚡ **MEDIUM-HIGH PRIORITY DEVELOPMENT** - Important for mission planning
+**Dependencies**: Astrometric calculations, LQG FTL navigation systems
+**Integration Points**: Navigation systems, mission planning, trajectory optimization
+**Risk Level**: LOW RISK - Standard 3D visualization and data processing technologies
