@@ -40,7 +40,7 @@ def scan_asciimath_files():
         return []
     
     files_data = []
-    file_extensions = {'.py', '.ps1'}
+    file_extensions = {'.py', '.ps1', '.js'}
     
     print(f"Scanning files in: {base_path}")
     
@@ -284,6 +284,14 @@ def generate_html_report(catalog, output_path):
             font-weight: bold;
         }
         
+        .ext-js {
+            color: #f7df1e;
+            background: #323330;
+            font-weight: bold;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        
         .path-code {
             font-family: 'Courier New', monospace;
             background: #f8f9fa;
@@ -466,15 +474,20 @@ def generate_html_report(catalog, output_path):
         }
         
         function copyToClipboard(path, buttonId) {
+            console.log('Copy button clicked for path:', path);
+            console.log('Button ID:', buttonId);
+            
             // Use the modern Clipboard API if available
             if (navigator.clipboard && window.isSecureContext) {
                 navigator.clipboard.writeText(path).then(() => {
+                    console.log('Successfully copied to clipboard:', path);
                     showCopySuccess(buttonId);
                 }).catch((err) => {
                     console.error('Failed to copy text: ', err);
                     fallbackCopyTextToClipboard(path, buttonId);
                 });
             } else {
+                console.log('Using fallback copy method');
                 // Fallback for older browsers or non-secure contexts
                 fallbackCopyTextToClipboard(path, buttonId);
             }
@@ -536,10 +549,18 @@ def generate_html_report(catalog, output_path):
         }
         
         function createFileRow(file) {
-            const extClass = file.file_extension === '.py' ? 'ext-py' : 'ext-ps1';
+            let extClass = 'ext-other';
+            if (file.file_extension === '.py') {
+                extClass = 'ext-py';
+            } else if (file.file_extension === '.ps1') {
+                extClass = 'ext-ps1';
+            } else if (file.file_extension === '.js') {
+                extClass = 'ext-js';
+            }
+            
             const copyBtnId = `copy-${file.repository}-${file.file_name}`.replace(/[^a-zA-Z0-9-]/g, '-');
             // Properly escape the path for onclick handler
-            const escapedPath = file.absolute_path.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+            const escapedPath = file.absolute_path.replace(/\\\\/g, '\\\\\\\\').replace(/'/g, "\\'");
             return `
                 <tr data-repo="${file.repository}" data-ext="${file.file_extension}" data-modified="${file.date_modified}">
                     <td><span class="${extClass}">${file.file_name}</span></td>
@@ -586,10 +607,14 @@ def generate_html_report(catalog, output_path):
         }
         
         function updateTable() {
+            console.log('updateTable called');
+            console.log('Total files in filesData:', filesData.files.length);
+            
             const searchTerm = document.getElementById('searchBox').value;
             const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
             
             let filteredFiles = filterFiles(searchTerm, activeFilter);
+            console.log('Filtered files:', filteredFiles.length);
             
             // Apply sorting if a column is selected
             if (currentSort.column) {
@@ -600,9 +625,11 @@ def generate_html_report(catalog, output_path):
             const noResults = document.getElementById('noResults');
             
             if (filteredFiles.length === 0) {
+                console.log('No files to display');
                 tableBody.innerHTML = '';
                 noResults.style.display = 'block';
             } else {
+                console.log('Displaying', filteredFiles.length, 'files');
                 tableBody.innerHTML = filteredFiles.map(createFileRow).join('');
                 noResults.style.display = 'none';
             }

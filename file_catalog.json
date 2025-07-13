@@ -1,6 +1,6 @@
 {
-  "scan_timestamp": "2025-07-13T08:02:58.157456",
-  "total_files": 2111,
+  "scan_timestamp": "2025-07-13T09:13:56.054886",
+  "total_files": 2112,
   "scan_summary": {
     "python_files": 2099,
     "powershell_files": 12,
@@ -1124,8 +1124,8 @@
       "repository": "energy",
       "file_extension": ".py",
       "date_created": "2025-07-13T07:36:23.739513",
-      "date_modified": "2025-07-13T08:02:36.423055",
-      "file_size_bytes": 24867
+      "date_modified": "2025-07-13T09:13:45.888732",
+      "file_size_bytes": 25947
     },
     {
       "file_name": "check_traffic_stats.py",
@@ -18366,6 +18366,16 @@
       "date_created": "2025-06-24T19:07:56.220534",
       "date_modified": "2025-06-24T19:07:56.220534",
       "file_size_bytes": 1935
+    },
+    {
+      "file_name": "script.js",
+      "relative_path": "docs/script.js",
+      "absolute_path": "C:\\Users\\%USERNAME%\\Code\\asciimath\\warp-bubble-metric-ansatz\\docs\\script.js",
+      "repository": "warp-bubble-metric-ansatz",
+      "file_extension": ".js",
+      "date_created": "2025-06-24T19:07:59.184177",
+      "date_modified": "2025-06-24T19:07:59.185182",
+      "file_size_bytes": 7318
     },
     {
       "file_name": "metric_ansatz.py",
