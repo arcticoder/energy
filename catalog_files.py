@@ -229,6 +229,31 @@ def generate_html_report(catalog, output_path):
             position: sticky;
             top: 0;
             z-index: 10;
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.2s;
+        }
+        
+        th:hover {
+            background: #5a6fd8;
+        }
+        
+        th.sortable::after {
+            content: ' ↕️';
+            font-size: 0.8em;
+            opacity: 0.7;
+        }
+        
+        th.sort-asc::after {
+            content: ' ↑';
+            font-size: 0.8em;
+            opacity: 1;
+        }
+        
+        th.sort-desc::after {
+            content: ' ↓';
+            font-size: 0.8em;
+            opacity: 1;
         }
         
         td {
@@ -347,12 +372,12 @@ def generate_html_report(catalog, output_path):
             <table id="filesTable">
                 <thead>
                     <tr>
-                        <th>File Name</th>
-                        <th>Repository</th>
-                        <th>Relative Path</th>
-                        <th>Date Modified</th>
-                        <th>Date Created</th>
-                        <th>Size</th>
+                        <th class="sortable" data-sort="file_name">File Name</th>
+                        <th class="sortable" data-sort="repository">Repository</th>
+                        <th class="sortable" data-sort="relative_path">Relative Path</th>
+                        <th class="sortable" data-sort="date_modified">Date Modified</th>
+                        <th class="sortable" data-sort="date_created">Date Created</th>
+                        <th class="sortable" data-sort="file_size_bytes">Size</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody">
@@ -367,6 +392,7 @@ def generate_html_report(catalog, output_path):
 
     <script>
         const filesData = {{FILES_JSON}};
+        let currentSort = { column: null, direction: 'asc' };
         
         function formatFileSize(bytes) {
             if (bytes === 0) return '0 B';
@@ -379,6 +405,49 @@ def generate_html_report(catalog, output_path):
         function formatDate(isoString) {
             const date = new Date(isoString);
             return date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        }
+        
+        function sortFiles(files, column, direction) {
+            return files.sort((a, b) => {
+                let aVal = a[column];
+                let bVal = b[column];
+                
+                // Handle different data types
+                if (column === 'date_modified' || column === 'date_created') {
+                    aVal = new Date(aVal);
+                    bVal = new Date(bVal);
+                } else if (column === 'file_size_bytes') {
+                    aVal = parseInt(aVal);
+                    bVal = parseInt(bVal);
+                } else {
+                    aVal = aVal.toString().toLowerCase();
+                    bVal = bVal.toString().toLowerCase();
+                }
+                
+                let comparison = 0;
+                if (aVal > bVal) {
+                    comparison = 1;
+                } else if (aVal < bVal) {
+                    comparison = -1;
+                }
+                
+                return direction === 'desc' ? comparison * -1 : comparison;
+            });
+        }
+        
+        function updateSortIndicators(activeColumn, direction) {
+            // Remove all sort classes
+            document.querySelectorAll('th.sortable').forEach(th => {
+                th.classList.remove('sort-asc', 'sort-desc');
+            });
+            
+            // Add sort class to active column
+            if (activeColumn) {
+                const activeHeader = document.querySelector(`th[data-sort="${activeColumn}"]`);
+                if (activeHeader) {
+                    activeHeader.classList.add(direction === 'asc' ? 'sort-asc' : 'sort-desc');
+                }
+            }
         }
         
         function createFileRow(file) {
@@ -431,7 +500,13 @@ def generate_html_report(catalog, output_path):
             const searchTerm = document.getElementById('searchBox').value;
             const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
             
-            const filteredFiles = filterFiles(searchTerm, activeFilter);
+            let filteredFiles = filterFiles(searchTerm, activeFilter);
+            
+            // Apply sorting if a column is selected
+            if (currentSort.column) {
+                filteredFiles = sortFiles(filteredFiles, currentSort.column, currentSort.direction);
+            }
+            
             const tableBody = document.getElementById('tableBody');
             const noResults = document.getElementById('noResults');
             
@@ -442,6 +517,9 @@ def generate_html_report(catalog, output_path):
                 tableBody.innerHTML = filteredFiles.map(createFileRow).join('');
                 noResults.style.display = 'none';
             }
+            
+            // Update sort indicators
+            updateSortIndicators(currentSort.column, currentSort.direction);
         }
         
         // Event listeners
@@ -451,6 +529,23 @@ def generate_html_report(catalog, output_path):
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
+                updateTable();
+            });
+        });
+        
+        // Add sorting event listeners
+        document.querySelectorAll('th.sortable').forEach(header => {
+            header.addEventListener('click', function() {
+                const column = this.dataset.sort;
+                
+                // Toggle direction if same column, otherwise start with asc
+                if (currentSort.column === column) {
+                    currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+                } else {
+                    currentSort.column = column;
+                    currentSort.direction = 'asc';
+                }
+                
                 updateTable();
             });
         });
