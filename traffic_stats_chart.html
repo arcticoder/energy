@@ -110,7 +110,7 @@
 <body>
     <div class="container">
         <h1>GitHub Traffic Analytics</h1>
-        <p class="update-time">Last updated: July 13, 2025 05:35</p>
+        <p class="update-time">Last updated: July 13, 2025 06:21</p>
         
         <div class="stats">
             <div class="stat">
@@ -138,7 +138,7 @@
         <div class="chart-controls">
             <h3>Growth Trends (16 days of data)</h3>
             <div style="text-align: left; background: white; padding: 15px; border-radius: 8px; margin: 10px 0;">
-                <p>📈 <strong>Views</strong>: 0.14 per day (R²=0.004)</p><p>📈 <strong>Unique Views</strong>: 0.25 per day (R²=0.023)</p><p>📈 <strong>Clones</strong>: 33.49 per day (R²=0.097)</p><p>📈 <strong>Unique Clones</strong>: 26.44 per day (R²=0.086)</p>
+                <p>📈 <strong>Views</strong>: 0.16 per day (R²=0.003)</p><p>📈 <strong>Unique Views</strong>: 0.30 per day (R²=0.023)</p><p>📈 <strong>Clones</strong>: 38.95 per day (R²=0.091)</p><p>📈 <strong>Unique Clones</strong>: 30.19 per day (R²=0.078)</p>
             </div>
         </div>
         
@@ -159,7 +159,7 @@
         
         <script>
             const ctx = document.getElementById('trafficChart').getContext('2d');
-            const chartData = {"labels": ["2025-06-28", "2025-06-29", "2025-06-30", "2025-07-01", "2025-07-02", "2025-07-03", "2025-07-04", "2025-07-05", "2025-07-06", "2025-07-07", "2025-07-08", "2025-07-09", "2025-07-10", "2025-07-11", "2025-07-12", "2025-07-13"], "datasets": [{"label": "Total Views", "data": [4, 2, 29, 21, 15, 10, 30, 5, 15, 5, 20, 10, 25, 35, 10, 0], "borderColor": "rgb(75, 192, 192)", "backgroundColor": "rgba(75, 192, 192, 0.1)", "tension": 0.1}, {"label": "Unique Views", "data": [4, 2, 16, 16, 5, 10, 25, 5, 15, 5, 20, 10, 15, 25, 10, 0], "borderColor": "rgb(255, 99, 132)", "backgroundColor": "rgba(255, 99, 132, 0.1)", "tension": 0.1}, {"label": "Total Clones", "data": [58, 265, 738, 910, 327, 391, 737, 1345, 1550, 1085, 620, 705, 1730, 1310, 582, 54], "borderColor": "rgb(54, 162, 235)", "backgroundColor": "rgba(54, 162, 235, 0.1)", "tension": 0.1}, {"label": "Unique Clones", "data": [56, 228, 681, 817, 321, 374, 674, 1220, 1205, 990, 555, 645, 1425, 1170, 473, 45], "borderColor": "rgb(255, 206, 86)", "backgroundColor": "rgba(255, 206, 86, 0.1)", "tension": 0.1}]};
+            const chartData = {"labels": ["2025-06-28", "2025-06-29", "2025-06-30", "2025-07-01", "2025-07-02", "2025-07-03", "2025-07-04", "2025-07-05", "2025-07-06", "2025-07-07", "2025-07-08", "2025-07-09", "2025-07-10", "2025-07-11", "2025-07-12", "2025-07-13"], "datasets": [{"label": "Total Views", "data": [4, 2, 36, 26, 18, 12, 36, 6, 18, 6, 24, 12, 30, 42, 12, 0], "borderColor": "rgb(75, 192, 192)", "backgroundColor": "rgba(75, 192, 192, 0.1)", "tension": 0.1}, {"label": "Unique Views", "data": [4, 2, 20, 20, 6, 12, 30, 6, 18, 6, 24, 12, 18, 30, 12, 0], "borderColor": "rgb(255, 99, 132)", "backgroundColor": "rgba(255, 99, 132, 0.1)", "tension": 0.1}, {"label": "Total Clones", "data": [58, 316, 984, 1208, 436, 496, 924, 1682, 1860, 1302, 744, 846, 2076, 1572, 780, 108], "borderColor": "rgb(54, 162, 235)", "backgroundColor": "rgba(54, 162, 235, 0.1)", "tension": 0.1}, {"label": "Unique Clones", "data": [56, 276, 908, 1084, 428, 474, 844, 1518, 1446, 1188, 666, 774, 1710, 1404, 629, 90], "borderColor": "rgb(255, 206, 86)", "backgroundColor": "rgba(255, 206, 86, 0.1)", "tension": 0.1}]};
             
             // Calculate trend lines for each dataset
             function calculateTrendline(data) {
@@ -212,7 +212,7 @@
                     plugins: {
                         title: {
                             display: true,
-                            text: 'Repository Traffic Analytics (14-Day Trend)',
+                            text: 'Repository Traffic Analytics (16-Day Historical Trend)',
                             font: { size: 18, weight: 'bold' }
                         },
                         legend: {
