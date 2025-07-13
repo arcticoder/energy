@@ -275,7 +275,7 @@
    - Status: ✅ **THEORETICAL FRAMEWORK COMPLETE** - Quantum mechanical modeling operational
    - Implementation: Comprehensive theoretical framework with assembly protocols ready for experimental validation
 
-#### 3.2 Multi-Crew Vessel Architecture
+#### 3.2.1 Multi-Crew Vessel Architecture (Not crewed)
 **Priority**: HIGH
 **Effort**: Medium (6-8 prompts)
 **Research Value**: High
@@ -299,6 +299,74 @@
    - Performance: 480c velocity, 1.2 years autonomous operation, 99.98% reliability
    - Status: ✅ **PRODUCTION COMPLETE** - Ready for immediate deployment
    
+#### 3.2.2 Crew Complement Optimization Framework
+**Priority**: HIGH  
+**Effort**: Medium (6-8 prompts)  
+**Research Value**: VERY HIGH
+
+**Repository**: `enhanced-simulation-hardware-abstraction-framework` ⚠️ **OPTIMIZATION REQUIRED**
+**Function**: Multi-objective optimization for optimal crew size and role distribution
+**Technology**: Operations research with economic modeling and systems engineering analysis
+**Status**: ⚠️ **OPTIMIZATION REQUIRED** - Crew size and role optimization for ≤100 personnel
+
+**Core Challenge**: Determine optimal crew complement balancing operational efficiency, mission safety, economic viability, and system complexity for interstellar LQG FTL missions.
+
+**Optimization Variables**:
+- **Crew Size**: 1-100 personnel (hard constraint)
+- **Role Distribution**: Engineering, medical, command, science, maintenance
+- **Passenger vs. Crew Ratio**: Tourist revenue vs. operational burden
+- **Specialization vs. Cross-training**: Role redundancy vs. efficiency
+
+**Technical Challenge**: Multi-objective optimization with competing constraints
+**Solution Approach**: Pareto frontier analysis with Monte Carlo economic modeling
+
+**Implementation Phases**:
+
+1. **Economic Modeling Framework** (2 prompts)
+   - Repository: `enhanced-simulation-hardware-abstraction-framework` → `crew_economic_optimizer.py`
+   - Function: Cost-benefit analysis for crew size vs. system complexity
+   - Technology: Activity-based costing, revenue models, operational expense analysis
+   - Target: ROI optimization for 1-100 crew configurations
+
+2. **Role Optimization Engine** (2 prompts)
+   - Repository: `enhanced-simulation-hardware-abstraction-framework` → `role_distribution_optimizer.py`
+   - Function: Optimal crew role allocation with cross-training analysis
+   - Technology: Linear programming with constraint satisfaction
+   - Target: Minimum viable crew for safe operations with redundancy
+
+3. **System Complexity Assessment** (2 prompts)
+   - Repository: `enhanced-simulation-hardware-abstraction-framework` → `system_complexity_analyzer.py`
+   - Function: Technology cost allocation across crew sizes
+   - Technology: Amortization analysis for artificial gravity, replicators, life support
+   - Target: Break-even crew size for advanced systems justification
+
+4. **Mission Profile Optimization** (2 prompts)
+   - Repository: `enhanced-simulation-hardware-abstraction-framework` → `mission_optimizer.py`
+   - Function: Crew complement optimization per mission type
+   - Technology: Scientific missions vs. tourism vs. cargo transport analysis
+   - Target: Mission-specific crew configurations with safety margins
+
+**Performance Targets**:
+- **Optimal Crew Size**: Data-driven recommendation for Earth-Proxima missions
+- **Role Distribution**: Minimum viable crew with safety redundancy
+- **Economic Break-even**: Crew size for positive ROI on advanced systems
+- **Mission Flexibility**: Adaptable crew configurations for different mission types
+
+**Success Metrics**:
+- **Safety Compliance**: 100% coverage for all critical ship functions
+- **Economic Optimization**: Maximum ROI within safety constraints
+- **Operational Efficiency**: Minimum crew for maximum mission capability
+- **Technology Justification**: Clear cost-benefit for artificial gravity, replicators
+
+**Technical Analysis**: [Complete crew complement optimization analysis with economic modeling](technical-analysis-roadmap-2025.md#crew-complement-optimization-framework)
+
+**Status**: ⚡ **HIGH PRIORITY OPTIMIZATION** - Critical for mission planning and economics
+**Dependencies**: Crew Vessel Life Support, All ship systems integration
+**Integration Points**: All 51 repositories for system cost and complexity analysis
+**Risk Level**: LOW RISK - Operations research methodology with established economic modeling
+
+#### 3.2.3 Multi-Crew Vessel Architecture (Crewed)
+**Vessel Categories**:
 2. **Crew Vessel**: 
    - Repository: `enhanced-simulation-hardware-abstraction-framework`
    - Function: ≤100 personnel, 30-day endurance, optimized crew operations  
