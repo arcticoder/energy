@@ -12,6 +12,35 @@ Write-Host "Step 1: Processing energy repository..." -ForegroundColor Cyan
 
 Push-Location $energyRepoPath
 try {
+    # First, fetch latest changes from energy repository
+    Write-Host "  🔄 Fetching latest changes from energy repository..." -ForegroundColor Cyan
+    $fetchResult = git fetch --all 2>&1
+    if ($LASTEXITCODE -eq 0) {
+        Write-Host "  ✓ Fetch successful" -ForegroundColor Green
+    } else {
+        Write-Host "  ⚠️  Fetch completed with warnings: $fetchResult" -ForegroundColor DarkYellow
+    }
+    
+    # Check current branch
+    $currentBranch = git branch --show-current 2>$null
+    if (-not $currentBranch) {
+        $currentBranch = "main"  # fallback
+    }
+    
+    # Pull latest changes if behind
+    $behind = git rev-list HEAD..origin/$currentBranch --count 2>$null
+    if ($behind -and $behind -gt 0) {
+        Write-Host "  📥 Energy repository is $behind commits behind, pulling changes..." -ForegroundColor Cyan
+        $pullResult = git pull origin $currentBranch 2>&1
+        if ($LASTEXITCODE -eq 0) {
+            Write-Host "  ✓ Pull successful - updated $behind commits" -ForegroundColor Green
+        } else {
+            Write-Host "  ❌ Pull failed: $pullResult" -ForegroundColor Red
+        }
+    } else {
+        Write-Host "  ✓ Energy repository is up to date with remote" -ForegroundColor Green
+    }
+    
     # Check if there are uncommitted changes in energy repo
     $energyStatus = git status --porcelain 2>$null
     if ($energyStatus) {
@@ -121,7 +150,7 @@ foreach ($repo in $repos) {
 
 Write-Host "`n🎉 Synchronization completed!" -ForegroundColor Green
 Write-Host "📊 Sync Results Summary:" -ForegroundColor Cyan
-Write-Host "  ✓ Energy repository: Changes committed and pushed" -ForegroundColor Green
+Write-Host "  ✓ Energy repository: Pulled latest changes, committed local changes, and pushed" -ForegroundColor Green
 Write-Host "  ✓ Successfully updated: $successCount repositories" -ForegroundColor Green
 Write-Host "  ❌ Failed to update: $failCount repositories" -ForegroundColor Red
 Write-Host "  ⚠️  Skipped (not git repos): $skippedCount directories" -ForegroundColor DarkYellow
