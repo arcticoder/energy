@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ASCIIMath Project File Catalog</title>
+    <title>ASCIIMath Project File Catalog (NDJSON)</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -33,6 +33,15 @@
             margin: 0;
             font-size: 2.5em;
             font-weight: 300;
+        }
+        
+        .format-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            margin-top: 10px;
         }
         
         .stats {
@@ -225,6 +234,14 @@
             color: #333;
         }
         
+        .ndjson-info {
+            background: #e8f5e8;
+            padding: 15px;
+            margin: 20px 30px;
+            border-radius: 6px;
+            border-left: 4px solid #4caf50;
+        }
+        
         .hidden {
             display: none !important;
         }
@@ -249,8 +266,13 @@
     <div class="container">
         <div class="header">
             <h1>ASCIIMath Project File Catalog</h1>
+            <div class="format-badge">NDJSON Format</div>
             <p>Comprehensive documentation and analysis of project files</p>
-            <p style="font-size: 0.9em; opacity: 0.9;">Last updated: July 14, 2025 at 11:39 AM</p>
+            <p style="font-size: 0.9em; opacity: 0.9;">Last updated: July 14, 2025 at 12:35 PM</p>
+        </div>
+        
+        <div class="ndjson-info">
+            <strong>📊 NDJSON Format Benefits:</strong> Each file is stored as a separate JSON line, enabling streaming processing, easier parsing, and better scalability for large catalogs.
         </div>
         
         <div class="stats">
@@ -279,7 +301,7 @@
                 <button class="filter-btn active" data-filter="all">All Files</button>
                 <button class="filter-btn" data-filter="priority-critical">Critical</button>
                 <button class="filter-btn" data-filter="priority-high">High Priority</button>
-                <button class="filter-btn" data-filter="category-quantum_gravity">Quantum Gravity</button>
+                <button class="filter-btn" data-filter="category-quantum_gravity_validation">Quantum Gravity</button>
                 <button class="filter-btn" data-filter="category-warp_physics">Warp Physics</button>
                 <button class="filter-btn" data-filter="extension-.py">Python Files</button>
                 <button class="filter-btn" data-filter="extension-.md">Documentation</button>
