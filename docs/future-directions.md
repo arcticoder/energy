@@ -382,14 +382,21 @@
 **Vessel Categories**:
 2. **Crew Vessel**: 
    - Repository: `enhanced-simulation-hardware-abstraction-framework`
-   - Function: ≤100 personnel, 30-day endurance, optimized crew operations  
+   - Function: ≤100 personnel, 120-day total mission endurance, optimized crew operations  
    - Status: ✅ **IMPLEMENTATION COMPLETE** - Production-ready multi-crew vessel architecture operational (July 13, 2025)
    - Implementation: Complete 1,450+ lines production framework with comprehensive integration
 
+**Mission Profile Breakdown**:
+- **Outbound Transit**: 30 days maximum supraluminal (Earth → Proxima Centauri)
+- **System Operations**: 30 days orbital survey, surface operations, scientific analysis
+- **Return Transit**: 30 days maximum supraluminal (Proxima Centauri → Earth)
+- **Contingency Buffer**: 30 days safety margin for delays, extended operations, emergency scenarios
+- **Total Mission Duration**: 120 days complete round-trip capability
+
 **Design Considerations** ✅ IMPLEMENTED:
-- **Life support system requirements**: 99.9% efficiency closed-loop environmental control ✅ OPERATIONAL
+- **Life support system requirements**: 99.9% efficiency closed-loop environmental control, 120-day consumables ✅ OPERATIONAL
 - **Emergency evacuation protocols**: <60s evacuation, 100% crew coverage ✅ OPERATIONAL
-- **Crew quarters optimization**: 15m³ per crew, 1g artificial gravity ✅ OPERATIONAL
+- **Crew quarters optimization**: 15m³ per crew, 1g artificial gravity, 4-month hab modules ✅ OPERATIONAL
 - **Command and control systems**: 12-station bridge with AI assistance and manual override ✅ OPERATIONAL
 
 **Implementation Achievement**:
