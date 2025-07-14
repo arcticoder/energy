@@ -133,15 +133,37 @@ def merge_historical_daily_data(stats_history):
     
     for run in stats_history:
         run_date = run.get("date", "")
+        run_totals = run.get("totals", {})
         
-        # Process each repository in this run
+        # Store totals for this date (repository-level aggregation)
+        if run_date and run_date not in all_daily_data:
+            all_daily_data[run_date] = {
+                "views": 0, 
+                "unique_views": 0, 
+                "clones": 0, 
+                "unique_clones": 0,
+                "stars": run_totals.get("stars", 0),
+                "watchers": run_totals.get("watchers", 0), 
+                "forks": run_totals.get("forks", 0),
+                "active_forks": run_totals.get("active_forks", 0),
+                "recent_forks": run_totals.get("recent_forks", 0)
+            }
+        elif run_date:
+            # Update with latest totals for the date
+            all_daily_data[run_date]["stars"] = run_totals.get("stars", 0)
+            all_daily_data[run_date]["watchers"] = run_totals.get("watchers", 0)
+            all_daily_data[run_date]["forks"] = run_totals.get("forks", 0)
+            all_daily_data[run_date]["active_forks"] = run_totals.get("active_forks", 0)
+            all_daily_data[run_date]["recent_forks"] = run_totals.get("recent_forks", 0)
+        
+        # Process each repository in this run for traffic data
         for repo_name, repo_data in run.get("repositories", {}).items():
             
             # Merge daily views
             for day_data in repo_data.get("daily_views", []):
                 date = day_data["date"]
                 if date not in all_daily_data:
-                    all_daily_data[date] = {"views": 0, "unique_views": 0, "clones": 0, "unique_clones": 0}
+                    all_daily_data[date] = {"views": 0, "unique_views": 0, "clones": 0, "unique_clones": 0, "stars": 0, "watchers": 0, "forks": 0, "active_forks": 0, "recent_forks": 0}
                 
                 # Accumulate data (sum across all repos for that date)
                 all_daily_data[date]["views"] += day_data.get("views", 0)
@@ -151,7 +173,7 @@ def merge_historical_daily_data(stats_history):
             for day_data in repo_data.get("daily_clones", []):
                 date = day_data["date"]
                 if date not in all_daily_data:
-                    all_daily_data[date] = {"views": 0, "unique_views": 0, "clones": 0, "unique_clones": 0}
+                    all_daily_data[date] = {"views": 0, "unique_views": 0, "clones": 0, "unique_clones": 0, "stars": 0, "watchers": 0, "forks": 0, "active_forks": 0, "recent_forks": 0}
                 
                 # Accumulate data (sum across all repos for that date)
                 all_daily_data[date]["clones"] += day_data.get("clones", 0)
@@ -171,6 +193,10 @@ def check_gh_auth():
     except FileNotFoundError:
         print("❌ GitHub CLI not found. Please install GitHub CLI")
         return False
+
+def get_repo_forks(repo):
+    """Get detailed repository forks information."""
+    return run_gh_command(["api", f"repos/arcticoder/{repo}/forks", "--paginate"])
 
 def get_repo_info(repo):
     """Get repository information (stars, watchers, forks)."""
@@ -194,6 +220,9 @@ def process_repository(repo):
         "stars": 0,
         "watchers": 0,
         "forks": 0,
+        "fork_details": [],
+        "active_forks": 0,
+        "recent_forks": 0,
         "views_total": 0,
         "views_unique": 0,
         "clones_total": 0,
@@ -226,6 +255,68 @@ def process_repository(repo):
             print("📊 Repository Stats: Access denied or repository not found")
     except Exception as e:
         print(f"📊 Repository Stats: Error processing repository info - {e}")
+
+    # Get detailed fork information
+    try:
+        forks_data = get_repo_forks(repo)
+        if forks_data and isinstance(forks_data, list):
+            print("🍴 Fork Analysis:")
+            total_forks = len(forks_data)
+            
+            # Analyze fork activity
+            active_forks = 0
+            recent_forks = 0
+            fork_details = []
+            
+            # Define thresholds
+            from datetime import timezone
+            thirty_days_ago = datetime.now(timezone.utc) - timedelta(days=30)
+            ninety_days_ago = datetime.now(timezone.utc) - timedelta(days=90)
+            
+            for fork in forks_data:
+                fork_info = {
+                    "name": fork.get('full_name', ''),
+                    "owner": fork.get('owner', {}).get('login', ''),
+                    "created_at": fork.get('created_at', ''),
+                    "updated_at": fork.get('updated_at', ''),
+                    "stars": fork.get('stargazers_count', 0),
+                    "size": fork.get('size', 0)
+                }
+                
+                # Check if fork is active (updated in last 90 days)
+                if fork.get('updated_at'):
+                    updated_date = datetime.fromisoformat(fork['updated_at'].replace('Z', '+00:00'))
+                    if updated_date > ninety_days_ago:
+                        active_forks += 1
+                    if updated_date > thirty_days_ago:
+                        recent_forks += 1
+                
+                fork_details.append(fork_info)
+            
+            print(f"   Total Forks: {total_forks}")
+            print(f"   Active Forks (90 days): {active_forks}")
+            print(f"   Recent Forks (30 days): {recent_forks}")
+            
+            # Show most starred forks
+            if fork_details:
+                starred_forks = [f for f in fork_details if f['stars'] > 0]
+                if starred_forks:
+                    starred_forks.sort(key=lambda x: x['stars'], reverse=True)
+                    print(f"   Most Starred Forks:")
+                    for fork in starred_forks[:3]:  # Show top 3
+                        print(f"     ⭐ {fork['name']} ({fork['stars']} stars)")
+            
+            repo_data.update({
+                "fork_details": fork_details[:20],  # Store top 20 for space
+                "active_forks": active_forks,
+                "recent_forks": recent_forks
+            })
+        elif repo_data["forks"] > 0:
+            print(f"🍴 Fork Analysis: {repo_data['forks']} forks (details not accessible)")
+        else:
+            print("🍴 Fork Analysis: No forks")
+    except Exception as e:
+        print(f"🍴 Fork Analysis: Error processing fork data - {e}")
     
     try:
         # Get views traffic
@@ -358,6 +449,30 @@ def generate_html_chart(current_run, stats_history):
                 "backgroundColor": "rgba(255, 206, 86, 0.1)",
                 "tension": 0.1,
                 "order": 2
+            },
+            {
+                "label": "Total Stars",
+                "data": [],
+                "borderColor": "rgb(153, 102, 255)",
+                "backgroundColor": "rgba(153, 102, 255, 0.1)",
+                "tension": 0.1,
+                "order": 2
+            },
+            {
+                "label": "Total Forks",
+                "data": [],
+                "borderColor": "rgb(255, 159, 64)",
+                "backgroundColor": "rgba(255, 159, 64, 0.1)",
+                "tension": 0.1,
+                "order": 2
+            },
+            {
+                "label": "Active Forks",
+                "data": [],
+                "borderColor": "rgb(199, 199, 199)",
+                "backgroundColor": "rgba(199, 199, 199, 0.1)",
+                "tension": 0.1,
+                "order": 2
             }
         ]
     }
@@ -371,6 +486,9 @@ def generate_html_chart(current_run, stats_history):
         chart_data["datasets"][1]["data"].append(daily_aggregates[date]["unique_views"])
         chart_data["datasets"][2]["data"].append(daily_aggregates[date]["clones"])
         chart_data["datasets"][3]["data"].append(daily_aggregates[date]["unique_clones"])
+        chart_data["datasets"][4]["data"].append(daily_aggregates[date]["stars"])
+        chart_data["datasets"][5]["data"].append(daily_aggregates[date]["forks"])
+        chart_data["datasets"][6]["data"].append(daily_aggregates[date]["active_forks"])
     
     print(f"📈 Chart includes {len(sorted_dates)} days of data (last 14 shown below):")
     for date in sorted_dates[-14:]:  # Show last 14 days in console
@@ -379,7 +497,7 @@ def generate_html_chart(current_run, stats_history):
     
     # Calculate trend slopes
     slope_data = {}
-    for metric in ['views', 'unique_views', 'clones', 'unique_clones']:
+    for metric in ['views', 'unique_views', 'clones', 'unique_clones', 'stars', 'forks', 'active_forks']:
         slope, r_squared, days = calculate_trend_slope(daily_aggregates, metric)
         slope_data[metric] = {
             'slope': slope,
@@ -424,6 +542,9 @@ def generate_html_chart(current_run, stats_history):
     html = html.replace('{{TOTAL_CLONES}}', str(current_run["totals"]["clones"]))
     html = html.replace('{{UNIQUE_CLONES}}', str(current_run["totals"]["unique_clones"]))
     html = html.replace('{{TOTAL_STARS}}', str(current_run["totals"]["stars"]))
+    html = html.replace('{{TOTAL_FORKS}}', str(current_run["totals"]["forks"]))
+    html = html.replace('{{ACTIVE_FORKS}}', str(current_run["totals"]["active_forks"]))
+    html = html.replace('{{RECENT_FORKS}}', str(current_run["totals"]["recent_forks"]))
     html = html.replace('{{CHART_DATA}}', chart_data_json)
     html = html.replace('{{SLOPE_INFO}}', slope_info)
     html = html.replace('{{TOTAL_DAYS}}', str(len(sorted_dates)))
@@ -463,6 +584,8 @@ def main():
             "stars": 0,
             "watchers": 0,
             "forks": 0,
+            "active_forks": 0,
+            "recent_forks": 0,
             "repositories_count": len(REPOS)
         }
     }
@@ -480,6 +603,8 @@ def main():
         current_run["totals"]["stars"] += repo_data["stars"]
         current_run["totals"]["watchers"] += repo_data["watchers"]
         current_run["totals"]["forks"] += repo_data["forks"]
+        current_run["totals"]["active_forks"] += repo_data["active_forks"]
+        current_run["totals"]["recent_forks"] += repo_data["recent_forks"]
     
     # Display summary
     totals = current_run["totals"]
@@ -490,6 +615,11 @@ def main():
     print(f"Total Stars: {totals['stars']}")
     print(f"Total Watchers: {totals['watchers']}")
     print(f"Total Forks: {totals['forks']}")
+    print(f"Active Forks (90 days): {totals['active_forks']}")
+    print(f"Recent Forks (30 days): {totals['recent_forks']}")
+    if totals['forks'] > 0:
+        activity_rate = (totals['active_forks'] / totals['forks']) * 100
+        print(f"Fork Activity Rate: {activity_rate:.1f}%")
     print(f"Repositories Checked: {totals['repositories_count']}")
     print()
     print("🔥 indicates activity within the past 24 hours")

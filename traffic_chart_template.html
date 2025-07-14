@@ -92,11 +92,17 @@
         .toggle-btn.unique-views { border-color: rgb(255, 99, 132); color: rgb(255, 99, 132); }
         .toggle-btn.clones { border-color: rgb(54, 162, 235); color: rgb(54, 162, 235); }
         .toggle-btn.unique-clones { border-color: rgb(255, 206, 86); color: rgb(255, 206, 86); }
+        .toggle-btn.stars { border-color: rgb(153, 102, 255); color: rgb(153, 102, 255); }
+        .toggle-btn.forks { border-color: rgb(255, 159, 64); color: rgb(255, 159, 64); }
+        .toggle-btn.active-forks { border-color: rgb(199, 199, 199); color: rgb(199, 199, 199); }
         
         .toggle-btn.active.views { background: rgb(75, 192, 192); color: white; }
         .toggle-btn.active.unique-views { background: rgb(255, 99, 132); color: white; }
         .toggle-btn.active.clones { background: rgb(54, 162, 235); color: white; }
         .toggle-btn.active.unique-clones { background: rgb(255, 206, 86); color: white; }
+        .toggle-btn.active.stars { background: rgb(153, 102, 255); color: white; }
+        .toggle-btn.active.forks { background: rgb(255, 159, 64); color: white; }
+        .toggle-btn.active.active-forks { background: rgb(199, 199, 199); color: white; }
         h2 { 
             text-align: center; 
             color: #555;
@@ -133,6 +139,18 @@
                 <div class="stat-value">{{TOTAL_STARS}}</div>
                 <div class="stat-label">Total Stars</div>
             </div>
+            <div class="stat">
+                <div class="stat-value">{{TOTAL_FORKS}}</div>
+                <div class="stat-label">Total Forks</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">{{ACTIVE_FORKS}}</div>
+                <div class="stat-label">Active Forks</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">{{RECENT_FORKS}}</div>
+                <div class="stat-label">Recent Forks</div>
+            </div>
         </div>
         
         <div class="chart-controls">
@@ -149,14 +167,20 @@
                 <button class="toggle-btn unique-views active" onclick="toggleDataset(1)">Unique Views</button>
                 <button class="toggle-btn clones active" onclick="toggleDataset(2)">Total Clones</button>
                 <button class="toggle-btn unique-clones active" onclick="toggleDataset(3)">Unique Clones</button>
+                <button class="toggle-btn stars active" onclick="toggleDataset(4)">Total Stars</button>
+                <button class="toggle-btn forks active" onclick="toggleDataset(5)">Total Forks</button>
+                <button class="toggle-btn active-forks active" onclick="toggleDataset(6)">Active Forks</button>
             </div>
             <div style="margin-top: 15px;">
                 <h4 style="margin: 10px 0 5px 0;">Trend Lines (Line of Best Fit)</h4>
                 <div class="control-buttons">
-                    <button class="toggle-btn views active" onclick="toggleTrendDataset(4)">Views Trend</button>
-                    <button class="toggle-btn unique-views active" onclick="toggleTrendDataset(5)">Unique Views Trend</button>
-                    <button class="toggle-btn clones active" onclick="toggleTrendDataset(6)">Clones Trend</button>
-                    <button class="toggle-btn unique-clones active" onclick="toggleTrendDataset(7)">Unique Clones Trend</button>
+                    <button class="toggle-btn views active" onclick="toggleTrendDataset(7)">Views Trend</button>
+                    <button class="toggle-btn unique-views active" onclick="toggleTrendDataset(8)">Unique Views Trend</button>
+                    <button class="toggle-btn clones active" onclick="toggleTrendDataset(9)">Clones Trend</button>
+                    <button class="toggle-btn unique-clones active" onclick="toggleTrendDataset(10)">Unique Clones Trend</button>
+                    <button class="toggle-btn stars active" onclick="toggleTrendDataset(11)">Stars Trend</button>
+                    <button class="toggle-btn forks active" onclick="toggleTrendDataset(12)">Forks Trend</button>
+                    <button class="toggle-btn active-forks active" onclick="toggleTrendDataset(13)">Active Forks Trend</button>
                 </div>
             </div>
         </div>
