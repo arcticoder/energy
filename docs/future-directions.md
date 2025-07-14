@@ -510,7 +510,7 @@
 
 **Status**: ⚡ **HIGH PRIORITY DEVELOPMENT** - Performance optimization and mission planning
 **Dependencies**: Zero Exotic Energy Framework (✅ Complete), LQG Drive System (✅ Complete)
-**Integration Points**: `lqg-ftl-metric-engineering`, `lqg-positive-matter-assembler`, passenger vessel design
+**Integration Points**: `lqg-ftl-metric-engineering`, `lqg-positive-matter-assembler`
 **Risk Level**: MEDIUM RISK - Complex optimization with multiple constraint satisfaction
 
 #### 3.2.5 Flight Paths JSON 3D Visualization  
