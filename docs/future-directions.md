@@ -466,15 +466,15 @@
 **Repository**: `lqg-ftl-metric-engineering` (enhancement)
 **Function**: Comprehensive coordinate velocity performance mapping with non-exotic energy optimization
 **Technology**: LQG polymer-corrected spacetime geometry with smear time capabilities 
-**Status**: ⚡ **HIGH PRIORITY DEVELOPMENT** - Performance optimization and passenger experience enhancement
+**Status**: ⚡ **HIGH PRIORITY DEVELOPMENT** - Performance and tidal stress measurement study
 
-**Core Objective**: Generate comprehensive performance tables mapping coordinate velocities (1c-2000c) to positive energy requirements and smear time parameters for optimal LQG Drive configuration within proportionate energy constraints.
+**Core Objective**: Generate comprehensive performance tables mapping coordinate velocities (1c-9999c) to positive energy requirements and smear time parameters for optimal LQG Drive configuration within proportionate energy constraints.
 
 **Critical Design Targets**:
-- **Target Velocity**: the sky is the limit
+- **Target Velocity**: the sky is the limit (9999c)
 - **Energy Proportionality**: Maintain reasonable scaling (≤4x energy increase per coordinate velocity doubling)
 - **Zero Exotic Energy**: Maintain T_μν ≥ 0 constraint across all configurations
-- **Starship Scale**: All calculations within simulation framework limits for vessel transporting 20 people.
+- **Starship Scale**: All calculations within simulation framework limits for vessel with warp shape diameter of 200 metres and 24 metres in height.
 
 **Implementation Phases**:
 
