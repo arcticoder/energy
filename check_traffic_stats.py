@@ -54,7 +54,7 @@ REPOS = [
 ]
 
 SCRIPT_DIR = Path(__file__).parent
-JSON_STATS_FILE = SCRIPT_DIR / "traffic_stats_history.json"
+NDJSON_STATS_FILE = SCRIPT_DIR / "traffic_stats_history.ndjson"
 HTML_CHART_FILE = SCRIPT_DIR / "traffic_stats_chart.html"
 HTML_TEMPLATE_FILE = SCRIPT_DIR / "traffic_chart_template.html"
 SLOPE_HISTORY_FILE = SCRIPT_DIR / "traffic_slope_history.json"
@@ -97,22 +97,42 @@ def run_gh_command(args):
         return None
 
 def load_stats_history():
-    """Load existing stats history from JSON file."""
-    if JSON_STATS_FILE.exists():
+    """Load existing stats history from NDJSON file."""
+    if NDJSON_STATS_FILE.exists():
         try:
-            with open(JSON_STATS_FILE, 'r', encoding='utf-8') as f:
-                return json.load(f)
+            history = []
+            with open(NDJSON_STATS_FILE, 'r', encoding='utf-8') as f:
+                for line in f:
+                    line = line.strip()
+                    if line:
+                        history.append(json.loads(line))
+            return history
         except (json.JSONDecodeError, IOError) as e:
             print(f"Error loading stats history: {e}")
             return []
     return []
 
 def save_stats_history(history):
-    """Save stats history to JSON file."""
+    """Save stats history to NDJSON file with deduplication by date."""
     try:
-        with open(JSON_STATS_FILE, 'w', encoding='utf-8') as f:
-            json.dump(history, f, indent=2, ensure_ascii=False)
-        safe_print(f"✅ Stats saved to {JSON_STATS_FILE}")
+        # Deduplicate by date - keep only the latest entry for each date
+        date_entries = {}
+        
+        for entry in history:
+            date = entry.get('date')
+            if date:
+                # Keep the latest timestamp for each date
+                if date not in date_entries or entry.get('timestamp', '') > date_entries[date].get('timestamp', ''):
+                    date_entries[date] = entry
+        
+        # Sort by date
+        sorted_entries = sorted(date_entries.values(), key=lambda x: x.get('date', ''))
+        
+        with open(NDJSON_STATS_FILE, 'w', encoding='utf-8') as f:
+            for entry in sorted_entries:
+                f.write(json.dumps(entry, separators=(',', ':')) + '\n')
+        
+        safe_print(f"✅ Stats saved to {NDJSON_STATS_FILE} ({len(sorted_entries)} unique dates)")
     except IOError as e:
         print(f"Error saving stats history: {e}")
 
@@ -684,7 +704,12 @@ def main():
     safe_print("🔥 indicates activity within the past 24 hours")
     print("Note: GitHub Traffic API provides data for the past 14 days maximum")
     
-    # Save stats history
+    # Save stats history with deduplication
+    # Remove any existing entry for today's date to avoid duplicates
+    current_date = current_run["date"]
+    stats_history = [entry for entry in stats_history if entry.get("date") != current_date]
+    
+    # Add today's run
     stats_history.append(current_run)
     save_stats_history(stats_history)
     
@@ -703,7 +728,7 @@ def git_commit_and_push():
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         
         # Add all files
-        result = subprocess.run(['git', 'add', 'traffic_stats_history.json', 'traffic_stats_chart.html', 'traffic_slope_history.json'], 
+        result = subprocess.run(['git', 'add', 'traffic_stats_history.ndjson', 'traffic_stats_chart.html', 'traffic_slope_history.json'], 
                               capture_output=True, text=True)
         if result.returncode != 0:
             print(f"⚠️  Git add warning: {result.stderr}")
