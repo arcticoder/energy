@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 GitHub Traffic Statistics Collection Tool
 Collects traffic stats from arcticoder repositories with JSON logging and HTML chart generation.
@@ -8,11 +9,26 @@ import json
 import subprocess
 import sys
 import tempfile
+import time
 from datetime import datetime, timedelta
 from pathlib import Path
 import os
 import numpy as np
 from scipy import stats
+
+# Fix Windows console encoding for Unicode characters
+if sys.platform == "win32":
+    try:
+        # Try to set console to UTF-8 mode
+        import locale
+        if sys.stdout.encoding != 'utf-8':
+            sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+            sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+    except (AttributeError, OSError):
+        # Fallback for older Python versions or if reconfigure fails
+        import codecs
+        sys.stdout = codecs.getwriter('utf-8')(sys.stdout.detach(), errors='replace')
+        sys.stderr = codecs.getwriter('utf-8')(sys.stderr.detach(), errors='replace')
 
 # Configuration
 REPOS = [
@@ -52,6 +68,7 @@ def run_gh_command(args):
             text=True,
             encoding='utf-8',
             errors='replace',
+            timeout=30,  # Add 30-second timeout
             check=False  # Don't raise exception on non-zero exit
         )
         
@@ -63,6 +80,15 @@ def run_gh_command(args):
             return None
             
         return json.loads(result.stdout)
+    except subprocess.TimeoutExpired:
+        print(f"   ⚠️  GitHub CLI command timed out after 30 seconds")
+        return None
+    except json.JSONDecodeError:
+        print(f"   ⚠️  Invalid JSON response from GitHub CLI")
+        return None
+    except Exception as e:
+        print(f"   ⚠️  Error running GitHub CLI command: {e}")
+        return None
     except json.JSONDecodeError as e:
         print(f"JSON parsing error: {e}")
         return None
@@ -86,7 +112,7 @@ def save_stats_history(history):
     try:
         with open(JSON_STATS_FILE, 'w', encoding='utf-8') as f:
             json.dump(history, f, indent=2, ensure_ascii=False)
-        print(f"✅ Stats saved to {JSON_STATS_FILE}")
+        safe_print(f"✅ Stats saved to {JSON_STATS_FILE}")
     except IOError as e:
         print(f"Error saving stats history: {e}")
 
@@ -106,7 +132,7 @@ def save_slope_history(slope_history):
     try:
         with open(SLOPE_HISTORY_FILE, 'w', encoding='utf-8') as f:
             json.dump(slope_history, f, indent=2, ensure_ascii=False)
-        print(f"✅ Slope history saved to {SLOPE_HISTORY_FILE}")
+        safe_print(f"✅ Slope history saved to {SLOPE_HISTORY_FILE}")
     except IOError as e:
         print(f"Error saving slope history: {e}")
 
@@ -186,12 +212,12 @@ def check_gh_auth():
     try:
         result = subprocess.run(["gh", "auth", "status"], capture_output=True, text=True)
         if result.returncode != 0:
-            print("❌ GitHub CLI not authenticated. Please run 'gh auth login'")
+            safe_print("❌ GitHub CLI not authenticated. Please run 'gh auth login'")
             return False
-        print("✅ GitHub CLI authenticated")
+        safe_print("✅ GitHub CLI authenticated")
         return True
     except FileNotFoundError:
-        print("❌ GitHub CLI not found. Please install GitHub CLI")
+        safe_print("❌ GitHub CLI not found. Please install GitHub CLI")
         return False
 
 def get_repo_forks(repo):
@@ -209,6 +235,18 @@ def get_traffic_views(repo):
 def get_traffic_clones(repo):
     """Get repository traffic clones."""
     return run_gh_command(["api", f"repos/arcticoder/{repo}/traffic/clones"])
+
+def safe_print(text):
+    """Safely print text with Unicode characters, falling back to ASCII if needed."""
+    try:
+        print(text)
+    except UnicodeEncodeError:
+        # Fallback: replace Unicode characters with ASCII equivalents
+        ascii_text = text.replace("🚀", "[ROCKET]").replace("✅", "[OK]").replace("❌", "[ERROR]")
+        ascii_text = ascii_text.replace("📊", "[CHART]").replace("⭐", "[STAR]").replace("👁️", "[EYE]")
+        ascii_text = ascii_text.replace("🍴", "[FORK]").replace("📅", "[DATE]").replace("📈", "[GRAPH]")
+        ascii_text = ascii_text.replace("🔥", "[HOT]")
+        print(ascii_text)
 
 def process_repository(repo):
     """Process a single repository and return its data."""
@@ -236,14 +274,14 @@ def process_repository(repo):
         # Get repository info
         repo_info = get_repo_info(repo)
         if repo_info:
-            print("📊 Repository Stats:")
-            print(f"   ⭐ Stars: {repo_info.get('stargazers_count', 0)}")
-            print(f"   👁️  Watchers: {repo_info.get('watchers_count', 0)}")
-            print(f"   🍴 Forks: {repo_info.get('forks_count', 0)}")
+            safe_print("📊 Repository Stats:")
+            safe_print(f"   ⭐ Stars: {repo_info.get('stargazers_count', 0)}")
+            safe_print(f"   👁️  Watchers: {repo_info.get('watchers_count', 0)}")
+            safe_print(f"   🍴 Forks: {repo_info.get('forks_count', 0)}")
             updated_at = repo_info.get('updated_at', '')
             if updated_at:
                 updated_date = datetime.fromisoformat(updated_at.replace('Z', '+00:00'))
-                print(f"   📅 Last Updated: {updated_date.strftime('%b %d, %Y %H:%M')}")
+                safe_print(f"   📅 Last Updated: {updated_date.strftime('%b %d, %Y %H:%M')}")
             
             repo_data.update({
                 "stars": repo_info.get('stargazers_count', 0),
@@ -252,15 +290,15 @@ def process_repository(repo):
                 "last_updated": updated_at
             })
         else:
-            print("📊 Repository Stats: Access denied or repository not found")
+            safe_print("📊 Repository Stats: Access denied or repository not found")
     except Exception as e:
-        print(f"📊 Repository Stats: Error processing repository info - {e}")
+        safe_print(f"📊 Repository Stats: Error processing repository info - {e}")
 
     # Get detailed fork information
     try:
         forks_data = get_repo_forks(repo)
         if forks_data and isinstance(forks_data, list):
-            print("🍴 Fork Analysis:")
+            safe_print("🍴 Fork Analysis:")
             total_forks = len(forks_data)
             
             # Analyze fork activity
@@ -304,7 +342,7 @@ def process_repository(repo):
                     starred_forks.sort(key=lambda x: x['stars'], reverse=True)
                     print(f"   Most Starred Forks:")
                     for fork in starred_forks[:3]:  # Show top 3
-                        print(f"     ⭐ {fork['name']} ({fork['stars']} stars)")
+                        safe_print(f"     ⭐ {fork['name']} ({fork['stars']} stars)")
             
             repo_data.update({
                 "fork_details": fork_details[:20],  # Store top 20 for space
@@ -312,17 +350,17 @@ def process_repository(repo):
                 "recent_forks": recent_forks
             })
         elif repo_data["forks"] > 0:
-            print(f"🍴 Fork Analysis: {repo_data['forks']} forks (details not accessible)")
+            safe_print(f"🍴 Fork Analysis: {repo_data['forks']} forks (details not accessible)")
         else:
-            print("🍴 Fork Analysis: No forks")
+            safe_print("🍴 Fork Analysis: No forks")
     except Exception as e:
-        print(f"🍴 Fork Analysis: Error processing fork data - {e}")
+        safe_print(f"🍴 Fork Analysis: Error processing fork data - {e}")
     
     try:
         # Get views traffic
         views = get_traffic_views(repo)
         if views:
-            print("📈 Views:")
+            safe_print("📈 Views:")
             views_count = views.get('count', 0)
             views_uniques = views.get('uniques', 0)
             print(f"   Total: {views_count}, Unique: {views_uniques}")
@@ -560,7 +598,7 @@ def generate_html_chart(current_run, stats_history):
 
 def main():
     """Main function."""
-    print("🚀 GitHub Traffic Stats Collection Tool")
+    safe_print("🚀 GitHub Traffic Stats Collection Tool")
     print("=" * 50)
     
     # Check authentication
@@ -591,20 +629,41 @@ def main():
     }
     
     # Process each repository
-    for repo in REPOS:
-        repo_data = process_repository(repo)
-        current_run["repositories"][repo] = repo_data
-        
-        # Add to totals
-        current_run["totals"]["views"] += repo_data["views_total"]
-        current_run["totals"]["unique_views"] += repo_data["views_unique"]
-        current_run["totals"]["clones"] += repo_data["clones_total"]
-        current_run["totals"]["unique_clones"] += repo_data["clones_unique"]
-        current_run["totals"]["stars"] += repo_data["stars"]
-        current_run["totals"]["watchers"] += repo_data["watchers"]
-        current_run["totals"]["forks"] += repo_data["forks"]
-        current_run["totals"]["active_forks"] += repo_data["active_forks"]
-        current_run["totals"]["recent_forks"] += repo_data["recent_forks"]
+    total_repos = len(REPOS)
+    for i, repo in enumerate(REPOS, 1):
+        safe_print(f"📊 Processing repository {i}/{total_repos}: {repo}")
+        try:
+            repo_data = process_repository(repo)
+            current_run["repositories"][repo] = repo_data
+            
+            # Add to totals
+            current_run["totals"]["views"] += repo_data["views_total"]
+            current_run["totals"]["unique_views"] += repo_data["views_unique"]
+            current_run["totals"]["clones"] += repo_data["clones_total"]
+            current_run["totals"]["unique_clones"] += repo_data["clones_unique"]
+            current_run["totals"]["stars"] += repo_data["stars"]
+            current_run["totals"]["watchers"] += repo_data["watchers"]
+            current_run["totals"]["forks"] += repo_data["forks"]
+            current_run["totals"]["active_forks"] += repo_data["active_forks"]
+            current_run["totals"]["recent_forks"] += repo_data["recent_forks"]
+            
+            safe_print(f"✅ Completed {repo} ({i}/{total_repos})")
+            
+            # Small delay to avoid rate limiting
+            if i < total_repos:  # Don't delay after the last repository
+                time.sleep(0.5)
+            
+        except Exception as e:
+            safe_print(f"❌ Error processing {repo}: {e}")
+            # Create minimal repo data to continue processing
+            current_run["repositories"][repo] = {
+                "name": repo,
+                "stars": 0, "watchers": 0, "forks": 0,
+                "fork_details": [], "active_forks": 0, "recent_forks": 0,
+                "views_total": 0, "views_unique": 0,
+                "clones_total": 0, "clones_unique": 0,
+                "last_updated": "", "daily_views": [], "daily_clones": []
+            }
     
     # Display summary
     totals = current_run["totals"]
@@ -622,7 +681,7 @@ def main():
         print(f"Fork Activity Rate: {activity_rate:.1f}%")
     print(f"Repositories Checked: {totals['repositories_count']}")
     print()
-    print("🔥 indicates activity within the past 24 hours")
+    safe_print("🔥 indicates activity within the past 24 hours")
     print("Note: GitHub Traffic API provides data for the past 14 days maximum")
     
     # Save stats history
