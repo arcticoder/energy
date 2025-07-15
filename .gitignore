@@ -208,3 +208,4 @@ ecosystem_coordination_cache/
 update-progress.txt
 implementation-status.json
 validation-tracking.log
+traffic_stats_log.txt
