@@ -256,6 +256,11 @@ def get_traffic_clones(repo):
     """Get repository traffic clones."""
     return run_gh_command(["api", f"repos/arcticoder/{repo}/traffic/clones"])
 
+def get_repo_commits(repo, days=30):
+    """Get recent commit activity to help infer pull frequency."""
+    since_date = (datetime.now() - timedelta(days=days)).isoformat()
+    return run_gh_command(["api", f"repos/arcticoder/{repo}/commits", "--field", "sha,commit,author", "-F", f"since={since_date}", "--paginate"])
+
 def safe_print(text):
     """Safely print text with Unicode characters, falling back to ASCII if needed."""
     try:
@@ -285,6 +290,9 @@ def process_repository(repo):
         "views_unique": 0,
         "clones_total": 0,
         "clones_unique": 0,
+        "clone_pull_ratio": 0,
+        "recent_commits": 0,
+        "commit_frequency": 0,
         "last_updated": "",
         "daily_views": [],
         "daily_clones": []
@@ -425,11 +433,19 @@ def process_repository(repo):
             print("📦 Clones:")
             clones_count = clones.get('count', 0)
             clones_uniques = clones.get('uniques', 0)
+            
+            # Calculate clone-to-pull ratio estimate
+            clone_pull_ratio = 0
+            if clones_uniques > 0:
+                clone_pull_ratio = clones_count / clones_uniques
+            
             print(f"   Total: {clones_count}, Unique: {clones_uniques}")
+            print(f"   Clone/Pull Ratio: {clone_pull_ratio:.1f}x (estimated pulls per unique user)")
             
             repo_data.update({
                 "clones_total": clones_count,
-                "clones_unique": clones_uniques
+                "clones_unique": clones_uniques,
+                "clone_pull_ratio": clone_pull_ratio
             })
             
             # Process daily clones (extend to full 14 days)
@@ -440,25 +456,70 @@ def process_repository(repo):
                 
                 # Sort by date and show all available days (up to 14)
                 all_clones = sorted(clones['clones'], key=lambda x: x['timestamp'], reverse=True)[:14]
+                total_daily_clones = 0
+                total_daily_unique = 0
+                
                 for day in all_clones:
                     day_date = datetime.fromisoformat(day['timestamp'].replace('Z', '+00:00'))
                     date_str = day_date.strftime("%b %d")
                     count = day.get('count', 0)
                     uniques = day.get('uniques', 0)
                     
+                    total_daily_clones += count
+                    total_daily_unique += uniques
+                    
                     if count > 0:
+                        daily_ratio = count / uniques if uniques > 0 else 0
                         indicator = " ⭐" if day_date > past_48_hours else ""
-                        print(f"   {date_str}: {count} clones ({uniques} unique){indicator}")
+                        print(f"   {date_str}: {count} clones ({uniques} unique, {daily_ratio:.1f}x ratio){indicator}")
                     
                     repo_data["daily_clones"].append({
                         "date": day_date.strftime("%Y-%m-%d"),
                         "clones": count,
-                        "unique_clones": uniques
+                        "unique_clones": uniques,
+                        "clone_pull_ratio": daily_ratio
                     })
+                
+                # Show pull activity insights
+                if total_daily_unique > 0:
+                    avg_ratio = total_daily_clones / total_daily_unique
+                    if avg_ratio > 2.0:
+                        print(f"   📈 High pull activity detected! Average {avg_ratio:.1f} clones per user suggests frequent pulls")
+                    elif avg_ratio > 1.5:
+                        print(f"   📊 Moderate pull activity. Average {avg_ratio:.1f} clones per user")
+                    else:
+                        print(f"   � Mostly fresh clones. Average {avg_ratio:.1f} clones per user")
         else:
-            print("📦 Clones: Access denied or repository not found")
+            print("�📦 Clones: Access denied or repository not found")
     except Exception as e:
         print(f"📦 Clones: Error processing clones data - {e}")
+    
+    # Analyze commit activity to correlate with clone patterns
+    try:
+        commits = get_repo_commits(repo, days=30)
+        if commits and isinstance(commits, list):
+            recent_commits = len(commits)
+            commit_frequency = recent_commits / 30.0  # commits per day
+            
+            print(f"🔄 Recent Activity (30 days):")
+            print(f"   Commits: {recent_commits} ({commit_frequency:.1f}/day)")
+            
+            repo_data.update({
+                "recent_commits": recent_commits,
+                "commit_frequency": commit_frequency
+            })
+            
+            # Correlate commit activity with clone patterns
+            if recent_commits > 20 and repo_data.get("clone_pull_ratio", 0) > 2.0:
+                print(f"   🔥 Active development + high clone ratio suggests frequent pulls for updates!")
+            elif recent_commits > 10 and repo_data.get("clone_pull_ratio", 0) > 1.5:
+                print(f"   📈 Moderate development activity correlates with pull patterns")
+            elif recent_commits < 5:
+                print(f"   📋 Low commit activity - clones likely for browsing/forking")
+        else:
+            print(f"🔄 Recent Activity: Access limited or no recent commits")
+    except Exception as e:
+        print(f"🔄 Recent Activity: Error processing commit data - {e}")
     
     print()
     return repo_data
@@ -585,6 +646,7 @@ def generate_html_chart(current_run, stats_history):
     
     update_time = datetime.now().strftime("%B %d, %Y %H:%M")
     chart_data_json = json.dumps(chart_data)
+    repo_data_json = json.dumps(current_run["repositories"])
     
     # Prepare slope information for HTML
     slope_info = ""
@@ -604,6 +666,7 @@ def generate_html_chart(current_run, stats_history):
     html = html.replace('{{ACTIVE_FORKS}}', str(current_run["totals"]["active_forks"]))
     html = html.replace('{{RECENT_FORKS}}', str(current_run["totals"]["recent_forks"]))
     html = html.replace('{{CHART_DATA}}', chart_data_json)
+    html = html.replace('{{REPO_DATA}}', repo_data_json)
     html = html.replace('{{SLOPE_INFO}}', slope_info)
     html = html.replace('{{TOTAL_DAYS}}', str(len(sorted_dates)))
     

@@ -190,6 +190,22 @@
             <canvas id="trafficChart" width="800" height="400" style="max-height: 400px;"></canvas>
         </div>
         
+        <div class="chart-container">
+            <h2>Clone-to-Pull Ratio Analysis</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 15px;">
+                Higher ratios indicate users pulling updates frequently rather than fresh clones
+            </p>
+            <canvas id="clonePullChart" width="800" height="300" style="max-height: 300px;"></canvas>
+        </div>
+        
+        <div class="chart-container">
+            <h2>Development Activity vs Clone Patterns</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 15px;">
+                Correlation between commit activity and clone patterns helps identify pull behavior
+            </p>
+            <canvas id="activityChart" width="800" height="300" style="max-height: 300px;"></canvas>
+        </div>
+        
         <script>
             const ctx = document.getElementById('trafficChart').getContext('2d');
             const chartData = {{CHART_DATA}};
@@ -345,6 +361,118 @@
                 
                 chart.update();
             }
+            
+            // Generate Clone-to-Pull Ratio Chart using repository data
+            function generateClonePullChart() {
+                const repoData = {{REPO_DATA}};
+                if (!repoData || Object.keys(repoData).length === 0) return;
+                
+                const repositories = Object.values(repoData);
+                const clonePullData = {
+                    labels: repositories.map(r => r.name),
+                    datasets: [{
+                        label: 'Clone/Pull Ratio (higher = more pulls)',
+                        data: repositories.map(r => r.clone_pull_ratio || 0),
+                        backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                        borderColor: 'rgba(153, 102, 255, 1)',
+                        borderWidth: 1
+                    }]
+                };
+
+                new Chart(document.getElementById('clonePullChart'), {
+                    type: 'bar',
+                    data: clonePullData,
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Clone-to-Pull Ratio Analysis'
+                            },
+                            subtitle: {
+                                display: true,
+                                text: 'Higher ratios suggest users pulling updates frequently'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Ratio (Total Clones / Unique Users)'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // Generate Activity Correlation Chart
+            function generateActivityChart() {
+                const repoData = {{REPO_DATA}};
+                if (!repoData || Object.keys(repoData).length === 0) return;
+                
+                const repositories = Object.values(repoData);
+                const activityData = {
+                    labels: repositories.map(r => r.name),
+                    datasets: [{
+                        label: 'Recent Commits (30 days)',
+                        data: repositories.map(r => r.recent_commits || 0),
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1,
+                        yAxisID: 'y'
+                    }, {
+                        label: 'Clone/Pull Ratio',
+                        data: repositories.map(r => r.clone_pull_ratio || 0),
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1,
+                        yAxisID: 'y1'
+                    }]
+                };
+
+                new Chart(document.getElementById('activityChart'), {
+                    type: 'bar',
+                    data: activityData,
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Development Activity vs Clone Patterns'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                type: 'linear',
+                                display: true,
+                                position: 'left',
+                                title: {
+                                    display: true,
+                                    text: 'Commits (30 days)'
+                                }
+                            },
+                            y1: {
+                                type: 'linear',
+                                display: true,
+                                position: 'right',
+                                title: {
+                                    display: true,
+                                    text: 'Clone/Pull Ratio'
+                                },
+                                grid: {
+                                    drawOnChartArea: false,
+                                },
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // Initialize additional charts
+            generateClonePullChart();
+            generateActivityChart();
         </script>
     </div>
 </body>
