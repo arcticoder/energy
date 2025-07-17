@@ -1,43 +1,58 @@
-# GitHub Repository Settings for Energy Research Framework
+# GitHub Repository Settings for Energy Framework
 
 ## Repository Description
-Comprehensive multi-scale theoretical physics framework spanning advanced energy technologies, spacetime physics, quantum gravity, and computational methods. Meta-repository coordinating 37+ specialized research repositories focused on energy and propulsion systems including revolutionary enhanced simulation hardware abstraction framework achieving 100% UQ resolution with 1.2×10¹⁰× metamaterial amplification.
 
-## Repository Topics
-- energy-research
-- quantum-gravity
-- spacetime-physics
-- warp-drive
-- negative-energy
-- casimir-effect
-- metamaterials
-- simulation-framework
-- digital-twin
-- uncertainty-quantification
-- fusion-energy
-- artificial-gravity
-- matter-transport
+Comprehensive multi-scale theoretical physics framework spanning advanced energy technologies, spacetime physics, quantum gravity, and computational methods. Features revolutionary FTL-capable hull design framework with naval architecture integration achieving 48c superluminal operations, enhanced field coils ↔ LQG metric controller integration, and production-ready warp field technology. Coordinates 37+ specialized research repositories focused on energy and propulsion systems.
+
+## Topics/Tags
 - theoretical-physics
+- energy-systems
+- quantum-gravity
+- warp-drive
+- ftl-technology
+- naval-architecture
+- spacetime-engineering
+- loop-quantum-gravity
 - computational-physics
-- multi-physics-coupling
-- precision-measurements
-- energy-enhancement
-- advanced-propulsion
-- quantum-precision
+- advanced-materials
+- superluminal-operations
+- field-metric-integration
+- hull-design-framework
+- gravitational-systems
 
-## Repository Configuration
-- **Visibility**: Public
-- **License**: The Unlicense
-- **Branch Protection**: Enabled for main branch
-- **Issues**: Enabled
-- **Wiki**: Enabled
-- **Discussions**: Enabled
-- **Sponsorship**: Available
+## Repository Features
+- [x] Issues
+- [x] Projects
+- [x] Wiki
+- [x] Discussions
+- [x] Security advisory reporting
+- [x] Sponsorships
 
-## Key Features to Highlight
-- 37+ specialized research repositories coordination
-- Revolutionary enhanced simulation framework with 100% UQ resolution
-- 1.2×10¹⁰× metamaterial amplification achievements
-- Cross-repository integration and documentation framework
-- Comprehensive energy research spanning quantum to cosmological scales
-- Production-ready implementations with digital twin capabilities
+## Visibility
+- [x] Public repository
+
+## Advanced Settings
+- Default branch: main
+- Allow merge commits: ✓
+- Allow squash merging: ✓
+- Allow rebase merging: ✓
+- Automatically delete head branches: ✓
+
+## About Section
+**Website**: https://arcticoder.github.io/energy/
+**Description**: Comprehensive multi-scale theoretical physics framework with revolutionary FTL-capable hull design achieving 48c superluminal operations and production-ready warp field technology
+**Topics**: theoretical-physics, energy-systems, quantum-gravity, warp-drive, ftl-technology, naval-architecture, spacetime-engineering, loop-quantum-gravity
+
+## Social Preview
+**Title**: Energy Research Framework - Revolutionary FTL Hull Design & Warp Field Technology
+**Description**: Production-ready FTL hull design framework with naval architecture integration, enhanced field coils ↔ LQG metric controller integration, and comprehensive 48c superluminal operations capability
+
+## Security
+- [x] Vulnerability alerts
+- [x] Security updates
+- [x] Code scanning alerts
+
+## Integrations
+- [x] GitHub Actions enabled
+- [x] Dependabot enabled
+- [x] Code scanning enabled

@@ -49,6 +49,38 @@ Revolutionary completion of the Cross-Repository Energy Efficiency Integration f
 - **Achievement vs Target**: 863.9× achieved vs 100× target = 763.9% excess performance
 - **Energy Scaling**: Classical 2,483km → Optimized 3km Corolla equivalent (826× practical reduction)
 - **Mathematical Validation**: Conservation laws verified, dimensional consistency confirmed
+
+### 🗂️ **File Locations and Outputs - Organized Framework Structure**
+
+#### 📁 **Primary Framework Files**
+- **Energy Repository Core**: `README.md` (main documentation), `setup.py` (installation), `requirements.txt` (dependencies)
+- **Source Code**: `src/` (core implementations), `src/core/` (energy frameworks), `src/experimental_validation/` (validation systems)
+- **Configuration**: `config/` (system settings), `.vscode/` (development environment), `energy.code-workspace` (workspace configuration)
+
+#### 📁 **Documentation Structure**
+- **Primary Documentation**: `docs/technical-documentation.md` (this file), `docs/future-directions.md` (roadmap)
+- **Implementation Reports**: `docs/IMPLEMENTATION_SUMMARY.md`, `docs/COMPREHENSIVE_DOCUMENTATION_COMPLETION_SUMMARY.md`
+- **UQ Resolution**: `docs/CRITICAL_UQ_RESOLUTION_STRATEGY.md`, `docs/UQ-CRITICAL-ANALYSIS-CREW-VESSEL.md`
+- **Cross-Repository**: `docs/CROSS_REPOSITORY_ENERGY_INTEGRATION_SUMMARY.md`, `docs/SYNC_REPORT.md`
+- **Templates**: `docs/README_TEMPLATE.md`, `docs/README_STANDARDIZATION_GUIDE.md`
+
+#### 📁 **Analysis and Tools**
+- **Analysis Scripts**: `analysis/analyze_subspace_range.py`, `analysis/realistic_subspace_analysis.py`
+- **Development Tools**: `tools/catalog_files.py`, `tools/fix_ndjson_duplicates.py`, `tools/traffic_stats_tools.py`
+- **Build Scripts**: `scripts/regenerate_index.py`, `scripts/deploy_cross_repository_integration.ps1`
+- **Testing Framework**: `tests/test_repo_by_repo.py`, `tests/test_traffic_stats.py`
+
+#### 📁 **Data and Outputs**
+- **UQ Tracking**: `UQ-TODO.ndjson` (current concerns), `UQ-TODO-RESOLVED.ndjson` (completed resolutions)
+- **Documentation Index**: `documentation-index.ndjson` (comprehensive documentation catalog)
+- **Research Highlights**: `highlights-dag.ndjson` (breakthrough tracking), `index.html` (visualization)
+- **Configuration Data**: Various JSON and NDJSON files for system configuration and results tracking
+
+#### 🔄 **Dynamic Outputs**
+- **Live Documentation**: `index.html` (auto-generated from highlights DAG with 22 breakthrough entries)
+- **Cross-Repository Reports**: Auto-generated integration status and validation results
+- **UQ Resolution Tracking**: Real-time uncertainty quantification status across all repositories
+- **Performance Metrics**: Continuous validation of 863.9× energy optimization across ecosystem
 - **Technical Documentation**: Complete derivation with physics-based implementation
 - **Production Readiness**: Ready for deployment with comprehensive technical framework
 
