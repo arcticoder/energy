@@ -732,6 +732,27 @@
 - **Confinement Enhancement**: H-factor = 1.94 with polymer assistance
 - **Safety Compliance**: ≤10 mSv radiation exposure with medical-grade protocols
 
+**Circuit DSL Integration Requirements**: [Complete Python Circuit DSL architecture for unified simulation and schematic generation](lqg-circuit-dsl-architecture.md)
+
+**Simulation Framework Integration**:
+- **Component Model**: LQGFusionReactor class with PySpice electrical modeling
+- **Multi-Physics Coupling**: Plasmapy integration for plasma physics simulation
+- **Schematic Generation**: Automated schemdraw integration for technical diagrams
+- **Enhanced Framework**: Direct integration with `enhanced-simulation-hardware-abstraction-framework`
+
+**Circuit DSL Implementation Requirements**:
+1. **Base Component Architecture**: LQGCircuitElement class hierarchy with ports and state management
+2. **SPICE Integration**: inject_into_spice() methods for electrical circuit analysis  
+3. **Multi-Physics Integration**: inject_into_multiphysics() methods for FEniCS/Plasmapy coupling
+4. **Schematic Generation**: draw_schematic() methods for automated diagram creation
+5. **State Management**: update_simulation_state() methods for real-time simulation
+
+**Performance Specifications for Circuit DSL**:
+- **Real-time Factor**: ≥10x real-time simulation capability for crew training
+- **Component Integration**: Support ≥100 interconnected vessel components
+- **Schematic Generation**: ≤5 seconds for complete vessel diagram regeneration
+- **Simulation Accuracy**: ±5% agreement with analytical fusion physics solutions
+
 **Technical Analysis**: [Complete fusion reactor integration with LQG enhancement analysis](technical-analysis-roadmap-2025.md#lqg-fusion-reactor-integration)
 
 **Status**: ✅ **IMPLEMENTATION COMPLETE** - Primary power source for FTL vessel
