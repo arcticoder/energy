@@ -121,5 +121,210 @@
         "days": null
       }
     }
+  },
+  {
+    "date": "2025-07-19",
+    "timestamp": "2025-07-19T08:18:13.039219",
+    "slopes": {
+      "views": {
+        "slope": 0.10357142857142856,
+        "r_squared": 0.018314459930313588,
+        "days": 15
+      },
+      "unique_views": {
+        "slope": -0.0035714285714285613,
+        "r_squared": 6.565126050420135e-05,
+        "days": 15
+      },
+      "clones": {
+        "slope": -13.267857142857142,
+        "r_squared": 0.3486157897821192,
+        "days": 15
+      },
+      "unique_clones": {
+        "slope": -11.403571428571428,
+        "r_squared": 0.3733849435530467,
+        "days": 15
+      },
+      "stars": {
+        "slope": 1.175,
+        "r_squared": 0.18749999999999992,
+        "days": 15
+      },
+      "forks": {
+        "slope": null,
+        "r_squared": null,
+        "days": null
+      },
+      "active_forks": {
+        "slope": null,
+        "r_squared": null,
+        "days": null
+      }
+    }
+  },
+  {
+    "date": "2025-07-19",
+    "timestamp": "2025-07-19T08:23:41.378962",
+    "slopes": {
+      "views": {
+        "slope": 0.10357142857142856,
+        "r_squared": 0.018314459930313588,
+        "days": 15
+      },
+      "unique_views": {
+        "slope": -0.0035714285714285613,
+        "r_squared": 6.565126050420135e-05,
+        "days": 15
+      },
+      "clones": {
+        "slope": -13.267857142857142,
+        "r_squared": 0.3486157897821192,
+        "days": 15
+      },
+      "unique_clones": {
+        "slope": -11.403571428571428,
+        "r_squared": 0.3733849435530467,
+        "days": 15
+      },
+      "stars": {
+        "slope": 1.175,
+        "r_squared": 0.18749999999999992,
+        "days": 15
+      },
+      "forks": {
+        "slope": null,
+        "r_squared": null,
+        "days": null
+      },
+      "active_forks": {
+        "slope": null,
+        "r_squared": null,
+        "days": null
+      }
+    }
+  },
+  {
+    "date": "2025-07-19",
+    "timestamp": "2025-07-19T08:27:43.344215",
+    "slopes": {
+      "views": {
+        "slope": 0.10357142857142856,
+        "r_squared": 0.018314459930313588,
+        "days": 15
+      },
+      "unique_views": {
+        "slope": -0.0035714285714285613,
+        "r_squared": 6.565126050420135e-05,
+        "days": 15
+      },
+      "clones": {
+        "slope": -13.267857142857142,
+        "r_squared": 0.3486157897821192,
+        "days": 15
+      },
+      "unique_clones": {
+        "slope": -11.403571428571428,
+        "r_squared": 0.3733849435530467,
+        "days": 15
+      },
+      "stars": {
+        "slope": 1.175,
+        "r_squared": 0.18749999999999992,
+        "days": 15
+      },
+      "forks": {
+        "slope": null,
+        "r_squared": null,
+        "days": null
+      },
+      "active_forks": {
+        "slope": null,
+        "r_squared": null,
+        "days": null
+      }
+    }
+  },
+  {
+    "date": "2025-07-19",
+    "timestamp": "2025-07-19T08:55:03.364334",
+    "slopes": {
+      "views": {
+        "slope": 0.09907120743034063,
+        "r_squared": 0.0033213380110125087,
+        "days": 18
+      },
+      "unique_views": {
+        "slope": -0.0743034055727554,
+        "r_squared": 0.005395406410930692,
+        "days": 18
+      },
+      "clones": {
+        "slope": -19.537667698658414,
+        "r_squared": 0.11103320151501539,
+        "days": 18
+      },
+      "unique_clones": {
+        "slope": -17.83075335397317,
+        "r_squared": 0.13106522238778043,
+        "days": 18
+      },
+      "stars": {
+        "slope": 1.7946336429308565,
+        "r_squared": 0.2825593395252839,
+        "days": 18
+      },
+      "forks": {
+        "slope": null,
+        "r_squared": null,
+        "days": null
+      },
+      "active_forks": {
+        "slope": null,
+        "r_squared": null,
+        "days": null
+      }
+    }
+  },
+  {
+    "date": "2025-07-19",
+    "timestamp": "2025-07-19T09:00:01.699178",
+    "slopes": {
+      "views": {
+        "slope": 0.09907120743034063,
+        "r_squared": 0.0033213380110125087,
+        "days": 18
+      },
+      "unique_views": {
+        "slope": -0.0743034055727554,
+        "r_squared": 0.005395406410930692,
+        "days": 18
+      },
+      "clones": {
+        "slope": -19.537667698658414,
+        "r_squared": 0.11103320151501539,
+        "days": 18
+      },
+      "unique_clones": {
+        "slope": -17.83075335397317,
+        "r_squared": 0.13106522238778043,
+        "days": 18
+      },
+      "stars": {
+        "slope": 1.7946336429308565,
+        "r_squared": 0.2825593395252839,
+        "days": 18
+      },
+      "forks": {
+        "slope": null,
+        "r_squared": null,
+        "days": null
+      },
+      "active_forks": {
+        "slope": null,
+        "r_squared": null,
+        "days": null
+      }
+    }
   }
 ]

@@ -192,7 +192,8 @@ def merge_historical_daily_data(stats_history):
                 "watchers": run_totals.get("watchers", 0), 
                 "forks": run_totals.get("forks", 0),
                 "active_forks": run_totals.get("active_forks", 0),
-                "recent_forks": run_totals.get("recent_forks", 0)
+                "recent_forks": run_totals.get("recent_forks", 0),
+                "commits": run_totals.get("commits", 0)
             }
         elif run_date:
             # Update with latest totals for the date
@@ -201,6 +202,7 @@ def merge_historical_daily_data(stats_history):
             all_daily_data[run_date]["forks"] = run_totals.get("forks", 0)
             all_daily_data[run_date]["active_forks"] = run_totals.get("active_forks", 0)
             all_daily_data[run_date]["recent_forks"] = run_totals.get("recent_forks", 0)
+            all_daily_data[run_date]["commits"] = run_totals.get("commits", 0)
         
         # Process each repository in this run for traffic data
         for repo_name, repo_data in run.get("repositories", {}).items():
@@ -209,7 +211,7 @@ def merge_historical_daily_data(stats_history):
             for day_data in repo_data.get("daily_views", []):
                 date = day_data["date"]
                 if date not in all_daily_data:
-                    all_daily_data[date] = {"views": 0, "unique_views": 0, "clones": 0, "unique_clones": 0, "stars": 0, "watchers": 0, "forks": 0, "active_forks": 0, "recent_forks": 0}
+                    all_daily_data[date] = {"views": 0, "unique_views": 0, "clones": 0, "unique_clones": 0, "stars": 0, "watchers": 0, "forks": 0, "active_forks": 0, "recent_forks": 0, "commits": 0}
                 
                 # Accumulate data (sum across all repos for that date)
                 all_daily_data[date]["views"] += day_data.get("views", 0)
@@ -219,7 +221,7 @@ def merge_historical_daily_data(stats_history):
             for day_data in repo_data.get("daily_clones", []):
                 date = day_data["date"]
                 if date not in all_daily_data:
-                    all_daily_data[date] = {"views": 0, "unique_views": 0, "clones": 0, "unique_clones": 0, "stars": 0, "watchers": 0, "forks": 0, "active_forks": 0, "recent_forks": 0}
+                    all_daily_data[date] = {"views": 0, "unique_views": 0, "clones": 0, "unique_clones": 0, "stars": 0, "watchers": 0, "forks": 0, "active_forks": 0, "recent_forks": 0, "commits": 0}
                 
                 # Accumulate data (sum across all repos for that date)
                 all_daily_data[date]["clones"] += day_data.get("clones", 0)
@@ -256,10 +258,94 @@ def get_traffic_clones(repo):
     """Get repository traffic clones."""
     return run_gh_command(["api", f"repos/arcticoder/{repo}/traffic/clones"])
 
+def get_repo_commits_for_date(repo, date):
+    """Get commit count for a specific date using git log."""
+    try:
+        # Construct the path to the repository
+        repo_path = Path(f"C:/Users/echo_/Code/asciimath/{repo}")
+        
+        # Check if the repository directory exists
+        if not repo_path.exists():
+            return 0
+        
+        # Format dates for git log (start and end of the day)
+        date_obj = datetime.strptime(date, "%Y-%m-%d")
+        start_date = date_obj.strftime("%Y-%m-%d 00:00:00")
+        end_date = (date_obj + timedelta(days=1)).strftime("%Y-%m-%d 00:00:00")
+        
+        # Run git log to get commits for the specific date
+        result = subprocess.run(
+            ["git", "log", f"--since={start_date}", f"--until={end_date}", 
+             "--oneline", "--no-merges"],
+            cwd=repo_path,
+            capture_output=True,
+            text=True,
+            encoding='utf-8',
+            errors='replace',
+            timeout=10
+        )
+        
+        if result.returncode != 0:
+            return 0
+        
+        # Count the number of commits (lines of output)
+        commit_count = len([line for line in result.stdout.strip().split('\n') if line.strip()])
+        return commit_count
+        
+    except Exception as e:
+        return 0
+
 def get_repo_commits(repo, days=30):
-    """Get recent commit activity to help infer pull frequency."""
-    since_date = (datetime.now() - timedelta(days=days)).isoformat()
-    return run_gh_command(["api", f"repos/arcticoder/{repo}/commits", "--field", "sha,commit,author", "-F", f"since={since_date}", "--paginate"])
+    """Get recent commit activity using git log."""
+    try:
+        # Calculate the date threshold
+        since_date = datetime.now() - timedelta(days=days)
+        since_str = since_date.strftime("%Y-%m-%d")
+        
+        # Construct the path to the repository
+        repo_path = Path(f"C:/Users/echo_/Code/asciimath/{repo}")
+        
+        # Check if the repository directory exists
+        if not repo_path.exists():
+            print(f"   ⚠️  Repository path not found: {repo_path}")
+            return []
+        
+        # Run git log to get commits since the specified date
+        result = subprocess.run(
+            ["git", "log", f"--since={since_str}", "--oneline", "--no-merges"],
+            cwd=repo_path,
+            capture_output=True,
+            text=True,
+            encoding='utf-8',
+            errors='replace',
+            timeout=10
+        )
+        
+        if result.returncode != 0:
+            print(f"   ⚠️  Git log failed for {repo}: {result.stderr}")
+            return []
+        
+        # Parse the output - each line is a commit
+        commits = []
+        for line in result.stdout.strip().split('\n'):
+            line = line.strip()
+            if line:  # Skip empty lines
+                # Each line format: "sha message"
+                parts = line.split(' ', 1)
+                if len(parts) >= 1:
+                    commits.append({
+                        "sha": parts[0],
+                        "message": parts[1] if len(parts) > 1 else ""
+                    })
+        
+        return commits
+        
+    except subprocess.TimeoutExpired:
+        print(f"   ⚠️  Git log timed out for {repo}")
+        return []
+    except Exception as e:
+        print(f"   ⚠️  Error getting commits for {repo}: {e}")
+        return []
 
 def safe_print(text):
     """Safely print text with Unicode characters, falling back to ASCII if needed."""
@@ -592,12 +678,29 @@ def generate_html_chart(current_run, stats_history):
                 "backgroundColor": "rgba(199, 199, 199, 0.1)",
                 "tension": 0.1,
                 "order": 2
+            },
+            {
+                "label": "Daily Commits",
+                "data": [],
+                "borderColor": "rgb(255, 99, 255)",
+                "backgroundColor": "rgba(255, 99, 255, 0.1)",
+                "tension": 0.1,
+                "order": 2
             }
         ]
     }
     
     # Sort dates and use ALL available historical data (not limited to 30 days)
     sorted_dates = sorted(daily_aggregates.keys())
+    
+    # Calculate daily commits for each date
+    print("🔄 Calculating daily commit counts...")
+    for date in sorted_dates:
+        daily_commit_count = 0
+        for repo in REPOS:
+            commits_for_date = get_repo_commits_for_date(repo, date)
+            daily_commit_count += commits_for_date
+        daily_aggregates[date]["commits"] = daily_commit_count
     
     for date in sorted_dates:
         chart_data["labels"].append(date)
@@ -608,6 +711,7 @@ def generate_html_chart(current_run, stats_history):
         chart_data["datasets"][4]["data"].append(daily_aggregates[date]["stars"])
         chart_data["datasets"][5]["data"].append(daily_aggregates[date]["forks"])
         chart_data["datasets"][6]["data"].append(daily_aggregates[date]["active_forks"])
+        chart_data["datasets"][7]["data"].append(daily_aggregates[date].get("commits", 0))
     
     print(f"📈 Chart includes {len(sorted_dates)} days of data (last 14 shown below):")
     for date in sorted_dates[-14:]:  # Show last 14 days in console
@@ -665,6 +769,7 @@ def generate_html_chart(current_run, stats_history):
     html = html.replace('{{TOTAL_FORKS}}', str(current_run["totals"]["forks"]))
     html = html.replace('{{ACTIVE_FORKS}}', str(current_run["totals"]["active_forks"]))
     html = html.replace('{{RECENT_FORKS}}', str(current_run["totals"]["recent_forks"]))
+    html = html.replace('{{RECENT_COMMITS}}', str(current_run["totals"]["commits"]))
     html = html.replace('{{CHART_DATA}}', chart_data_json)
     html = html.replace('{{REPO_DATA}}', repo_data_json)
     html = html.replace('{{SLOPE_INFO}}', slope_info)
@@ -707,6 +812,7 @@ def main():
             "forks": 0,
             "active_forks": 0,
             "recent_forks": 0,
+            "commits": 0,
             "repositories_count": len(REPOS)
         }
     }
@@ -729,6 +835,7 @@ def main():
             current_run["totals"]["forks"] += repo_data["forks"]
             current_run["totals"]["active_forks"] += repo_data["active_forks"]
             current_run["totals"]["recent_forks"] += repo_data["recent_forks"]
+            current_run["totals"]["commits"] += repo_data["recent_commits"]
             
             safe_print(f"✅ Completed {repo} ({i}/{total_repos})")
             
@@ -759,6 +866,7 @@ def main():
     print(f"Total Forks: {totals['forks']}")
     print(f"Active Forks (90 days): {totals['active_forks']}")
     print(f"Recent Forks (30 days): {totals['recent_forks']}")
+    print(f"Recent Commits (30 days): {totals['commits']}")
     if totals['forks'] > 0:
         activity_rate = (totals['active_forks'] / totals['forks']) * 100
         print(f"Fork Activity Rate: {activity_rate:.1f}%")
