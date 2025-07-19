@@ -16,7 +16,7 @@ $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 
 try {
     # Run the Python script and capture output
-    $output = python check_traffic_stats.py 2>&1
+    $output = python tools/check_traffic_stats.py 2>&1
     
     # Log the output
     "[$timestamp] Script output:" | Add-Content $LogPath
