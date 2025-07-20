@@ -1,6 +1,6 @@
 # PowerShell script to list all uncommitted changes across all repositories
 
-$asciimathPath = "C:\Users\echo_\Code\asciimath"
+$asciimathPath = "C:\Users\$env:USERNAME\Code\asciimath"
 
 # Get all subdirectories in the asciimath folder
 $repos = Get-ChildItem -Path $asciimathPath -Directory
