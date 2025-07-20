@@ -22,14 +22,34 @@ foreach ($repo in $repos) {
             # Remove from git tracking but keep the file
             git rm --cached $symlinkPath 2>$null
             Write-Host "  Removed from git tracking" -ForegroundColor Green
-            
-            # Commit the change
-            git add .gitignore 2>$null  # In case .gitignore is updated
-            git commit -m "Remove git tracking from copilot-instructions.md symlink" 2>$null
-            git push 2>$null
-            Write-Host "  Changes committed and pushed" -ForegroundColor Green
         } else {
             Write-Host "  Not tracked by git" -ForegroundColor Yellow
+        }
+        
+        # Add to .gitignore to prevent future tracking
+        $gitignorePath = ".gitignore"
+        $ignoreEntry = ".github/instructions/copilot-instructions.md"
+        
+        if (Test-Path $gitignorePath) {
+            $gitignoreContent = Get-Content $gitignorePath -Raw
+            if ($gitignoreContent -notmatch [regex]::Escape($ignoreEntry)) {
+                Add-Content -Path $gitignorePath -Value "`n$ignoreEntry"
+                Write-Host "  Added to .gitignore" -ForegroundColor Green
+            } else {
+                Write-Host "  Already in .gitignore" -ForegroundColor Gray
+            }
+        } else {
+            Set-Content -Path $gitignorePath -Value $ignoreEntry
+            Write-Host "  Created .gitignore with entry" -ForegroundColor Green
+        }
+        
+        # Commit the changes
+        $hasChanges = git status --porcelain 2>$null
+        if ($hasChanges) {
+            git add .gitignore 2>$null
+            git commit -m "Add copilot-instructions.md to .gitignore and remove from tracking" 2>$null
+            git push 2>$null
+            Write-Host "  Changes committed and pushed" -ForegroundColor Green
         }
     }
     catch {
