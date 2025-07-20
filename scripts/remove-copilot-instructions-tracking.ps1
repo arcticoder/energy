@@ -1,6 +1,6 @@
 # PowerShell script to remove git tracking from copilot-instructions.md symlinks
 
-$asciimathPath = "C:\Users\echo_\Code\asciimath"
+$asciimathPath = "C:\Users\$env:USERNAME\Code\asciimath"
 
 # Get all subdirectories in the asciimath folder
 $repos = Get-ChildItem -Path $asciimathPath -Directory
