@@ -526,8 +526,7 @@ class EnhancedExperimentalValidationController:
     def _generate_synthetic_detector_data(self, energy_gev: float) -> np.ndarray:
         """Generate synthetic detector data for testing (replace with real detector interface)."""
         # Optimized synthetic graviton signature based on Enhanced Graviton Propagator Engine predictions
-        # Use smaller arrays for faster processing during testing
-        sample_count = int(self.config.sampling_frequency_hz * self.config.integration_time_seconds / 10)  # Reduced for speed
+        sample_count = int(self.config.sampling_frequency_hz * self.config.integration_time_seconds)
         time_points = np.linspace(0, self.config.integration_time_seconds, sample_count)
         
         # Background noise
@@ -554,7 +553,9 @@ class EnhancedExperimentalValidationController:
         
         serializable_results = json.loads(json.dumps(results, default=convert_datetime))
         
-        output_file = f"c:\\Users\\sherri3\\Code\\asciimath\\energy\\{filename}"
+        import os
+        current_dir = os.getcwd()
+        output_file = os.path.join(current_dir, filename)
         with open(output_file, 'w') as f:
             json.dump(serializable_results, f, indent=2)
         
