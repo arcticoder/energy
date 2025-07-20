@@ -59,7 +59,7 @@ $repos = @(
     "warp-solver-validation"
 )
 
-$targetDirectory = "C:\Users\sherri3\Code\asciimath"
+$targetDirectory = "C:\Users\echo_\Code\asciimath"
 Set-Location $targetDirectory
 
 Write-Host "Adding Unlicense to remaining repositories..." -ForegroundColor Green
@@ -69,10 +69,10 @@ foreach ($repo in $repos) {
         $licensePath = Join-Path $repo "LICENSE"
         Write-Host "Adding LICENSE to $repo" -ForegroundColor Cyan
         Set-Content -Path $licensePath -Value $unlicenseText -Encoding UTF8
-        Write-Host "  ✓ Added LICENSE to $repo" -ForegroundColor Green
+        Write-Host "  Added LICENSE to $repo" -ForegroundColor Green
     } else {
-        Write-Host "  ✗ Repository $repo not found" -ForegroundColor Red
+        Write-Host "  Repository $repo not found" -ForegroundColor Red
     }
 }
 
-Write-Host "`n🎉 Finished adding Unlicense to all repositories!" -ForegroundColor Green
+Write-Host "Finished adding Unlicense to all repositories." -ForegroundColor Green
