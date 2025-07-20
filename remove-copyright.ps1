@@ -1,6 +1,6 @@
 # PowerShell script to find and remove copyright notices from all files
 
-$targetDirectory = "C:\Users\sherri3\Code\asciimath"
+$targetDirectory = "C:\Users\echo_\Code\asciimath"
 Set-Location $targetDirectory
 
 Write-Host "Searching for files with copyright notices..." -ForegroundColor Green
@@ -45,10 +45,10 @@ foreach ($file in $uniqueFiles) {
     # Write back only if content changed
     if ($content -ne $updatedContent) {
         Set-Content -Path $file.FullName -Value $updatedContent.TrimEnd() -NoNewline
-        Write-Host "    ✓ Removed copyright notices from $($file.Name)" -ForegroundColor Green
+        Write-Host "    Removed copyright notices from $($file.Name)" -ForegroundColor Green
     } else {
-        Write-Host "    ○ No copyright changes needed in $($file.Name)" -ForegroundColor Gray
+        Write-Host "    No copyright changes needed in $($file.Name)" -ForegroundColor Gray
     }
 }
 
-Write-Host "`n🎉 Finished removing copyright notices!" -ForegroundColor Green
+Write-Host "Finished removing copyright notices." -ForegroundColor Green
