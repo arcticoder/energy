@@ -22,36 +22,53 @@ foreach ($repo in $repos) {
             # Get status of uncommitted changes
             $statusOutput = git status --porcelain 2>$null
             
-            if ($statusOutput) {
-                $changedFiles = $statusOutput | Measure-Object | Select-Object -ExpandProperty Count
+            # Check for unpushed commits
+            $unpushedCommits = git log --oneline origin/main..HEAD 2>$null
+            
+            if ($statusOutput -or $unpushedCommits) {
+                $changedFiles = 0
+                if ($statusOutput) {
+                    $changedFiles = $statusOutput | Measure-Object | Select-Object -ExpandProperty Count
+                }
                 $totalChangedFiles += $changedFiles
                 
-                Write-Host "`n[$($repo.Name)] - $changedFiles changed files" -ForegroundColor Yellow
+                $displayText = "[$($repo.Name)]"
+                if ($changedFiles -gt 0) {
+                    $displayText += " - $changedFiles changed files"
+                }
+                if ($unpushedCommits) {
+                    $unpushedCount = $unpushedCommits | Measure-Object | Select-Object -ExpandProperty Count
+                    $displayText += " - $unpushedCount unpushed commits"
+                }
+                
+                Write-Host "`n$displayText" -ForegroundColor Yellow
                 
                 # Parse and display changes by type
                 $staged = @()
                 $unstaged = @()
                 $untracked = @()
                 
-                foreach ($line in $statusOutput) {
-                    $status = $line.Substring(0,2)
-                    $filename = $line.Substring(3)
-                    
-                    switch ($status[0]) {
-                        'A' { $staged += "Added: $filename" }
-                        'M' { $staged += "Modified: $filename" }
-                        'D' { $staged += "Deleted: $filename" }
-                        'R' { $staged += "Renamed: $filename" }
-                        'C' { $staged += "Copied: $filename" }
-                    }
-                    
-                    switch ($status[1]) {
-                        'M' { $unstaged += "Modified: $filename" }
-                        'D' { $unstaged += "Deleted: $filename" }
-                    }
-                    
-                    if ($status -eq '??') {
-                        $untracked += "Untracked: $filename"
+                if ($statusOutput) {
+                    foreach ($line in $statusOutput) {
+                        $status = $line.Substring(0,2)
+                        $filename = $line.Substring(3)
+                        
+                        switch ($status[0]) {
+                            'A' { $staged += "Added: $filename" }
+                            'M' { $staged += "Modified: $filename" }
+                            'D' { $staged += "Deleted: $filename" }
+                            'R' { $staged += "Renamed: $filename" }
+                            'C' { $staged += "Copied: $filename" }
+                        }
+                        
+                        switch ($status[1]) {
+                            'M' { $unstaged += "Modified: $filename" }
+                            'D' { $unstaged += "Deleted: $filename" }
+                        }
+                        
+                        if ($status -eq '??') {
+                            $untracked += "Untracked: $filename"
+                        }
                     }
                 }
                 
@@ -68,6 +85,11 @@ foreach ($repo in $repos) {
                 if ($untracked) {
                     Write-Host "  Untracked files:" -ForegroundColor Magenta
                     $untracked | ForEach-Object { Write-Host "    $_" -ForegroundColor Magenta }
+                }
+                
+                if ($unpushedCommits) {
+                    Write-Host "  Unpushed commits:" -ForegroundColor Cyan
+                    $unpushedCommits | ForEach-Object { Write-Host "    $_" -ForegroundColor Cyan }
                 }
                 
                 $reposWithChanges += $repo.Name
