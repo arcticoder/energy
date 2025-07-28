@@ -97,6 +97,10 @@ FULL_CONTENT_FILES = [
 
     # sensor-to-field conversion
     "warp-field-coils/src/subspace_transceiver/transceiver.py",
+
+    # --- Added full content files ---
+    "lqg-positive-matter-assembler/src/core/bobrick_martire_geometry.py",
+    "lqg-ftl-metric-engineering/navigation/trajectory_optimizer.py",
 ]
 
 # ——— Expanded regex patterns ———
