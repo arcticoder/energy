@@ -11,14 +11,17 @@ import re, os, argparse
 
 # ——— Full list of files to pull in (relative to asciimath/) ———
 TARGET_FILES = [
-    # —— Energy & Warp code (unchanged) ——
+    # —— Energy & Warp code ——
     "energy/analysis/analyze_subspace_range.py",
     "energy/analysis/realistic_subspace_analysis.py",
     "energy/analysis/stress_energy_tensor_coupling.py",
     "energy/demos/dynamic_backreaction_demo.py",
     "energy/src/dynamic_backreaction_factor.py",
     "energy/src/enhanced_artificial_gravity_implementation.py",
-    "energy/tools/count_warp_field_coils.py",
+    "energy/tools/count_warp_field_coils.py",  
+    "lqg-anec-framework/src/metric_ansatz_development.py",
+    "lqg-anec-framework/src/warp_bubble_engine.py",  
+    "lqg-positive-matter-assembler/src/core/bobrick_martire_geometry.py",
 
     # —— SU(2) 3nj generating-functional & tests ——
     "su2-3nj-generating-functional/src/su2_3nj_gen/su2_3nj.py",
@@ -46,15 +49,17 @@ TARGET_FILES = [
     "warp-solver-equations/scripts/generate_solver_equations.py",
     "warp-solver-equations/scripts/solver.py",
     "warp-solver-equations/docs/technical-documentation.md",
+    "unified-lqg-qft/src/warp_bubble_solver.py",
 
-    # —— (Keep your previous warp-field-coils etc) ——
+    # —— warp-field-coils etc ——
     "warp-field-coils/examples/lqg_subspace_demo.py",
-    "warp-field-coils/lqg_enhanced_field_coils.py",
+    "warp-field-coils/research/lqg_enhanced_field_coils.py",
     "warp-field-coils/src/control/dynamic_trajectory_controller.py",
     "warp-field-coils/src/subspace_transceiver/transceiver.py",
     "warp-field-coils/src/tomographic_scanner.py",
     "polymerized-lqg-matter-transporter/src/utils/multi_field_superposition.py",
     "unified-lqg/fusion/lqg_fusion_reactor_system.py",
+    "warp-field-coils/src/control/closed_loop_controller.py",
 
     # —— LaTeX cores ——
     "warp-bubble-assemble-expressions/final_expressions.tex",
@@ -101,6 +106,11 @@ FULL_CONTENT_FILES = [
     # --- Added full content files ---
     "lqg-positive-matter-assembler/src/core/bobrick_martire_geometry.py",
     "lqg-ftl-metric-engineering/navigation/trajectory_optimizer.py",
+    "unified-lqg-qft/src/warp_bubble_solver.py",
+    "warp-field-coils/research/lqg_enhanced_field_coils.py",
+    "lqg-anec-framework/src/metric_ansatz_development.py",
+    "lqg-anec-framework/src/warp_bubble_engine.py",
+    "warp-field-coils/src/control/closed_loop_controller.py"    
 ]
 
 # ——— Expanded regex patterns ———
