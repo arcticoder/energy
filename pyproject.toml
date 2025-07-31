@@ -1,0 +1,21 @@
+# ~/Code/asciimath/energy/pyproject.toml
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "energy-framework"
+version = "2.1.0"
+description = "Energy Framework"
+authors = [
+  { name = "Arcticoder" }
+]
+readme = "README.md"
+license = {text = "Unlicense"}
+dependencies = [
+  # Add your dependencies here
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]  # or wherever your Python packages are
+include = ["energy_framework*"]
