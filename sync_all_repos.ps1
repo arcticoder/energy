@@ -1,7 +1,7 @@
 #!/usr/bin/env pwsh
 # Comprehensive repository sync script
 
-$rootPath = "C:\Users\sherri3\Code\asciimath"
+$rootPath = "$home\Code\asciimath"
 
 $repos = @(
     "artificial-gravity-field-generator",

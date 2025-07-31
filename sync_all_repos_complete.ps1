@@ -1,7 +1,7 @@
 #!/usr/bin/env pwsh
 # Extended repository sync script for all repositories
 
-$rootPath = "C:\Users\sherri3\Code\asciimath"
+$rootPath = "$home\Code\asciimath"
 
 # Get all directories that contain .git folders
 $allRepos = Get-ChildItem -Path $rootPath -Directory | Where-Object { 
