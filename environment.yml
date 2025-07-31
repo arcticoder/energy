@@ -1,4 +1,4 @@
-# environment.yml - updated for ~/Code/asciimath/energy
+# environment.yml - add testing dependencies
 name: physics-suite
 channels:
   - conda-forge
@@ -14,9 +14,12 @@ dependencies:
   - sympy>=1.8
   - scikit-learn>=1.0.0
   - qutip>=4.6.0
+  - pytest>=6.0.0          # Add this
+  - pytest-cov             # For coverage reports
+  - black                  # Code formatting
   - pip
   - pip:
-    # Local editable packages (relative to ~/Code/asciimath/energy)
+    # Local editable packages
     - -e ../lqg-first-principles-gravitational-constant
     - -e ../negative-energy-generator
     - -e .
