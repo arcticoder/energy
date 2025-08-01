@@ -16,7 +16,7 @@ import os
 import numpy as np
 from scipy import stats
 
-# Fix Windows console encoding for Unicode characters
+# Fix Windows console encoding for Unicode characters (only if on Windows)
 if sys.platform == "win32":
     try:
         # Try to set console to UTF-8 mode
@@ -88,12 +88,6 @@ def run_gh_command(args):
         return None
     except Exception as e:
         print(f"   ⚠️  Error running GitHub CLI command: {e}")
-        return None
-    except json.JSONDecodeError as e:
-        print(f"JSON parsing error: {e}")
-        return None
-    except Exception as e:
-        print(f"Command execution error: {e}")
         return None
 
 def load_stats_history():
@@ -261,11 +255,28 @@ def get_traffic_clones(repo):
 def get_repo_commits_for_date(repo, date):
     """Get commit count for a specific date using git log."""
     try:
-        # Construct the path to the repository
-        repo_path = Path(f"C:/Users/echo_/Code/asciimath/{repo}")
+        # Determine the base path for repositories
+        # Try multiple common locations without hardcoding usernames
+        base_paths = [
+            Path.home() / "Code" / "asciimath",  # WSL: /home/username/Code/asciimath
+            Path("/mnt/c") / Path.home().name / "Code" / "asciimath",  # WSL accessing Windows drive with current username
+            Path(f"/mnt/c/Users/{os.getlogin()}/Code/asciimath"),  # WSL with system username
+        ]
         
-        # Check if the repository directory exists
-        if not repo_path.exists():
+        # Add Windows drive letter variants if on Windows or WSL
+        for drive in ['c', 'd', 'e']:
+            windows_path = Path(f"/mnt/{drive}/Users/{os.getlogin()}/Code/asciimath")
+            if windows_path.parent.parent.exists():  # Check if /mnt/c/Users exists
+                base_paths.append(windows_path)
+        
+        repo_path = None
+        for base_path in base_paths:
+            potential_path = base_path / repo
+            if potential_path.exists():
+                repo_path = potential_path
+                break
+        
+        if repo_path is None:
             return 0
         
         # Format dates for git log (start and end of the day)
@@ -302,12 +313,29 @@ def get_repo_commits(repo, days=30):
         since_date = datetime.now() - timedelta(days=days)
         since_str = since_date.strftime("%Y-%m-%d")
         
-        # Construct the path to the repository
-        repo_path = Path(f"C:/Users/echo_/Code/asciimath/{repo}")
+        # Determine the base path for repositories
+        # Try multiple common locations without hardcoding usernames
+        base_paths = [
+            Path.home() / "Code" / "asciimath",  # WSL: /home/username/Code/asciimath
+            Path("/mnt/c") / Path.home().name / "Code" / "asciimath",  # WSL accessing Windows drive with current username
+            Path(f"/mnt/c/Users/{os.getlogin()}/Code/asciimath"),  # WSL with system username
+        ]
         
-        # Check if the repository directory exists
-        if not repo_path.exists():
-            print(f"   ⚠️  Repository path not found: {repo_path}")
+        # Add Windows drive letter variants if on Windows or WSL
+        for drive in ['c', 'd', 'e']:
+            windows_path = Path(f"/mnt/{drive}/Users/{os.getlogin()}/Code/asciimath")
+            if windows_path.parent.parent.exists():  # Check if /mnt/c/Users exists
+                base_paths.append(windows_path)
+        
+        repo_path = None
+        for base_path in base_paths:
+            potential_path = base_path / repo
+            if potential_path.exists():
+                repo_path = potential_path
+                break
+        
+        if repo_path is None:
+            print(f"   ⚠️  Repository path not found for: {repo}")
             return []
         
         # Run git log to get commits since the specified date
@@ -574,9 +602,9 @@ def process_repository(repo):
                     elif avg_ratio > 1.5:
                         print(f"   📊 Moderate pull activity. Average {avg_ratio:.1f} clones per user")
                     else:
-                        print(f"   � Mostly fresh clones. Average {avg_ratio:.1f} clones per user")
+                        print(f"   📋 Mostly fresh clones. Average {avg_ratio:.1f} clones per user")
         else:
-            print("�📦 Clones: Access denied or repository not found")
+            print("📦 Clones: Access denied or repository not found")
     except Exception as e:
         print(f"📦 Clones: Error processing clones data - {e}")
     
@@ -900,13 +928,13 @@ def git_commit_and_push():
         
         # Add all files
         result = subprocess.run(['git', 'add', 'traffic_stats_history.ndjson', 'traffic_stats_chart.html', 'traffic_slope_history.json'], 
-                              capture_output=True, text=True)
+                              capture_output=True, text=True, cwd=SCRIPT_DIR)
         if result.returncode != 0:
             print(f"⚠️  Git add warning: {result.stderr}")
         
         # Check if there are changes to commit
         result = subprocess.run(['git', 'diff', '--cached', '--quiet'], 
-                              capture_output=True, text=True)
+                              capture_output=True, text=True, cwd=SCRIPT_DIR)
         if result.returncode == 0:
             print("📝 No changes to commit - traffic data unchanged")
             return
@@ -914,7 +942,7 @@ def git_commit_and_push():
         # Commit changes
         commit_message = f"Auto-update traffic analytics - {timestamp}\n\nUpdated traffic statistics and interactive chart with latest GitHub data"
         result = subprocess.run(['git', 'commit', '-m', commit_message], 
-                              capture_output=True, text=True)
+                              capture_output=True, text=True, cwd=SCRIPT_DIR)
         if result.returncode != 0:
             print(f"❌ Git commit failed: {result.stderr}")
             return
@@ -922,7 +950,7 @@ def git_commit_and_push():
         print("✅ Changes committed successfully")
         
         # Push to remote
-        result = subprocess.run(['git', 'push'], capture_output=True, text=True)
+        result = subprocess.run(['git', 'push'], capture_output=True, text=True, cwd=SCRIPT_DIR)
         if result.returncode != 0:
             print(f"❌ Git push failed: {result.stderr}")
             print("💡 You may need to manually push or check your git configuration")

@@ -2,11 +2,11 @@
 # Runs the Python traffic analytics script and logs output
 
 param(
-    [string]$LogPath = "C:\Users\echo_\Code\asciimath\energy\traffic_stats_log.txt"
+    [string]$LogPath = "$HOME/Code/asciimath/energy/traffic_stats_log.txt"
 )
 
-# Set working directory
-Set-Location "C:\Users\echo_\Code\asciimath\energy"
+# Set working directory (use forward slashes for Linux)
+Set-Location "$HOME/Code/asciimath/energy"
 
 # Get timestamp
 $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"

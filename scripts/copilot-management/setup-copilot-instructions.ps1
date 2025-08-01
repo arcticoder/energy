@@ -1,7 +1,7 @@
 # PowerShell script to create copilot-instructions.md symlinks in all repositories
 
 $asciimathPath = "C:\Users\$env:USERNAME\Code\asciimath"
-$targetFile = "G:\My Drive\code\ai\tech-roadmap\.vscode-instructions.md"
+$targetFile = "E:\My Drive\code\ai\tech-roadmap\.vscode-instructions.md"
 
 # Get all subdirectories in the asciimath folder
 $repos = Get-ChildItem -Path $asciimathPath -Directory
