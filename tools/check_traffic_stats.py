@@ -15,6 +15,7 @@ from pathlib import Path
 import os
 import numpy as np
 from scipy import stats
+from typing import Optional
 
 # Fix Windows console encoding for Unicode characters (only if on Windows)
 if sys.platform == "win32":
@@ -61,6 +62,8 @@ SLOPE_HISTORY_FILE = SCRIPT_DIR / "traffic_slope_history.json"
 
 def run_gh_command(args):
     """Run GitHub CLI command and return JSON output."""
+    env = os.environ.copy()
+    env["GH_CONFIG_DIR"] = str(Path.home() / ".config" / "gh")  # Force config dir
     try:
         result = subprocess.run(
             ["gh"] + args,
@@ -69,7 +72,8 @@ def run_gh_command(args):
             encoding='utf-8',
             errors='replace',
             timeout=30,  # Add 30-second timeout
-            check=False  # Don't raise exception on non-zero exit
+            check=False,  # Don't raise exception on non-zero exit
+            env=env
         )
         
         if result.returncode != 0:
@@ -225,8 +229,11 @@ def merge_historical_daily_data(stats_history):
 
 def check_gh_auth():
     """Check if GitHub CLI is authenticated."""
+    env = os.environ.copy()
+    env["GH_CONFIG_DIR"] = str(Path.home() / ".config" / "gh")  # Force path
+
     try:
-        result = subprocess.run(["gh", "auth", "status"], capture_output=True, text=True)
+        result = subprocess.run(["gh", "auth", "status"], capture_output=True, text=True, env=env)
         if result.returncode != 0:
             safe_print("❌ GitHub CLI not authenticated. Please run 'gh auth login'")
             return False
@@ -252,33 +259,55 @@ def get_traffic_clones(repo):
     """Get repository traffic clones."""
     return run_gh_command(["api", f"repos/arcticoder/{repo}/traffic/clones"])
 
+# --- NEW HELPER FUNCTION ---
+def find_repo_path(repo_name: str) -> Optional[Path]:
+    """
+    Find the local path for a given repository name using a robust search method.
+    """
+    # Create a set of potential base directories where all repos are stored.
+    # Using a set automatically handles duplicates.
+    script_dir = Path(__file__).resolve().parent
+    cwd = Path.cwd()
+    candidate_base_dirs = {
+        cwd,                          # e.g., if run from ~/Code/asciimath
+        cwd.parent,                   # e.g., if run from ~/Code/asciimath/energy
+        script_dir.parent,            # e.g., if script is in ~/Code/asciimath/tools
+        script_dir.parent.parent,     # e.g., if script is in ~/Code/asciimath/energy/tools
+        Path.home() / "Code" / "asciimath" # The original hardcoded default
+    }
+
+    base_dir = None
+    # Use a copy of REPOS list to avoid modifying the global list if needed
+    repo_list = REPOS
+    for candidate in candidate_base_dirs:
+        # Sanity check: does this directory contain at least two known repos?
+        if len(repo_list) > 1 and (candidate / repo_list[0]).is_dir() and (candidate / repo_list[1]).is_dir():
+            base_dir = candidate
+            break
+
+    # If a sane base directory is found, use it
+    if base_dir:
+        path_to_check = base_dir / repo_name
+        if path_to_check.is_dir():
+            return path_to_check
+
+    # If the smart check fails (e.g., only one repo exists locally),
+    # try a simpler loop without the sanity check as a fallback.
+    for candidate in candidate_base_dirs:
+        path_to_check = candidate / repo_name
+        if path_to_check.is_dir():
+            return path_to_check
+
+    return None
+
+# --- MODIFIED FUNCTION ---
 def get_repo_commits_for_date(repo, date):
     """Get commit count for a specific date using git log."""
     try:
-        # Determine the base path for repositories
-        # Try multiple common locations without hardcoding usernames
-        base_paths = [
-            Path.home() / "Code" / "asciimath",  # WSL: /home/username/Code/asciimath
-            Path("/mnt/c") / Path.home().name / "Code" / "asciimath",  # WSL accessing Windows drive with current username
-            Path(f"/mnt/c/Users/{os.getlogin()}/Code/asciimath"),  # WSL with system username
-        ]
-        
-        # Add Windows drive letter variants if on Windows or WSL
-        for drive in ['c', 'd', 'e']:
-            windows_path = Path(f"/mnt/{drive}/Users/{os.getlogin()}/Code/asciimath")
-            if windows_path.parent.parent.exists():  # Check if /mnt/c/Users exists
-                base_paths.append(windows_path)
-        
-        repo_path = None
-        for base_path in base_paths:
-            potential_path = base_path / repo
-            if potential_path.exists():
-                repo_path = potential_path
-                break
-        
+        repo_path = find_repo_path(repo)
         if repo_path is None:
-            return 0
-        
+            return 0 # Silently fail if path not found, as before
+
         # Format dates for git log (start and end of the day)
         date_obj = datetime.strptime(date, "%Y-%m-%d")
         start_date = date_obj.strftime("%Y-%m-%d 00:00:00")
@@ -303,9 +332,11 @@ def get_repo_commits_for_date(repo, date):
         commit_count = len([line for line in result.stdout.strip().split('\n') if line.strip()])
         return commit_count
         
-    except Exception as e:
+    except Exception:
+        # Broad exception to catch any subprocess or other errors
         return 0
 
+# --- MODIFIED FUNCTION ---
 def get_repo_commits(repo, days=30):
     """Get recent commit activity using git log."""
     try:
@@ -313,27 +344,7 @@ def get_repo_commits(repo, days=30):
         since_date = datetime.now() - timedelta(days=days)
         since_str = since_date.strftime("%Y-%m-%d")
         
-        # Determine the base path for repositories
-        # Try multiple common locations without hardcoding usernames
-        base_paths = [
-            Path.home() / "Code" / "asciimath",  # WSL: /home/username/Code/asciimath
-            Path("/mnt/c") / Path.home().name / "Code" / "asciimath",  # WSL accessing Windows drive with current username
-            Path(f"/mnt/c/Users/{os.getlogin()}/Code/asciimath"),  # WSL with system username
-        ]
-        
-        # Add Windows drive letter variants if on Windows or WSL
-        for drive in ['c', 'd', 'e']:
-            windows_path = Path(f"/mnt/{drive}/Users/{os.getlogin()}/Code/asciimath")
-            if windows_path.parent.parent.exists():  # Check if /mnt/c/Users exists
-                base_paths.append(windows_path)
-        
-        repo_path = None
-        for base_path in base_paths:
-            potential_path = base_path / repo
-            if potential_path.exists():
-                repo_path = potential_path
-                break
-        
+        repo_path = find_repo_path(repo)
         if repo_path is None:
             print(f"   ⚠️  Repository path not found for: {repo}")
             return []
@@ -629,7 +640,7 @@ def process_repository(repo):
             elif recent_commits > 10 and repo_data.get("clone_pull_ratio", 0) > 1.5:
                 print(f"   📈 Moderate development activity correlates with pull patterns")
             elif recent_commits < 5:
-                print(f"   📋 Low commit activity - clones likely for browsing/forking")
+                print(f"   📋 Low commit activity - clones likely for Browse/forking")
         else:
             print(f"🔄 Recent Activity: Access limited or no recent commits")
     except Exception as e:
@@ -812,8 +823,33 @@ def generate_html_chart(current_run, stats_history):
     except IOError as e:
         print(f"Error writing HTML file: {e}")
 
+def regenerate_html():
+    """Regenerate HTML chart from existing history without fetching new data."""
+    safe_print("🔄 Regenerating HTML chart from historical data...")
+    
+    # Load existing stats history
+    stats_history = load_stats_history()
+    if not stats_history:
+        safe_print(f"❌ No historical data found in {NDJSON_STATS_FILE}. Cannot regenerate.")
+        return
+
+    safe_print(f"📚 Loaded {len(stats_history)} previous runs from history.")
+    
+    # Use the most recent entry for the summary stats cards in the HTML.
+    # The history is sorted by date on save, so the last item is the most recent.
+    current_run = stats_history[-1]
+    
+    # Generate HTML chart using the loaded historical data
+    generate_html_chart(current_run, stats_history)
+    safe_print("✅ HTML chart regeneration complete.")
+
 def main():
     """Main function."""
+    # Check for --regenerate flag to run in a data-free, HTML-only mode
+    if '--regenerate' in sys.argv:
+        regenerate_html()
+        sys.exit(0)
+
     safe_print("🚀 GitHub Traffic Stats Collection Tool")
     print("=" * 50)
     
