@@ -213,6 +213,7 @@
 			"path": "../casimir-nanopositioning-platform"
 		},
 		{
+			"name": "llm-utils",
 			"path": "../../python/llm-utils"
 		}
 	],
