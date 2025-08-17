@@ -17,6 +17,10 @@
 			"path": "../casimir-environmental-enclosure-platform"
 		},
 		{
+			"name": "casimir-nanopositioning-platform",
+			"path": "../casimir-nanopositioning-platform"
+		},
+		{
 			"name": "casimir-tunable-permittivity-stacks",
 			"path": "../casimir-tunable-permittivity-stacks"
 		},
@@ -211,10 +215,6 @@
 		{
 			"name": "warp-spacetime-stability-controller",
 			"path": "../warp-spacetime-stability-controller"
-		},
-		{
-			"name": "casimir-nanopositioning-platform",
-			"path": "../casimir-nanopositioning-platform"
 		},
 		{
 			"name": "llm-utils",
