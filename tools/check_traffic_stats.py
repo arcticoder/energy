@@ -41,6 +41,7 @@ REPOS = [
     "lqg-first-principles-fine-structure-constant", "lqg-first-principles-gravitational-constant",
     "lqg-ftl-metric-engineering", "lqg-polymer-field-generator", "lqg-positive-matter-assembler",
     "lqg-volume-quantization-controller", "lorentz-violation-pipeline", "medical-tractor-array",
+    "plasma-vortex-reactor",
     "negative-energy-generator", "polymer-fusion-framework", "polymerized-lqg-matter-transporter",
     "polymerized-lqg-replicator-recycler", "su2-3nj-closedform", "su2-3nj-generating-functional",
     "su2-3nj-recurrences", "su2-3nj-uniform-closed-form", "su2-node-matrix-elements",
@@ -313,7 +314,7 @@ def get_repo_commits_for_date(repo, date):
         start_date = date_obj.strftime("%Y-%m-%d 00:00:00")
         end_date = (date_obj + timedelta(days=1)).strftime("%Y-%m-%d 00:00:00")
         
-        # Run git log to get commits for the specific date
+        # Rerun git log to get commits for the specific date
         result = subprocess.run(
             ["git", "log", f"--since={start_date}", f"--until={end_date}", 
              "--oneline", "--no-merges"],
