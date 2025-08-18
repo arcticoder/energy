@@ -37,6 +37,10 @@
 			"path": "../enhanced-simulation-hardware-abstraction-framework"
 		},
 		{
+			"name": "hts-coils",
+			"path": "../hts-coils"
+		},
+		{
 			"name": "lqg-anec-framework",
 			"path": "../lqg-anec-framework"
 		},
