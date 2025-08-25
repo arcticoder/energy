@@ -2,7 +2,7 @@
 
 ## Summary (research-stage)
 
-This repository aggregates research artifacts, analysis scripts, and prototype code for the arcticoder energy research ecosystem. Many statements in this document summarize model-derived results and demonstration artifacts. Numerical figures, reported reductions, and "operational"/"production" claims refer to outcomes from specific simulation and analysis configurations; they should be interpreted as research-stage findings that require independent verification, reproducibility checks, and additional uncertainty quantification before being treated as validated engineering capabilities. See `docs/` for raw outputs, configuration files, and UQ artifacts to reproduce and assess the reported results.
+This repository aggregates research artifacts, analysis scripts, and prototype code for the arcticoder energy research ecosystem. The materials here represent research-stage results, model-derived findings, and demonstration artifacts. Numerical figures, reported reductions, and any operational or production-oriented phrasing describe outcomes observed under particular simulation or analysis configurations. These outcomes should be treated as preliminary: they require independent verification, reproducibility checks, and comprehensive uncertainty quantification before being considered validated engineering capabilities. See `docs/` for raw outputs, configuration files, and UQ artifacts that support reproduction and assessment of reported results.
 
 ## Related Repositories
 
@@ -21,9 +21,9 @@ This repository is the central hub for the arcticoder energy research ecosystem.
 - [lorentz-violation-pipeline](https://github.com/arcticoder/lorentz-violation-pipeline): Probes Planck-scale physics and energy conversion using LIV analysis, with experimental and theoretical integration into the energy research suite.
 - [medical-tractor-array](https://github.com/arcticoder/medical-tractor-array): Medical-Grade Graviton Safety System with T_μν ≥ 0 positive energy constraint enforcement, 242M× energy reduction, and biological safety protocols achieving 10¹² protection margin for gravitational medicine applications.
 
-All repositories are under the [arcticoder GitHub account](https://github.com/arcticoder) and are designed for cross-repository integration. Every project links back to this energy framework for unified documentation, uncertainty quantification, and system-level applications.
+All repositories are under the [arcticoder GitHub account](https://github.com/arcticoder) and are intended for exploratory research and cross-repository integration. Projects link back to this energy framework as a documentation and coordination point for ongoing work, not as a guarantee of production readiness.
 
-A multi-scale theoretical physics framework spanning advanced energy technologies, spacetime physics, quantum gravity, and computational methods. This meta-repository coordinates 37+ specialized research repositories focused on energy and propulsion systems.
+This meta-repository supports multi-scale theoretical and computational research spanning energy technologies, spacetime physics, quantum gravity, and numerical methods. It coordinates many specialized research repositories focused on exploratory energy and propulsion research.
 
 ## Latest Reported Results (July 2025) — model summaries
 
