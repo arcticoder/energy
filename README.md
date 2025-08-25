@@ -1,5 +1,9 @@
 # Energy Research Framework
 
+## Summary (research-stage)
+
+This repository aggregates research artifacts, analysis scripts, and prototype code for the arcticoder energy research ecosystem. Many statements in this document summarize model-derived results and demonstration artifacts. Numerical figures, reported reductions, and "operational"/"production" claims refer to outcomes from specific simulation and analysis configurations; they should be interpreted as research-stage findings that require independent verification, reproducibility checks, and additional uncertainty quantification before being treated as validated engineering capabilities. See `docs/` for raw outputs, configuration files, and UQ artifacts to reproduce and assess the reported results.
+
 ## Related Repositories
 
 This repository is the central hub for the arcticoder energy research ecosystem. Explore these related repositories for specialized technologies and cross-domain advancements:
@@ -21,7 +25,7 @@ All repositories are under the [arcticoder GitHub account](https://github.com/ar
 
 A multi-scale theoretical physics framework spanning advanced energy technologies, spacetime physics, quantum gravity, and computational methods. This meta-repository coordinates 37+ specialized research repositories focused on energy and propulsion systems.
 
-## Latest Achievements (July 2025)
+## Latest Reported Results (July 2025) — model summaries
 
 **LQG FUSION REACTOR INTEGRATION Complete - 500 MW VESSEL POWER SYSTEM - JULY 15, 2025**
 
