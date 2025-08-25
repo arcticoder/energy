@@ -46,6 +46,7 @@
 {"event":"hedge_file","date":"2025-08-24","repo":"casimir-ultra-smooth-fabrication-platform","path":"(GitHub About / description)","task":"Hedge the repo description: replace absolutist phrases or link to evidence.","status":"todo"}
 {"event":"hedge_file","date":"2025-08-24","repo":"casimir-ultra-smooth-fabrication-platform","path":"(GitHub About / description)","task":"Hedge the repo description: replace absolutist phrases or link to evidence.","status":"completed","completed_date":"2025-08-25","notes":"Added docs/GH_ABOUT_SUGGESTION.md with short & long conservative descriptions; recommended linking validation artifacts in README.","actor":"assistant"}
 {"event":"hedge_file","date":"2025-08-24","repo":"elemental-transmutator","path":"README.md","task":"Hedge the file/text: soften absolutist language, add qualifiers and evidence links where available.","status":"todo"}
+
 {"event":"hedge_file","date":"2025-08-24","repo":"elemental-transmutator","path":"technical-documentation.md","task":"Hedge the file/text: add UQ references and soften claims.","status":"todo"}
 {"event":"hedge_file","date":"2025-08-24","repo":"elemental-transmutator","path":"(GitHub About / description)","task":"Hedge the repo description: replace absolutist phrases or link to evidence.","status":"todo"}
 {"event":"hedge_file","date":"2025-08-24","repo":"enhanced-simulation-hardware-abstraction-framework","path":"README.md","task":"Hedge the file/text: soften absolutist language, add qualifiers and evidence links where available.","status":"todo"}
