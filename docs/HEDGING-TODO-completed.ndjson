@@ -81,3 +81,4 @@
 {"repo": "su2-3nj-generating-functional", "path": "README.md", "commit_id": "ec8b691", "completed_date": "2025-08-27T05:05:57.766204Z"}
 {"event": "hedge_file", "date": "2025-08-27", "repo": "casimir-nanopositioning-platform", "path": "README.md", "commit_id": "5fd4d0d", "completed_date": "2025-08-27T05:09:05.997653Z", "notes": "Hedged README: softened claims; added Scope/Validation & Limitations and UQ/repro guidance."}
 {"event": "hedge_file", "date": "2025-08-27", "repo": "casimir-tunable-permittivity-stacks", "path": "README.md", "commit_id": "791cf87", "completed_date": "2025-08-27T05:11:03.534149Z", "notes": "Hedged README: softened claims; added Scope/Validation & Limitations and UQ/repro guidance."}
+{"repo": "casimir-ultra-smooth-fabrication-platform", "path": "README.md", "commit_id": "4bdff6a", "completed_date": "2025-08-27T05:13:06.214504Z", "notes": "Hedged README: softened claims, added Scope/Validation & Limitations with UQ/repro pointers."}
