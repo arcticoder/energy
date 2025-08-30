@@ -2007,5 +2007,46 @@
         "days": null
       }
     }
+  },
+  {
+    "date": "2025-08-29",
+    "timestamp": "2025-08-29T23:58:06.685052",
+    "slopes": {
+      "views": {
+        "slope": 0.6337229690239626,
+        "r_squared": 0.04031863299923588,
+        "days": 59
+      },
+      "unique_views": {
+        "slope": 0.36832261835184094,
+        "r_squared": 0.03445926587763579,
+        "days": 59
+      },
+      "clones": {
+        "slope": 0.9479251899473995,
+        "r_squared": 0.00045702811437556984,
+        "days": 59
+      },
+      "unique_clones": {
+        "slope": -7.731385154880189,
+        "r_squared": 0.07589229913098805,
+        "days": 59
+      },
+      "stars": {
+        "slope": 0.9424897720631209,
+        "r_squared": 0.4117194895238263,
+        "days": 59
+      },
+      "forks": {
+        "slope": null,
+        "r_squared": null,
+        "days": null
+      },
+      "active_forks": {
+        "slope": null,
+        "r_squared": null,
+        "days": null
+      }
+    }
   }
 ]
