@@ -3,6 +3,7 @@ import argparse
 import os
 import sys
 import fnmatch
+import subprocess
 
 try:
     import numpy as np
@@ -22,6 +23,58 @@ def find_files(root_dir, patterns, exclude_patterns):
             for filename in fnmatch.filter(files, pattern):
                 matches.append(os.path.join(base, filename))
     return matches
+
+def get_git_uncommitted_files(root_dir, patterns, exclude_patterns):
+    """Return a list of uncommitted file paths (staged, unstaged, untracked) under root_dir.
+
+    Filters the set by provided wildcard patterns and excludes directories matching exclude_patterns.
+    """
+    cmd = ["git", "-C", root_dir, "status", "--porcelain"]
+    try:
+        proc = subprocess.run(cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        out = proc.stdout
+    except Exception as e:
+        print(f"Warning: git status failed: {e}", file=sys.stderr)
+        return []
+
+    files = []
+    for line in out.splitlines():
+        if not line.strip():
+            continue
+        # Format: XY <path> (where path may contain '->' for renames)
+        path_part = line[3:]
+        if '->' in path_part:
+            # For renames use the destination path
+            path_part = path_part.split('->')[-1]
+        path_part = path_part.strip()
+        full = os.path.normpath(os.path.join(root_dir, path_part))
+        if not os.path.exists(full):
+            continue
+
+        # Exclude if any parent directory matches exclude patterns
+        rel = os.path.relpath(full, root_dir)
+        parts = rel.split(os.sep)
+        skip = False
+        for d in parts[:-1]:
+            if any(fnmatch.fnmatch(d, pat) for pat in exclude_patterns):
+                skip = True
+                break
+        if skip:
+            continue
+
+        # Match filename against patterns (allow matching the relative path too)
+        if patterns:
+            matched = False
+            for pat in patterns:
+                if fnmatch.fnmatch(os.path.basename(rel), pat) or fnmatch.fnmatch(rel, pat):
+                    matched = True
+                    break
+            if not matched:
+                continue
+
+        files.append(full)
+
+    return files
 
 def is_npy_file(filepath):
     """Check if file has .npy extension"""
@@ -96,9 +149,16 @@ def main():
         "--output", "-o", required=True,
         help="Full path to the output file where fenced code will be written."
     )
+    parser.add_argument(
+        "--git-uncommitted", action="store_true",
+        help="Only include files that are uncommitted in the git repository at --root (staged, unstaged, untracked)."
+    )
     args = parser.parse_args()
 
-    files = find_files(args.root, args.pattern, args.exclude)
+    if args.git_uncommitted:
+        files = get_git_uncommitted_files(args.root, args.pattern, args.exclude)
+    else:
+        files = find_files(args.root, args.pattern, args.exclude)
     if not files:
         print(f"No files matching {args.pattern} under {args.root}", file=sys.stderr)
         sys.exit(1)
