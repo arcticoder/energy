@@ -2,13 +2,21 @@
 """
 Count non-COMPLETED tasks in TODO.ndjson robustly.
 """
+import argparse
 import json
 from json import JSONDecoder
 from pathlib import Path
 
-p = Path('TODO.ndjson')
+parser = argparse.ArgumentParser(
+    description='Count non-COMPLETED tasks in a NDJSON or concatenated JSON file.'
+)
+parser.add_argument('file', nargs='?', default='TODO.ndjson',
+                    help='Path to TODO ndjson file (default: TODO.ndjson)')
+args = parser.parse_args()
+
+p = Path(args.file)
 if not p.exists():
-    print('TODO.ndjson not found')
+    print(f'{p} not found')
     raise SystemExit(1)
 
 s = p.read_text(encoding='utf-8')
