@@ -12,6 +12,8 @@ parser = argparse.ArgumentParser(
 )
 parser.add_argument('file', nargs='?', default='TODO.ndjson',
                     help='Path to TODO ndjson file (default: TODO.ndjson)')
+parser.add_argument('-s', '--show', action='store_true',
+                    help='Show non-COMPLETED task objects (pretty JSON)')
 args = parser.parse_args()
 
 p = Path(args.file)
@@ -26,6 +28,7 @@ idx = 0
 L = len(s)
 count_total = 0
 count_non_completed = 0
+non_completed_items = []
 while idx < L:
     # skip whitespace
     while idx < L and s[idx].isspace():
@@ -45,10 +48,26 @@ while idx < L:
         status = str(it.get('status','')).upper() if isinstance(it, dict) else ''
         if status != 'COMPLETED':
             count_non_completed += 1
+            # preserve original item for optional output
+            non_completed_items.append(it)
     idx = end
 
 print('Total tasks parsed:', count_total)
 print('Non-COMPLETED tasks:', count_non_completed)
+
+# If requested, show the non-COMPLETED tasks in pretty JSON form
+if args.show:
+    if count_non_completed == 0:
+        print('\nNo non-COMPLETED tasks to show.')
+    else:
+        print(f"\nShowing {count_non_completed} non-COMPLETED task(s):\n")
+        for i, itm in enumerate(non_completed_items, 1):
+            try:
+                print(f"--- Task {i} ---")
+                print(json.dumps(itm, indent=2, ensure_ascii=False))
+            except Exception:
+                # fallback: print raw repr
+                print(repr(itm))
 
 # Exit codes: 0 if parsed and count found, 2 if non-zero non-completed
 raise SystemExit(0 if count_non_completed==0 else 2)
