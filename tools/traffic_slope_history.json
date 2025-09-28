@@ -2786,5 +2786,46 @@
         "days": null
       }
     }
+  },
+  {
+    "date": "2025-09-28",
+    "timestamp": "2025-09-28T06:48:34.509137",
+    "slopes": {
+      "views": {
+        "slope": -0.05676975097742243,
+        "r_squared": 0.0006610876670581007,
+        "days": 88
+      },
+      "unique_views": {
+        "slope": -0.05795850797788032,
+        "r_squared": 0.00256488875384429,
+        "days": 88
+      },
+      "clones": {
+        "slope": -6.49659222993202,
+        "r_squared": 0.03762584807226081,
+        "days": 88
+      },
+      "unique_clones": {
+        "slope": -7.410402944595118,
+        "r_squared": 0.12322412793250558,
+        "days": 88
+      },
+      "stars": {
+        "slope": 0.3467295974076293,
+        "r_squared": 0.11601482187529784,
+        "days": 88
+      },
+      "forks": {
+        "slope": null,
+        "r_squared": null,
+        "days": null
+      },
+      "active_forks": {
+        "slope": null,
+        "r_squared": null,
+        "days": null
+      }
+    }
   }
 ]
