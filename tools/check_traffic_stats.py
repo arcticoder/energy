@@ -37,6 +37,7 @@ REPOS = [
     "casimir-environmental-enclosure-platform", "casimir-nanopositioning-platform", 
     "casimir-tunable-permittivity-stacks", "casimir-ultra-smooth-fabrication-platform",
     "elemental-transmutator", "enhanced-simulation-hardware-abstraction-framework",
+    "hts-coils",    
     "lqg-anec-framework", "lqg-cosmological-constant-predictor", "lqg-volume-kernel-catalog",
     "lqg-first-principles-fine-structure-constant", "lqg-first-principles-gravitational-constant",
     "lqg-ftl-metric-engineering", "lqg-polymer-field-generator", "lqg-positive-matter-assembler",
