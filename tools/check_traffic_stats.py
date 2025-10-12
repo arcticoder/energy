@@ -14,8 +14,9 @@ from datetime import datetime, timedelta
 from pathlib import Path
 import os
 import numpy as np
+import requests
 from scipy import stats
-from typing import Optional
+from typing import Optional, Dict, Any, List
 
 # Fix Windows console encoding for Unicode characters (only if on Windows)
 if sys.platform == "win32":
@@ -56,11 +57,24 @@ REPOS = [
     "warp-spacetime-stability-controller"
 ]
 
+DEFAULT_GITHUB_OWNER = "arcticoder"
+REPO_OWNERS = {
+    "hts-coils": "DawsonInstitute",
+    "warp-bubble-optimizer": "DawsonInstitute"
+}
+
+DEFAULT_ZENODO_API_BASE = "https://zenodo.org/api"
+
 SCRIPT_DIR = Path(__file__).parent
 NDJSON_STATS_FILE = SCRIPT_DIR / "traffic_stats_history.ndjson"
 HTML_CHART_FILE = SCRIPT_DIR / "traffic_stats_chart.html"
 HTML_TEMPLATE_FILE = SCRIPT_DIR / "traffic_chart_template.html"
 SLOPE_HISTORY_FILE = SCRIPT_DIR / "traffic_slope_history.json"
+
+
+def get_repo_owner(repo_name: str) -> str:
+    """Return the GitHub owner for a repository, falling back to the default."""
+    return REPO_OWNERS.get(repo_name, DEFAULT_GITHUB_OWNER)
 
 def run_gh_command(args):
     """Run GitHub CLI command and return JSON output."""
@@ -245,21 +259,28 @@ def check_gh_auth():
         safe_print("❌ GitHub CLI not found. Please install GitHub CLI")
         return False
 
-def get_repo_forks(repo):
+def get_repo_forks(repo, owner: Optional[str] = None):
     """Get detailed repository forks information."""
-    return run_gh_command(["api", f"repos/arcticoder/{repo}/forks", "--paginate"])
+    repo_owner = owner or get_repo_owner(repo)
+    return run_gh_command(["api", f"repos/{repo_owner}/{repo}/forks", "--paginate"])
 
-def get_repo_info(repo):
+
+def get_repo_info(repo, owner: Optional[str] = None):
     """Get repository information (stars, watchers, forks)."""
-    return run_gh_command(["api", f"repos/arcticoder/{repo}"])
+    repo_owner = owner or get_repo_owner(repo)
+    return run_gh_command(["api", f"repos/{repo_owner}/{repo}"])
 
-def get_traffic_views(repo):
+
+def get_traffic_views(repo, owner: Optional[str] = None):
     """Get repository traffic views."""
-    return run_gh_command(["api", f"repos/arcticoder/{repo}/traffic/views"])
+    repo_owner = owner or get_repo_owner(repo)
+    return run_gh_command(["api", f"repos/{repo_owner}/{repo}/traffic/views"])
 
-def get_traffic_clones(repo):
+
+def get_traffic_clones(repo, owner: Optional[str] = None):
     """Get repository traffic clones."""
-    return run_gh_command(["api", f"repos/arcticoder/{repo}/traffic/clones"])
+    repo_owner = owner or get_repo_owner(repo)
+    return run_gh_command(["api", f"repos/{repo_owner}/{repo}/traffic/clones"])
 
 # --- NEW HELPER FUNCTION ---
 def find_repo_path(repo_name: str) -> Optional[Path]:
@@ -400,13 +421,155 @@ def safe_print(text):
         ascii_text = ascii_text.replace("🔥", "[HOT]")
         print(ascii_text)
 
+
+def load_local_env():
+    """Load environment variables from a local .env file if present."""
+    env_file = SCRIPT_DIR / ".env"
+    if not env_file.exists():
+        return
+
+    try:
+        with open(env_file, "r", encoding="utf-8") as handle:
+            for raw_line in handle:
+                line = raw_line.strip()
+                if not line or line.startswith("#"):
+                    continue
+                if "=" not in line:
+                    continue
+                key, value = line.split("=", 1)
+                key = key.strip()
+                value = value.strip()
+                if not key:
+                    continue
+                if value and len(value) >= 2 and value[0] == value[-1] and value[0] in {'"', "'"}:
+                    value = value[1:-1]
+                if key not in os.environ:
+                    os.environ[key] = value
+    except IOError as exc:
+        safe_print(f"⚠️  Unable to read .env file: {exc}")
+
+
+def _extract_stat(stats: Dict[str, Any], key: str) -> int:
+    """Extract integer statistics from Zenodo record stats payload."""
+    value = stats.get(key, 0)
+    if isinstance(value, dict):
+        return int(value.get("total", 0) or 0)
+    return int(value or 0)
+
+
+def fetch_zenodo_stats() -> Optional[Dict[str, Any]]:
+    """Fetch aggregate Zenodo stats for the configured account."""
+    load_local_env()
+
+    username = os.environ.get("ZENODO_USERNAME")
+    password = os.environ.get("ZENODO_PASSWORD")
+    token = os.environ.get("ZENODO_PAT") or os.environ.get("ZENODO_TOKEN")
+    if not username and not token:
+        safe_print("ℹ️  Zenodo credentials not provided. Skipping Zenodo traffic collection.")
+        return None
+
+    if not username:
+        safe_print("ℹ️  ZENODO_USERNAME is required to query account records. Skipping Zenodo traffic collection.")
+        return None
+
+    session = requests.Session()
+    session.headers.update({"User-Agent": "github-traffic-stats/1.0"})
+    if token:
+        session.headers["Authorization"] = f"Bearer {token}"
+    elif username and password:
+        session.auth = (username, password)
+
+    base_url = os.environ.get("ZENODO_API_BASE", DEFAULT_ZENODO_API_BASE).rstrip("/")
+    records_endpoint = f"{base_url}/records"
+
+    params = {
+        "q": f'owners:"{username}"' if username else None,
+        "all_versions": 1,
+        "size": 200
+    }
+    # Remove None query values to avoid API issues
+    params = {k: v for k, v in params.items() if v is not None}
+
+    total_views = 0
+    total_unique_views = 0
+    total_downloads = 0
+    total_unique_downloads = 0
+    record_summaries: List[Dict[str, Any]] = []
+
+    next_url: Optional[str] = None
+
+    while True:
+        try:
+            response = session.get(next_url or records_endpoint, params=params if next_url is None else None, timeout=30)
+        except requests.RequestException as exc:
+            safe_print(f"❌ Zenodo API request failed: {exc}")
+            return None
+
+        if response.status_code == 401:
+            safe_print("❌ Zenodo authentication failed. Please verify ZENODO credentials.")
+            return None
+
+        if response.status_code >= 400:
+            safe_print(f"❌ Zenodo API error ({response.status_code}): {response.text[:200]}")
+            return None
+
+        payload = response.json()
+        hits = payload.get("hits", {})
+        records = hits.get("hits", [])
+        if not records:
+            break
+
+        for record in records:
+            stats = record.get("stats") or {}
+            views = _extract_stat(stats, "views")
+            unique_views = _extract_stat(stats, "unique_views")
+            downloads = _extract_stat(stats, "downloads")
+            unique_downloads = _extract_stat(stats, "unique_downloads")
+
+            total_views += views
+            total_unique_views += unique_views
+            total_downloads += downloads
+            total_unique_downloads += unique_downloads
+
+            metadata = record.get("metadata", {})
+            record_summaries.append({
+                "id": record.get("id"),
+                "conceptrecid": record.get("conceptrecid"),
+                "title": metadata.get("title", ""),
+                "views": views,
+                "unique_views": unique_views,
+                "downloads": downloads,
+                "unique_downloads": unique_downloads,
+                "created": record.get("created"),
+                "updated": record.get("updated"),
+            })
+
+        next_url = hits.get("links", {}).get("next")
+        if not next_url:
+            break
+
+    record_summaries.sort(key=lambda item: item.get("views", 0), reverse=True)
+
+    return {
+        "timestamp": datetime.utcnow().isoformat() + "Z",
+        "username": username,
+        "records_total": len(record_summaries),
+        "views": total_views,
+        "unique_views": total_unique_views,
+        "downloads": total_downloads,
+        "unique_downloads": total_unique_downloads,
+        "top_records": record_summaries[:10]
+    }
+
 def process_repository(repo):
     """Process a single repository and return its data."""
-    print(f"Repository: arcticoder/{repo}")
+    owner = get_repo_owner(repo)
+    print(f"Repository: {owner}/{repo}")
     print("-" * 60)
     
     repo_data = {
         "name": repo,
+        "owner": owner,
         "stars": 0,
         "watchers": 0,
         "forks": 0,
@@ -427,7 +590,7 @@ def process_repository(repo):
     
     try:
         # Get repository info
-        repo_info = get_repo_info(repo)
+        repo_info = get_repo_info(repo, owner=owner)
         if repo_info:
             safe_print("📊 Repository Stats:")
             safe_print(f"   ⭐ Stars: {repo_info.get('stargazers_count', 0)}")
@@ -451,7 +614,7 @@ def process_repository(repo):
 
     # Get detailed fork information
     try:
-        forks_data = get_repo_forks(repo)
+        forks_data = get_repo_forks(repo, owner=owner)
         if forks_data and isinstance(forks_data, list):
             safe_print("🍴 Fork Analysis:")
             total_forks = len(forks_data)
@@ -513,7 +676,7 @@ def process_repository(repo):
     
     try:
         # Get views traffic
-        views = get_traffic_views(repo)
+        views = get_traffic_views(repo, owner=owner)
         if views:
             safe_print("📈 Views:")
             views_count = views.get('count', 0)
@@ -555,7 +718,7 @@ def process_repository(repo):
     
     try:
         # Get clones traffic
-        clones = get_traffic_clones(repo)
+        clones = get_traffic_clones(repo, owner=owner)
         if clones:
             print("📦 Clones:")
             clones_count = clones.get('count', 0)
@@ -792,6 +955,7 @@ def generate_html_chart(current_run, stats_history):
     update_time = datetime.now().strftime("%B %d, %Y %H:%M")
     chart_data_json = json.dumps(chart_data)
     repo_data_json = json.dumps(current_run["repositories"])
+    zenodo_stats = current_run.get("zenodo") or {}
     
     # Prepare slope information for HTML
     slope_info = ""
@@ -799,6 +963,14 @@ def generate_html_chart(current_run, stats_history):
         if data['slope'] is not None:
             trend_direction = "📈" if data['slope'] > 0 else "📉" if data['slope'] < 0 else "➡️"
             slope_info += f"<p>{trend_direction} <strong>{metric.replace('_', ' ').title()}</strong>: {data['slope']:.2f} per day (R²={data['r_squared']:.3f})</p>"
+
+    zenodo_top_records = ""
+    top_records = zenodo_stats.get("top_records") or []
+    for record in top_records[:5]:
+        title = record.get("title") or "Untitled Record"
+        views = record.get("views", 0)
+        downloads = record.get("downloads", 0)
+        zenodo_top_records += f"<li><strong>{title}</strong>: {views} views / {downloads} downloads</li>"
     
     # Replace placeholders
     html = html_template.replace('{{UPDATE_TIME}}', update_time)
@@ -815,6 +987,12 @@ def generate_html_chart(current_run, stats_history):
     html = html.replace('{{REPO_DATA}}', repo_data_json)
     html = html.replace('{{SLOPE_INFO}}', slope_info)
     html = html.replace('{{TOTAL_DAYS}}', str(len(sorted_dates)))
+    html = html.replace('{{ZENODO_VIEWS}}', str(zenodo_stats.get("views", 0)))
+    html = html.replace('{{ZENODO_UNIQUE_VIEWS}}', str(zenodo_stats.get("unique_views", 0)))
+    html = html.replace('{{ZENODO_DOWNLOADS}}', str(zenodo_stats.get("downloads", 0)))
+    html = html.replace('{{ZENODO_UNIQUE_DOWNLOADS}}', str(zenodo_stats.get("unique_downloads", 0)))
+    html = html.replace('{{ZENODO_RECORDS}}', str(zenodo_stats.get("records_total", 0)))
+    html = html.replace('{{ZENODO_TOP_RECORDS}}', zenodo_top_records or '<li>No record stats available</li>')
     
     # Write HTML file
     try:
@@ -921,6 +1099,10 @@ def main():
                 "last_updated": "", "daily_views": [], "daily_clones": []
             }
     
+    # Fetch Zenodo stats before displaying summary so totals include reference data
+    zenodo_stats = fetch_zenodo_stats()
+    current_run["zenodo"] = zenodo_stats or {}
+
     # Display summary
     totals = current_run["totals"]
     print("=== SUMMARY ===")
@@ -940,6 +1122,21 @@ def main():
     print()
     safe_print("🔥 indicates activity within the past 24 hours")
     print("Note: GitHub Traffic API provides data for the past 14 days maximum")
+
+    if zenodo_stats:
+        print("\n--- Zenodo Summary ---")
+        print(f"Total Views: {zenodo_stats.get('views', 0)} (Unique: {zenodo_stats.get('unique_views', 0)})")
+        print(f"Total Downloads: {zenodo_stats.get('downloads', 0)} (Unique: {zenodo_stats.get('unique_downloads', 0)})")
+        print(f"Records Indexed: {zenodo_stats.get('records_total', 0)}")
+        if zenodo_stats.get('top_records'):
+            print("Top Records by Views:")
+            for entry in zenodo_stats['top_records'][:3]:
+                title = entry.get('title') or 'Untitled Record'
+                views = entry.get('views', 0)
+                downloads = entry.get('downloads', 0)
+                safe_print(f"   - {title[:80]} - {views} views, {downloads} downloads")
+    else:
+        print("\nZenodo Summary: Not available (credentials missing or request failed)")
     
     # Save stats history with deduplication
     # Remove any existing entry for today's date to avoid duplicates
