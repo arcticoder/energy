@@ -49,8 +49,8 @@
 			"path": "../lqg-cosmological-constant-predictor"
 		},
 		{
-			"name": "lqg-volume-kernel-catalog",
-			"path": "../lqg-volume-kernel-catalog"
+			"name": "lqg-macroscopic-coherence",
+			"path": "../lqg-macroscopic-coherence"
 		},
 		{
 			"name": "lqg-first-principles-fine-structure-constant",
@@ -73,6 +73,10 @@
 			"path": "../lqg-positive-matter-assembler"
 		},
 		{
+			"name": "lqg-volume-kernel-catalog",
+			"path": "../lqg-volume-kernel-catalog"
+		},
+		{
 			"name": "lqg-volume-quantization-controller",
 			"path": "../lqg-volume-quantization-controller"
 		},
@@ -87,7 +91,7 @@
 		{
 			"name": "negative-energy-generator",
 			"path": "../negative-energy-generator"
-		},		
+		},
 		{
 			"name": "polymer-fusion-framework",
 			"path": "../polymer-fusion-framework"
