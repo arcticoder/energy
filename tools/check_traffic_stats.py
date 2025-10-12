@@ -40,7 +40,7 @@ REPOS = [
     "hts-coils",    
     "lqg-anec-framework", "lqg-cosmological-constant-predictor", "lqg-volume-kernel-catalog",
     "lqg-first-principles-fine-structure-constant", "lqg-first-principles-gravitational-constant",
-    "lqg-ftl-metric-engineering", "lqg-polymer-field-generator", "lqg-positive-matter-assembler",
+    "lqg-ftl-metric-engineering", "lqg-macroscopic-coherence", "lqg-polymer-field-generator", "lqg-positive-matter-assembler",
     "lqg-volume-quantization-controller", "lorentz-violation-pipeline", "medical-tractor-array",
     "plasma-vortex-reactor",
     "negative-energy-generator", "polymer-fusion-framework", "polymerized-lqg-matter-transporter",
