@@ -115,28 +115,7 @@
             color: #334155;
         }
 
-        .zenodo-summary {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            border: 1px solid rgba(230, 235, 241, 0.6);
-        }
-
-        .zenodo-summary h3 {
-            margin-top: 0;
-            color: #334155;
-        }
-
-        .zenodo-summary ul {
-            margin: 15px 0 0 15px;
-            padding: 0;
-            color: #475569;
-        }
-
-        .zenodo-summary li {
-            margin-bottom: 8px;
-        }
+        /* Zenodo summary styles removed */
         
         .last-updated {
             text-align: center;
@@ -292,26 +271,7 @@
                 <div class="stat-number">{{RECENT_COMMITS}}</div>
                 <div class="stat-label">Recent Commits</div>
             </div>
-            <div class="stat-card">
-                <div class="stat-number">{{ZENODO_VIEWS}}</div>
-                <div class="stat-label">Zenodo Views</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">{{ZENODO_UNIQUE_VIEWS}}</div>
-                <div class="stat-label">Zenodo Unique Views</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">{{ZENODO_DOWNLOADS}}</div>
-                <div class="stat-label">Zenodo Downloads</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">{{ZENODO_UNIQUE_DOWNLOADS}}</div>
-                <div class="stat-label">Zenodo Unique Downloads</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">{{ZENODO_RECORDS}}</div>
-                <div class="stat-label">Zenodo Records</div>
-            </div>
+            <!-- Zenodo cards removed -->
         </div>
         
         <div class="chart-section">
@@ -340,15 +300,7 @@
             </div>
         </div>
 
-        <div class="chart-section">
-            <div class="zenodo-summary">
-                <h3>🛰️ Zenodo Highlights</h3>
-                <p>Top-performing records by combined views and downloads.</p>
-                <ul>
-                    {{ZENODO_TOP_RECORDS}}
-                </ul>
-            </div>
-        </div>
+        <!-- Zenodo highlights removed -->
         
         <div class="last-updated">
             Last updated: {{UPDATE_TIME}}
