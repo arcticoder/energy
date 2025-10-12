@@ -87,11 +87,7 @@
 		{
 			"name": "negative-energy-generator",
 			"path": "../negative-energy-generator"
-		},
-		{
-			"name": "plasma-vortex-reactor",
-			"path": "../plasma-vortex-reactor"
-		},
+		},		
 		{
 			"name": "polymer-fusion-framework",
 			"path": "../polymer-fusion-framework"
