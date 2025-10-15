@@ -105,6 +105,10 @@
 			"path": "../polymerized-lqg-replicator-recycler"
 		},
 		{
+			"name": "scalar-tensor-ftl-analysis",
+			"path": "../scalar-tensor-ftl-analysis"
+		},
+		{
 			"name": "su2-3nj-closedform",
 			"path": "../su2-3nj-closedform"
 		},
