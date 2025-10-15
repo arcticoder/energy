@@ -225,8 +225,7 @@
 			"path": "../warp-spacetime-stability-controller"
 		},
 		{
-			"name": "llm-utils",
-			"path": "../../python/llm-utils"
+			"path": "../wormhole-anec-analysis"
 		}
 	],
 	"settings": {
