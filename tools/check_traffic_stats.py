@@ -44,7 +44,7 @@ REPOS = [
     "lqg-volume-quantization-controller", "lorentz-violation-pipeline", "medical-tractor-array",
     "plasma-vortex-reactor",
     "negative-energy-generator", "polymer-fusion-framework", "polymerized-lqg-matter-transporter",
-    "polymerized-lqg-replicator-recycler", "su2-3nj-closedform", "su2-3nj-generating-functional",
+    "polymerized-lqg-replicator-recycler", "scalar-tensor-ftl-analysis", "su2-3nj-closedform", "su2-3nj-generating-functional",
     "su2-3nj-recurrences", "su2-3nj-uniform-closed-form", "su2-node-matrix-elements",
     "unified-gut-polymerization", "unified-lqg", "unified-lqg-qft", "warp-bubble-assemble-expressions",
     "warp-bubble-connection-curvature", "warp-bubble-coordinate-spec", "warp-bubble-einstein-equations",
@@ -53,7 +53,7 @@ REPOS = [
     "warp-bubble-shape-catalog", "warp-convergence-analysis", "warp-curvature-analysis",
     "warp-discretization", "warp-field-coils", "warp-lqg-midisuperspace", "warp-mock-data-generator",
     "warp-sensitivity-analysis", "warp-signature-workflow", "warp-solver-equations",
-    "warp-spacetime-stability-controller"
+    "warp-spacetime-stability-controller", "wormhole-anec-analysis"
 ]
 
 DEFAULT_GITHUB_OWNER = "arcticoder"
