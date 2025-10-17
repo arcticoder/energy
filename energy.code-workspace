@@ -29,6 +29,10 @@
 			"path": "../casimir-ultra-smooth-fabrication-platform"
 		},
 		{
+			"name": "coherence-gravity-coupling",
+			"path": "../coherence-gravity-coupling"
+		},
+		{
 			"name": "elemental-transmutator",
 			"path": "../elemental-transmutator"
 		},
@@ -225,6 +229,7 @@
 			"path": "../warp-spacetime-stability-controller"
 		},
 		{
+			"name": "wormhole-anec-analysis",
 			"path": "../wormhole-anec-analysis"
 		}
 	],
