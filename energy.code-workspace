@@ -33,6 +33,10 @@
 			"path": "../coherence-gravity-coupling"
 		},
 		{
+			"name": "DawsonInstitute-dot-github",
+			"path": "../DawsonInstitute-dot-github"
+		},
+		{
 			"name": "elemental-transmutator",
 			"path": "../elemental-transmutator"
 		},
