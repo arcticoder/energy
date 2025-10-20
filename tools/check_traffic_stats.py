@@ -63,6 +63,10 @@ REPO_OWNERS = {
     "warp-bubble-optimizer": "DawsonInstitute"
 }
 
+# Special: include the organization profile repository traffic (org/.github)
+ORG_PROFILE_OWNER = "DawsonInstitute"
+ORG_PROFILE_REPO = ".github"
+
 SCRIPT_DIR = Path(__file__).parent
 NDJSON_STATS_FILE = SCRIPT_DIR / "traffic_stats_history.ndjson"
 HTML_CHART_FILE = SCRIPT_DIR / "traffic_stats_chart.html"
@@ -908,6 +912,82 @@ def main():
             "repositories_count": len(REPOS)
         }
     }
+
+    # --- Include organization profile traffic (DawsonInstitute/.github) ---
+    try:
+        safe_print(f"📊 Fetching org-profile traffic: {ORG_PROFILE_OWNER}/{ORG_PROFILE_REPO}")
+        org_repo_info = get_repo_info(ORG_PROFILE_REPO, owner=ORG_PROFILE_OWNER)
+        org_views = get_traffic_views(ORG_PROFILE_REPO, owner=ORG_PROFILE_OWNER)
+        org_clones = get_traffic_clones(ORG_PROFILE_REPO, owner=ORG_PROFILE_OWNER)
+
+        org_data = {
+            "name": ORG_PROFILE_REPO,
+            "owner": ORG_PROFILE_OWNER,
+            "stars": 0,
+            "watchers": 0,
+            "forks": 0,
+            "fork_details": [],
+            "active_forks": 0,
+            "recent_forks": 0,
+            "views_total": 0,
+            "views_unique": 0,
+            "clones_total": 0,
+            "clones_unique": 0,
+            "clone_pull_ratio": 0,
+            "recent_commits": 0,
+            "commit_frequency": 0,
+            "last_updated": org_repo_info.get('updated_at', '') if org_repo_info else "",
+            "daily_views": [],
+            "daily_clones": []
+        }
+
+        if org_repo_info:
+            org_data.update({
+                "stars": org_repo_info.get('stargazers_count', 0),
+                "watchers": org_repo_info.get('watchers_count', 0),
+                "forks": org_repo_info.get('forks_count', 0),
+            })
+
+        if org_views:
+            org_data["views_total"] = org_views.get('count', 0)
+            org_data["views_unique"] = org_views.get('uniques', 0)
+            for day in org_views.get('views', []):
+                try:
+                    day_date = datetime.fromisoformat(day['timestamp'].replace('Z', '+00:00'))
+                    org_data['daily_views'].append({
+                        'date': day_date.strftime('%Y-%m-%d'),
+                        'views': day.get('count', 0),
+                        'unique_views': day.get('uniques', 0)
+                    })
+                except Exception:
+                    continue
+
+        if org_clones:
+            org_data["clones_total"] = org_clones.get('count', 0)
+            org_data["clones_unique"] = org_clones.get('uniques', 0)
+            for day in org_clones.get('clones', []):
+                try:
+                    day_date = datetime.fromisoformat(day['timestamp'].replace('Z', '+00:00'))
+                    org_data['daily_clones'].append({
+                        'date': day_date.strftime('%Y-%m-%d'),
+                        'clones': day.get('count', 0),
+                        'unique_clones': day.get('uniques', 0)
+                    })
+                except Exception:
+                    continue
+
+        # Add org-profile to current run and aggregate totals
+        current_run['repositories'][ORG_PROFILE_REPO] = org_data
+        current_run['totals']['views'] += org_data.get('views_total', 0)
+        current_run['totals']['unique_views'] += org_data.get('views_unique', 0)
+        current_run['totals']['clones'] += org_data.get('clones_total', 0)
+        current_run['totals']['unique_clones'] += org_data.get('clones_unique', 0)
+        current_run['totals']['stars'] += org_data.get('stars', 0)
+        current_run['totals']['watchers'] += org_data.get('watchers', 0)
+        current_run['totals']['forks'] += org_data.get('forks', 0)
+        safe_print(f"✅ Included org-profile traffic: {ORG_PROFILE_OWNER}/{ORG_PROFILE_REPO}")
+    except Exception as e:
+        safe_print(f"⚠️ Failed to include org-profile traffic: {e}")
     
     # Process each repository
     total_repos = len(REPOS)
