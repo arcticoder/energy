@@ -235,6 +235,9 @@
 		{
 			"name": "wormhole-anec-analysis",
 			"path": "../wormhole-anec-analysis"
+		},
+		{
+			"path": "../extreme-field-qed-simulator"
 		}
 	],
 	"settings": {
