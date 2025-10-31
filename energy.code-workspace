@@ -45,6 +45,10 @@
 			"path": "../enhanced-simulation-hardware-abstraction-framework"
 		},
 		{
+			"name": "extreme-field-qed-simulator",
+			"path": "../extreme-field-qed-simulator"
+		},
+		{
 			"name": "hts-coils",
 			"path": "../hts-coils"
 		},
@@ -235,9 +239,6 @@
 		{
 			"name": "wormhole-anec-analysis",
 			"path": "../wormhole-anec-analysis"
-		},
-		{
-			"path": "../extreme-field-qed-simulator"
 		}
 	],
 	"settings": {
