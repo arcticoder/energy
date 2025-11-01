@@ -239,6 +239,9 @@
 		{
 			"name": "wormhole-anec-analysis",
 			"path": "../wormhole-anec-analysis"
+		},
+		{
+			"path": "../www"
 		}
 	],
 	"settings": {
