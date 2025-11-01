@@ -1064,7 +1064,13 @@ def main():
     generate_html_chart(current_run, stats_history)
     
     # Git commit and push updated results
-    git_commit_and_push()
+    # By default, do NOT commit or push changes made to the traffic database from this script.
+    # Only perform git operations when explicitly requested via a CLI flag or environment variable.
+    if '--allow-git' in sys.argv or '--push' in sys.argv or '--git' in sys.argv or os.environ.get('TRAFFIC_STATS_ALLOW_GIT', '').lower() in ('1', 'true', 'yes'):
+        safe_print("🔒 Git operations explicitly enabled; proceeding to commit & push")
+        git_commit_and_push()
+    else:
+        safe_print("🔕 Git operations disabled by default. To enable commit & push, run with --git or --push or set TRAFFIC_STATS_ALLOW_GIT=1")
 
 def git_commit_and_push():
     """Commit and push the updated traffic stats and chart to git repository."""
