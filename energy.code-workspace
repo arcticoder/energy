@@ -33,6 +33,10 @@
 			"path": "../coherence-gravity-coupling"
 		},
 		{
+			"name": "cosmological-constant-workbench",
+			"path": "../cosmological-constant-workbench"
+		},
+		{
 			"name": "DawsonInstitute-dot-github",
 			"path": "../DawsonInstitute-dot-github"
 		},
@@ -241,6 +245,7 @@
 			"path": "../wormhole-anec-analysis"
 		},
 		{
+			"name": "www",
 			"path": "../www"
 		}
 	],
