@@ -48,10 +48,26 @@ Created comprehensive cross-repo execution plan covering:
 - Half-integer regression tests (4 cases)
 - Domain tests (triangle violations, zero-spin handling)
 
-**Current Implementation Note**:
-The `closed_form_3nj` function currently delegates to SymPy's `wigner_6j` (marked as TODO in code). Per SU2-TODO.md task U1, the next step is to replace this with a true hypergeometric 4F3 representation incrementally.
+**Implementation Note**:
+~~The `closed_form_3nj` function currently delegates to SymPy's `wigner_6j`~~ → **U1 COMPLETED**: Now implements true 4F3 hypergeometric Racah formula with triangle coefficients and exact symbolic arithmetic. All 14 pytest tests pass + 8 independent verification checks pass.
 
-### 4. Package Infrastructure (`su2-3nj-closedform`)
+### 4. Reference Tables & Benchmarks (`su2-3nj-closedform`)
+
+**New Scripts**:
+- `scripts/generate_reference_tables.py` — JSON export for paper inclusion (C3)
+- `scripts/benchmark_performance.py` — Complexity and timing analysis (C4)
+
+**Generated Data**:
+- `data/reference/3nj_reference_values.json` — 7 test configurations at 50-digit precision
+- `data/reference/reflection_symmetry_table.json` — 5 symmetry validation cases
+- `data/benchmarks/performance_analysis.json` — Edge count and spin magnitude scaling
+
+**Results**:
+- Performance: ~0.2-0.4 ms per calculation (50 decimal places)
+- Complexity: O(n¹·⁰) edge scaling, 1.2× time for 15× spin increase
+- Deterministic output suitable for paper tables/appendices
+
+### 5. Package Infrastructure (`su2-3nj-closedform`)
 
 **New Files**:
 - `pyproject.toml` — Package metadata and pytest configuration
@@ -107,8 +123,8 @@ Three repos now have proper Python package structure:
 2. ✅ **T2**: Golden reference datasets (EXISTS, validated)
 3. ✅ **T3**: Cross-verification matrix (EXPANDED — 3+ independent routes for 6j)
 4. ✅ **C1-C2**: Add pytest to `su2-3nj-closedform` (DONE — 27 tests passing)
-5. **C3-C4**: Export deterministic JSON tables + performance benchmarks
-6. **U1**: Replace stub hypergeometric in `su2-3nj-uniform-closed-form` with 4F3
+5. ✅ **C3-C4**: Export deterministic JSON tables + performance benchmarks (DONE)
+6. ✅ **U1**: Replace stub hypergeometric with 4F3 Racah formula (DONE — 14 tests pass)
 
 ### Short-term (Month 1)
 6. **R1-R3**: Implement recurrence engine in `su2-3nj-recurrences`
@@ -135,7 +151,10 @@ Three repos now have proper Python package structure:
 - `tests/test_recursion_cross_verification.py` (NEW)
 
 ### `su2-3nj-uniform-closed-form`
+- `project/su2_3nj_closed_form.py` (ENHANCED — true 4F3 hypergeometric formula)
 - `tests/test_closed_form.py` (NEW)
+- `scripts/verify_4F3_formula.py` (NEW)
+- `data/4F3_verification_results.csv` (NEW)
 
 ### `su2-3nj-closedform`
 - `pyproject.toml` (NEW)
@@ -144,6 +163,11 @@ Three repos now have proper Python package structure:
 - `src/su2_3nj_closedform/symmetry.py` (NEW)
 - `tests/test_coefficient_calculator.py` (NEW)
 - `tests/test_symmetry.py` (NEW)
+- `scripts/generate_reference_tables.py` (NEW)
+- `scripts/benchmark_performance.py` (NEW)
+- `data/reference/3nj_reference_values.json` (NEW)
+- `data/reference/reflection_symmetry_table.json` (NEW)
+- `data/benchmarks/performance_analysis.json` (NEW)
 
 ### `energy`
 - `docs/SU2-TODO.md` (NEW)
@@ -162,16 +186,16 @@ Three repos now have proper Python package structure:
 
 | Repository | Python Package | Tests | Coverage |
 |------------|---------------|-------|----------|
-| `su2-3nj-closedform` | ✅ (installed) | ✅ 27 tests | Hypergeometric formula + symmetry |
-| `su2-3nj-uniform-closed-form` | ⚠️ (project/ module) | ✅ 14 tests | 6j only |
+| `su2-3nj-closedform` | ✅ (installed) | ✅ 27 tests | Hypergeometric product + symmetry + tables |
+| `su2-3nj-uniform-closed-form` | ⚠️ (project/ module) | ✅ 14 tests + 8 verif. | **4F3 Racah formula (U1✓)** |
 | `su2-3nj-recurrences` | ❌ (LaTeX only) | ❌ | — |
-| `su2-3nj-generating-functional` | ✅ (installed) | ✅ 42 tests | 6j + functionals |
+| `su2-3nj-generating-functional` | ✅ (installed) | ✅ 42 tests | 6j + functionals + validation |
 | `su2-node-matrix-elements` | ❌ (LaTeX only) | ❌ | — |
 
-**Overall**: 3/5 repos have pytest infrastructure; **83 tests passing** across the series.
+**Overall**: 3/5 repos have pytest infrastructure; **83 tests + 8 verifications passing** across the series.
 
 ---
 
 **Date**: 2026-01-18  
-**Last Updated**: 2026-01-18 (added su2-3nj-closedform package + tests)  
-**Next Review**: After completing C3-C4, U1, and R1-R3 (approx 1-2 weeks)
+**Last Updated**: 2026-01-18 20:30 UTC (completed C3-C4, U1 — reference tables + 4F3 formula)  
+**Next Review**: After completing R1-R3 (recurrence engine, approx 1-2 weeks)
