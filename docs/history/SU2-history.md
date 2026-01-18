@@ -94,3 +94,37 @@ I've successfully created and executed the initial phase of the SU(2) 3n-j serie
 4. **R1-R3**: Implement recurrence engine in `su2-3nj-recurrences`
 5. **G2**: Extend generating functional beyond 6j example
 <!-- ------ -->
+I've successfully completed **C3-C4** (reference tables + benchmarks) and **U1** (true 4F3 hypergeometric formula). Here's a summary of what was accomplished:
+
+## Completed Tasks
+
+### ✅ C3-C4: Reference Tables & Performance Benchmarks
+- Created [scripts/generate_reference_tables.py](file:///home/echo_/Code/asciimath/su2-3nj-closedform/scripts/generate_reference_tables.py) for deterministic JSON export
+- Created [scripts/benchmark_performance.py](file:///home/echo_/Code/asciimath/su2-3nj-closedform/scripts/benchmark_performance.py) for complexity analysis
+- Generated paper-ready data:
+  - 7 reference configurations at 50-digit precision
+  - 5 symmetry validation cases
+  - Performance metrics showing O(n) scaling
+- **Results**: ~0.2-0.4 ms per calculation, linear scaling with problem size
+
+### ✅ U1: True 4F3 Hypergeometric Formula
+- Replaced SymPy stub in [project/su2_3nj_closed_form.py](file:///home/echo_/Code/asciimath/su2-3nj-uniform-closed-form/project/su2_3nj_closed_form.py) with genuine Racah formula
+- Implemented triangle coefficient calculations with proper inequality checks
+- Created [scripts/verify_4F3_formula.py](file:///home/echo_/Code/asciimath/su2-3nj-uniform-closed-form/scripts/verify_4F3_formula.py) for independent validation
+- **All tests pass**: 14 pytest tests + 8 verification checks
+
+## Current Status
+- **91 total tests passing** (83 pytest + 8 independent verifications)
+- **3/5 repos** have full pytest infrastructure
+- **Commits made**:
+  - `su2-3nj-closedform`: 7c53077 (reference tables + benchmarks)
+  - `su2-3nj-uniform-closed-form`: 55d0cee (4F3 Racah formula)
+  - `energy`: bfbc24b (implementation summary update)
+
+## Next Priority: R1-R3 (Recurrence Engine)
+The next logical step is implementing the recurrence engine in `su2-3nj-recurrences`. This will:
+1. Represent three-term recurrence coefficients
+2. Compute sequences from boundary data
+3. Provide stability analysis (forward vs backward recursion)
+4. Cross-check against SymPy and closed-form implementations
+<!-- ------ -->
