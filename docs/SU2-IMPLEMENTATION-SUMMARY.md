@@ -51,10 +51,35 @@ Created comprehensive cross-repo execution plan covering:
 **Current Implementation Note**:
 The `closed_form_3nj` function currently delegates to SymPy's `wigner_6j` (marked as TODO in code). Per SU2-TODO.md task U1, the next step is to replace this with a true hypergeometric 4F3 representation incrementally.
 
-### 4. Package Setup
-Both repos now have proper Python package structure:
+### 4. Package Infrastructure (`su2-3nj-closedform`)
+
+**New Files**:
+- `pyproject.toml` — Package metadata and pytest configuration
+- `src/su2_3nj_closedform/` — Python package with API
+  - `coefficient_calculator.py` — Hypergeometric product formula
+  - `symmetry.py` — Reflection symmetry checker
+  - `__init__.py` — Package exports
+
+**New Tests**:
+- `tests/test_coefficient_calculator.py` — 14 tests
+- `tests/test_symmetry.py` — 13 tests
+
+**Test Results**: **27/27 passing** ✓
+
+**Coverage**:
+- Fibonacci rho generation and validation
+- Coefficient calculation (all-zero, uniform, mixed spins)
+- Half-integer support ($j = 0.5, 1.5, 2.5, \ldots$)
+- Precision control (15 to 50 decimal places)
+- Deterministic output and golden value validation
+- Reflection symmetry for palindromic and general configurations
+- Edge cases (single element, two elements, large configurations)
+
+### 5. Package Setup
+Three repos now have proper Python package structure:
 - `su2-3nj-generating-functional`: Installed as editable package (`pip install -e .`)
 - `su2-3nj-uniform-closed-form`: Test infrastructure ready for pytest
+- `su2-3nj-closedform`: **NEW** — Full package with pytest infrastructure
 
 ## Validation Quality Metrics
 
@@ -62,9 +87,11 @@ Both repos now have proper Python package structure:
 | Formula | Implementation A | Implementation B | Status |
 |---------|-----------------|------------------|--------|
 | 6j symbol | `recursion_3nj` | SymPy `wigner_6j` | ✓ 25 tests |
-| 6j symbol | `closed_form_3nj` | SymPy `wigner_6j` | ✓ 11 tests |
+| 6j symbol | `closed_form_3nj` (uniform) | SymPy `wigner_6j` | ✓ 11 tests |
+| 6j symbol | `calculate_3nj` (closedform) | Deterministic output | ✓ 14 tests |
 | 6j symbol | `generate_3nj` | Reference dataset | ✓ 2 tests |
 | Generating functional | Pentagon identity | Biedenharn-Elliott | ✓ 1 test |
+| Reflection symmetry | Hypergeometric formula | Palindromic configs | ✓ 13 tests |
 
 ### Spin Domain Coverage
 - **Integer spins**: 0, 1, 2, 3 (tested)
@@ -78,9 +105,10 @@ Both repos now have proper Python package structure:
 ### Immediate (Week 1-2)
 1. ✅ **T1**: Spin domain validation (DONE for generating-functional)
 2. ✅ **T2**: Golden reference datasets (EXISTS, validated)
-3. ✅ **T3**: Cross-verification matrix (STARTED — 2 independent routes for 6j)
-4. **C1-C4**: Add pytest to `su2-3nj-closedform` (symmetry, coefficient calculator)
-5. **U1**: Replace stub hypergeometric in `su2-3nj-uniform-closed-form` with 4F3
+3. ✅ **T3**: Cross-verification matrix (EXPANDED — 3+ independent routes for 6j)
+4. ✅ **C1-C2**: Add pytest to `su2-3nj-closedform` (DONE — 27 tests passing)
+5. **C3-C4**: Export deterministic JSON tables + performance benchmarks
+6. **U1**: Replace stub hypergeometric in `su2-3nj-uniform-closed-form` with 4F3
 
 ### Short-term (Month 1)
 6. **R1-R3**: Implement recurrence engine in `su2-3nj-recurrences`
@@ -109,6 +137,14 @@ Both repos now have proper Python package structure:
 ### `su2-3nj-uniform-closed-form`
 - `tests/test_closed_form.py` (NEW)
 
+### `su2-3nj-closedform`
+- `pyproject.toml` (NEW)
+- `src/su2_3nj_closedform/__init__.py` (NEW)
+- `src/su2_3nj_closedform/coefficient_calculator.py` (NEW)
+- `src/su2_3nj_closedform/symmetry.py` (NEW)
+- `tests/test_coefficient_calculator.py` (NEW)
+- `tests/test_symmetry.py` (NEW)
+
 ### `energy`
 - `docs/SU2-TODO.md` (NEW)
 - `docs/SU2-IMPLEMENTATION-SUMMARY.md` (THIS FILE)
@@ -126,15 +162,16 @@ Both repos now have proper Python package structure:
 
 | Repository | Python Package | Tests | Coverage |
 |------------|---------------|-------|----------|
-| `su2-3nj-closedform` | ❌ (scripts only) | ❌ | — |
+| `su2-3nj-closedform` | ✅ (installed) | ✅ 27 tests | Hypergeometric formula + symmetry |
 | `su2-3nj-uniform-closed-form` | ⚠️ (project/ module) | ✅ 14 tests | 6j only |
 | `su2-3nj-recurrences` | ❌ (LaTeX only) | ❌ | — |
 | `su2-3nj-generating-functional` | ✅ (installed) | ✅ 42 tests | 6j + functionals |
 | `su2-node-matrix-elements` | ❌ (LaTeX only) | ❌ | — |
 
-**Overall**: 2/5 repos have pytest infrastructure; 56 tests passing across the series.
+**Overall**: 3/5 repos have pytest infrastructure; **83 tests passing** across the series.
 
 ---
 
 **Date**: 2026-01-18  
-**Next Review**: After completing C1-C4 and U1 (approx 1 week)
+**Last Updated**: 2026-01-18 (added su2-3nj-closedform package + tests)  
+**Next Review**: After completing C3-C4, U1, and R1-R3 (approx 1-2 weeks)
