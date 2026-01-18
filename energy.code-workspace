@@ -145,6 +145,10 @@
 			"path": "../su2-node-matrix-elements"
 		},
 		{
+			"name": "su2-3nj-series-paper",
+			"path": "../su2-3nj-series-paper"
+		},
+		{
 			"name": "unified-gut-polymerization",
 			"path": "../unified-gut-polymerization"
 		},
