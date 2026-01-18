@@ -174,3 +174,8 @@ According to [SU2-TODO.md](file:///home/echo_/Code/asciimath/energy/docs/SU2-TOD
 
 All work is well-documented, deterministic, and ready for publication use. The cross-verification matrix now includes multiple independent validation routes for 6-j symbols!
 <!-- ------ -->
+- Added the new hub repo to the VS Code multi-root workspace: energy/energy.code-workspace
+- Restored a lightweight pointer TODO in energy so existing references don’t break: energy/docs/SU2-TODO.md
+- Committed + pushed the initial hub repo scaffold (README, gitignore, migrated TODO) to GitHub: su2-3nj-series-paper/docs/SU2-TODO.md
+- Confirmed related exists in the hub repo and is ignored by git: su2-3nj-series-paper/.gitignore
+<!-- ------ -->
