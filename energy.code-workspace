@@ -21,10 +21,6 @@
 			"path": "../casimir-nanopositioning-platform"
 		},
 		{
-			"name": "casimir-tunable-permittivity-stacks",
-			"path": "../casimir-tunable-permittivity-stacks"
-		},
-		{
 			"name": "casimir-ultra-smooth-fabrication-platform",
 			"path": "../casimir-ultra-smooth-fabrication-platform"
 		},
@@ -251,6 +247,10 @@
 		{
 			"name": "www",
 			"path": "../www"
+		},
+		{
+			"name": "casimir-tunable-permittivity-stacks",
+			"path": "../casimir-tunable-permittivity-stacks"
 		}
 	],
 	"settings": {
