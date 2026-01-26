@@ -253,6 +253,10 @@
 			"path": "../www"
 		},
 		{
+			"name": "Sci-Hub-MCP-Server",
+			"path": "../../Python/Sci-Hub-MCP-Server"
+		},
+		{
 			"name": "casimir-tunable-permittivity-stacks",
 			"path": "../casimir-tunable-permittivity-stacks"
 		}
