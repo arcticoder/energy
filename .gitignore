@@ -214,3 +214,5 @@ traffic_stats_log.txt
 
 .github/
 papers/related/*
+
+docs/*.tsv
