@@ -25,8 +25,8 @@ for entry in bib_db.entries:
 tsv_entries = []
 with open(tsv_file, 'r', newline='', encoding='utf-8') as f:
     reader = csv.DictReader(f, delimiter='\t')
-    for row in reader:
-        if row['Manuscript'] == 'Unified Closed-Form Representations and Generating Functionals for SU(2) 3n-j Recoupling Coefficients':
+    for i, row in enumerate(reader):
+        if 26 <= i <= 40 and row['Manuscript'] == 'Unified Closed-Form Representations and Generating Functionals for SU(2) 3n-j Recoupling Coefficients':
             tsv_entries.append(row)
 
 # Change to work directory
