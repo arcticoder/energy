@@ -25,6 +25,16 @@ This directory contains Python scripts organized by category:
 - `regenerate_index.py` - Documentation index regeneration
 - `uq_file_cleanup.py` - UQ file cleanup utility
 
+### `process_papers.py` - Paper Processing Script
+- Processes PDFs using MinerU to extract markdown from academic papers
+- Matches papers from BibTeX citations with PDF locations from TSV file
+- Skips already processed papers
+
+Run with:
+```bash
+./run_process_papers.sh
+```
+
 ## Usage
 
 All scripts are designed to be run from the energy repository root directory:
@@ -34,6 +44,7 @@ cd /path/to/energy
 python scripts/uq/master_uq_resolution.py
 python scripts/validation/component_precision_verification.py
 python scripts/tools/regenerate_index.py
+python scripts/process_papers.py
 ```
 
 ## Related Directories

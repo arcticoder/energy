@@ -43,5 +43,29 @@
 4. **Updated README.md**: Revised the usage instructions to reflect the new .env file location and requirements.
 
 The script now securely loads sensitive configuration from the local .env file instead of having it hardcoded. Make sure to copy `.env.example` to .env and fill in your actual Zotero API key and group ID before running the script. If `python-dotenv` is not installed, you may need to add it to the dependencies in setup.sh.
-  <!-- ------ -->
-  ---
+<!-- ------ -->
+---
+The script has been moved to process_papers.py, and the necessary setup has been completed:
+
+- **requirements.txt**: Created with `bibtexparser` (already installed in the energy venv).
+- **run_process_papers.sh**: Executable bash script to activate the venv and run the Python script.
+- **README.md**: Updated to document the new script.
+
+To run the script, use:
+
+```bash
+cd ~/Code/asciimath/energy/scripts
+./run_process_papers.sh
+```
+
+Or manually:
+
+```bash
+cd ~/Code/asciimath/energy
+source .venv/bin/activate
+python scripts/process_papers.py
+```
+
+The script will now work without the `ModuleNotFoundError` since `bibtexparser` is installed in the venv. MinerU is assumed to be available system-wide as before.
+<!-- ------ -->
+---
