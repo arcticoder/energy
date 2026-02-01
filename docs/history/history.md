@@ -101,3 +101,54 @@ Key evidence:
 The script is fully functional and ready for use. If MinerU encounters issues during processing, that's separate from the path fix, which is resolved.
 <!-- ------ -->
 ---
+I made the requested changes and tested the title matching fix. The “generalized 6-j symbols” entry now matches correctly.
+
+**What changed**
+- Added a `MINERU_DEVICE` override plus a CUDA→CPU retry when MinerU fails, in energy/scripts/process_papers.py.
+- Updated energy/scripts/run_process_papers.sh to:
+  - Write all stdout/stderr to a timestamped log file.
+  - Skip FlashInfer install on WSL to avoid the “no matching distribution” error.
+  - Set conservative vLLM/PyTorch GPU memory env vars.
+  - Force unbuffered Python output for better logging.
+
+**Test run**
+I ran a dry-run to verify matching:
+
+```bash
+cd /home/echo_/Code/asciimath/energy/scripts
+python -u process_papers.py --dry-run
+```
+
+Output now includes:
+- `Skipping already converted: raynal1979` (confirms the “generalized 6-j symbols” title now matches)
+- No “No bib match” for Raynal or Regge entries
+
+**FlashInfer error (fixed)**
+FlashInfer is not published for WSL or GPUs with compute capability < 8.0. Your RTX 2060 SUPER is 7.5, so the package is unavailable. The run script now skips installing FlashInfer on WSL, eliminating those errors.
+
+**Logging**
+Logs are now written to:
+- energy/scripts/logs/
+
+Each run writes a new file like:
+- `process_papers_YYYYMMDD_HHMMSS.log`
+
+**WSL crash mitigation**
+I added two safeguards:
+1. Memory throttling:
+   - `VLLM_GPU_MEMORY_UTILIZATION=0.6`
+   - `PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:128,garbage_collection_threshold:0.8`
+2. Auto fallback to CPU if a CUDA run fails.
+
+If WSL keeps crashing for specific PDFs, try:
+1. Run just those files on CPU:
+   ```bash
+   MINERU_DEVICE=cpu ./run_process_papers.sh
+   ```
+2. Or lower GPU memory further:
+   ```bash
+   VLLM_GPU_MEMORY_UTILIZATION=0.4 ./run_process_papers.sh
+   ```
+3. If crashes persist, set a WSL memory cap in `.wslconfig` (I can help set this if you want).
+<!-- ------ -->
+---
