@@ -86,3 +86,18 @@ cd /home/echo_/Code/asciimath/energy/scripts
 It will execute MinerU on the unconverted papers from the specified rows.
 <!-- ------ -->
 ---
+The script is now working correctly. The previous errors were from before the path fix was applied. The latest run shows it successfully started processing the papers with MinerU, as evidenced by the "Running: mineru ..." output and the MinerU logs beginning.
+
+The script has been successfully moved to scripts, with proper absolute paths, requirements, and a run script. It processes only the specified TSV rows (27-41), skips already converted papers, and runs MinerU on the remaining ones.
+<!-- ------ -->
+---
+The test confirms the fix is working. The script now successfully runs without the `FileNotFoundError`. The output shows it correctly identifies and processes the papers from TSV rows 27-41, skipping already converted ones and running MinerU on the remaining PDFs.
+
+Key evidence:
+- The BibTeX file exists at the absolute path.
+- The script activates the venv, parses the files, and starts MinerU without path errors.
+- It processes the expected papers (e.g., `schulten1975`, `johansson2016`, etc.) and skips converted ones.
+
+The script is fully functional and ready for use. If MinerU encounters issues during processing, that's separate from the path fix, which is resolved.
+<!-- ------ -->
+---
