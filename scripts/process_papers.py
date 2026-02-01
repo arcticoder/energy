@@ -7,9 +7,9 @@ import re
 import unicodedata
 
 # Paths
-bib_file = '/home/echo_/Code/asciimath/su2-3nj-series-paper/papers/paper/su2-3nj-unified-representations.bib'
-tsv_file = '/home/echo_/Code/asciimath/energy/docs/downloaded_paper_locations.tsv'
-work_dir = '/home/echo_/Code/asciimath/su2-3nj-series-paper/papers/related'
+bib_file = '~/Code/asciimath/su2-3nj-series-paper/papers/paper/su2-3nj-unified-representations.bib'
+tsv_file = '~/Code/asciimath/energy/docs/downloaded_paper_locations.tsv'
+work_dir = '~/Code/asciimath/su2-3nj-series-paper/papers/related'
 
 # Parse bib file
 with open(bib_file, 'r') as f:
