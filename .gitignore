@@ -216,3 +216,4 @@ traffic_stats_log.txt
 papers/related/*
 
 docs/*.tsv
+docs/journals/*
