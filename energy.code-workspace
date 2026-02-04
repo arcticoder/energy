@@ -261,7 +261,7 @@
 		}
 	],
 	"settings": {
-		"python.defaultInterpreterPath": "C:\\Program Files\\Python313\\python.exe",
+		"python.defaultInterpreterPath": "~/miniconda3/bin/python",
 		"files.exclude": {
 			"**/.git": true,
 			"**/node_modules": true,
