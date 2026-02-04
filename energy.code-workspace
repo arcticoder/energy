@@ -261,7 +261,6 @@
 		}
 	],
 	"settings": {
-		"python.defaultInterpreterPath": "~/miniconda3/bin/python",
 		"files.exclude": {
 			"**/.git": true,
 			"**/node_modules": true,
