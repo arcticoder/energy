@@ -6,7 +6,7 @@
 		},
 		{
 			"name": "warp-cone-aqei",
-			"path": "./warp-cone-aqei"
+			"path": "../warp-cone-aqei"
 		},
 		{
 			"name": "artificial-gravity-field-generator",
