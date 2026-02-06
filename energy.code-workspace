@@ -255,9 +255,6 @@
 		{
 			"name": "casimir-tunable-permittivity-stacks",
 			"path": "../casimir-tunable-permittivity-stacks"
-		},
-		{
-			"path": "../../python/diffusion"
 		}
 	],
 	"settings": {
