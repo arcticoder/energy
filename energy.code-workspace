@@ -5,6 +5,10 @@
 			"path": "."
 		},
 		{
+			"name": "warp-cone-aqei",
+			"path": "./warp-cone-aqei"
+		},
+		{
 			"name": "artificial-gravity-field-generator",
 			"path": "../artificial-gravity-field-generator"
 		},
@@ -266,7 +270,26 @@
 			"**/venv": true,
 			"**/.venv": true
 		},
-		"powershell.cwd": "energy (main)"
+		"powershell.cwd": "energy (main)",
+		
+		// Disable Lean 4 extension's automatic language server across workspace
+		// to prevent terminal crashes - we manage Lean builds manually via CLI
+		"lean4.enabled": false,
+		"lean4.serverLogging.enabled": false,
+		"lean4.elaborationDelay": 0,
+		
+		// Reduce file watcher overhead for Lean and Mathematica artifacts
+		"files.watcherExclude": {
+			"**/.git/objects/**": true,
+			"**/.git/subtree-cache/**": true,
+			"**/node_modules/**": true,
+			"**/.lake/**": true,
+			"**/lake-packages/**": true,
+			"**/__pycache__/**": true,
+			"**/mathematica/results/**": true,
+			"**/.venv/**": true,
+			"**/venv/**": true
+		}
 	},
 	"extensions": {
 		"recommendations": [
