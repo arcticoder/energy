@@ -5,8 +5,8 @@
 			"path": "."
 		},
 		{
-			"name": "warp-cone-aqei",
-			"path": "../warp-cone-aqei"
+			"name": "energy-tensor-cone",
+			"path": "../energy-tensor-cone"
 		},
 		{
 			"name": "artificial-gravity-field-generator",
