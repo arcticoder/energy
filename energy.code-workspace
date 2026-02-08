@@ -5,6 +5,10 @@
 			"path": "."
 		},
 		{
+			"name": ".github",
+			"path": "../.github"
+		},
+		{
 			"name": "energy-tensor-cone",
 			"path": "../energy-tensor-cone"
 		},
@@ -23,6 +27,10 @@
 		{
 			"name": "casimir-nanopositioning-platform",
 			"path": "../casimir-nanopositioning-platform"
+		},
+		{
+			"name": "casimir-tunable-permittivity-stacks",
+			"path": "../casimir-tunable-permittivity-stacks"
 		},
 		{
 			"name": "casimir-ultra-smooth-fabrication-platform",
@@ -255,10 +263,6 @@
 		{
 			"name": "www",
 			"path": "../www"
-		},
-		{
-			"name": "casimir-tunable-permittivity-stacks",
-			"path": "../casimir-tunable-permittivity-stacks"
 		}
 	],
 	"settings": {
