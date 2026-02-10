@@ -5,6 +5,10 @@
 			"path": "."
 		},
 		{
+			"name": "aqei-bridge",
+			"path": "../aqei-bridge"
+		},
+		{
 			"name": ".github",
 			"path": "../.github"
 		},
