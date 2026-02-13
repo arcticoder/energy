@@ -8,9 +8,9 @@ import unicodedata
 import sys
 
 # Paths
-bib_file = '/home/echo_/Code/asciimath/su2-3nj-series-paper/papers/paper/su2-3nj-unified-representations.bib'
+bib_file = '/home/echo_/Code/asciimath/energy-tensor-cone/papers/paper/aqei-cone-formalization.bib'
 tsv_file = '/home/echo_/Code/asciimath/energy/docs/downloaded_paper_locations.tsv'
-work_dir = '/home/echo_/Code/asciimath/su2-3nj-series-paper/papers/related'
+work_dir = '/home/echo_/Code/asciimath/energy-tensor-cone/papers/related'
 
 dry_run = '--dry-run' in sys.argv
 
