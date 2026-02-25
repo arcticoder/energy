@@ -13,10 +13,6 @@
 			"path": "../.github"
 		},
 		{
-			"name": "energy-tensor-cone",
-			"path": "../energy-tensor-cone"
-		},
-		{
 			"name": "artificial-gravity-field-generator",
 			"path": "../artificial-gravity-field-generator"
 		},
@@ -51,6 +47,10 @@
 		{
 			"name": "elemental-transmutator",
 			"path": "../elemental-transmutator"
+		},
+		{
+			"name": "energy-tensor-cone",
+			"path": "../energy-tensor-cone"
 		},
 		{
 			"name": "enhanced-simulation-hardware-abstraction-framework",
