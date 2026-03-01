@@ -137,28 +137,8 @@
 			"path": "../scalar-tensor-ftl-analysis"
 		},
 		{
-			"name": "su2-3nj-closedform",
-			"path": "../su2-3nj-closedform"
-		},
-		{
-			"name": "su2-3nj-generating-functional",
-			"path": "../su2-3nj-generating-functional"
-		},
-		{
-			"name": "su2-3nj-recurrences",
-			"path": "../su2-3nj-recurrences"
-		},
-		{
-			"name": "su2-3nj-uniform-closed-form",
-			"path": "../su2-3nj-uniform-closed-form"
-		},
-		{
-			"name": "su2-node-matrix-elements",
-			"path": "../su2-node-matrix-elements"
-		},
-		{
-			"name": "su2-3nj-series-paper",
-			"path": "../su2-3nj-series-paper"
+			"name": "su2-3nj-unified-framework",
+			"path": "../su2-3nj-unified-framework"
 		},
 		{
 			"name": "unified-gut-polymerization",
