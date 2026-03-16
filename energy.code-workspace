@@ -5,12 +5,12 @@
 			"path": "."
 		},
 		{
-			"name": "aqei-bridge",
-			"path": "../aqei-bridge"
-		},
-		{
 			"name": ".github",
 			"path": "../.github"
+		},
+		{
+			"name": "aqei-bridge",
+			"path": "../aqei-bridge"
 		},
 		{
 			"name": "artificial-gravity-field-generator",
@@ -115,6 +115,10 @@
 		{
 			"name": "medical-tractor-array",
 			"path": "../medical-tractor-array"
+		},
+		{
+			"name": "microwave-cavity-vibration",
+			"path": "../microwave-cavity-vibration"
 		},
 		{
 			"name": "negative-energy-generator",
