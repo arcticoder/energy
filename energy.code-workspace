@@ -247,6 +247,9 @@
 		{
 			"name": "www",
 			"path": "../www"
+		},
+		{
+			"path": "../pico"
 		}
 	],
 	"settings": {
