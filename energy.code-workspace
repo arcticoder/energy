@@ -125,6 +125,10 @@
 			"path": "../negative-energy-generator"
 		},
 		{
+			"name": "pico",
+			"path": "../pico"
+		},
+		{
 			"name": "polymer-fusion-framework",
 			"path": "../polymer-fusion-framework"
 		},
@@ -247,9 +251,6 @@
 		{
 			"name": "www",
 			"path": "../www"
-		},
-		{
-			"path": "../pico"
 		}
 	],
 	"settings": {
